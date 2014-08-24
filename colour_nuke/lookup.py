@@ -32,14 +32,14 @@ __all__ = ['COLOR_LOOKUP_CURVES_TEMPLATE',
            'CurvesInformation',
            'Curve',
            'Lookup',
-           'get_curve_data',
+           'curve_data',
            'parse_curve_data_header',
            'parse_curve_data',
-           'get_curve_axis_values',
-           'get_curve',
-           'get_lookup',
+           'curve_axis_values',
+           'curve',
+           'lookup',
            'format_curve_data',
-           'get_color_lookup_node',
+           'color_lookup_node',
            'import_curves_data_csv_file']
 
 COLOR_LOOKUP_CURVES_TEMPLATE = (
@@ -118,7 +118,7 @@ class Lookup(object):
             alpha_curve, Curve) else Curve()
 
 
-def get_curve_data(file):
+def curve_data(file):
     """
     Reads the curve data from given CSV file.
 
@@ -134,7 +134,7 @@ def get_curve_data(file):
     """
 
     with open(file, 'rb') as csv_file:
-        return tuple(csv.reader(csv_file, delimiter=','))
+        return list(csv.reader(csv_file, delimiter=','))
 
 
 def parse_curve_data_header(header):
@@ -180,7 +180,7 @@ def parse_curve_data(data):
     return curves_information
 
 
-def get_curve_axis_values(curves_information, name, axis):
+def curve_axis_values(curves_information, name, axis):
     """
     Returns the curve axis values.
 
@@ -205,7 +205,7 @@ def get_curve_axis_values(curves_information, name, axis):
     return []
 
 
-def get_curve(curves_information, name):
+def curve(curves_information, name):
     """
     Returns a curve using given :class:`curves_information` class instance.
 
@@ -222,11 +222,11 @@ def get_curve(curves_information, name):
         Curve.
     """
 
-    return Curve(x=get_curve_axis_values(curves_information, name, 'x'),
-                 y=get_curve_axis_values(curves_information, name, 'y'))
+    return Curve(x=curve_axis_values(curves_information, name, 'x'),
+                 y=curve_axis_values(curves_information, name, 'y'))
 
 
-def get_lookup(curves_information):
+def curves_information_to_lookup(curves_information):
     """
     Returns a :class:`Lookup` class instance using given
     :class:`curves_information` class instance.
@@ -242,11 +242,11 @@ def get_lookup(curves_information):
         Lookup.
     """
 
-    return Lookup(get_curve(curves_information, 'master'),
-                  get_curve(curves_information, 'red'),
-                  get_curve(curves_information, 'green'),
-                  get_curve(curves_information, 'blue'),
-                  get_curve(curves_information, 'alpha'))
+    return Lookup(curve(curves_information, 'master'),
+                  curve(curves_information, 'red'),
+                  curve(curves_information, 'green'),
+                  curve(curves_information, 'blue'),
+                  curve(curves_information, 'alpha'))
 
 
 def format_curve_data(curve):
@@ -271,7 +271,7 @@ def format_curve_data(curve):
         curve_data) if curve_data is not '' else 'curve C 0 1'
 
 
-def get_color_lookup_node(file, template=COLOR_LOOKUP_CURVES_TEMPLATE):
+def color_lookup_node(file, template=COLOR_LOOKUP_CURVES_TEMPLATE):
     """
     Creates the *Nuke* *ColorLookup* node code using given CSV file.
 
@@ -288,8 +288,8 @@ def get_color_lookup_node(file, template=COLOR_LOOKUP_CURVES_TEMPLATE):
         ColorLookup node.
     """
 
-    color_lookup = nuke.nodes.ColorLookup(name='ColourLookup')
-    lookup = get_lookup(parse_curve_data(get_curve_data(file)))
+    color_lookup = nuke.nodes.ColorLookup(name='ColorLookup')
+    lookup = curves_information_to_lookup(parse_curve_data(curve_data(file)))
     color_lookup.knob('lut').fromScript(
         template.format(format_curve_data(lookup.master_curve),
                         format_curve_data(lookup.red_curve),
@@ -313,4 +313,4 @@ def import_curves_data_csv_file():
                             '*.csv')
     if file is not None:
         if os.path.exists(file):
-            return get_color_lookup_node(file)
+            return color_lookup_node(file)
