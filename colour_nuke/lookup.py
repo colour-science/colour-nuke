@@ -15,7 +15,7 @@ import csv
 
 try:
     import nuke
-except ImportError as error:
+except ImportError:
     pass
 import os
 from collections import namedtuple
