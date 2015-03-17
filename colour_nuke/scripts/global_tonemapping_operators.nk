@@ -85,6 +85,78 @@ Ramp {
 }
 set N18f79260 [stack 0]
 Group {
+ name Simple_Tonemapping_Operator
+ tile_color 0xffbf00ff
+ selected true
+ xpos -40
+ ypos 15
+ addUserKnob {20 simple_tonemapping_operator_tab l "Simple Tonemapping Operator"}
+ addUserKnob {20 miscellaneous_Group l "Miscellaneous Parameters" n 1}
+ addUserKnob {7 mix_Floating_Point_Slider l Mix t "Dissolve between the original image at 0 and the full effect at 1."}
+ mix_Floating_Point_Slider 1
+ addUserKnob {20 miscellaneous_endGroup l endGroup n -1}
+ addUserKnob {20 about_Tab l About}
+ addUserKnob {26 description_Text l "" +STARTLINE T "Simple Tonemapping Operator v0.1.0\n\ncolour-science.org - March 17, 2015\n\nThis Gizmo / Group implements a Simple Tonemapping Operator.\n\n\[1] Wikipedia. (n.d.). Tonemapping - Purpose and methods. Retrieved March 15, 2015, from http://en.wikipedia.org/wiki/Tone_mapping#Purpose_and_methods"}
+}
+ Input {
+  inputs 0
+  name Input
+  xpos 55
+  ypos -54
+ }
+set N6cb0d0 [stack 0]
+ Expression {
+  expr0 r/(r+1)
+  expr1 g/(g+1)
+  expr2 b/(b+1)
+  name simple_tonemapping_operator_Expression
+  xpos 55
+  ypos -30
+ }
+push $N6cb0d0
+ Dot {
+  name Dot1
+  xpos 165
+  ypos -51
+ }
+ Dot {
+  name Dot2
+  xpos 165
+  ypos 1
+ }
+ Dissolve {
+  inputs 2
+  which {{parent.mix_Floating_Point_Slider}}
+  name Dissolve
+  selected true
+  xpos 55
+  ypos -6
+ }
+ Output {
+  name Output
+  xpos 55
+  ypos 26
+ }
+end_group
+Viewer {
+ frame 1
+ input_process false
+ name Viewer1
+ xpos 70
+ ypos 15
+}
+StickyNote {
+ inputs 0
+ name StickyNote
+ tile_color 0x767676ff
+ gl_color 0x767676ff
+ label "GLOBAL TONEMAPPING OPERATORS 1.0\n\ncolour-science.org - March 17, 2015\n\nThis file is a playground for implementation of various Global Tonemapping Operators.\n\nBecause Nuke is unable of realtime computation of image average, min and max values, some operators need a domain precomputation.\n\nMore informations are available in the following IPython Notebook:\n\nhttp://nbviewer.ipython.org/github/colour-science/colour-ramblings/blob/master/global_tonemapping_operators.ipynb\n\n\n"
+ note_font_size 14
+ xpos -374
+ ypos -255
+}
+push $N18f79260
+Group {
  name Normalisation_Tonemapping_Operator
  tile_color 0xffbf00ff
  xpos -40
@@ -2299,74 +2371,3 @@ push $N69eb70
   ypos 43
  }
 end_group
-push $N18f79260
-Group {
- name Simple_Tonemapping_Operator
- tile_color 0xffbf00ff
- xpos -40
- ypos 15
- addUserKnob {20 simple_tonemapping_operator_tab l "Simple Tonemapping Operator"}
- addUserKnob {20 miscellaneous_Group l "Miscellaneous Parameters" n 1}
- addUserKnob {7 mix_Floating_Point_Slider l Mix t "Dissolve between the original image at 0 and the full effect at 1."}
- mix_Floating_Point_Slider 1
- addUserKnob {20 miscellaneous_endGroup l endGroup n -1}
- addUserKnob {20 about_Tab l About}
- addUserKnob {26 description_Text l "" +STARTLINE T "Simple Tonemapping Operator v0.1.0\n\ncolour-science.org - March 17, 2015\n\nThis Gizmo / Group implements a Simple Tonemapping Operator.\n\n\[1] Wikipedia. (n.d.). Tonemapping - Purpose and methods. Retrieved March 15, 2015, from http://en.wikipedia.org/wiki/Tone_mapping#Purpose_and_methods"}
-}
- Input {
-  inputs 0
-  name Input
-  xpos 55
-  ypos -54
- }
-set N6cb0d0 [stack 0]
- Expression {
-  expr0 r/(r+1)
-  expr1 g/(g+1)
-  expr2 b/(b+1)
-  name simple_tonemapping_operator_Expression
-  xpos 55
-  ypos -30
- }
-push $N6cb0d0
- Dot {
-  name Dot1
-  xpos 165
-  ypos -51
- }
- Dot {
-  name Dot2
-  xpos 165
-  ypos 1
- }
- Dissolve {
-  inputs 2
-  which {{parent.mix_Floating_Point_Slider}}
-  name Dissolve
-  selected true
-  xpos 55
-  ypos -6
- }
- Output {
-  name Output
-  xpos 55
-  ypos 26
- }
-end_group
-Viewer {
- frame 1
- input_process false
- name Viewer1
- xpos 70
- ypos 15
-}
-StickyNote {
- inputs 0
- name StickyNote
- tile_color 0x767676ff
- gl_color 0x767676ff
- label "GLOBAL TONEMAPPING OPERATORS 1.0\n\ncolour-science.org - March 17, 2015\n\nThis file is a playground for implementation of various Global Tonemapping Operators.\n\nBecause Nuke is unable of realtime computation of image average, min and max values, some operators need a domain precomputation.\n\nMore informations are available in the following IPython Notebook:\n\nhttp://nbviewer.ipython.org/github/colour-science/colour-ramblings/blob/master/global_tonemapping_operators.ipynb\n\n\n"
- note_font_size 14
- xpos -374
- ypos -255
-}
