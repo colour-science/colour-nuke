@@ -87,7 +87,6 @@ set N18f79260 [stack 0]
 Group {
  name Simple_Tonemapping_Operator
  tile_color 0xffbf00ff
- selected true
  xpos -40
  ypos 15
  addUserKnob {20 simple_tonemapping_operator_tab l "Simple Tonemapping Operator"}
@@ -144,16 +143,6 @@ Viewer {
  name Viewer1
  xpos 70
  ypos 15
-}
-StickyNote {
- inputs 0
- name StickyNote
- tile_color 0x767676ff
- gl_color 0x767676ff
- label "GLOBAL TONEMAPPING OPERATORS 1.0\n\ncolour-science.org - March 17, 2015\n\nThis file is a playground for implementation of various Global Tonemapping Operators.\n\nBecause Nuke is unable of realtime computation of image average, min and max values, some operators need a domain precomputation.\n\nMore informations are available in the following IPython Notebook:\n\nhttp://nbviewer.ipython.org/github/colour-science/colour-ramblings/blob/master/global_tonemapping_operators.ipynb\n\n\n"
- note_font_size 14
- xpos -374
- ypos -255
 }
 push $N18f79260
 Group {
@@ -2371,3 +2360,13 @@ push $N69eb70
   ypos 43
  }
 end_group
+StickyNote {
+ inputs 0
+ name StickyNote
+ tile_color 0x767676ff
+ gl_color 0x767676ff
+ label "GLOBAL TONEMAPPING OPERATORS 1.0\n\ncolour-science.org - March 17, 2015\n\nThis file is a playground for implementation of various Global Tonemapping Operators.\n\nBecause Nuke is unable of realtime computation of image average, min and max values, some operators need a domain precomputation.\n\nMore informations are available in the following IPython Notebook:\n\nhttp://nbviewer.ipython.org/github/colour-science/colour-ramblings/blob/master/global_tonemapping_operators.ipynb\n\nLatest version of the file will always be available at this url: https://github.com/colour-science/colour-nuke/blob/master/colour_nuke/scripts/global_tonemapping_operators.nk\n\n"
+ note_font_size 14
+ xpos -368
+ ypos -267
+}
