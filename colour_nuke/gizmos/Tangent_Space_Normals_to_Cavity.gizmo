@@ -1,0 +1,78 @@
+#! /Applications/Nuke8.0v1/Nuke8.0v1.app/Contents/MacOS/libnuke-8.0.v1.dylib -nx
+version 8.0 v1
+Gizmo {
+ tile_color 0xffbf00ff
+ addUserKnob {20 tangent_space_normals_to_cavity_tab l "Tangent Space Normals to Cavity"}
+ addUserKnob {20 about_Tab l About}
+ addUserKnob {26 description_Text l "" +STARTLINE T "Tangent Space Normal to Cavity v0.1.0\n\ncolour-science.org - April 4, 2015\n\nThis Gizmo / Group performs conversion from Tangent Space Normals to Cavity."}
+}
+ Input {
+  inputs 0
+  name Input
+  xpos -40
+  ypos 15
+ }
+set N20638bc0 [stack 0]
+ Shuffle {
+  red green
+  blue green
+  name green_Shuffle
+  xpos 70
+  ypos 15
+ }
+ Matrix {
+  matrix {
+      {1 1 1}
+      {0 0 0}
+      {-1 -1 -1}
+    }
+  name horizontal_Prewitt_Matrix
+  xpos 70
+  ypos 39
+ }
+push $N20638bc0
+ Shuffle {
+  green red
+  blue red
+  name red_Shuffle
+  xpos -150
+  ypos 15
+ }
+ Matrix {
+  matrix {
+      {-1 0 1}
+      {-1 0 1}
+      {-1 0 1}
+    }
+  name vertical_Prewitt_Matrix
+  xpos -150
+  ypos 39
+ }
+ Merge2 {
+  inputs 2
+  operation plus
+  name Merge
+  xpos -40
+  ypos 43
+ }
+ Expression {
+  expr0 "r * 0.5 + 0.5"
+  expr1 "g * 0.5 + 0.5"
+  expr2 "b * 0.5 + 0.5"
+  name output_offset_Expression
+  xpos -40
+  ypos 67
+ }
+ Output {
+  name Output
+  xpos -40
+  ypos 91
+ }
+ Viewer {
+  input_process false
+  name Viewer1
+  selected true
+  xpos -40
+  ypos 115
+ }
+end_group

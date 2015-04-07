@@ -2,7 +2,7 @@
 version 8.0 v1
 define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
 <layout version="1.0">
-    <window x="0" y="23" w="1280" h="725" screen="0">
+    <window x="0" y="23" w="1280" h="717" screen="0">
         <splitter orientation="1">
             <split size="808"/>
             <splitter orientation="1">
@@ -12,16 +12,17 @@ define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
                 </dock>
                 <split size="764"/>
                 <splitter orientation="2">
-                    <split size="410"/>
+                    <split size="406"/>
                     <dock id="" activePageId="Viewer.1">
                         <page id="Viewer.1"/>
+                        <page id="Viewer.2"/>
                     </dock>
-                    <split size="289"/>
+                    <split size="285"/>
                     <dock id="" activePageId="DAG.1">
                         <page id="DAG.1"/>
                         <page id="Curve Editor.1"/>
                         <page id="DopeSheet.1"/>
-                        <page id="DAG.2"/>
+                        <page id="DAG.3"/>
                     </dock>
                 </splitter>
             </splitter>
@@ -93,7 +94,7 @@ Group {
   xpos -260
   ypos -33
  }
-set N20734da0 [stack 0]
+set N15bdc5c0 [stack 0]
  Prewitt_Tangent_Space_Normals_Generator {
   name Extreme_Tangent_Space_Normals_Generator
   xpos 70
@@ -102,7 +103,7 @@ set N20734da0 [stack 0]
   size_Floating_Point_Slider {{parent.extreme_size_Floating_Point_Slider}}
   intensity_Floating_Point_Slider {{parent.extreme_intensity_Floating_Point_Slider}}
  }
-push $N20734da0
+push $N15bdc5c0
  Prewitt_Tangent_Space_Normals_Generator {
   name Large_Tangent_Space_Normals_Generator
   xpos -40
@@ -111,7 +112,7 @@ push $N20734da0
   size_Floating_Point_Slider {{parent.large_size_Floating_Point_Slider}}
   intensity_Floating_Point_Slider {{parent.large_intensity_Floating_Point_Slider}}
  }
-push $N20734da0
+push $N15bdc5c0
  Prewitt_Tangent_Space_Normals_Generator {
   name Medium_Large_Tangent_Space_Normals_Generator
   xpos -150
@@ -120,7 +121,7 @@ push $N20734da0
   size_Floating_Point_Slider {{parent.medium_large_size_Floating_Point_Slider}}
   intensity_Floating_Point_Slider {{parent.medium_large_intensity_Floating_Point_Slider}}
  }
-push $N20734da0
+push $N15bdc5c0
  Prewitt_Tangent_Space_Normals_Generator {
   name Medium_Tangent_Space_Normals_Generator
   xpos -260
@@ -129,7 +130,7 @@ push $N20734da0
   size_Floating_Point_Slider {{parent.medium_size_Floating_Point_Slider}}
   intensity_Floating_Point_Slider {{parent.medium_intensity_Floating_Point_Slider}}
  }
-push $N20734da0
+push $N15bdc5c0
  Prewitt_Tangent_Space_Normals_Generator {
   name Small_Medium_Tangent_Space_Normals_Generator
   xpos -370
@@ -138,7 +139,7 @@ push $N20734da0
   size_Floating_Point_Slider {{parent.small_medium_size_Floating_Point_Slider}}
   intensity_Floating_Point_Slider {{parent.small_medium_intensity_Floating_Point_Slider x1 1.96}}
  }
-push $N20734da0
+push $N15bdc5c0
  Prewitt_Tangent_Space_Normals_Generator {
   name Small_Tangent_Space_Normals_Generator
   xpos -480
@@ -147,7 +148,7 @@ push $N20734da0
   size_Floating_Point_Slider {{parent.small_size_Floating_Point_Slider}}
   intensity_Floating_Point_Slider {{parent.small_intensity_Floating_Point_Slider}}
  }
-push $N20734da0
+push $N15bdc5c0
  Prewitt_Tangent_Space_Normals_Generator {
   name Quantum_Emboss_Tangent_Space_Normals_Generator
   xpos -590
@@ -201,28 +202,28 @@ end_group
 Multi_Prewitt_Tangent_Space_Normals_Generator {
  inputs 0
  name gizmo_Multi_Prewitt_Tangent_Space_Normals_Generator
- xpos 2050
+ xpos 1940
  ypos -897
  parameters_Group 1
 }
 Multi_Derivative_Tangent_Space_Normals_Generator {
  inputs 0
  name gizmo_Multi_Derivative_Tangent_Space_Normals_Generator
- xpos 2050
+ xpos 1940
  ypos -993
  parameters_Group 1
 }
 Derivative_Tangent_Space_Normals_Generator {
  inputs 0
  name gizmo_Derivative_Tangent_Space_Normals_Generator
- xpos 2050
+ xpos 1940
  ypos -1041
  parameters_Group 1
 }
 Prewitt_Tangent_Space_Normals_Generator {
  inputs 0
  name gizmo_Prewitt_Tangent_Space_Normals_Generator
- xpos 2050
+ xpos 1940
  ypos -945
  parameters_Group 1
 }
@@ -333,6 +334,45 @@ push 0
   ypos -15
  }
 end_group
+Normalise_Tangent_Space_Normals {
+ inputs 0
+ name gizmo_Normalise_Tangent_Space_Normals
+ xpos 1940
+ ypos -1137
+}
+Partial_Derivative_Blending {
+ inputs 0
+ name gizmo_Partial_Derivative_Blending
+ xpos 1940
+ ypos -1089
+}
+Noise {
+ inputs 0
+ center {512 512}
+ name Noise
+ xpos 2380
+ ypos -1089
+}
+set N1cda08e0 [stack 0]
+Multi_Prewitt_Tangent_Space_Normals_Generator {
+ name example_1_Multi_Prewitt_Tangent_Space_Normals_Generator
+ xpos 2490
+ ypos -1089
+ parameters_Group 1
+ extreme_size_Floating_Point_Slider 64
+ extreme_intensity_Floating_Point_Slider 16
+ large_size_Floating_Point_Slider 32
+ large_intensity_Floating_Point_Slider 8
+ medium_large_size_Floating_Point_Slider 16
+ medium_large_intensity_Floating_Point_Slider 4
+ medium_size_Floating_Point_Slider 8
+ medium_intensity_Floating_Point_Slider 2
+ small_medium_size_Floating_Point_Slider 4
+ small_medium_intensity_Floating_Point_Slider 4
+ small_size_Floating_Point_Slider 2
+ small_intensity_Floating_Point_Slider 8
+ quantum_intensity_Floating_Point_Slider 16
+}
 Group {
  inputs 0
  name Normalise_Tangent_Space_Normals
@@ -380,193 +420,6 @@ Group {
   name Output1
   xpos 290
   ypos 39
- }
-end_group
-Group {
- inputs 0
- name Partial_Derivative_Blending
- tile_color 0xffbf00ff
- xpos 1720
- ypos -1089
- addUserKnob {20 Partial_Derivative_Blending l "Partial Derivative Blending"}
- addUserKnob {20 about_Tab l About}
- addUserKnob {26 description_Text l "" +STARTLINE T "Partial Derivative Blending v0.1.0\n\ncolour-science.org - April 6, 2015\n\nThis Gizmo / Group merges tangent space normals together using Partial Derivative Blending.\n\n\[1] Self Shadow. (n.d.). Blending in Detail. Retrieved April 7, 2015, from http://blog.selfshadow.com/publications/blending-in-detail/\n"}
-}
- Input {
-  inputs 0
-  name n1_Input
-  xpos -370
-  ypos 63
- }
- Expression {
-  expr0 "r * 2 - 1"
-  expr1 "g *  2 - 1"
-  expr2 "b * 2 - 1"
-  name n1_input_offset_Expression
-  xpos -370
-  ypos 87
- }
- Input {
-  inputs 0
-  name n2_Input
-  xpos -150
-  ypos 63
-  number 1
- }
- Expression {
-  expr0 "r * 2 - 1"
-  expr1 "g *  2 - 1"
-  expr2 "b * 2 - 1"
-  name n2_input_offset_Expression
-  xpos -150
-  ypos 87
- }
- MergeExpression {
-  inputs 2
-  expr0 "Ar + Br"
-  expr1 "Ag + Bg"
-  expr2 "Ab * Bb"
-  name MergeExpression
-  xpos -260
-  ypos 87
- }
- Expression {
-  expr0 "r * 0.5 + 0.5"
-  expr1 "g * 0.5 + 0.5"
-  expr2 "b * 0.5 + 0.5"
-  name output_offset_Expression
-  selected true
-  xpos -260
-  ypos 111
- }
- Normalise_Tangent_Space_Normals {
-  name Normalise_Tangent_Space_Normals
-  xpos -260
-  ypos 135
- }
- Output {
-  name Output
-  xpos -260
-  ypos 159
- }
-end_group
-Group {
- inputs 0
- name Derivative_Tangent_Space_Normals_Generator
- tile_color 0xffbf00ff
- xpos 1720
- ypos -1041
- addUserKnob {20 derivative_tangent_space_normals_generator_Tab l "Derivative Tangent Space Normals Generator"}
- addUserKnob {20 parameters_Group l Parameters n 1}
- addUserKnob {7 size_Floating_Point_Slider l Size R 1 5}
- size_Floating_Point_Slider 1
- addUserKnob {7 intensity_Floating_Point_Slider l Intensity R 0 5}
- intensity_Floating_Point_Slider 1
- addUserKnob {20 parameters_endGroup l endGroup n -1}
- addUserKnob {20 about_Tab l About}
- addUserKnob {26 description_Text l "" +STARTLINE T "Prewitt Tangent Space Normals Generator v0.1.0\n\ncolour-science.org - April 6, 2015\n\nThis Gizmo / Group generates tangent space normals from given input image using derivatives.\n\n\[1] Wikipedia. (n.d.). Image gradient. Retrieved April 7, 2015, from http://en.wikipedia.org/wiki/Image_gradient"}
-}
- Input {
-  inputs 0
-  name Input
-  xpos 163
-  ypos -123
- }
- Saturation {
-  saturation 0
-  name Saturation
-  xpos 163
-  ypos -99
- }
- Blur {
-  size {{"parent.size_Floating_Point_Slider - 1"}}
-  quality {{"size * 0.5 + 8"}}
-  name Blur
-  xpos 163
-  ypos -75
- }
- Multiply {
-  value 0.1
-  name pre_scale_Multiply
-  xpos 163
-  ypos -43
- }
- Multiply {
-  value {{parent.intensity_Floating_Point_Slider}}
-  name intensity_Multiply
-  xpos 163
-  ypos -11
- }
- Expression {
-  expr0 "x / width"
-  expr1 "y / width"
-  name gradient_Expression
-  xpos 163
-  ypos 20
- }
-set N24771f80 [stack 0]
- Expression {
-  expr0 "r(x, y + 1) - r"
-  expr1 "g(x, y + 1) - g"
-  expr2 "b(x, y + 1) - b"
-  name derivative_y_Expression
-  xpos 273
-  ypos 44
- }
-push $N24771f80
- Expression {
-  expr0 "r(x - 1, y) - r"
-  expr1 "g(x - 1, y) - g"
-  expr2 "b(x - 1, y) - b"
-  name derivative_x_Expression
-  xpos 53
-  ypos 44
- }
- MergeExpression {
-  inputs 2
-  expr0 "Ag * Bb - Bg * Ab"
-  expr1 "Ar * Bb - Br * Ab"
-  expr2 "Ar * Bg - Br * Ag"
-  name dot_product_MergeExpression
-  label "\n"
-  xpos 163
-  ypos 49
- }
- Expression {
-  expr1 "- g"
-  name invert_green_Expression
-  xpos 163
-  ypos 73
- }
- Transform {
-  translate {-0.5 0.5}
-  center {1536 1152}
-  name Transform
-  xpos 163
-  ypos 97
- }
- Expression {
-  temp_name0 norme
-  temp_expr0 "sqrt(r * r + g * g + b * b)"
-  expr0 "r / abs(norme)"
-  expr1 "g / abs(norme)"
-  expr2 "b / abs(norme)"
-  name normalise_Expression
-  xpos 163
-  ypos 121
- }
- Expression {
-  expr0 "r * 0.5 + 0.5"
-  expr1 "g * 0.5 + 0.5"
-  expr2 "b * 0.5 + 0.5"
-  name output_offset_Expression
-  xpos 163
-  ypos 145
- }
- Output {
-  name Output
-  xpos 163
-  ypos 169
  }
 end_group
 Group {
@@ -622,7 +475,7 @@ Group {
   xpos -260
   ypos -33
  }
-set N216111e0 [stack 0]
+set N1e90dd20 [stack 0]
  Derivative_Tangent_Space_Normals_Generator {
   name Extreme_Tangent_Space_Normals_Generator
   xpos 70
@@ -631,7 +484,7 @@ set N216111e0 [stack 0]
   size_Floating_Point_Slider {{parent.extreme_size_Floating_Point_Slider}}
   intensity_Floating_Point_Slider {{parent.extreme_intensity_Floating_Point_Slider}}
  }
-push $N216111e0
+push $N1e90dd20
  Derivative_Tangent_Space_Normals_Generator {
   name Large_Tangent_Space_Normals_Generator
   xpos -40
@@ -640,7 +493,7 @@ push $N216111e0
   size_Floating_Point_Slider {{parent.large_size_Floating_Point_Slider}}
   intensity_Floating_Point_Slider {{parent.large_intensity_Floating_Point_Slider}}
  }
-push $N216111e0
+push $N1e90dd20
  Derivative_Tangent_Space_Normals_Generator {
   name Medium_Large_Tangent_Space_Normals_Generator
   xpos -150
@@ -649,7 +502,7 @@ push $N216111e0
   size_Floating_Point_Slider {{parent.medium_large_size_Floating_Point_Slider}}
   intensity_Floating_Point_Slider {{parent.medium_large_intensity_Floating_Point_Slider}}
  }
-push $N216111e0
+push $N1e90dd20
  Derivative_Tangent_Space_Normals_Generator {
   name Medium_Tangent_Space_Normals_Generator
   xpos -260
@@ -658,7 +511,7 @@ push $N216111e0
   size_Floating_Point_Slider {{parent.medium_size_Floating_Point_Slider}}
   intensity_Floating_Point_Slider {{parent.medium_intensity_Floating_Point_Slider}}
  }
-push $N216111e0
+push $N1e90dd20
  Derivative_Tangent_Space_Normals_Generator {
   name Small_Medium_Tangent_Space_Normals_Generator
   xpos -370
@@ -667,7 +520,7 @@ push $N216111e0
   size_Floating_Point_Slider {{parent.small_medium_size_Floating_Point_Slider}}
   intensity_Floating_Point_Slider {{parent.small_medium_intensity_Floating_Point_Slider x1 1.96}}
  }
-push $N216111e0
+push $N1e90dd20
  Derivative_Tangent_Space_Normals_Generator {
   name Small_Tangent_Space_Normals_Generator
   xpos -480
@@ -676,7 +529,7 @@ push $N216111e0
   size_Floating_Point_Slider {{parent.small_size_Floating_Point_Slider}}
   intensity_Floating_Point_Slider {{parent.small_intensity_Floating_Point_Slider}}
  }
-push $N216111e0
+push $N1e90dd20
  Derivative_Tangent_Space_Normals_Generator {
   name Quantum_Emboss_Tangent_Space_Normals_Generator
   xpos -590
@@ -749,7 +602,7 @@ Group {
   xpos -590
   ypos 87
  }
-set N1e1b0890 [stack 0]
+set N1f04fa90 [stack 0]
  Group {
   name Blue_Tangent_Space_Normals_Generator
   xpos -480
@@ -758,7 +611,7 @@ set N1e1b0890 [stack 0]
   addUserKnob {7 size_Floating_Point_Slider l Size R 1 5}
   size_Floating_Point_Slider {{parent.size_Floating_Point_Slider}}
   addUserKnob {7 intensity_Floating_Point_Slider l Intensity R 0 5}
-  intensity_Floating_Point_Slider {{parent.size_Floating_Point_Slider/2}}
+  intensity_Floating_Point_Slider {{parent.intensity_Floating_Point_Slider x1 4}}
  }
   Input {
    inputs 0
@@ -773,25 +626,26 @@ set N1e1b0890 [stack 0]
    xpos -260
    ypos 179
   }
-set N1e1bf0b0 [stack 0]
+set N1f05e370 [stack 0]
   Matrix {
    matrix {
-       {{parent.intensity_Floating_Point_Slider/3} {parent.intensity_Floating_Point_Slider/3} {parent.intensity_Floating_Point_Slider/3}}
+       {1 1 1}
        {0 0 0}
-       {{-parent.intensity_Floating_Point_Slider/3} {-parent.intensity_Floating_Point_Slider/3} {-parent.intensity_Floating_Point_Slider/3}}
+       {-1 -1 -1}
      }
-   name horizontal_Matrix
+   name horizontal_Prewitt_Matrix
+   selected true
    xpos -150
    ypos 179
   }
-push $N1e1bf0b0
+push $N1f05e370
   Matrix {
    matrix {
-       {{-parent.intensity_Floating_Point_Slider/3} 0 {parent.intensity_Floating_Point_Slider/3}}
-       {{-parent.intensity_Floating_Point_Slider/3} 0 {parent.intensity_Floating_Point_Slider/3}}
-       {{-parent.intensity_Floating_Point_Slider/3} 0 {parent.intensity_Floating_Point_Slider/3}}
+       {-1 0 1}
+       {-1 0 1}
+       {-1 0 1}
      }
-   name vertical_Matrix
+   name vertical_Prewitt_Matrix
    xpos -370
    ypos 179
   }
@@ -805,7 +659,14 @@ push $N1e1bf0b0
    xpos -260
    ypos 211
   }
-set N1e1dc550 [stack 0]
+set N1f079ed0 [stack 0]
+  Viewer {
+   input_process false
+   name Viewer1
+   xpos -150
+   ypos 259
+  }
+push $N1f079ed0
   Shuffle {
    red black
    green black
@@ -813,42 +674,33 @@ set N1e1dc550 [stack 0]
    xpos -260
    ypos 235
   }
-  Output {
-   name Output
+  Multiply {
+   value {{parent.intensity_Floating_Point_Slider}}
+   name intensity_Multiply
    xpos -260
    ypos 259
   }
-push $N1e1dc550
-  Viewer {
-   input_process false
-   name Viewer1
-   selected true
-   xpos -150
-   ypos 259
+  Output {
+   name Output
+   xpos -260
+   ypos 291
   }
  end_group
- Multiply {
-  value {{parent.intensity_Floating_Point_Slider}}
-  name blue_Multiply
-  xpos -480
-  ypos 131
- }
  Invert {
   name Invert
   xpos -480
-  ypos 179
+  ypos 155
  }
-push $N1e1b0890
+push $N1f04fa90
  Group {
-  name red_Emboss_Edge_Detector
-  selected true
+  name red_Prewitt_Edge_Detector
   xpos -700
   ypos 111
   addUserKnob {20 emboss_edge_detector_tab l "Emboss Edge Detector"}
   addUserKnob {7 size_Floating_Point_Slider l Size R 1 5}
   size_Floating_Point_Slider {{parent.size_Floating_Point_Slider}}
   addUserKnob {7 intensity_Floating_Point_Slider l Intensity R 1 5}
-  intensity_Floating_Point_Slider {{parent.size_Floating_Point_Slider/2}}
+  intensity_Floating_Point_Slider {{parent.intensity_Floating_Point_Slider}}
   addUserKnob {7 angle_Floating_Point_Slider l Angle R -180 180}
   angle_Floating_Point_Slider 180
  }
@@ -868,7 +720,6 @@ push $N1e1b0890
    size {{"parent.size_Floating_Point_Slider - 1"}}
    quality {{"size * 0.5 + 8"}}
    name Blur
-   selected true
    xpos -40
    ypos 215
   }
@@ -881,11 +732,12 @@ push $N1e1b0890
   }
   Matrix {
    matrix {
-       {{-parent.intensity_Floating_Point_Slider/3} 0 {parent.intensity_Floating_Point_Slider/3}}
-       {{-parent.intensity_Floating_Point_Slider/3} 0 {parent.intensity_Floating_Point_Slider/3}}
-       {{-parent.intensity_Floating_Point_Slider/3} 0 {parent.intensity_Floating_Point_Slider/3}}
+       {-1 0 1}
+       {-1 0 1}
+       {-1 0 1}
      }
-   name Matrix
+   name Prewitt_Matrix
+   selected true
    xpos -40
    ypos 271
   }
@@ -896,36 +748,38 @@ push $N1e1b0890
    xpos -40
    ypos 303
   }
-  Output {
-   name Output
+  Multiply {
+   value {{parent.intensity_Floating_Point_Slider}}
+   name intensity_Multiply
    xpos -40
    ypos 327
   }
+  Output {
+   name Output
+   xpos -40
+   ypos 356
+  }
  end_group
- Multiply {
-  value {{parent.intensity_Floating_Point_Slider}}
-  name red_Multiply
-  xpos -700
-  ypos 131
- }
+set N1f0be700 [stack 0]
  Expression {
   expr0 "r * 0.5 + 0.5"
   expr1 "g * 0.5 + 0.5"
   expr2 "b * 0.5 + 0.5"
   name red_output_offset_Expression
   xpos -700
-  ypos 159
+  ypos 135
  }
-push $N1e1b0890
+push $N1f04fa90
  Group {
-  name green_Emboss_Edge_Detector
+  name green_Prewitt_Edge_Detector
+  selected true
   xpos -590
   ypos 111
   addUserKnob {20 emboss_edge_detector_tab l "Emboss Edge Detector"}
   addUserKnob {7 size_Floating_Point_Slider l Size R 1 5}
   size_Floating_Point_Slider {{parent.size_Floating_Point_Slider}}
   addUserKnob {7 intensity_Floating_Point_Slider l Intensity R 1 5}
-  intensity_Floating_Point_Slider {{parent.size_Floating_Point_Slider/2}}
+  intensity_Floating_Point_Slider {{parent.intensity_Floating_Point_Slider}}
   addUserKnob {7 angle_Floating_Point_Slider l Angle R -180 180}
   angle_Floating_Point_Slider 90
  }
@@ -938,7 +792,6 @@ push $N1e1b0890
   Saturation {
    saturation 0
    name Saturation
-   selected true
    xpos -40
    ypos 191
   }
@@ -958,11 +811,12 @@ push $N1e1b0890
   }
   Matrix {
    matrix {
-       {{-parent.intensity_Floating_Point_Slider/3} 0 {parent.intensity_Floating_Point_Slider/3}}
-       {{-parent.intensity_Floating_Point_Slider/3} 0 {parent.intensity_Floating_Point_Slider/3}}
-       {{-parent.intensity_Floating_Point_Slider/3} 0 {parent.intensity_Floating_Point_Slider/3}}
+       {-1 0 1}
+       {-1 0 1}
+       {-1 0 1}
      }
-   name Matrix
+   name Prewitt_Matrix
+   selected true
    xpos -40
    ypos 271
   }
@@ -973,25 +827,25 @@ push $N1e1b0890
    xpos -40
    ypos 303
   }
-  Output {
-   name Output
+  Multiply {
+   value {{parent.intensity_Floating_Point_Slider}}
+   name intensity_Multiply
    xpos -40
    ypos 327
   }
+  Output {
+   name Output
+   xpos -40
+   ypos 359
+  }
  end_group
- Multiply {
-  value {{parent.intensity_Floating_Point_Slider}}
-  name green_Multiply
-  xpos -590
-  ypos 131
- }
  Expression {
   expr0 "r * 0.5 + 0.5"
   expr1 "g * 0.5 + 0.5"
   expr2 "b * 0.5 + 0.5"
   name green_output_offset_Expression
   xpos -590
-  ypos 159
+  ypos 135
  }
  ShuffleCopy {
   inputs 2
@@ -1000,7 +854,7 @@ push $N1e1b0890
   alpha white
   name red_green_ShuffleCopy
   xpos -700
-  ypos 183
+  ypos 159
  }
  ShuffleCopy {
   inputs 2
@@ -1008,119 +862,374 @@ push $N1e1b0890
   alpha white
   name ShuffleCopy
   xpos -590
-  ypos 183
+  ypos 159
  }
  Normalise_Tangent_Space_Normals {
   name Normalise_Tangent_Space_Normals
   xpos -590
-  ypos 207
+  ypos 183
  }
  Output {
   name Output
   xpos -590
-  ypos 231
+  ypos 207
+ }
+push $N1f0be700
+ Viewer {
+  input_process false
+  name Viewer1
+  xpos -750
+  ypos 228
  }
 end_group
-Normalise_Tangent_Space_Normals {
+Group {
  inputs 0
- name gizmo_Normalise_Tangent_Space_Normals
- xpos 2050
- ypos -1137
-}
-Partial_Derivative_Blending {
- inputs 0
- name gizmo_Partial_Derivative_Blending
- xpos 2050
+ name Partial_Derivative_Blending
+ tile_color 0xffbf00ff
+ xpos 1720
  ypos -1089
+ addUserKnob {20 Partial_Derivative_Blending l "Partial Derivative Blending"}
+ addUserKnob {20 about_Tab l About}
+ addUserKnob {26 description_Text l "" +STARTLINE T "Partial Derivative Blending v0.1.0\n\ncolour-science.org - April 6, 2015\n\nThis Gizmo / Group merges tangent space normals together using Partial Derivative Blending.\n\n\[1] Self Shadow. (n.d.). Blending in Detail. Retrieved April 7, 2015, from http://blog.selfshadow.com/publications/blending-in-detail/\n"}
 }
+ Input {
+  inputs 0
+  name n1_Input
+  xpos -370
+  ypos 63
+ }
+ Expression {
+  expr0 "r * 2 - 1"
+  expr1 "g *  2 - 1"
+  expr2 "b * 2 - 1"
+  name n1_input_offset_Expression
+  xpos -370
+  ypos 87
+ }
+ Input {
+  inputs 0
+  name n2_Input
+  xpos -150
+  ypos 63
+  number 1
+ }
+ Expression {
+  expr0 "r * 2 - 1"
+  expr1 "g *  2 - 1"
+  expr2 "b * 2 - 1"
+  name n2_input_offset_Expression
+  xpos -150
+  ypos 87
+ }
+ MergeExpression {
+  inputs 2
+  expr0 "Ar + Br"
+  expr1 "Ag + Bg"
+  expr2 "Ab * Bb"
+  name MergeExpression
+  xpos -260
+  ypos 87
+ }
+ Expression {
+  expr0 "r * 0.5 + 0.5"
+  expr1 "g * 0.5 + 0.5"
+  expr2 "b * 0.5 + 0.5"
+  name output_offset_Expression
+  selected true
+  xpos -260
+  ypos 111
+ }
+ Normalise_Tangent_Space_Normals {
+  name Normalise_Tangent_Space_Normals
+  xpos -260
+  ypos 135
+ }
+ Output {
+  name Output
+  xpos -260
+  ypos 159
+ }
+end_group
+push $N1cda08e0
+Multi_Derivative_Tangent_Space_Normals_Generator {
+ name example_1_Multi_Derivative_Tangent_Space_Normals_Generator
+ xpos 2380
+ ypos -1065
+ parameters_Group 1
+}
+Group {
+ inputs 0
+ name Tangent_Space_Normals_to_Cavity
+ tile_color 0xffbf00ff
+ xpos 1720
+ ypos -801
+ addUserKnob {20 tangent_space_normals_to_cavity_tab l "Tangent Space Normals to Cavity"}
+ addUserKnob {20 about_Tab l About}
+ addUserKnob {26 description_Text l "" +STARTLINE T "Tangent Space Normal to Cavity v0.1.0\n\ncolour-science.org - April 4, 2015\n\nThis Gizmo / Group performs conversion from Tangent Space Normals to Cavity."}
+}
+ Input {
+  inputs 0
+  name Input
+  xpos -40
+  ypos 15
+ }
+set N1fad63c0 [stack 0]
+ Shuffle {
+  red green
+  blue green
+  name green_Shuffle
+  xpos 70
+  ypos 15
+ }
+ Matrix {
+  matrix {
+      {1 1 1}
+      {0 0 0}
+      {-1 -1 -1}
+    }
+  name horizontal_Prewitt_Matrix
+  xpos 70
+  ypos 39
+ }
+push $N1fad63c0
+ Shuffle {
+  green red
+  blue red
+  name red_Shuffle
+  xpos -150
+  ypos 15
+ }
+ Matrix {
+  matrix {
+      {-1 0 1}
+      {-1 0 1}
+      {-1 0 1}
+    }
+  name vertical_Prewitt_Matrix
+  xpos -150
+  ypos 39
+ }
+ Merge2 {
+  inputs 2
+  operation plus
+  name Merge
+  xpos -40
+  ypos 43
+ }
+ Expression {
+  expr0 "r * 0.5 + 0.5"
+  expr1 "g * 0.5 + 0.5"
+  expr2 "b * 0.5 + 0.5"
+  name output_offset_Expression
+  xpos -40
+  ypos 67
+ }
+ Output {
+  name Output
+  xpos -40
+  ypos 91
+ }
+ Viewer {
+  input_process false
+  name Viewer1
+  selected true
+  xpos -40
+  ypos 115
+ }
+end_group
+Tangent_Space_Normals_to_Cavity {
+ inputs 0
+ name gizmo_Tangent_Space_Normals_to_Cavity
+ xpos 1940
+ ypos -801
+}
+Group {
+ inputs 0
+ name Derivative_Tangent_Space_Normals_Generator
+ tile_color 0xffbf00ff
+ xpos 1720
+ ypos -1041
+ addUserKnob {20 derivative_tangent_space_normals_generator_Tab l "Derivative Tangent Space Normals Generator"}
+ addUserKnob {20 parameters_Group l Parameters n 1}
+ addUserKnob {7 size_Floating_Point_Slider l Size R 1 5}
+ size_Floating_Point_Slider 1
+ addUserKnob {7 intensity_Floating_Point_Slider l Intensity R 0 5}
+ intensity_Floating_Point_Slider 1
+ addUserKnob {20 parameters_endGroup l endGroup n -1}
+ addUserKnob {20 about_Tab l About}
+ addUserKnob {26 description_Text l "" +STARTLINE T "Prewitt Tangent Space Normals Generator v0.1.0\n\ncolour-science.org - April 6, 2015\n\nThis Gizmo / Group generates tangent space normals from given input image using derivatives.\n\n\[1] Wikipedia. (n.d.). Image gradient. Retrieved April 7, 2015, from http://en.wikipedia.org/wiki/Image_gradient"}
+}
+ Input {
+  inputs 0
+  name Input
+  xpos 163
+  ypos -123
+ }
+ Saturation {
+  saturation 0
+  name Saturation
+  xpos 163
+  ypos -99
+ }
+ Blur {
+  size {{"parent.size_Floating_Point_Slider - 1"}}
+  quality {{"size * 0.5 + 8"}}
+  name Blur
+  xpos 163
+  ypos -75
+ }
+ Multiply {
+  value 0.1
+  name pre_scale_Multiply
+  xpos 163
+  ypos -43
+ }
+ Multiply {
+  value {{parent.intensity_Floating_Point_Slider}}
+  name intensity_Multiply
+  xpos 163
+  ypos -11
+ }
+ Expression {
+  expr0 "x / width"
+  expr1 "y / width"
+  name gradient_Expression
+  xpos 163
+  ypos 20
+ }
+set N1fbbb7c0 [stack 0]
+ Expression {
+  expr0 "r(x, y + 1) - r"
+  expr1 "g(x, y + 1) - g"
+  expr2 "b(x, y + 1) - b"
+  name derivative_y_Expression
+  xpos 273
+  ypos 44
+ }
+push $N1fbbb7c0
+ Expression {
+  expr0 "r(x - 1, y) - r"
+  expr1 "g(x - 1, y) - g"
+  expr2 "b(x - 1, y) - b"
+  name derivative_x_Expression
+  xpos 53
+  ypos 44
+ }
+ MergeExpression {
+  inputs 2
+  expr0 "Ag * Bb - Bg * Ab"
+  expr1 "Ar * Bb - Br * Ab"
+  expr2 "Ar * Bg - Br * Ag"
+  name dot_product_MergeExpression
+  label "\n"
+  xpos 163
+  ypos 44
+ }
+ Expression {
+  expr1 "- g"
+  name invert_green_Expression
+  xpos 163
+  ypos 68
+ }
+ Transform {
+  translate {-0.5 0.5}
+  center {1536 1152}
+  name Transform
+  xpos 163
+  ypos 92
+ }
+ Expression {
+  temp_name0 norme
+  temp_expr0 "sqrt(r * r + g * g + b * b)"
+  expr0 "r / abs(norme)"
+  expr1 "g / abs(norme)"
+  expr2 "b / abs(norme)"
+  name normalise_Expression
+  xpos 163
+  ypos 116
+ }
+ Expression {
+  expr0 "r * 0.5 + 0.5"
+  expr1 "g * 0.5 + 0.5"
+  expr2 "b * 0.5 + 0.5"
+  name output_offset_Expression
+  xpos 163
+  ypos 140
+ }
+ Output {
+  name Output
+  xpos 163
+  ypos 164
+ }
+end_group
 Constant {
  inputs 0
  channels rgb
+ format "1024 1024 0 0 1024 1024 1 square_1K"
  name Constant
- xpos 2490
+ xpos 2160
  ypos -1161
 }
 Radial {
  area {256 256 768 768}
  name Radial
- xpos 2490
+ xpos 2160
  ypos -1089
 }
-set N224e7d50 [stack 0]
+Reformat {
+ format "256 256 0 0 256 256 1 square_256"
+ name Reformat1
+ xpos 2160
+ ypos -1069
+}
+set N1ff5cfd0 [stack 0]
 Derivative_Tangent_Space_Normals_Generator {
  name example_1_Derivative_Tangent_Space_Normals_Generator
- xpos 2490
- ypos -1065
+ xpos 2160
+ ypos -1041
  parameters_Group 1
  intensity_Floating_Point_Slider 10
 }
-push $N224e7d50
+push $N1ff5cfd0
 Prewitt_Tangent_Space_Normals_Generator {
  name example_1_Prewitt_Tangent_Space_Normals_Generator
- xpos 2600
- ypos -1089
+ xpos 2270
+ ypos -1065
  parameters_Group 1
- intensity_Floating_Point_Slider 75
-}
-Noise {
- inputs 0
- center {512 512}
- name Noise
- xpos 2820
- ypos -1113
-}
-set N22973960 [stack 0]
-Multi_Prewitt_Tangent_Space_Normals_Generator {
- name example_1_Multi_Prewitt_Tangent_Space_Normals_Generator
- xpos 2930
- ypos -1113
- parameters_Group 1
- extreme_size_Floating_Point_Slider 64
- large_size_Floating_Point_Slider 32
- large_intensity_Floating_Point_Slider 2
- medium_large_size_Floating_Point_Slider 16
- medium_large_intensity_Floating_Point_Slider 4
- medium_size_Floating_Point_Slider 8
- medium_intensity_Floating_Point_Slider 8
- small_medium_size_Floating_Point_Slider 4
- small_medium_intensity_Floating_Point_Slider 16
- small_size_Floating_Point_Slider 2
- small_intensity_Floating_Point_Slider 32
- quantum_intensity_Floating_Point_Slider 64
-}
-push $N22973960
-Multi_Derivative_Tangent_Space_Normals_Generator {
- name example_1_Multi_Derivative_Tangent_Space_Normals_Generator
- xpos 2820
- ypos -1089
- parameters_Group 1
-}
-push $N22973960
-Prewitt_Tangent_Space_Normals_Generator {
- name example_2_Prewitt_Tangent_Space_Normals_Generator
- xpos 2820
- ypos -993
- parameters_Group 1
- size_Floating_Point_Slider 32
  intensity_Floating_Point_Slider 5
 }
-push $N22973960
+push $N1cda08e0
+Prewitt_Tangent_Space_Normals_Generator {
+ name example_2_Prewitt_Tangent_Space_Normals_Generator
+ xpos 2380
+ ypos -969
+ parameters_Group 1
+ size_Floating_Point_Slider 64
+ intensity_Floating_Point_Slider 16
+}
+push $N1cda08e0
 Derivative_Tangent_Space_Normals_Generator {
  name example_2_Derivative_Tangent_Space_Normals_Generator
- xpos 2929
- ypos -993
+ xpos 2490
+ ypos -969
  parameters_Group 1
  intensity_Floating_Point_Slider 2
 }
 Partial_Derivative_Blending {
  inputs 2
  name example_2_Partial_Derivative_Blending
- xpos 2820
- ypos -969
+ xpos 2380
+ ypos -945
+}
+Tangent_Space_Normals_to_Cavity {
+ name example_2_gizmo_Tangent_Space_Normals_to_Cavity
+ xpos 2380
+ ypos -921
 }
 Viewer {
+ frame 1
  input_process false
  name Viewer1
- xpos 2820
- ypos -945
+ xpos 2380
+ ypos -897
 }

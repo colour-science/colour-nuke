@@ -18,7 +18,7 @@ Gizmo {
   xpos -590
   ypos 87
  }
-set N1cd85a30 [stack 0]
+set N202ea4a0 [stack 0]
  Group {
   name Blue_Tangent_Space_Normals_Generator
   xpos -480
@@ -27,7 +27,7 @@ set N1cd85a30 [stack 0]
   addUserKnob {7 size_Floating_Point_Slider l Size R 1 5}
   size_Floating_Point_Slider {{parent.size_Floating_Point_Slider}}
   addUserKnob {7 intensity_Floating_Point_Slider l Intensity R 0 5}
-  intensity_Floating_Point_Slider {{parent.size_Floating_Point_Slider/2}}
+  intensity_Floating_Point_Slider {{parent.intensity_Floating_Point_Slider x1 4}}
  }
   Input {
    inputs 0
@@ -42,25 +42,26 @@ set N1cd85a30 [stack 0]
    xpos -260
    ypos 179
   }
-set N589f48e0 [stack 0]
+set N202f8d80 [stack 0]
   Matrix {
    matrix {
-       {{parent.intensity_Floating_Point_Slider/3} {parent.intensity_Floating_Point_Slider/3} {parent.intensity_Floating_Point_Slider/3}}
+       {1 1 1}
        {0 0 0}
-       {{-parent.intensity_Floating_Point_Slider/3} {-parent.intensity_Floating_Point_Slider/3} {-parent.intensity_Floating_Point_Slider/3}}
+       {-1 -1 -1}
      }
-   name horizontal_Matrix
+   name horizontal_Prewitt_Matrix
+   selected true
    xpos -150
    ypos 179
   }
-push $N589f48e0
+push $N202f8d80
   Matrix {
    matrix {
-       {{-parent.intensity_Floating_Point_Slider/3} 0 {parent.intensity_Floating_Point_Slider/3}}
-       {{-parent.intensity_Floating_Point_Slider/3} 0 {parent.intensity_Floating_Point_Slider/3}}
-       {{-parent.intensity_Floating_Point_Slider/3} 0 {parent.intensity_Floating_Point_Slider/3}}
+       {-1 0 1}
+       {-1 0 1}
+       {-1 0 1}
      }
-   name vertical_Matrix
+   name vertical_Prewitt_Matrix
    xpos -370
    ypos 179
   }
@@ -74,7 +75,14 @@ push $N589f48e0
    xpos -260
    ypos 211
   }
-set N58982d80 [stack 0]
+set N20518840 [stack 0]
+  Viewer {
+   input_process false
+   name Viewer1
+   xpos -150
+   ypos 259
+  }
+push $N20518840
   Shuffle {
    red black
    green black
@@ -82,34 +90,26 @@ set N58982d80 [stack 0]
    xpos -260
    ypos 235
   }
-  Output {
-   name Output
+  Multiply {
+   value {{parent.intensity_Floating_Point_Slider}}
+   name intensity_Multiply
    xpos -260
    ypos 259
   }
-push $N58982d80
-  Viewer {
-   input_process false
-   name Viewer1
-   selected true
-   xpos -150
-   ypos 259
+  Output {
+   name Output
+   xpos -260
+   ypos 291
   }
  end_group
- Multiply {
-  value {{parent.intensity_Floating_Point_Slider}}
-  name blue_Multiply
-  xpos -480
-  ypos 131
- }
  Invert {
   name Invert
   xpos -480
-  ypos 179
+  ypos 155
  }
-push $N1cd85a30
+push $N202ea4a0
  Group {
-  name red_Emboss_Edge_Detector
+  name red_Prewitt_Edge_Detector
   selected true
   xpos -700
   ypos 111
@@ -117,7 +117,7 @@ push $N1cd85a30
   addUserKnob {7 size_Floating_Point_Slider l Size R 1 5}
   size_Floating_Point_Slider {{parent.size_Floating_Point_Slider}}
   addUserKnob {7 intensity_Floating_Point_Slider l Intensity R 1 5}
-  intensity_Floating_Point_Slider {{parent.size_Floating_Point_Slider/2}}
+  intensity_Floating_Point_Slider {{parent.intensity_Floating_Point_Slider}}
   addUserKnob {7 angle_Floating_Point_Slider l Angle R -180 180}
   angle_Floating_Point_Slider 180
  }
@@ -137,7 +137,6 @@ push $N1cd85a30
    size {{"parent.size_Floating_Point_Slider - 1"}}
    quality {{"size * 0.5 + 8"}}
    name Blur
-   selected true
    xpos -40
    ypos 215
   }
@@ -150,11 +149,12 @@ push $N1cd85a30
   }
   Matrix {
    matrix {
-       {{-parent.intensity_Floating_Point_Slider/3} 0 {parent.intensity_Floating_Point_Slider/3}}
-       {{-parent.intensity_Floating_Point_Slider/3} 0 {parent.intensity_Floating_Point_Slider/3}}
-       {{-parent.intensity_Floating_Point_Slider/3} 0 {parent.intensity_Floating_Point_Slider/3}}
+       {-1 0 1}
+       {-1 0 1}
+       {-1 0 1}
      }
-   name Matrix
+   name Prewitt_Matrix
+   selected true
    xpos -40
    ypos 271
   }
@@ -165,36 +165,37 @@ push $N1cd85a30
    xpos -40
    ypos 303
   }
-  Output {
-   name Output
+  Multiply {
+   value {{parent.intensity_Floating_Point_Slider}}
+   name intensity_Multiply
    xpos -40
    ypos 327
   }
+  Output {
+   name Output
+   xpos -40
+   ypos 356
+  }
  end_group
- Multiply {
-  value {{parent.intensity_Floating_Point_Slider}}
-  name red_Multiply
-  xpos -700
-  ypos 131
- }
+set N2055d080 [stack 0]
  Expression {
   expr0 "r * 0.5 + 0.5"
   expr1 "g * 0.5 + 0.5"
   expr2 "b * 0.5 + 0.5"
   name red_output_offset_Expression
   xpos -700
-  ypos 159
+  ypos 135
  }
-push $N1cd85a30
+push $N202ea4a0
  Group {
-  name green_Emboss_Edge_Detector
+  name green_Prewitt_Edge_Detector
   xpos -590
   ypos 111
   addUserKnob {20 emboss_edge_detector_tab l "Emboss Edge Detector"}
   addUserKnob {7 size_Floating_Point_Slider l Size R 1 5}
   size_Floating_Point_Slider {{parent.size_Floating_Point_Slider}}
   addUserKnob {7 intensity_Floating_Point_Slider l Intensity R 1 5}
-  intensity_Floating_Point_Slider {{parent.size_Floating_Point_Slider/2}}
+  intensity_Floating_Point_Slider {{parent.intensity_Floating_Point_Slider}}
   addUserKnob {7 angle_Floating_Point_Slider l Angle R -180 180}
   angle_Floating_Point_Slider 90
  }
@@ -207,7 +208,6 @@ push $N1cd85a30
   Saturation {
    saturation 0
    name Saturation
-   selected true
    xpos -40
    ypos 191
   }
@@ -227,11 +227,12 @@ push $N1cd85a30
   }
   Matrix {
    matrix {
-       {{-parent.intensity_Floating_Point_Slider/3} 0 {parent.intensity_Floating_Point_Slider/3}}
-       {{-parent.intensity_Floating_Point_Slider/3} 0 {parent.intensity_Floating_Point_Slider/3}}
-       {{-parent.intensity_Floating_Point_Slider/3} 0 {parent.intensity_Floating_Point_Slider/3}}
+       {-1 0 1}
+       {-1 0 1}
+       {-1 0 1}
      }
-   name Matrix
+   name Prewitt_Matrix
+   selected true
    xpos -40
    ypos 271
   }
@@ -242,25 +243,25 @@ push $N1cd85a30
    xpos -40
    ypos 303
   }
-  Output {
-   name Output
+  Multiply {
+   value {{parent.intensity_Floating_Point_Slider}}
+   name intensity_Multiply
    xpos -40
    ypos 327
   }
+  Output {
+   name Output
+   xpos -40
+   ypos 359
+  }
  end_group
- Multiply {
-  value {{parent.intensity_Floating_Point_Slider}}
-  name green_Multiply
-  xpos -590
-  ypos 131
- }
  Expression {
   expr0 "r * 0.5 + 0.5"
   expr1 "g * 0.5 + 0.5"
   expr2 "b * 0.5 + 0.5"
   name green_output_offset_Expression
   xpos -590
-  ypos 159
+  ypos 135
  }
  ShuffleCopy {
   inputs 2
@@ -269,7 +270,7 @@ push $N1cd85a30
   alpha white
   name red_green_ShuffleCopy
   xpos -700
-  ypos 183
+  ypos 159
  }
  ShuffleCopy {
   inputs 2
@@ -277,16 +278,23 @@ push $N1cd85a30
   alpha white
   name ShuffleCopy
   xpos -590
-  ypos 183
+  ypos 159
  }
  Normalise_Tangent_Space_Normals {
   name Normalise_Tangent_Space_Normals
   xpos -590
-  ypos 207
+  ypos 183
  }
  Output {
   name Output
   xpos -590
-  ypos 231
+  ypos 207
+ }
+push $N2055d080
+ Viewer {
+  input_process false
+  name Viewer1
+  xpos -750
+  ypos 228
  }
 end_group
