@@ -1,0 +1,47 @@
+#! /Applications/Nuke8.0v1/Nuke8.0v1.app/Contents/MacOS/libnuke-8.0.v1.dylib -nx
+version 8.0 v1
+Gizmo {
+ tile_color 0xffbf00ff
+ addUserKnob {20 Normalise_Tangent_Space_Normals l "Normalise Tangent Space Normals"}
+ addUserKnob {20 about_Tab l About}
+ addUserKnob {26 description_Text l "" +STARTLINE T "Normalise Tangent Space Normals v0.1.0\n\ncolour-science.org - April 6, 2015\n\nThis Gizmo / Group normalises tangent space normals.\n"}
+}
+ Input {
+  inputs 0
+  name Input
+  xpos 290
+  ypos -57
+ }
+ Expression {
+  expr0 "r * 2 - 1"
+  expr1 "g *  2 - 1"
+  expr2 "b * 2 - 1"
+  name input_offset_Expression
+  xpos 290
+  ypos -33
+ }
+ Expression {
+  temp_name0 norme
+  temp_expr0 "sqrt(r * r + g * g + b * b)"
+  expr0 "r / abs(norme)"
+  expr1 "g / abs(norme)"
+  expr2 "b / abs(norme)"
+  name normalise_Expression
+  selected true
+  xpos 290
+  ypos -9
+ }
+ Expression {
+  expr0 "r * 0.5 + 0.5"
+  expr1 "g * 0.5 + 0.5"
+  expr2 "b * 0.5 + 0.5"
+  name output_offset_Expression
+  xpos 290
+  ypos 15
+ }
+ Output {
+  name Output1
+  xpos 290
+  ypos 39
+ }
+end_group

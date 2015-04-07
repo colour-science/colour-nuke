@@ -1,0 +1,292 @@
+#! /Applications/Nuke8.0v1/Nuke8.0v1.app/Contents/MacOS/libnuke-8.0.v1.dylib -nx
+version 8.0 v1
+Gizmo {
+ tile_color 0xffbf00ff
+ addUserKnob {20 prewitt_tangent_space_normals_generator_Tab l "Prewitt Tangent Space Normals Generator"}
+ addUserKnob {20 parameters_Group l Parameters n 1}
+ addUserKnob {7 size_Floating_Point_Slider l Size R 1 5}
+ size_Floating_Point_Slider 1
+ addUserKnob {7 intensity_Floating_Point_Slider l Intensity R 0 5}
+ intensity_Floating_Point_Slider 1
+ addUserKnob {20 parameters_endGroup l endGroup n -1}
+ addUserKnob {20 about_Tab l About}
+ addUserKnob {26 description_Text l "" +STARTLINE T "Prewitt Tangent Space Normals Generator v0.1.0\n\ncolour-science.org - April 6, 2015\n\nThis Gizmo / Group generates tangent space normals from given input image using Prewitt operator.\n\n\[1] Wikipedia. (n.d.). Prewitt operator. Retrieved April 7, 2015, from http://en.wikipedia.org/wiki/Prewitt_operator"}
+}
+ Input {
+  inputs 0
+  name Input
+  xpos -590
+  ypos 87
+ }
+set N1cd85a30 [stack 0]
+ Group {
+  name Blue_Tangent_Space_Normals_Generator
+  xpos -480
+  ypos 111
+  addUserKnob {20 blue_tangent_space_normals_generator_Tab l "Blue Tangent Space Normals Generator"}
+  addUserKnob {7 size_Floating_Point_Slider l Size R 1 5}
+  size_Floating_Point_Slider {{parent.size_Floating_Point_Slider}}
+  addUserKnob {7 intensity_Floating_Point_Slider l Intensity R 0 5}
+  intensity_Floating_Point_Slider {{parent.size_Floating_Point_Slider/2}}
+ }
+  Input {
+   inputs 0
+   name Input
+   xpos -260
+   ypos 155
+  }
+  Blur {
+   size {{"parent.size_Floating_Point_Slider - 1"}}
+   quality {{"size * 0.5 + 8"}}
+   name Blur
+   xpos -260
+   ypos 179
+  }
+set N589f48e0 [stack 0]
+  Matrix {
+   matrix {
+       {{parent.intensity_Floating_Point_Slider/3} {parent.intensity_Floating_Point_Slider/3} {parent.intensity_Floating_Point_Slider/3}}
+       {0 0 0}
+       {{-parent.intensity_Floating_Point_Slider/3} {-parent.intensity_Floating_Point_Slider/3} {-parent.intensity_Floating_Point_Slider/3}}
+     }
+   name horizontal_Matrix
+   xpos -150
+   ypos 179
+  }
+push $N589f48e0
+  Matrix {
+   matrix {
+       {{-parent.intensity_Floating_Point_Slider/3} 0 {parent.intensity_Floating_Point_Slider/3}}
+       {{-parent.intensity_Floating_Point_Slider/3} 0 {parent.intensity_Floating_Point_Slider/3}}
+       {{-parent.intensity_Floating_Point_Slider/3} 0 {parent.intensity_Floating_Point_Slider/3}}
+     }
+   name vertical_Matrix
+   xpos -370
+   ypos 179
+  }
+  MergeExpression {
+   inputs 2
+   expr0 "sqrt(Ar ** 2 + Br ** 2)"
+   expr1 "sqrt(Ag ** 2 + Bg ** 2)"
+   expr2 "sqrt(Ab ** 2 + Bb ** 2)"
+   channel3 none
+   name sobel_gradient_magnitude_MergeExpression
+   xpos -260
+   ypos 211
+  }
+set N58982d80 [stack 0]
+  Shuffle {
+   red black
+   green black
+   name Shuffle
+   xpos -260
+   ypos 235
+  }
+  Output {
+   name Output
+   xpos -260
+   ypos 259
+  }
+push $N58982d80
+  Viewer {
+   input_process false
+   name Viewer1
+   selected true
+   xpos -150
+   ypos 259
+  }
+ end_group
+ Multiply {
+  value {{parent.intensity_Floating_Point_Slider}}
+  name blue_Multiply
+  xpos -480
+  ypos 131
+ }
+ Invert {
+  name Invert
+  xpos -480
+  ypos 179
+ }
+push $N1cd85a30
+ Group {
+  name red_Emboss_Edge_Detector
+  selected true
+  xpos -700
+  ypos 111
+  addUserKnob {20 emboss_edge_detector_tab l "Emboss Edge Detector"}
+  addUserKnob {7 size_Floating_Point_Slider l Size R 1 5}
+  size_Floating_Point_Slider {{parent.size_Floating_Point_Slider}}
+  addUserKnob {7 intensity_Floating_Point_Slider l Intensity R 1 5}
+  intensity_Floating_Point_Slider {{parent.size_Floating_Point_Slider/2}}
+  addUserKnob {7 angle_Floating_Point_Slider l Angle R -180 180}
+  angle_Floating_Point_Slider 180
+ }
+  Input {
+   inputs 0
+   name Input
+   xpos -40
+   ypos 167
+  }
+  Saturation {
+   saturation 0
+   name Saturation
+   xpos -40
+   ypos 191
+  }
+  Blur {
+   size {{"parent.size_Floating_Point_Slider - 1"}}
+   quality {{"size * 0.5 + 8"}}
+   name Blur
+   selected true
+   xpos -40
+   ypos 215
+  }
+  Transform {
+   rotate {{parent.angle_Floating_Point_Slider}}
+   black_outside false
+   name pre_rotate_Transform
+   xpos -40
+   ypos 247
+  }
+  Matrix {
+   matrix {
+       {{-parent.intensity_Floating_Point_Slider/3} 0 {parent.intensity_Floating_Point_Slider/3}}
+       {{-parent.intensity_Floating_Point_Slider/3} 0 {parent.intensity_Floating_Point_Slider/3}}
+       {{-parent.intensity_Floating_Point_Slider/3} 0 {parent.intensity_Floating_Point_Slider/3}}
+     }
+   name Matrix
+   xpos -40
+   ypos 271
+  }
+  Transform {
+   rotate {{-parent.pre_rotate_Transform.rotate}}
+   black_outside false
+   name post_rotate_Transform
+   xpos -40
+   ypos 303
+  }
+  Output {
+   name Output
+   xpos -40
+   ypos 327
+  }
+ end_group
+ Multiply {
+  value {{parent.intensity_Floating_Point_Slider}}
+  name red_Multiply
+  xpos -700
+  ypos 131
+ }
+ Expression {
+  expr0 "r * 0.5 + 0.5"
+  expr1 "g * 0.5 + 0.5"
+  expr2 "b * 0.5 + 0.5"
+  name red_output_offset_Expression
+  xpos -700
+  ypos 159
+ }
+push $N1cd85a30
+ Group {
+  name green_Emboss_Edge_Detector
+  xpos -590
+  ypos 111
+  addUserKnob {20 emboss_edge_detector_tab l "Emboss Edge Detector"}
+  addUserKnob {7 size_Floating_Point_Slider l Size R 1 5}
+  size_Floating_Point_Slider {{parent.size_Floating_Point_Slider}}
+  addUserKnob {7 intensity_Floating_Point_Slider l Intensity R 1 5}
+  intensity_Floating_Point_Slider {{parent.size_Floating_Point_Slider/2}}
+  addUserKnob {7 angle_Floating_Point_Slider l Angle R -180 180}
+  angle_Floating_Point_Slider 90
+ }
+  Input {
+   inputs 0
+   name Input
+   xpos -40
+   ypos 167
+  }
+  Saturation {
+   saturation 0
+   name Saturation
+   selected true
+   xpos -40
+   ypos 191
+  }
+  Blur {
+   size {{"parent.size_Floating_Point_Slider - 1"}}
+   quality {{"size * 0.5 + 8"}}
+   name Blur
+   xpos -40
+   ypos 215
+  }
+  Transform {
+   rotate {{parent.angle_Floating_Point_Slider}}
+   black_outside false
+   name pre_rotate_Transform
+   xpos -40
+   ypos 247
+  }
+  Matrix {
+   matrix {
+       {{-parent.intensity_Floating_Point_Slider/3} 0 {parent.intensity_Floating_Point_Slider/3}}
+       {{-parent.intensity_Floating_Point_Slider/3} 0 {parent.intensity_Floating_Point_Slider/3}}
+       {{-parent.intensity_Floating_Point_Slider/3} 0 {parent.intensity_Floating_Point_Slider/3}}
+     }
+   name Matrix
+   xpos -40
+   ypos 271
+  }
+  Transform {
+   rotate {{-parent.pre_rotate_Transform.rotate}}
+   black_outside false
+   name post_rotate_Transform
+   xpos -40
+   ypos 303
+  }
+  Output {
+   name Output
+   xpos -40
+   ypos 327
+  }
+ end_group
+ Multiply {
+  value {{parent.intensity_Floating_Point_Slider}}
+  name green_Multiply
+  xpos -590
+  ypos 131
+ }
+ Expression {
+  expr0 "r * 0.5 + 0.5"
+  expr1 "g * 0.5 + 0.5"
+  expr2 "b * 0.5 + 0.5"
+  name green_output_offset_Expression
+  xpos -590
+  ypos 159
+ }
+ ShuffleCopy {
+  inputs 2
+  red red
+  blue black
+  alpha white
+  name red_green_ShuffleCopy
+  xpos -700
+  ypos 183
+ }
+ ShuffleCopy {
+  inputs 2
+  blue blue
+  alpha white
+  name ShuffleCopy
+  xpos -590
+  ypos 183
+ }
+ Normalise_Tangent_Space_Normals {
+  name Normalise_Tangent_Space_Normals
+  xpos -590
+  ypos 207
+ }
+ Output {
+  name Output
+  xpos -590
+  ypos 231
+ }
+end_group

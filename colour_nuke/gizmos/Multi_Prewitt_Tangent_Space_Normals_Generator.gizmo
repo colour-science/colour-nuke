@@ -1,0 +1,156 @@
+#! /Applications/Nuke8.0v1/Nuke8.0v1.app/Contents/MacOS/libnuke-8.0.v1.dylib -nx
+version 8.0 v1
+Gizmo {
+ tile_color 0xffbf00ff
+ addUserKnob {20 multi_prewitt_tangent_space_normals_generator_Tab l "Multi Prewitt Tangent Space Normals Generator"}
+ addUserKnob {20 parameters_Group l Parameters n 1}
+ addUserKnob {26 extreme_Static_Text l Extreme}
+ addUserKnob {7 extreme_size_Floating_Point_Slider l "Extreme Size" R 1 256}
+ extreme_size_Floating_Point_Slider 128
+ addUserKnob {7 extreme_intensity_Floating_Point_Slider l "Extreme Intensity" R 0 4}
+ extreme_intensity_Floating_Point_Slider 1
+ addUserKnob {26 large_Static_Text l Large}
+ addUserKnob {7 large_size_Floating_Point_Slider l "Large Size" R 1 256}
+ large_size_Floating_Point_Slider 64
+ addUserKnob {7 large_intensity_Floating_Point_Slider l "Large Intensity" R 0 4}
+ large_intensity_Floating_Point_Slider 1
+ addUserKnob {26 medium_large_Static_Text l "Medium Large"}
+ addUserKnob {7 medium_large_size_Floating_Point_Slider l "Medium Large Size" R 1 256}
+ medium_large_size_Floating_Point_Slider 32
+ addUserKnob {7 medium_large_intensity_Floating_Point_Slider l "Medium Large Intensity" R 0 4}
+ medium_large_intensity_Floating_Point_Slider 1
+ addUserKnob {26 medium_Static_Text l Medium}
+ addUserKnob {7 medium_size_Floating_Point_Slider l "Medium Size" R 1 256}
+ medium_size_Floating_Point_Slider 16
+ addUserKnob {7 medium_intensity_Floating_Point_Slider l "Medium Intensity" R 0 4}
+ medium_intensity_Floating_Point_Slider 1
+ addUserKnob {26 small_medium_Static_Text l "Small Medium"}
+ addUserKnob {7 small_medium_size_Floating_Point_Slider l "Small Medium Size" R 1 256}
+ small_medium_size_Floating_Point_Slider 8
+ addUserKnob {7 small_medium_intensity_Floating_Point_Slider l "Small Medium Intensity" R 0 4}
+ small_medium_intensity_Floating_Point_Slider 1
+ addUserKnob {26 small_Static_Text l Small}
+ addUserKnob {7 small_size_Floating_Point_Slider l "Small Size" R 1 256}
+ small_size_Floating_Point_Slider 4
+ addUserKnob {7 small_intensity_Floating_Point_Slider l "Small Intensity" R 0 4}
+ small_intensity_Floating_Point_Slider 1
+ addUserKnob {26 quantum_Static_Text l Quantum}
+ addUserKnob {7 quantum_size_Floating_Point_Slider l "Quantum Size" R 1 256}
+ quantum_size_Floating_Point_Slider 1
+ addUserKnob {7 quantum_intensity_Floating_Point_Slider l "Quantum Intensity" R 0 4}
+ quantum_intensity_Floating_Point_Slider 1
+ addUserKnob {20 parameters_endGroup l endGroup n -1}
+ addUserKnob {20 about_Tab l About}
+ addUserKnob {26 description_Text l "" +STARTLINE T "Multi Prewitt Tangent Space Normals Generator v0.1.0\n\ncolour-science.org - April 6, 2015\n\nThis Gizmo / Group generates tangent space normals from given input image using multiple Prewitt Tangent Space Normals Generators.\n\n\[1] Wikipedia. (n.d.). Prewitt operator. Retrieved April 7, 2015, from http://en.wikipedia.org/wiki/Prewitt_operator"}
+}
+ Input {
+  inputs 0
+  name Input
+  xpos -260
+  ypos -33
+ }
+set N2a86f0 [stack 0]
+ Prewitt_Tangent_Space_Normals_Generator {
+  name Extreme_Tangent_Space_Normals_Generator
+  xpos 70
+  ypos -9
+  parameters_Group 1
+  size_Floating_Point_Slider {{parent.extreme_size_Floating_Point_Slider}}
+  intensity_Floating_Point_Slider {{parent.extreme_intensity_Floating_Point_Slider}}
+ }
+push $N2a86f0
+ Prewitt_Tangent_Space_Normals_Generator {
+  name Large_Tangent_Space_Normals_Generator
+  xpos -40
+  ypos -9
+  parameters_Group 1
+  size_Floating_Point_Slider {{parent.large_size_Floating_Point_Slider}}
+  intensity_Floating_Point_Slider {{parent.large_intensity_Floating_Point_Slider}}
+ }
+push $N2a86f0
+ Prewitt_Tangent_Space_Normals_Generator {
+  name Medium_Large_Tangent_Space_Normals_Generator
+  xpos -150
+  ypos -9
+  parameters_Group 1
+  size_Floating_Point_Slider {{parent.medium_large_size_Floating_Point_Slider}}
+  intensity_Floating_Point_Slider {{parent.medium_large_intensity_Floating_Point_Slider}}
+ }
+push $N2a86f0
+ Prewitt_Tangent_Space_Normals_Generator {
+  name Medium_Tangent_Space_Normals_Generator
+  xpos -260
+  ypos -9
+  parameters_Group 1
+  size_Floating_Point_Slider {{parent.medium_size_Floating_Point_Slider}}
+  intensity_Floating_Point_Slider {{parent.medium_intensity_Floating_Point_Slider}}
+ }
+push $N2a86f0
+ Prewitt_Tangent_Space_Normals_Generator {
+  name Small_Medium_Tangent_Space_Normals_Generator
+  xpos -370
+  ypos -9
+  parameters_Group 1
+  size_Floating_Point_Slider {{parent.small_medium_size_Floating_Point_Slider}}
+  intensity_Floating_Point_Slider {{parent.small_medium_intensity_Floating_Point_Slider x1 1.96}}
+ }
+push $N2a86f0
+ Prewitt_Tangent_Space_Normals_Generator {
+  name Small_Tangent_Space_Normals_Generator
+  xpos -480
+  ypos -9
+  parameters_Group 1
+  size_Floating_Point_Slider {{parent.small_size_Floating_Point_Slider}}
+  intensity_Floating_Point_Slider {{parent.small_intensity_Floating_Point_Slider}}
+ }
+push $N2a86f0
+ Prewitt_Tangent_Space_Normals_Generator {
+  name Quantum_Emboss_Tangent_Space_Normals_Generator
+  xpos -590
+  ypos -9
+  parameters_Group 1
+  size_Floating_Point_Slider {{parent.quantum_size_Floating_Point_Slider}}
+  intensity_Floating_Point_Slider {{parent.quantum_intensity_Floating_Point_Slider}}
+ }
+ Partial_Derivative_Blending {
+  inputs 2
+  name qs_Partial_Derivative_Blending
+  xpos -480
+  ypos 15
+ }
+ Partial_Derivative_Blending {
+  inputs 2
+  name ssm_Partial_Derivative_Blending
+  xpos -370
+  ypos 15
+ }
+ Partial_Derivative_Blending {
+  inputs 2
+  name m_Partial_Derivative_Blending
+  xpos -260
+  ypos 15
+ }
+ Partial_Derivative_Blending {
+  inputs 2
+  name ml_Partial_Derivative_Blending
+  xpos -150
+  ypos 15
+ }
+ Partial_Derivative_Blending {
+  inputs 2
+  name l_Partial_Derivative_Blending
+  xpos -40
+  ypos 15
+ }
+ Partial_Derivative_Blending {
+  inputs 2
+  name e_Partial_Derivative_Blending
+  xpos 70
+  ypos 15
+ }
+ Output {
+  name Output
+  xpos 70
+  ypos 39
+ }
+end_group

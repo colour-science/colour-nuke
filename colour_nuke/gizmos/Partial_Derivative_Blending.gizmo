@@ -1,0 +1,66 @@
+#! /Applications/Nuke8.0v1/Nuke8.0v1.app/Contents/MacOS/libnuke-8.0.v1.dylib -nx
+version 8.0 v1
+Gizmo {
+ inputs 2
+ tile_color 0xffbf00ff
+ addUserKnob {20 Partial_Derivative_Blending l "Partial Derivative Blending"}
+ addUserKnob {20 about_Tab l About}
+ addUserKnob {26 description_Text l "" +STARTLINE T "Partial Derivative Blending v0.1.0\n\ncolour-science.org - April 6, 2015\n\nThis Gizmo / Group merges tangent space normals together using Partial Derivative Blending.\n"}
+}
+ Input {
+  inputs 0
+  name n1_Input
+  xpos -370
+  ypos 63
+ }
+ Expression {
+  expr0 "r * 2 - 1"
+  expr1 "g *  2 - 1"
+  expr2 "b * 2 - 1"
+  name n1_input_offset_Expression
+  xpos -370
+  ypos 87
+ }
+ Input {
+  inputs 0
+  name n2_Input
+  xpos -150
+  ypos 63
+  number 1
+ }
+ Expression {
+  expr0 "r * 2 - 1"
+  expr1 "g *  2 - 1"
+  expr2 "b * 2 - 1"
+  name n2_input_offset_Expression
+  xpos -150
+  ypos 87
+ }
+ MergeExpression {
+  inputs 2
+  expr0 "Ar + Br"
+  expr1 "Ag + Bg"
+  expr2 "Ab * Bb"
+  name MergeExpression
+  xpos -260
+  ypos 87
+ }
+ Expression {
+  expr0 "r * 0.5 + 0.5"
+  expr1 "g * 0.5 + 0.5"
+  expr2 "b * 0.5 + 0.5"
+  name output_offset_Expression
+  xpos -260
+  ypos 111
+ }
+ Normalise_Tangent_Space_Normals {
+  name Normalise_Tangent_Space_Normals
+  xpos -260
+  ypos 135
+ }
+ Output {
+  name Output
+  xpos -260
+  ypos 159
+ }
+end_group
