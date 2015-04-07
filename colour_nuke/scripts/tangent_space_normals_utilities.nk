@@ -2,7 +2,7 @@
 version 8.0 v1
 define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
 <layout version="1.0">
-    <window x="0" y="23" w="1280" h="716" screen="0">
+    <window x="0" y="23" w="1280" h="717" screen="0">
         <splitter orientation="1">
             <split size="808"/>
             <splitter orientation="1">
@@ -12,7 +12,7 @@ define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
                 </dock>
                 <split size="764"/>
                 <splitter orientation="2">
-                    <split size="405"/>
+                    <split size="406"/>
                     <dock id="" activePageId="Viewer.1">
                         <page id="Viewer.1"/>
                     </dock>
@@ -21,6 +21,7 @@ define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
                         <page id="DAG.1"/>
                         <page id="Curve Editor.1"/>
                         <page id="DopeSheet.1"/>
+                        <page id="DAG.5"/>
                     </dock>
                 </splitter>
             </splitter>
@@ -43,8 +44,8 @@ Group {
  inputs 0
  name Brute_Force_Tangent_Space_Normals_Generator
  tile_color 0xffbf00ff
- xpos 70
- ypos -1857
+ xpos 510
+ ypos -1905
  addUserKnob {20 tangent_space_normals_generator_Tab l "Tangent Space Normals Generator"}
  addUserKnob {20 parameters_Group l Parameters n 1}
  addUserKnob {7 tessellation_Floating_Point_Slider l Tessellation R 8 1024}
@@ -150,8 +151,8 @@ Group {
  inputs 0
  name Normalise_Tangent_Space_Normals
  tile_color 0xffbf00ff
- xpos 70
- ypos -2049
+ xpos 510
+ ypos -2097
  addUserKnob {20 Normalise_Tangent_Space_Normals l "Normalise Tangent Space Normals"}
  addUserKnob {20 about_Tab l About}
  addUserKnob {26 description_Text l "" +STARTLINE T "Normalise Tangent Space Normals v0.1.0\n\ncolour-science.org - April 6, 2015\n\nThis Gizmo / Group normalises tangent space normals.\n"}
@@ -199,8 +200,8 @@ Group {
  inputs 0
  name Partial_Derivative_Blending
  tile_color 0xffbf00ff
- xpos 70
- ypos -2001
+ xpos 510
+ ypos -2049
  addUserKnob {20 Partial_Derivative_Blending l "Partial Derivative Blending"}
  addUserKnob {20 about_Tab l About}
  addUserKnob {26 description_Text l "" +STARTLINE T "Partial Derivative Blending v0.1.0\n\ncolour-science.org - April 6, 2015\n\nThis Gizmo / Group merges tangent space normals together using Partial Derivative Blending.\n\n\[1] Self Shadow. (n.d.). Blending in Detail. Retrieved April 7, 2015, from http://blog.selfshadow.com/publications/blending-in-detail/\n"}
@@ -266,230 +267,100 @@ end_group
 Partial_Derivative_Blending {
  inputs 0
  name gizmo_Partial_Derivative_Blending
- xpos 290
- ypos -2001
+ xpos 730
+ ypos -2049
 }
 Multi_Tangent_Space_Normals_Generator {
  inputs 0
  name gizmo_Multi_Tangent_Space_Normals_Generator
- xpos 290
- ypos -1905
+ xpos 730
+ ypos -1953
  parameters_Group 1
 }
 Tangent_Space_Normals_Generator {
  inputs 0
  name gizmo_Tangent_Space_Normals_Generator
- xpos 290
- ypos -1953
- parameters_Group 1
-}
-CheckerBoard2 {
- inputs 0
- name CheckerBoard
  xpos 730
- ypos -2049
-}
-set Nb2cfeb0 [stack 0]
-Multi_Tangent_Space_Normals_Generator {
- name example_6_Multi_Tangent_Space_Normals_Generator
- xpos 730
- ypos -1881
+ ypos -2001
  parameters_Group 1
 }
 Tangent_Space_Normals_to_Cavity {
  inputs 0
  name gizmo_Tangent_Space_Normals_to_Cavity
- xpos 290
- ypos -1809
+ xpos 730
+ ypos -1857
 }
-Group {
- inputs 0
- name Tangent_Space_Normals_Generator
- tile_color 0xffbf00ff
- xpos 70
- ypos -1953
- addUserKnob {20 prewitt_tangent_space_normals_generator_Tab l "Tangent Space Normals Generator"}
- addUserKnob {20 parameters_Group l Parameters n 1}
- addUserKnob {7 size_Floating_Point_Slider l Size R 1 5}
- size_Floating_Point_Slider 1
- addUserKnob {7 intensity_Floating_Point_Slider l Intensity R -5 5}
- intensity_Floating_Point_Slider 1
- addUserKnob {20 parameters_endGroup l endGroup n -1}
- addUserKnob {20 about_Tab l About}
- addUserKnob {26 description_Text l "" +STARTLINE T "Tangent Space Normals Generator v0.1.0\n\ncolour-science.org - April 6, 2015\n\nThis Gizmo / Group generates tangent space normals from given input image.\n\n\[1] Wikipedia. (n.d.). Prewitt operator. Retrieved April 7, 2015, from http://en.wikipedia.org/wiki/Prewitt_operator"}
-}
- Input {
-  inputs 0
-  name Input
-  xpos -590
-  ypos -33
- }
- Saturation {
-  saturation 0
-  name Saturation
-  xpos -590
-  ypos -9
- }
- Blur {
-  size {{"parent.size_Floating_Point_Slider - 1"}}
-  quality {{"size * 0.5 + 8"}}
-  name Blur
-  xpos -590
-  ypos 11
- }
- Multiply {
-  value {{parent.intensity_Floating_Point_Slider}}
-  name intensity_Multiply
-  xpos -590
-  ypos 35
- }
- Expression {
-  expr0 "x / width"
-  expr1 "y / width"
-  name gradient_Expression
-  xpos -590
-  ypos 63
- }
-set N1d2aa320 [stack 0]
- Matrix {
-  matrix {
-      {-1 0 1}
-      {-1 0 1}
-      {-1 0 1}
-    }
-  name dx_Prewitt_Matrix
-  xpos -700
-  ypos 59
- }
-push $N1d2aa320
- Matrix {
-  matrix {
-      {1 1 1}
-      {0 0 0}
-      {-1 -1 -1}
-    }
-  name dy_Prewitt_Matrix
-  xpos -480
-  ypos 59
- }
- MergeExpression {
-  inputs 2
-  expr0 "Ag * Bb - Bg * Ab"
-  expr1 "Ar * Bb - Br * Ab"
-  expr2 "Ar * Bg - Br * Ag"
-  name dot_product_MergeExpression
-  label "\n"
-  xpos -590
-  ypos 87
- }
- Expression {
-  expr1 "- g"
-  name invert_green_Expression
-  xpos -590
-  ypos 111
- }
- Expression {
-  temp_name0 norme
-  temp_expr0 "sqrt(r * r + g * g + b * b)"
-  expr0 "r / abs(norme)"
-  expr1 "g / abs(norme)"
-  expr2 "b / abs(norme)"
-  name normalise_Expression
-  xpos -590
-  ypos 135
- }
- Expression {
-  expr0 "r * 0.5 + 0.5"
-  expr1 "g * 0.5 + 0.5"
-  expr2 "b * 0.5 + 0.5"
-  name output_offset_Expression
-  xpos -590
-  ypos 159
- }
-set N1d2e7e70 [stack 0]
- Viewer {
-  input_process false
-  name Viewer1
-  xpos -810
-  ypos 135
- }
-push $N1d2e7e70
- Output {
-  name Output
-  xpos -590
-  ypos 183
- }
-end_group
 Constant {
  inputs 0
  channels rgb
  format "1024 1024 0 0 1024 1024 1 square_1K"
  name Constant
- xpos 510
- ypos -2073
+ xpos 950
+ ypos -2121
 }
-set N1de12e70 [stack 0]
+set N80444dd0 [stack 0]
 Radial {
  area {256 256 768 768}
  name Radial
- xpos 510
- ypos -2001
+ xpos 950
+ ypos -2049
 }
 Reformat {
  format "256 256 0 0 256 256 1 square_256"
  name Reformat
- xpos 510
- ypos -1981
+ xpos 950
+ ypos -2029
 }
-set N1dd853f0 [stack 0]
+set N8042dbf0 [stack 0]
 Tangent_Space_Normals_Generator {
  name example_1_gizmo_Tangent_Space_Normals_Generator
- xpos 510
- ypos -1953
+ xpos 950
+ ypos -2001
  parameters_Group 1
 }
-push $N1de12e70
+push $N80444dd0
 Noise {
  type turbulence
  gain 0.6
  gamma 0.25
  center {512 512}
  name Noise
- xpos 620
- ypos -2001
+ xpos 1060
+ ypos -2049
 }
-set N1df21550 [stack 0]
+set N167f7210 [stack 0]
 Tangent_Space_Normals_Generator {
  name example_2_gizmo_Tangent_Space_Normals_Generator
- xpos 620
- ypos -1953
+ xpos 1060
+ ypos -2001
  parameters_Group 1
  intensity_Floating_Point_Slider -1
 }
-push $Nb2cfeb0
+CheckerBoard2 {
+ inputs 0
+ name CheckerBoard
+ xpos 1170
+ ypos -2097
+}
+set N1cf23050 [stack 0]
 Tangent_Space_Normals_Generator {
  name example_3_gizmo_Tangent_Space_Normals_Generator
- xpos 730
- ypos -1953
+ xpos 1170
+ ypos -2001
  parameters_Group 1
 }
-push $N1dd853f0
-Multi_Tangent_Space_Normals_Generator {
- name example_4_Multi_Tangent_Space_Normals_Generator
- xpos 510
- ypos -1881
- parameters_Group 1
- largest_intensity_Floating_Point_Slider -1
- large_intensity_Floating_Point_Slider -1
- small_intensity_Floating_Point_Slider -1
- smallest_intensity_Floating_Point_Slider -1
+Normalise_Tangent_Space_Normals {
+ inputs 0
+ name gizmo_Normalise_Tangent_Space_Normals
+ xpos 730
+ ypos -2097
 }
 Group {
  inputs 0
  name Multi_Tangent_Space_Normals_Generator
  tile_color 0xffbf00ff
- xpos 70
- ypos -1905
+ xpos 510
+ ypos -1953
  addUserKnob {20 multi_prewitt_tangent_space_normals_generator_Tab l "Multi Tangent Space Normals Generator"}
  addUserKnob {20 parameters_Group l Parameters n 1}
  addUserKnob {26 largest_Static_Text l Largest}
@@ -529,7 +400,7 @@ Group {
  smallest_intensity_Floating_Point_Slider 1
  addUserKnob {20 parameters_endGroup l endGroup n -1}
  addUserKnob {20 about_Tab l About}
- addUserKnob {26 description_Text l "" +STARTLINE T "Multi Tangent Space Normals Generator v0.1.0\n\ncolour-science.org - April 6, 2015\n\nThis Gizmo / Group generates tangent space normals from given input image using multiple Tangent Space Normals Generators.\n\n\[1] Wikipedia. (n.d.). Prewitt operator. Retrieved April 7, 2015, from http://en.wikipedia.org/wiki/Prewitt_operator"}
+ addUserKnob {26 description_Text l "" +STARTLINE T "Multi Tangent Space Normals Generator v0.1.0\n\ncolour-science.org - April 6, 2015\n\nThis Gizmo / Group generates tangent space normals from given input image using multiple Tangent Space Normals Generators.\n\n\[1] Wikipedia. (n.d.). Sobel operator. Retrieved April 7, 2015, from http://en.wikipedia.org/wiki/Sobel_operator"}
 }
  Input {
   inputs 0
@@ -537,7 +408,7 @@ Group {
   xpos -260
   ypos -33
  }
-set N1e67b910 [stack 0]
+set N7ba50530 [stack 0]
  Tangent_Space_Normals_Generator {
   name Largest_Tangent_Space_Normals_Generator
   xpos 70
@@ -546,7 +417,7 @@ set N1e67b910 [stack 0]
   size_Floating_Point_Slider {{parent.largest_size_Floating_Point_Slider}}
   intensity_Floating_Point_Slider {{parent.largest_intensity_Floating_Point_Slider}}
  }
-push $N1e67b910
+push $N7ba50530
  Tangent_Space_Normals_Generator {
   name Large_Tangent_Space_Normals_Generator
   xpos -40
@@ -555,7 +426,7 @@ push $N1e67b910
   size_Floating_Point_Slider {{parent.large_size_Floating_Point_Slider}}
   intensity_Floating_Point_Slider {{parent.large_intensity_Floating_Point_Slider}}
  }
-push $N1e67b910
+push $N7ba50530
  Tangent_Space_Normals_Generator {
   name Medium_Large_Tangent_Space_Normals_Generator
   xpos -150
@@ -564,7 +435,7 @@ push $N1e67b910
   size_Floating_Point_Slider {{parent.medium_large_size_Floating_Point_Slider}}
   intensity_Floating_Point_Slider {{parent.medium_large_intensity_Floating_Point_Slider}}
  }
-push $N1e67b910
+push $N7ba50530
  Tangent_Space_Normals_Generator {
   name Medium_Tangent_Space_Normals_Generator
   xpos -260
@@ -573,7 +444,7 @@ push $N1e67b910
   size_Floating_Point_Slider {{parent.medium_size_Floating_Point_Slider}}
   intensity_Floating_Point_Slider {{parent.medium_intensity_Floating_Point_Slider}}
  }
-push $N1e67b910
+push $N7ba50530
  Tangent_Space_Normals_Generator {
   name Small_Medium_Tangent_Space_Normals_Generator
   xpos -370
@@ -582,7 +453,7 @@ push $N1e67b910
   size_Floating_Point_Slider {{parent.small_medium_size_Floating_Point_Slider}}
   intensity_Floating_Point_Slider {{parent.small_medium_intensity_Floating_Point_Slider x1 1.96}}
  }
-push $N1e67b910
+push $N7ba50530
  Tangent_Space_Normals_Generator {
   name Small_Tangent_Space_Normals_Generator
   xpos -480
@@ -591,7 +462,7 @@ push $N1e67b910
   size_Floating_Point_Slider {{parent.small_size_Floating_Point_Slider}}
   intensity_Floating_Point_Slider {{parent.small_intensity_Floating_Point_Slider}}
  }
-push $N1e67b910
+push $N7ba50530
  Tangent_Space_Normals_Generator {
   name Smallest_Emboss_Tangent_Space_Normals_Generator
   xpos -590
@@ -644,10 +515,147 @@ push $N1e67b910
 end_group
 Group {
  inputs 0
+ name Tangent_Space_Normals_Generator
+ tile_color 0xffbf00ff
+ xpos 510
+ ypos -2001
+ addUserKnob {20 prewitt_tangent_space_normals_generator_Tab l "Tangent Space Normals Generator"}
+ addUserKnob {20 parameters_Group l Parameters n 1}
+ addUserKnob {7 size_Floating_Point_Slider l Size R 1 5}
+ size_Floating_Point_Slider 1
+ addUserKnob {7 intensity_Floating_Point_Slider l Intensity R -5 5}
+ intensity_Floating_Point_Slider 1
+ addUserKnob {20 parameters_endGroup l endGroup n -1}
+ addUserKnob {20 about_Tab l About}
+ addUserKnob {26 description_Text l "" +STARTLINE T "Tangent Space Normals Generator v0.1.0\n\ncolour-science.org - April 6, 2015\n\nThis Gizmo / Group generates tangent space normals from given input image.\n\n\[1] Wikipedia. (n.d.). Sobel operator. Retrieved April 7, 2015, from http://en.wikipedia.org/wiki/Sobel_operator"}
+}
+ Input {
+  inputs 0
+  name Input
+  xpos -590
+  ypos -33
+ }
+ Saturation {
+  saturation 0
+  name Saturation
+  xpos -590
+  ypos -9
+ }
+ Blur {
+  size {{"parent.size_Floating_Point_Slider - 1"}}
+  quality {{"size * 0.5 + 8"}}
+  name Blur
+  xpos -590
+  ypos 11
+ }
+ Multiply {
+  value {{parent.intensity_Floating_Point_Slider}}
+  name intensity_Multiply
+  xpos -590
+  ypos 35
+ }
+ Expression {
+  expr0 "x / width"
+  expr1 "y / width"
+  name gradient_Expression
+  xpos -590
+  ypos 63
+ }
+set N1c3cc380 [stack 0]
+ Matrix {
+  matrix {
+      {-3 0 3}
+      {-10 0 10}
+      {-3 0 3}
+    }
+  name dx_Scharr_Matrix
+  xpos -700
+  ypos 59
+ }
+push $N1c3cc380
+ Matrix {
+  matrix {
+      {3 10 3}
+      {0 0 0}
+      {-3 -10 -3}
+    }
+  name dy_Scharr_Matrix
+  selected true
+  xpos -480
+  ypos 59
+ }
+ MergeExpression {
+  inputs 2
+  expr0 "Ag * Bb - Bg * Ab"
+  expr1 "Ar * Bb - Br * Ab"
+  expr2 "Ar * Bg - Br * Ag"
+  name dot_product_MergeExpression
+  label "\n"
+  xpos -590
+  ypos 87
+ }
+ Expression {
+  expr1 "- g"
+  name invert_green_Expression
+  xpos -590
+  ypos 111
+ }
+ Expression {
+  temp_name0 norme
+  temp_expr0 "sqrt(r * r + g * g + b * b)"
+  expr0 "r / abs(norme)"
+  expr1 "g / abs(norme)"
+  expr2 "b / abs(norme)"
+  name normalise_Expression
+  xpos -590
+  ypos 135
+ }
+ Expression {
+  expr0 "r * 0.5 + 0.5"
+  expr1 "g * 0.5 + 0.5"
+  expr2 "b * 0.5 + 0.5"
+  name output_offset_Expression
+  xpos -590
+  ypos 159
+ }
+set N1c3a7bf0 [stack 0]
+ Viewer {
+  input_process false
+  name Viewer1
+  xpos -810
+  ypos 135
+ }
+push $N1c3a7bf0
+ Output {
+  name Output
+  xpos -590
+  ypos 183
+ }
+end_group
+push $N8042dbf0
+Multi_Tangent_Space_Normals_Generator {
+ name example_4_Multi_Tangent_Space_Normals_Generator
+ xpos 950
+ ypos -1929
+ parameters_Group 1
+ largest_intensity_Floating_Point_Slider -1
+ large_intensity_Floating_Point_Slider -1
+ small_intensity_Floating_Point_Slider -1
+ smallest_intensity_Floating_Point_Slider -1
+}
+push $N1cf23050
+Multi_Tangent_Space_Normals_Generator {
+ name example_6_Multi_Tangent_Space_Normals_Generator
+ xpos 1170
+ ypos -1929
+ parameters_Group 1
+}
+Group {
+ inputs 0
  name Tangent_Space_Normals_to_Cavity
  tile_color 0xffbf00ff
- xpos 70
- ypos -1809
+ xpos 510
+ ypos -1857
  addUserKnob {20 tangent_space_normals_to_cavity_tab l "Tangent Space Normals to Cavity"}
  addUserKnob {20 about_Tab l About}
  addUserKnob {26 description_Text l "" +STARTLINE T "Tangent Space Normal to Cavity v0.1.0\n\ncolour-science.org - April 4, 2015\n\nThis Gizmo / Group performs conversion from Tangent Space Normals to Cavity."}
@@ -658,7 +666,7 @@ Group {
   xpos -40
   ypos 15
  }
-set N1ed1ca80 [stack 0]
+set N332725f0 [stack 0]
  Shuffle {
   red green
   blue green
@@ -668,15 +676,16 @@ set N1ed1ca80 [stack 0]
  }
  Matrix {
   matrix {
-      {1 1 1}
+      {3 10 3}
       {0 0 0}
-      {-1 -1 -1}
+      {-3 -10 -3}
     }
-  name horizontal_Prewitt_Matrix
+  name horizontal_Scharr_Matrix
+  selected true
   xpos 70
   ypos 39
  }
-push $N1ed1ca80
+push $N332725f0
  Shuffle {
   green red
   blue red
@@ -686,12 +695,11 @@ push $N1ed1ca80
  }
  Matrix {
   matrix {
-      {-1 0 1}
-      {-1 0 1}
-      {-1 0 1}
+      {-3 0 3}
+      {-10 0 10}
+      {-3 0 3}
     }
-  name vertical_Prewitt_Matrix
-  selected true
+  name vertical_Scharr_Matrix
   xpos -150
   ypos 39
  }
@@ -722,11 +730,12 @@ push $N1ed1ca80
   ypos 115
  }
 end_group
-push $N1df21550
+push $N8042dbf0
+push $N167f7210
 Multi_Tangent_Space_Normals_Generator {
  name example_5_Multi_Tangent_Space_Normals_Generator
- xpos 620
- ypos -1881
+ xpos 1060
+ ypos -1929
  parameters_Group 1
  largest_intensity_Floating_Point_Slider 0.5
  large_intensity_Floating_Point_Slider 0.5
@@ -736,85 +745,78 @@ Multi_Tangent_Space_Normals_Generator {
  small_intensity_Floating_Point_Slider 0.1
  smallest_intensity_Floating_Point_Slider 0.5
 }
-set N1ed7c710 [stack 0]
 Tangent_Space_Normals_to_Cavity {
- name example_5_5_Tangent_Space_Normals_to_Cavity
- xpos 950
- ypos -1833
+ name example_5_1_Tangent_Space_Normals_to_Cavity
+ xpos 1060
+ ypos -1905
 }
+CurveTool {
+ operation "Max Luma Pixel"
+ ROI {0 0 1024 1024}
+ autocropdata {256 256 768 768}
+ intensitydata {{curve}}
+ maxlumapixdata {{curve x1 227} {curve x1 128}}
+ maxlumapixvalue {{curve x1 14.3190794} {curve x1 14.3190794} {curve x1 14.3190794}}
+ minlumapixdata {{curve x1 197} {curve x1 259}}
+ minlumapixvalue {{curve x1 -13.434165} {curve x1 -13.434165} {curve x1 -13.434165}}
+ name CurveTool
+ xpos 1060
+ ypos -1881
+}
+Grade {
+ blackpoint {{-whitepoint}}
+ whitepoint {{parent.CurveTool.maxlumapixvalue.r}}
+ mix 0.3333333333
+ name Grade
+ xpos 1060
+ ypos -1857
+}
+set N1d072b20 [stack 0]
 Blur {
  size 64
  name example_5_5_Blur
- xpos 950
- ypos -1813
+ xpos 1390
+ ypos -1826
 }
-push $N1ed7c710
-Tangent_Space_Normals_to_Cavity {
- name example_5_4_Tangent_Space_Normals_to_Cavity
- xpos 840
- ypos -1833
-}
+push $N1d072b20
 Blur {
  size 32
  name example_5_4_Blur
- xpos 840
- ypos -1813
+ xpos 1280
+ ypos -1826
 }
-push $N1ed7c710
-Tangent_Space_Normals_to_Cavity {
- name example_5_3_Tangent_Space_Normals_to_Cavity
- xpos 730
- ypos -1833
-}
+push $N1d072b20
 Blur {
  size 16
  name example_5_3_Blur
- xpos 730
- ypos -1813
+ xpos 1170
+ ypos -1826
 }
 push 0
-push $N1ed7c710
-Tangent_Space_Normals_to_Cavity {
- name example_5_2_Tangent_Space_Normals_to_Cavity
- xpos 620
- ypos -1833
-}
+push $N1d072b20
 Blur {
  size 8
  name example_5_2_Blur
- xpos 620
- ypos -1813
+ xpos 1060
+ ypos -1826
 }
-push $N1ed7c710
-Tangent_Space_Normals_to_Cavity {
- name example_5_1_Tangent_Space_Normals_to_Cavity
- xpos 510
- ypos -1833
-}
+push $N1d072b20
 Blend {
  inputs 5+1
  name example_ffBlend
- xpos 620
- ypos -1781
+ xpos 1060
+ ypos -1794
 }
-set N1f660190 [stack 0]
 Colorspace {
  colorspace_in sRGB
  name example_Colorspace
- xpos 620
- ypos -1749
+ xpos 1060
+ ypos -1762
 }
-Normalise_Tangent_Space_Normals {
- inputs 0
- name gizmo_Normalise_Tangent_Space_Normals
- xpos 290
- ypos -2049
-}
-push $N1f660190
 Viewer {
- frame 1
+ inputs 2
  input_process false
  name Viewer1
- xpos 620
- ypos -1714
+ xpos 1060
+ ypos -1738
 }

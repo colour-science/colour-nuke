@@ -12,7 +12,7 @@ Gizmo {
   xpos -40
   ypos 15
  }
-set N20638bc0 [stack 0]
+set N1ca54c00 [stack 0]
  Shuffle {
   red green
   blue green
@@ -22,15 +22,15 @@ set N20638bc0 [stack 0]
  }
  Matrix {
   matrix {
-      {1 1 1}
+      {3 10 3}
       {0 0 0}
-      {-1 -1 -1}
+      {-3 -10 -3}
     }
-  name horizontal_Prewitt_Matrix
+  name horizontal_Scharr_Matrix
   xpos 70
   ypos 39
  }
-push $N20638bc0
+push $N1ca54c00
  Shuffle {
   green red
   blue red
@@ -40,11 +40,11 @@ push $N20638bc0
  }
  Matrix {
   matrix {
-      {-1 0 1}
-      {-1 0 1}
-      {-1 0 1}
+      {-3 0 3}
+      {-10 0 10}
+      {-3 0 3}
     }
-  name vertical_Prewitt_Matrix
+  name vertical_Scharr_Matrix
   xpos -150
   ypos 39
  }
@@ -71,7 +71,6 @@ push $N20638bc0
  Viewer {
   input_process false
   name Viewer1
-  selected true
   xpos -40
   ypos 115
  }
