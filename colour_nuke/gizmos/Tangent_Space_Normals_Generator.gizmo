@@ -2,71 +2,69 @@
 version 8.0 v1
 Gizmo {
  tile_color 0xffbf00ff
- addUserKnob {20 derivative_tangent_space_normals_generator_Tab l "Derivative Tangent Space Normals Generator"}
+ addUserKnob {20 prewitt_tangent_space_normals_generator_Tab l "Tangent Space Normals Generator"}
  addUserKnob {20 parameters_Group l Parameters n 1}
  addUserKnob {7 size_Floating_Point_Slider l Size R 1 5}
  size_Floating_Point_Slider 1
- addUserKnob {7 intensity_Floating_Point_Slider l Intensity R 0 5}
+ addUserKnob {7 intensity_Floating_Point_Slider l Intensity R -5 5}
  intensity_Floating_Point_Slider 1
  addUserKnob {20 parameters_endGroup l endGroup n -1}
  addUserKnob {20 about_Tab l About}
- addUserKnob {26 description_Text l "" +STARTLINE T "Prewitt Tangent Space Normals Generator v0.1.0\n\ncolour-science.org - April 6, 2015\n\nThis Gizmo / Group generates tangent space normals from given input image using derivatives.\n\n\[1] Wikipedia. (n.d.). Image gradient. Retrieved April 7, 2015, from http://en.wikipedia.org/wiki/Image_gradient"}
+ addUserKnob {26 description_Text l "" +STARTLINE T "Tangent Space Normals Generator v0.1.0\n\ncolour-science.org - April 6, 2015\n\nThis Gizmo / Group generates tangent space normals from given input image.\n\n\[1] Wikipedia. (n.d.). Prewitt operator. Retrieved April 7, 2015, from http://en.wikipedia.org/wiki/Prewitt_operator"}
 }
  Input {
   inputs 0
   name Input
-  xpos 163
-  ypos -123
+  xpos -590
+  ypos -33
  }
  Saturation {
   saturation 0
   name Saturation
-  xpos 163
-  ypos -99
+  xpos -590
+  ypos -9
  }
  Blur {
   size {{"parent.size_Floating_Point_Slider - 1"}}
   quality {{"size * 0.5 + 8"}}
   name Blur
-  xpos 163
-  ypos -75
- }
- Multiply {
-  value 0.1
-  name pre_scale_Multiply
-  xpos 163
-  ypos -43
+  xpos -590
+  ypos 11
  }
  Multiply {
   value {{parent.intensity_Floating_Point_Slider}}
   name intensity_Multiply
-  xpos 163
-  ypos -11
+  xpos -590
+  ypos 35
  }
  Expression {
   expr0 "x / width"
   expr1 "y / width"
   name gradient_Expression
-  xpos 163
-  ypos 20
+  xpos -590
+  ypos 63
  }
-set N201a79f0 [stack 0]
- Expression {
-  expr0 "r(x, y + 1) - r"
-  expr1 "g(x, y + 1) - g"
-  expr2 "b(x, y + 1) - b"
-  name derivative_y_Expression
-  xpos 273
-  ypos 44
+set N1ccf5460 [stack 0]
+ Matrix {
+  matrix {
+      {-1 0 1}
+      {-1 0 1}
+      {-1 0 1}
+    }
+  name dx_Prewitt_Matrix
+  xpos -700
+  ypos 59
  }
-push $N201a79f0
- Expression {
-  expr0 "r(x - 1, y) - r"
-  expr1 "g(x - 1, y) - g"
-  expr2 "b(x - 1, y) - b"
-  name derivative_x_Expression
-  xpos 53
-  ypos 44
+push $N1ccf5460
+ Matrix {
+  matrix {
+      {1 1 1}
+      {0 0 0}
+      {-1 -1 -1}
+    }
+  name dy_Prewitt_Matrix
+  xpos -480
+  ypos 59
  }
  MergeExpression {
   inputs 2
@@ -75,21 +73,14 @@ push $N201a79f0
   expr2 "Ar * Bg - Br * Ag"
   name dot_product_MergeExpression
   label "\n"
-  xpos 163
-  ypos 49
+  xpos -590
+  ypos 87
  }
  Expression {
   expr1 "- g"
   name invert_green_Expression
-  xpos 163
-  ypos 73
- }
- Transform {
-  translate {-0.5 0.5}
-  center {1536 1152}
-  name Transform
-  xpos 163
-  ypos 97
+  xpos -590
+  ypos 111
  }
  Expression {
   temp_name0 norme
@@ -98,20 +89,28 @@ push $N201a79f0
   expr1 "g / abs(norme)"
   expr2 "b / abs(norme)"
   name normalise_Expression
-  xpos 163
-  ypos 121
+  xpos -590
+  ypos 135
  }
  Expression {
   expr0 "r * 0.5 + 0.5"
   expr1 "g * 0.5 + 0.5"
   expr2 "b * 0.5 + 0.5"
   name output_offset_Expression
-  xpos 163
-  ypos 145
+  xpos -590
+  ypos 159
  }
+set N1cc52d40 [stack 0]
+ Viewer {
+  input_process false
+  name Viewer1
+  xpos -810
+  ypos 135
+ }
+push $N1cc52d40
  Output {
   name Output
-  xpos 163
-  ypos 169
+  xpos -590
+  ypos 183
  }
 end_group
