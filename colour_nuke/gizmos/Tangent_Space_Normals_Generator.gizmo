@@ -10,7 +10,7 @@ Gizmo {
  intensity_Floating_Point_Slider 1
  addUserKnob {20 parameters_endGroup l endGroup n -1}
  addUserKnob {20 about_Tab l About}
- addUserKnob {26 description_Text l "" +STARTLINE T "Tangent Space Normals Generator v0.1.0\n\ncolour-science.org - April 6, 2015\n\nThis Gizmo / Group generates tangent space normals from given input image.\n\n\[1] Wikipedia. (n.d.). Sobel operator. Retrieved April 7, 2015, from http://en.wikipedia.org/wiki/Sobel_operator"}
+ addUserKnob {26 description_Text l "" +STARTLINE T "Tangent Space Normals Generator v0.1.0\n\ncolour-science.org - April 6, 2015\n\nThis Gizmo / Group generates tangent space normals from given input.\n\n\[1] Kolasinski, K. (2015). AwesomeBump v1.0, 1–7. Retrieved from http://awesomebump.besaba.com/wp-content/uploads/2015/01/ABoverwiev.pdf\n\[2] Wikipedia. (n.d.). Sobel operator. Retrieved April 7, 2015, from http://en.wikipedia.org/wiki/Sobel_operator"}
 }
  Input {
   inputs 0
@@ -42,9 +42,9 @@ Gizmo {
   expr1 "y / width"
   name gradient_Expression
   xpos -590
-  ypos 63
+  ypos 67
  }
-set N83d68d00 [stack 0]
+set N1df31fa0 [stack 0]
  Matrix {
   matrix {
       {-3 0 3}
@@ -53,9 +53,9 @@ set N83d68d00 [stack 0]
     }
   name dx_Scharr_Matrix
   xpos -700
-  ypos 59
+  ypos 63
  }
-push $N83d68d00
+push $N1df31fa0
  Matrix {
   matrix {
       {3 10 3}
@@ -63,9 +63,8 @@ push $N83d68d00
       {-3 -10 -3}
     }
   name dy_Scharr_Matrix
-  selected true
   xpos -480
-  ypos 59
+  ypos 63
  }
  MergeExpression {
   inputs 2
@@ -98,17 +97,10 @@ push $N83d68d00
   expr1 "g * 0.5 + 0.5"
   expr2 "b * 0.5 + 0.5"
   name output_offset_Expression
+  selected true
   xpos -590
   ypos 159
  }
-set N838a6650 [stack 0]
- Viewer {
-  input_process false
-  name Viewer1
-  xpos -810
-  ypos 135
- }
-push $N838a6650
  Output {
   name Output
   xpos -590

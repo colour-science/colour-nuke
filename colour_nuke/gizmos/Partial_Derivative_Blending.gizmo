@@ -5,7 +5,7 @@ Gizmo {
  tile_color 0xffbf00ff
  addUserKnob {20 Partial_Derivative_Blending l "Partial Derivative Blending"}
  addUserKnob {20 about_Tab l About}
- addUserKnob {26 description_Text l "" +STARTLINE T "Partial Derivative Blending v0.1.0\n\ncolour-science.org - April 6, 2015\n\nThis Gizmo / Group merges tangent space normals together using Partial Derivative Blending.\n"}
+ addUserKnob {26 description_Text l "" +STARTLINE T "Partial Derivative Blending v0.1.0\n\ncolour-science.org - April 6, 2015\n\nThis Gizmo / Group blends tangent space normals together using Partial Derivative Blending.\n\n\[1] Self Shadow. (n.d.). Blending in Detail. Retrieved April 7, 2015, from http://blog.selfshadow.com/publications/blending-in-detail/\n"}
 }
  Input {
   inputs 0
@@ -50,6 +50,7 @@ Gizmo {
   expr1 "g * 0.5 + 0.5"
   expr2 "b * 0.5 + 0.5"
   name output_offset_Expression
+  selected true
   xpos -260
   ypos 111
  }
