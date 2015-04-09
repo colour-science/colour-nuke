@@ -2,7 +2,7 @@
 version 8.0 v1
 define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
 <layout version="1.0">
-    <window x="0" y="23" w="1280" h="717" screen="0">
+    <window x="0" y="23" w="1280" h="714" screen="0">
         <splitter orientation="1">
             <split size="808"/>
             <splitter orientation="1">
@@ -12,11 +12,11 @@ define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
                 </dock>
                 <split size="764"/>
                 <splitter orientation="2">
-                    <split size="406"/>
+                    <split size="404"/>
                     <dock id="" activePageId="Viewer.1">
                         <page id="Viewer.1"/>
                     </dock>
-                    <split size="285"/>
+                    <split size="284"/>
                     <dock id="" activePageId="DAG.1">
                         <page id="DAG.1"/>
                         <page id="Curve Editor.1"/>
@@ -42,98 +42,98 @@ Root {
 Normalise_Tangent_Space_Normals {
  inputs 0
  name gizmo_Normalise_Tangent_Space_Normals
- xpos 873
+ xpos 840
  ypos -2097
-}
-Multi_Tangent_Space_Normals_Generator {
- inputs 0
- name gizmo_Multi_Tangent_Space_Normals_Generator
- xpos 873
- ypos -1953
- parameters_Group 1
 }
 Tangent_Space_Normals_to_Cavity {
  inputs 0
  name gizmo_Tangent_Space_Normals_to_Cavity
- xpos 873
+ xpos 840
  ypos -1857
+}
+CheckerBoard2 {
+ inputs 0
+ name CheckerBoard
+ xpos 1500
+ ypos -2097
+}
+set Nb1d34f0 [stack 0]
+Multi_Tangent_Space_Normals_Generator {
+ name example_6_Multi_Tangent_Space_Normals_Generator
+ xpos 1500
+ ypos -1929
+ parameters_Group 1
+}
+push $Nb1d34f0
+Tangent_Space_Normals_Generator {
+ name example_3_gizmo_Tangent_Space_Normals_Generator
+ xpos 1500
+ ypos -2001
+ parameters_Group 1
 }
 Partial_Derivative_Blending {
  inputs 0
  name gizmo_Partial_Derivative_Blending
- xpos 873
+ xpos 840
  ypos -2049
-}
-Tangent_Space_Normals_Generator {
- inputs 0
- name gizmo_Tangent_Space_Normals_Generator
- xpos 873
- ypos -2001
- parameters_Group 1
 }
 Constant {
  inputs 0
  channels rgb
  format "1024 1024 0 0 1024 1024 1 square_1K"
  name Constant
- xpos 1203
+ xpos 1280
  ypos -2121
 }
-set N1c700890 [stack 0]
+set N2e423fd0 [stack 0]
 Radial {
  area {256 256 768 768}
  name Radial
- xpos 1203
+ xpos 1280
  ypos -2049
 }
 Tangent_Space_Normals_Generator {
  name example_1_gizmo_Tangent_Space_Normals_Generator
- xpos 1203
+ xpos 1280
  ypos -2001
  parameters_Group 1
 }
-push $N1c700890
+push $N2e423fd0
 Noise {
  type turbulence
  gain 0.66666667
  gamma 0.3333333333
  center {512 512}
  name Noise
- xpos 1313
+ xpos 1390
  ypos -2049
 }
-set N1c63e9d0 [stack 0]
+set N1d714c50 [stack 0]
 Tangent_Space_Normals_Generator {
  name example_2_gizmo_Tangent_Space_Normals_Generator
- xpos 1313
- ypos -1993
+ xpos 1390
+ ypos -2001
  parameters_Group 1
  intensity_Floating_Point_Slider 0.1
 }
 Partial_Derivative_Blending {
  inputs 2
  name example_4_Partial_Derivative_Blending
- xpos 1203
+ xpos 1280
  ypos -1929
 }
-CheckerBoard2 {
+Tangent_Space_Normals_Generator {
  inputs 0
- name CheckerBoard
- xpos 1423
- ypos -2097
-}
-set N1c7cf100 [stack 0]
-Multi_Tangent_Space_Normals_Generator {
- name example_6_Multi_Tangent_Space_Normals_Generator
- xpos 1423
- ypos -1929
+ name gizmo_Tangent_Space_Normals_Generator
+ xpos 840
+ ypos -2001
  parameters_Group 1
 }
-push $N1c7cf100
-Tangent_Space_Normals_Generator {
- name example_3_gizmo_Tangent_Space_Normals_Generator
- xpos 1423
- ypos -2001
+Multi_Tangent_Space_Normals_Generator {
+ inputs 0
+ name gizmo_Multi_Tangent_Space_Normals_Generator
+ xpos 840
+ ypos -1953
  parameters_Group 1
 }
 Group {
@@ -185,207 +185,13 @@ Group {
   ypos 39
  }
 end_group
-StickyNote {
+Tangent_Space_Normals_Previewer {
  inputs 0
- name StickyNote
- tile_color 0x767676ff
- gl_color 0x767676ff
- label "TANGENT SPACE NORMALS UTILITIES 1.0\n\ncolour-science.org - April 8, 2015\n\nThis file is a playground for implementation of various tangent space normals utilities:\n\n- Normalise_Tangent_Space_Normals: Normalises tangent space normals.\n- Partial Derivative Blending: Blends tangent space normals together using Partial Derivative Blending.\n- Tangent Space Normals Generator: Generates tangent space normals from given input.\n- Multi Tangent Space Normals Generator: Generates tangent space normals from given input using multiple Tangent Space Normals Generators.\n- Brute Force Tangent Space Normals Generator: Generates tangent space normals from given input using brute force method: A card is tesselated and displaced in the 3d space and normals are rendered using Nuke ScanlineRender.\n- Tangent Space Normal to Cavity: Performs conversion from Tangent Space Normals to Cavity.\n\nLatest version of the file will always be available at this url: https://github.com/colour-science/colour-nuke/blob/master/colour_nuke/scripts/tangent_space_normals_utilities.nk\n\n\[1] Self Shadow. (n.d.). Blending in Detail. Retrieved April 7, 2015, from http://blog.selfshadow.com/publications/blending-in-detail/\n\[2] Kolasinski, K. (2015). AwesomeBump v1.0, 1–7. Retrieved from http://awesomebump.besaba.com/wp-content/uploads/2015/01/ABoverwiev.pdf\n\[3] Wikipedia. (n.d.). Sobel operator. Retrieved April 7, 2015, from http://en.wikipedia.org/wiki/Sobel_operator"
- note_font_size 14
- xpos 507
- ypos -2373
-}
-push $N1c63e9d0
-Multi_Tangent_Space_Normals_Generator {
- name example_5_Multi_Tangent_Space_Normals_Generator
- xpos 1313
- ypos -1929
+ name gizmo_Tangent_Space_Normals_Previewer
+ xpos 840
+ ypos -1809
  parameters_Group 1
- largest_intensity_Floating_Point_Slider 0.5
- large_intensity_Floating_Point_Slider 0.125
- medium_intensity_Floating_Point_Slider 0.075
- small_intensity_Floating_Point_Slider 0.125
 }
-Tangent_Space_Normals_to_Cavity {
- name example_5_1_Tangent_Space_Normals_to_Cavity
- xpos 1313
- ypos -1905
-}
-CurveTool {
- operation "Max Luma Pixel"
- ROI {0 0 1024 1024}
- autocropdata {256 256 768 768}
- intensitydata {{curve}}
- maxlumapixdata {{curve x1 226} {curve x1 71}}
- maxlumapixvalue {{curve x1 14.50759983} {curve x1 14.50759983} {curve x1 14.50759983}}
- minlumapixdata {{curve x1 112} {curve x1 814}}
- minlumapixvalue {{curve x1 -13.37855244} {curve x1 -13.37855244} {curve x1 -13.37855244}}
- name CurveTool
- xpos 1313
- ypos -1881
-}
-Grade {
- blackpoint {{-whitepoint}}
- whitepoint {{parent.CurveTool.maxlumapixvalue.r}}
- mix 0.3333333333
- name Grade
- xpos 1313
- ypos -1857
-}
-set N1d182100 [stack 0]
-Blur {
- size 64
- name example_5_5_Blur
- xpos 1643
- ypos -1837
-}
-push $N1d182100
-Blur {
- size 32
- name example_5_4_Blur
- xpos 1533
- ypos -1837
-}
-push $N1d182100
-Blur {
- size 16
- name example_5_3_Blur
- xpos 1423
- ypos -1837
-}
-push 0
-push $N1d182100
-Blur {
- size 8
- name example_5_2_Blur
- xpos 1313
- ypos -1837
-}
-push $N1d182100
-Blend {
- inputs 5+1
- name example_ffBlend
- xpos 1313
- ypos -1805
-}
-Viewer {
- frame 1
- input_process false
- name Viewer1
- xpos 1313
- ypos -1773
-}
-Group {
- inputs 0
- name Tangent_Space_Normals_Generator
- tile_color 0xffbf00ff
- xpos 510
- ypos -2001
- addUserKnob {20 prewitt_tangent_space_normals_generator_Tab l "Tangent Space Normals Generator"}
- addUserKnob {20 parameters_Group l Parameters n 1}
- addUserKnob {7 size_Floating_Point_Slider l Size R 1 5}
- size_Floating_Point_Slider 1
- addUserKnob {7 intensity_Floating_Point_Slider l Intensity R -5 5}
- intensity_Floating_Point_Slider 1
- addUserKnob {20 parameters_endGroup l endGroup n -1}
- addUserKnob {20 about_Tab l About}
- addUserKnob {26 description_Text l "" +STARTLINE T "Tangent Space Normals Generator v0.1.0\n\ncolour-science.org - April 6, 2015\n\nThis Gizmo / Group generates tangent space normals from given input.\n\n\[1] Kolasinski, K. (2015). AwesomeBump v1.0, 1–7. Retrieved from http://awesomebump.besaba.com/wp-content/uploads/2015/01/ABoverwiev.pdf\n\[2] Wikipedia. (n.d.). Sobel operator. Retrieved April 7, 2015, from http://en.wikipedia.org/wiki/Sobel_operator"}
-}
- Input {
-  inputs 0
-  name Input
-  xpos -590
-  ypos -33
- }
- Saturation {
-  saturation 0
-  name Saturation
-  xpos -590
-  ypos -9
- }
- Blur {
-  size {{"parent.size_Floating_Point_Slider - 1"}}
-  quality {{"size * 0.5 + 8"}}
-  name Blur
-  xpos -590
-  ypos 11
- }
- Multiply {
-  value {{parent.intensity_Floating_Point_Slider}}
-  name intensity_Multiply
-  xpos -590
-  ypos 35
- }
- Expression {
-  expr0 "x / width"
-  expr1 "y / width"
-  name gradient_Expression
-  xpos -590
-  ypos 67
- }
-set N1df31fa0 [stack 0]
- Matrix {
-  matrix {
-      {-3 0 3}
-      {-10 0 10}
-      {-3 0 3}
-    }
-  name dx_Scharr_Matrix
-  xpos -700
-  ypos 63
- }
-push $N1df31fa0
- Matrix {
-  matrix {
-      {3 10 3}
-      {0 0 0}
-      {-3 -10 -3}
-    }
-  name dy_Scharr_Matrix
-  xpos -480
-  ypos 63
- }
- MergeExpression {
-  inputs 2
-  expr0 "Ag * Bb - Bg * Ab"
-  expr1 "Ar * Bb - Br * Ab"
-  expr2 "Ar * Bg - Br * Ag"
-  name dot_product_MergeExpression
-  label "\n"
-  xpos -590
-  ypos 87
- }
- Expression {
-  expr1 "- g"
-  name invert_green_Expression
-  xpos -590
-  ypos 111
- }
- Expression {
-  temp_name0 norme
-  temp_expr0 "sqrt(r * r + g * g + b * b)"
-  expr0 "r / abs(norme)"
-  expr1 "g / abs(norme)"
-  expr2 "b / abs(norme)"
-  name normalise_Expression
-  xpos -590
-  ypos 135
- }
- Expression {
-  expr0 "r * 0.5 + 0.5"
-  expr1 "g * 0.5 + 0.5"
-  expr2 "b * 0.5 + 0.5"
-  name output_offset_Expression
-  selected true
-  xpos -590
-  ypos 159
- }
- Output {
-  name Output
-  xpos -590
-  ypos 183
- }
-end_group
 Group {
  inputs 0
  name Partial_Derivative_Blending
@@ -439,7 +245,6 @@ Group {
   expr1 "g * 0.5 + 0.5"
   expr2 "b * 0.5 + 0.5"
   name output_offset_Expression
-  selected true
   xpos -260
   ypos 111
  }
@@ -452,6 +257,122 @@ Group {
   name Output
   xpos -260
   ypos 159
+ }
+end_group
+Group {
+ inputs 0
+ name Tangent_Space_Normals_Generator
+ tile_color 0xffbf00ff
+ xpos 510
+ ypos -2001
+ addUserKnob {20 prewitt_tangent_space_normals_generator_Tab l "Tangent Space Normals Generator"}
+ addUserKnob {20 parameters_Group l Parameters n 1}
+ addUserKnob {7 size_Floating_Point_Slider l Size R 1 5}
+ size_Floating_Point_Slider 1
+ addUserKnob {7 intensity_Floating_Point_Slider l Intensity R -5 5}
+ intensity_Floating_Point_Slider 1
+ addUserKnob {20 parameters_endGroup l endGroup n -1}
+ addUserKnob {20 about_Tab l About}
+ addUserKnob {26 description_Text l "" +STARTLINE T "Tangent Space Normals Generator v0.1.1\n\ncolour-science.org - April 9, 2015\n\nThis Gizmo / Group generates tangent space normals from given input.\n\n\[1] Kolasinski, K. (2015). AwesomeBump v1.0, 1–7. Retrieved from http://awesomebump.besaba.com/wp-content/uploads/2015/01/ABoverwiev.pdf\n\[2] Wikipedia. (n.d.). Sobel operator. Retrieved April 7, 2015, from http://en.wikipedia.org/wiki/Sobel_operator"}
+}
+ Input {
+  inputs 0
+  name Input
+  xpos -590
+  ypos -33
+ }
+ Saturation {
+  saturation 0
+  name Saturation
+  xpos -590
+  ypos -9
+ }
+ Blur {
+  size {{"parent.size_Floating_Point_Slider - 1"}}
+  quality {{"size * 0.5 + 8"}}
+  name Blur
+  xpos -590
+  ypos 11
+ }
+ Multiply {
+  value {{parent.intensity_Floating_Point_Slider}}
+  name intensity_Multiply
+  xpos -590
+  ypos 35
+ }
+ Expression {
+  expr0 "x / width"
+  expr1 "y / width"
+  name gradient_Expression
+  xpos -590
+  ypos 67
+ }
+set N1b3b34e0 [stack 0]
+ Matrix {
+  matrix {
+      {-3 0 3}
+      {-10 0 10}
+      {-3 0 3}
+    }
+  name dx_Scharr_Matrix
+  xpos -700
+  ypos 63
+ }
+push $N1b3b34e0
+ Matrix {
+  matrix {
+      {3 10 3}
+      {0 0 0}
+      {-3 -10 -3}
+    }
+  name dy_Scharr_Matrix
+  xpos -480
+  ypos 63
+ }
+ MergeExpression {
+  inputs 2
+  expr0 "Ag * Bb - Bg * Ab"
+  expr1 "Ar * Bb - Br * Ab"
+  expr2 "Ar * Bg - Br * Ag"
+  name dot_product_MergeExpression
+  label "\n"
+  xpos -590
+  ypos 87
+ }
+ Expression {
+  expr1 "- g"
+  name invert_green_Expression
+  xpos -590
+  ypos 111
+ }
+ Expression {
+  temp_name0 norme
+  temp_expr0 "sqrt(r * r + g * g + b * b)"
+  expr0 "r / abs(norme)"
+  expr1 "g / abs(norme)"
+  expr2 "b / abs(norme)"
+  name normalise_Expression
+  xpos -590
+  ypos 135
+ }
+ Expression {
+  expr0 "r * 0.5 + 0.5"
+  expr1 "g * 0.5 + 0.5"
+  expr2 "b * 0.5 + 0.5"
+  name output_offset_Expression
+  xpos -590
+  ypos 159
+ }
+ Shuffle {
+  alpha white
+  name Shuffle
+  xpos -590
+  ypos 183
+ }
+ Output {
+  name Output
+  xpos -590
+  ypos 207
  }
 end_group
 Group {
@@ -489,7 +410,7 @@ Group {
  smallest_intensity_Floating_Point_Slider 1
  addUserKnob {20 parameters_endGroup l endGroup n -1}
  addUserKnob {20 about_Tab l About}
- addUserKnob {26 description_Text l "" +STARTLINE T "Multi Tangent Space Normals Generator v0.1.0\n\ncolour-science.org - April 6, 2015\n\nThis Gizmo / Group generates tangent space normals from given input using multiple Tangent Space Normals Generators.\n\n\[1] Kolasinski, K. (2015). AwesomeBump v1.0, 1–7. Retrieved from http://awesomebump.besaba.com/wp-content/uploads/2015/01/ABoverwiev.pdf\n\[2] Wikipedia. (n.d.). Sobel operator. Retrieved April 7, 2015, from http://en.wikipedia.org/wiki/Sobel_operator"}
+ addUserKnob {26 description_Text l "" +STARTLINE T "Multi Tangent Space Normals Generator v0.1.1\n\ncolour-science.org - April 9, 2015\n\nThis Gizmo / Group generates tangent space normals from given input using multiple Tangent Space Normals Generators.\n\n\[1] Kolasinski, K. (2015). AwesomeBump v1.0, 1–7. Retrieved from http://awesomebump.besaba.com/wp-content/uploads/2015/01/ABoverwiev.pdf\n\[2] Wikipedia. (n.d.). Sobel operator. Retrieved April 7, 2015, from http://en.wikipedia.org/wiki/Sobel_operator"}
 }
  Input {
   inputs 0
@@ -497,7 +418,7 @@ Group {
   xpos -260
   ypos -33
  }
-set N1df880c0 [stack 0]
+set N1b35ac50 [stack 0]
  Tangent_Space_Normals_Generator {
   name Largest_Tangent_Space_Normals_Generator
   xpos -40
@@ -506,7 +427,7 @@ set N1df880c0 [stack 0]
   size_Floating_Point_Slider {{parent.largest_size_Floating_Point_Slider}}
   intensity_Floating_Point_Slider {{parent.largest_intensity_Floating_Point_Slider}}
  }
-push $N1df880c0
+push $N1b35ac50
  Tangent_Space_Normals_Generator {
   name Large_Tangent_Space_Normals_Generator
   xpos -150
@@ -515,7 +436,7 @@ push $N1df880c0
   size_Floating_Point_Slider {{parent.large_size_Floating_Point_Slider}}
   intensity_Floating_Point_Slider {{parent.large_intensity_Floating_Point_Slider}}
  }
-push $N1df880c0
+push $N1b35ac50
  Tangent_Space_Normals_Generator {
   name Medium_Tangent_Space_Normals_Generator
   xpos -260
@@ -524,7 +445,7 @@ push $N1df880c0
   size_Floating_Point_Slider {{parent.medium_size_Floating_Point_Slider}}
   intensity_Floating_Point_Slider {{parent.medium_intensity_Floating_Point_Slider}}
  }
-push $N1df880c0
+push $N1b35ac50
  Tangent_Space_Normals_Generator {
   name Small_Tangent_Space_Normals_Generator
   xpos -370
@@ -533,7 +454,7 @@ push $N1df880c0
   size_Floating_Point_Slider {{parent.small_size_Floating_Point_Slider}}
   intensity_Floating_Point_Slider {{parent.small_intensity_Floating_Point_Slider}}
  }
-push $N1df880c0
+push $N1b35ac50
  Tangent_Space_Normals_Generator {
   name Smallest_Emboss_Tangent_Space_Normals_Generator
   xpos -480
@@ -545,7 +466,6 @@ push $N1df880c0
  Partial_Derivative_Blending {
   inputs 2
   name s_Partial_Derivative_Blending
-  selected true
   xpos -370
   ypos 15
  }
@@ -567,17 +487,111 @@ push $N1df880c0
   xpos -40
   ypos 15
  }
+ Shuffle {
+  alpha white
+  name Shuffle
+  xpos -40
+  ypos 39
+ }
  Output {
   name Output
   xpos -40
+  ypos 63
+ }
+end_group
+StickyNote {
+ inputs 0
+ name StickyNote
+ tile_color 0x767676ff
+ gl_color 0x767676ff
+ label "TANGENT SPACE NORMALS UTILITIES 1.1\n\ncolour-science.org - April 9, 2015\n\nThis file is a playground for implementation of various tangent space normals utilities:\n\n- Normalise_Tangent_Space_Normals: Normalises tangent space normals.\n- Partial Derivative Blending: Blends tangent space normals together using Partial Derivative Blending.\n- Tangent Space Normals Generator: Generates tangent space normals from given input.\n- Multi Tangent Space Normals Generator: Generates tangent space normals from given input using multiple Tangent Space Normals Generators.\n- Brute Force Tangent Space Normals Generator: Generates tangent space normals from given input using brute force method: A card is tesselated and displaced in the 3d space and normals are rendered using Nuke ScanlineRender.\n- Tangent Space Normals to Cavity: Performs conversion from Tangent Space Normals to Cavity.\n- Tangent Space Normals Previewer: Preview tangent space normals by using angular mapping lighting.\n\nLatest version of the file will always be available at this url: https://github.com/colour-science/colour-nuke/blob/master/colour_nuke/scripts/tangent_space_normals_utilities.nk\n\n\[1] Self Shadow. (n.d.). Blending in Detail. Retrieved April 7, 2015, from http://blog.selfshadow.com/publications/blending-in-detail/\n\[2] Kolasinski, K. (2015). AwesomeBump v1.0, 1–7. Retrieved from http://awesomebump.besaba.com/wp-content/uploads/2015/01/ABoverwiev.pdf\n\[3] Wikipedia. (n.d.). Sobel operator. Retrieved April 7, 2015, from http://en.wikipedia.org/wiki/Sobel_operator\n\[4] Garrett, M. (n.d.). EnvRelight v1.5. Retrieved April 9, 2015, from http://www.nukepedia.com/gizmos/other/envrelight\n\[5] Garrett, M. (n.d.). EnvConvolve v1.4. Retrieved April 9, 2015, from http://www.nukepedia.com/gizmos/filter/envconvolve\n\n"
+ note_font_size 14
+ xpos 467
+ ypos -2445
+}
+Group {
+ inputs 0
+ name Tangent_Space_Normals_to_Cavity
+ tile_color 0xffbf00ff
+ xpos 510
+ ypos -1857
+ addUserKnob {20 tangent_space_normals_to_cavity_tab l "Tangent Space Normals to Cavity"}
+ addUserKnob {20 about_Tab l About}
+ addUserKnob {26 description_Text l "" +STARTLINE T "Tangent Space Normal to Cavity v0.1.1\n\ncolour-science.org - April 9, 2015\n\nThis Gizmo / Group performs conversion from Tangent Space Normals to Cavity."}
+}
+ Input {
+  inputs 0
+  name Input
+  xpos -40
+  ypos 15
+ }
+set N1d2ab780 [stack 0]
+ Shuffle {
+  red green
+  blue green
+  name green_Shuffle
+  xpos 70
+  ypos 15
+ }
+ Matrix {
+  matrix {
+      {3 10 3}
+      {0 0 0}
+      {-3 -10 -3}
+    }
+  name horizontal_Scharr_Matrix
+  xpos 70
   ypos 39
+ }
+push $N1d2ab780
+ Shuffle {
+  green red
+  blue red
+  name red_Shuffle
+  xpos -150
+  ypos 15
+ }
+ Matrix {
+  matrix {
+      {-3 0 3}
+      {-10 0 10}
+      {-3 0 3}
+    }
+  name vertical_Scharr_Matrix
+  xpos -150
+  ypos 39
+ }
+ Merge2 {
+  inputs 2
+  operation plus
+  name Merge
+  xpos -40
+  ypos 43
+ }
+ Expression {
+  expr0 "r * 0.5 + 0.5"
+  expr1 "g * 0.5 + 0.5"
+  expr2 "b * 0.5 + 0.5"
+  name output_offset_Expression
+  xpos -40
+  ypos 67
+ }
+ Shuffle {
+  alpha white
+  name Shuffle
+  xpos -40
+  ypos 91
+ }
+ Output {
+  name Output
+  xpos -40
+  ypos 115
  }
 end_group
 Group {
  inputs 0
  name Brute_Force_Tangent_Space_Normals_Generator
  tile_color 0xffbf00ff
- selected true
  xpos 510
  ypos -1905
  addUserKnob {20 brute_force_tangent_space_normals_generator_Tab l "Brute Force Tangent Space Normals Generator"}
@@ -683,81 +697,598 @@ push 0
 end_group
 Group {
  inputs 0
- name Tangent_Space_Normals_to_Cavity
+ name Tangent_Space_Normals_Previewer
  tile_color 0xffbf00ff
  xpos 510
- ypos -1857
- addUserKnob {20 tangent_space_normals_to_cavity_tab l "Tangent Space Normals to Cavity"}
+ ypos -1809
+ addUserKnob {20 tangent_space_normals_previewer_Tab l "Tangent Space Normals Previewer"}
+ addUserKnob {20 parameters_Group l Parameters n 1}
+ addUserKnob {26 environment_Static_Text l Environment}
+ addUserKnob {7 environment_rx_Floating_Point_Slider l "Rotate X" R -180 180}
+ addUserKnob {7 environment_ry_Floating_Point_Slider l "Rotate Y" R -180 180}
+ addUserKnob {7 environment_rz_Floating_Point_Slider l "Rotate Z" R -180 180}
+ addUserKnob {26 geometry_Static_Text l Geometry}
+ addUserKnob {7 object_rx_Floating_Point_Slider l "Rotate X" R -180 180}
+ addUserKnob {7 object_ry_Floating_Point_Slider l "Rotate Y" R -180 180}
+ addUserKnob {7 object_rz_Floating_Point_Slider l "Rotate Z" R -180 180}
+ addUserKnob {4 object_Pulldown_Choice l Object M {Cube Sphere Cylinder Card Custom}}
+ addUserKnob {20 parameters_endGroup l endGroup n -1}
  addUserKnob {20 about_Tab l About}
- addUserKnob {26 description_Text l "" +STARTLINE T "Tangent Space Normal to Cavity v0.1.0\n\ncolour-science.org - April 4, 2015\n\nThis Gizmo / Group performs conversion from Tangent Space Normals to Cavity."}
+ addUserKnob {26 description_Text l "" +STARTLINE T "Tangent Space Normals Previewer v0.1.0\n\ncolour-science.org - April 9, 2015\n\nThis Gizmo / Group helps previewing tangent space normals by using angular mapping lighting.\n\nThe Environment input is expected to be in LatLong space and diffuse or specular convoluted. EnvConvolve gizmo from Garrett (2010) can be use to perform this convolution.\n\n\[1] Garrett, M. (n.d.). EnvConvolve v1.4. Retrieved April 9, 2015, from http://www.nukepedia.com/gizmos/filter/envconvolve\n"}
 }
+ Camera2 {
+  inputs 0
+  translate {0 0 4}
+  name Camera
+  xpos 410
+  ypos -30
+ }
+set N1c9ccef0 [stack 0]
  Input {
   inputs 0
-  name Input
-  xpos -40
-  ypos 15
+  name Normals
+  xpos 400
+  ypos -273
+  number 3
  }
-set N1c1f3510 [stack 0]
+ Reformat {
+  type "to box"
+  box_width {{Background.width}}
+  box_height {{Background.height}}
+  box_fixed true
+  name normals_Reformat
+  xpos 400
+  ypos -249
+ }
+ Expression {
+  expr0 "r * 2 - 1"
+  expr1 "g *  2 - 1"
+  expr2 "b * 2 - 1"
+  name input_offset_Expression
+  xpos 400
+  ypos -225
+ }
+ Input {
+  inputs 0
+  name Diffuse
+  xpos 620
+  ypos -297
+  number 1
+ }
  Shuffle {
-  red green
-  blue green
-  name green_Shuffle
-  xpos 70
-  ypos 15
+  alpha white
+  name Shuffle
+  xpos 620
+  ypos -273
  }
- Matrix {
-  matrix {
-      {3 10 3}
-      {0 0 0}
-      {-3 -10 -3}
-    }
-  name horizontal_Scharr_Matrix
-  selected true
-  xpos 70
+ Constant {
+  inputs 0
+  color 1
+  format "256 256 0 0 256 256 1 square_256"
+  name Constant
+  xpos 730
+  ypos -321
+ }
+ Switch {
+  inputs 2
+  which {{"\[exists parent.input1]"}}
+  name diffuse_Switch
+  xpos 620
+  ypos -249
+ }
+ Reformat {
+  type "to box"
+  box_width {{Background.width}}
+  box_height {{Background.height}}
+  box_fixed true
+  name diffuse_Reformat
+  xpos 620
+  ypos -201
+ }
+add_layer {tangent tangent.red tangent.green tangent.blue tangent.alpha}
+ ShuffleCopy {
+  inputs 2
+  alpha alpha2
+  black red
+  white green
+  red2 blue
+  green2 alpha
+  out2 tangent
+  name ShuffleCopy
+  xpos 510
+  ypos -201
+ }
+set N1c931270 [stack 0]
+ Input {
+  inputs 0
+  name Object
+  xpos 730
+  ypos -177
+  number 2
+ }
+ ApplyMaterial {
+  inputs 2
+  name ApplyMaterial
+  xpos 730
+  ypos -153
+ }
+push $N1c931270
+ Card2 {
+  control_points {3 3 3 6 
+
+1 {-0.5 -0.5 0} 0 {0.1666666865 0 0} 0 {0 0 0} 0 {0 0.1666666865 0} 0 {0 0 0} 0 {0 0 0} 
+1 {0 -0.5 0} 0 {0.1666666716 0 0} 0 {-0.1666666716 0 0} 0 {0 0.1666666865 0} 0 {0 0 0} 0 {0.5 0 0} 
+1 {0.5 -0.5 0} 0 {0 0 0} 0 {-0.1666666865 0 0} 0 {0 0.1666666865 0} 0 {0 0 0} 0 {1 0 0} 
+1 {-0.5 0 0} 0 {0.1666666865 0 0} 0 {0 0 0} 0 {0 0.1666666716 0} 0 {0 -0.1666666716 0} 0 {0 0.5 0} 
+1 {0 0 0} 0 {0.1666666716 0 0} 0 {-0.1666666716 0 0} 0 {0 0.1666666716 0} 0 {0 -0.1666666716 0} 0 {0.5 0.5 0} 
+1 {0.5 0 0} 0 {0 0 0} 0 {-0.1666666865 0 0} 0 {0 0.1666666716 0} 0 {0 -0.1666666716 0} 0 {1 0.5 0} 
+1 {-0.5 0.5 0} 0 {0.1666666865 0 0} 0 {0 0 0} 0 {0 0 0} 0 {0 -0.1666666865 0} 0 {0 1 0} 
+1 {0 0.5 0} 0 {0.1666666716 0 0} 0 {-0.1666666716 0 0} 0 {0 0 0} 0 {0 -0.1666666865 0} 0 {0.5 1 0} 
+1 {0.5 0.5 0} 0 {0 0 0} 0 {-0.1666666865 0 0} 0 {0 0 0} 0 {0 -0.1666666865 0} 0 {1 1 0} }
+  name Card
+  xpos 620
+  ypos -153
+ }
+push $N1c931270
+ Cylinder {
+  radius 0.5
+  height 1
+  rotate {0 180 0}
+  name Cylinder
+  xpos 510
+  ypos -153
+ }
+push $N1c931270
+ Sphere {
+  radius 0.5
+  rotate {0 180 0}
+  name Sphere
+  xpos 400
+  ypos -153
+ }
+push $N1c931270
+ Cube {
+  rows 1
+  columns 1
+  name Cube
+  xpos 290
+  ypos -153
+ }
+ Switch {
+  inputs 5
+  which {{parent.object_Pulldown_Choice}}
+  name Switch
+  xpos 510
+  ypos -129
+ }
+ TransformGeo {
+  rotate {{parent.object_rx_Floating_Point_Slider} {parent.object_ry_Floating_Point_Slider} {parent.object_rz_Floating_Point_Slider}}
+  name TransformGeo
+  xpos 510
+  ypos -105
+ }
+ Scene {
+  name Scene
+  xpos 520
+  ypos -78
+ }
+ Input {
+  inputs 0
+  name Background
+  label "\n"
+  xpos 620
+  ypos -9
+  number 4
+ }
+set N1cdb0a80 [stack 0]
+add_layer {point point.red point.green point.blue point.alpha}
+add_layer {normal normal.red normal.green normal.blue normal.alpha}
+ ScanlineRender {
+  inputs 3
+  samples 4
+  motion_vectors_type off
+  MB_channel none
+  output_shader_vectors true
+  P_channel point
+  N_channel normal
+  name ScanlineRender
+  xpos 510
+  ypos -9
+ }
+set N1cdb45c0 [stack 0]
+ Input {
+  inputs 0
+  name Environment
+  xpos 290
+  ypos 111
+ }
+set N1cdc3380 [stack 0]
+push $N1cdb45c0
+ Shuffle {
+  in normal
+  name normal_Shuffle
+  xpos 620
   ypos 39
  }
-push $N1c1f3510
+push $N1cdb45c0
  Shuffle {
-  green red
-  blue red
-  name red_Shuffle
-  xpos -150
-  ypos 15
- }
- Matrix {
-  matrix {
-      {-3 0 3}
-      {-10 0 10}
-      {-3 0 3}
-    }
-  name vertical_Scharr_Matrix
-  xpos -150
+  in tangent
+  name tangent_Shuffle
+  xpos 400
   ypos 39
+ }
+ MergeExpression {
+  inputs 2
+  expr0 "Ar + Br"
+  expr1 "Ag + Bg"
+  expr2 "Ab * Bb"
+  name Partial_Blending_Derivative_MergeExpression
+  xpos 510
+  ypos 39
+  cached true
+ }
+ Expression {
+  temp_name0 norme
+  temp_expr0 "sqrt(r * r + g * g + b * b)"
+  expr0 "r / abs(norme)"
+  expr1 "g / abs(norme)"
+  expr2 "b / abs(norme)"
+  name normalise_Expression
+  xpos 510
+  ypos 63
+ }
+ Group {
+  inputs 2
+  name Angular_Mapping_Lighting
+  tile_color 0xffbf00ff
+  xpos 510
+  ypos 111
+  addUserKnob {20 angular_mapping_lighting_Tab l "Angular Mapping Lighting"}
+  addUserKnob {20 parameters_Group l Parameters n 1}
+  addUserKnob {26 environment_Static_Text l Environment}
+  addUserKnob {7 rx_Floating_Point_Slider l "Rotate X" R -180 180}
+  rx_Floating_Point_Slider {{parent.environment_rx_Floating_Point_Slider}}
+  addUserKnob {7 ry_Floating_Point_Slider l "Rotate Y" R -180 180}
+  ry_Floating_Point_Slider {{parent.environment_ry_Floating_Point_Slider}}
+  addUserKnob {7 rz_Floating_Point_Slider l "Rotate Z" R -180 180}
+  rz_Floating_Point_Slider {{parent.environment_rz_Floating_Point_Slider}}
+  addUserKnob {20 parameters_endGroup l endGroup n -1}
+  addUserKnob {20 about_Tab l About}
+  addUserKnob {26 description_Text l "" +STARTLINE T "Angular Mapping Lighting v0.1.0\n\ncolour-science.org - April 9, 2015\n\nThis Gizmo / Group performs angular mapping lighting using a LatLong diffuse or specular convoluted environment texture.\n\n\[1] Garrett, M. (n.d.). EnvRelight v1.5. Retrieved April 9, 2015, from http://www.nukepedia.com/gizmos/other/envrelight\n"}
+ }
+  Input {
+   inputs 0
+   name Normals
+   xpos 290
+   ypos -537
+  }
+  Expression {
+   temp_name0 norme
+   temp_expr0 "sqrt(r * r + g * g + b * b)"
+   expr0 "r / abs(norme)"
+   expr1 "g / abs(norme)"
+   expr2 "b / abs(norme)"
+   name normalise_Expression
+   xpos 290
+   ypos -513
+  }
+  Expression {
+   temp_name0 radius
+   temp_expr0 "0.5 / pi * acos(b) / sqrt(r*r + g*g)"
+   expr0 "0.5 + (r * radius)"
+   expr1 "0.5 + (g * radius)"
+   expr2 0
+   name angular_map_projection_Expression
+   xpos 290
+   ypos -489
+  }
+  Input {
+   inputs 0
+   name Environment
+   xpos 180
+   ypos -537
+   number 1
+  }
+  Mirror {
+   Horizontal true
+   name Mirror
+   xpos 180
+   ypos -517
+  }
+  SphericalTransform {
+   input "Lat Long map"
+   output "Light Probe 360"
+   out_rx {{parent.rx_Floating_Point_Slider}}
+   out_ry {{parent.ry_Floating_Point_Slider}}
+   out_rz {{parent.rz_Floating_Point_Slider}}
+   format "256 256 0 0 256 256 1 square_256"
+   fix true
+   name SphericalTransform
+   selected true
+   xpos 180
+   ypos -493
+  }
+  Dot {
+   name Dot5
+   xpos 214
+   ypos -462
+  }
+  STMap {
+   inputs 2
+   channels rgba
+   uv rgb
+   name STMap
+   xpos 290
+   ypos -465
+  }
+  Output {
+   name Output
+   xpos 290
+   ypos -441
+  }
+ end_group
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 rgba.alpha
+  name Copy
+  xpos 510
+  ypos 131
+ }
+ Premult {
+  name Premult
+  xpos 510
+  ypos 159
+ }
+push $N1cdb45c0
+ Merge2 {
+  inputs 2
+  operation multiply
+  name diffuse_Merge
+  xpos 620
+  ypos 159
+ }
+push $N1cdb0a80
+push $N1c9ccef0
+push $N1cdc3380
+ SphericalTransform {
+  input "Lat Long map"
+  rx {{-parent.environment_rx_Floating_Point_Slider}}
+  ry {{"180 + parent.environment_ry_Floating_Point_Slider"}}
+  rz {{-parent.environment_rz_Floating_Point_Slider}}
+  fix true
+  name SphericalTransform
+  xpos 290
+  ypos 131
+ }
+ Sphere {
+  translate {0 0 4}
+  name environment_Sphere
+  xpos 290
+  ypos 159
+ }
+ Scene {
+  name environment_Scene
+  xpos 300
+  ypos 210
+ }
+push $N1cdb0a80
+ ScanlineRender {
+  inputs 3
+  motion_vectors_type off
+  MB_channel none
+  output_shader_vectors true
+  P_channel point
+  N_channel normal
+  name environment_ScanlineRender
+  xpos 400
+  ypos 231
+ }
+ Switch {
+  inputs 2
+  which {{"\[exists parent.input4]"}}
+  name background_Switch
+  xpos 510
+  ypos 231
  }
  Merge2 {
   inputs 2
-  operation plus
-  name Merge
-  xpos -40
-  ypos 43
- }
- Expression {
-  expr0 "r * 0.5 + 0.5"
-  expr1 "g * 0.5 + 0.5"
-  expr2 "b * 0.5 + 0.5"
-  name output_offset_Expression
-  xpos -40
-  ypos 67
+  name environment_Merge
+  selected true
+  xpos 620
+  ypos 231
  }
  Output {
   name Output
-  xpos -40
-  ypos 91
- }
- Viewer {
-  input_process false
-  name Viewer1
-  xpos -40
-  ypos 115
+  xpos 620
+  ypos 255
  }
 end_group
+push $N1d714c50
+Multi_Tangent_Space_Normals_Generator {
+ name example_5_Multi_Tangent_Space_Normals_Generator
+ xpos 1390
+ ypos -1929
+ parameters_Group 1
+ largest_intensity_Floating_Point_Slider 0.5
+ large_intensity_Floating_Point_Slider 0.125
+ medium_intensity_Floating_Point_Slider 0.075
+ small_intensity_Floating_Point_Slider 0.125
+}
+set N1cc644d0 [stack 0]
+push 0
+ColorWheel {
+ inputs 0
+ centerValue 0.5
+ edgeValue 0.7
+ name ColorWheel
+ xpos 1060
+ ypos -1929
+}
+HSVTool {
+ huerotation 22.5
+ saturation 0.5
+ name HSVTool
+ xpos 1060
+ ypos -1861
+}
+Transform {
+ scale 1.1
+ center {512 512}
+ name Transform
+ xpos 1060
+ ypos -1833
+}
+Crop {
+ box {0 508 1024 516}
+ reformat true
+ crop false
+ name Crop
+ xpos 1060
+ ypos -1809
+}
+push $N1cc644d0
+Tangent_Space_Normals_to_Cavity {
+ name example_5_1_Tangent_Space_Normals_to_Cavity
+ xpos 1390
+ ypos -1905
+}
+CurveTool {
+ operation "Max Luma Pixel"
+ ROI {0 0 1024 1024}
+ autocropdata {256 256 768 768}
+ intensitydata {{curve}}
+ maxlumapixdata {{curve x1 226} {curve x1 71}}
+ maxlumapixvalue {{curve x1 14.50759983} {curve x1 14.50759983} {curve x1 14.50759983}}
+ minlumapixdata {{curve x1 112} {curve x1 814}}
+ minlumapixvalue {{curve x1 -13.37855244} {curve x1 -13.37855244} {curve x1 -13.37855244}}
+ name CurveTool
+ xpos 1390
+ ypos -1881
+}
+Grade {
+ blackpoint {{-whitepoint}}
+ whitepoint {{parent.CurveTool.maxlumapixvalue.r}}
+ mix 0.3333333333
+ name Grade
+ xpos 1390
+ ypos -1857
+}
+set N1b500c10 [stack 0]
+Blur {
+ size 64
+ name example_5_5_Blur
+ xpos 1720
+ ypos -1837
+}
+push $N1b500c10
+Blur {
+ size 32
+ name example_5_4_Blur
+ xpos 1610
+ ypos -1837
+}
+push $N1b500c10
+Blur {
+ size 16
+ name example_5_3_Blur
+ xpos 1500
+ ypos -1837
+}
+push 0
+push $N1b500c10
+Blur {
+ size 8
+ name example_5_2_Blur
+ xpos 1390
+ ypos -1837
+}
+push $N1b500c10
+Blend {
+ inputs 5+1
+ name example_ffBlend
+ xpos 1390
+ ypos -1789
+}
+MergeExpression {
+ inputs 2
+ expr0 "Ar(Br * width, Bg)"
+ expr1 "Ag(Br * width, Bg)"
+ expr2 "Ab(Br * width, Bg)"
+ name remap_MergeExpression
+ xpos 1060
+ ypos -1785
+}
+Group {
+ inputs 0
+ name Synthetic_Environment
+ xpos 1170
+ ypos -1929
+}
+ Constant {
+  inputs 0
+  channels rgb
+  format "2048 1024 0 0 2048 1024 1 panoramic_2K"
+  name environment_Constant
+  xpos 262
+  ypos -147
+ }
+ Ramp {
+  p0 {0 384}
+  p1 {0 1024}
+  name bottom_Ramp
+  xpos 262
+  ypos -75
+ }
+ Ramp {
+  opacity 0.18
+  p0 {0 512}
+  p1 {0 0}
+  name top_Ramp
+  xpos 262
+  ypos -51
+ }
+ Rectangle {
+  area {640 320 1408 896}
+  softness 200
+  name softbox_Rectangle
+  xpos 262
+  ypos -27
+ }
+ Blur {
+  size 128
+  name Blur
+  selected true
+  xpos 262
+  ypos -7
+ }
+ Output {
+  name Output1
+  xpos 262
+  ypos 93
+ }
+end_group
+Grade {
+ white 1.25
+ gamma 0.6666666667
+ name environment_Grade
+ xpos 1170
+ ypos -1905
+}
+Tangent_Space_Normals_Previewer {
+ inputs 4
+ name example_Tangent_Space_Normals_Previewer
+ xpos 1170
+ ypos -1689
+ parameters_Group 1
+ environment_rx_Floating_Point_Slider 22.5
+ environment_ry_Floating_Point_Slider 90
+ object_ry_Floating_Point_Slider 22.5
+ object_rz_Floating_Point_Slider 22.5
+}
+Viewer {
+ input_process false
+ name Viewer1
+ xpos 1170
+ ypos -1665
+}

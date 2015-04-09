@@ -4,7 +4,7 @@ Gizmo {
  tile_color 0xffbf00ff
  addUserKnob {20 tangent_space_normals_to_cavity_tab l "Tangent Space Normals to Cavity"}
  addUserKnob {20 about_Tab l About}
- addUserKnob {26 description_Text l "" +STARTLINE T "Tangent Space Normal to Cavity v0.1.0\n\ncolour-science.org - April 4, 2015\n\nThis Gizmo / Group performs conversion from Tangent Space Normals to Cavity."}
+ addUserKnob {26 description_Text l "" +STARTLINE T "Tangent Space Normal to Cavity v0.1.1\n\ncolour-science.org - April 9, 2015\n\nThis Gizmo / Group performs conversion from Tangent Space Normals to Cavity."}
 }
  Input {
   inputs 0
@@ -12,7 +12,7 @@ Gizmo {
   xpos -40
   ypos 15
  }
-set N1c1f3510 [stack 0]
+set N1ca33240 [stack 0]
  Shuffle {
   red green
   blue green
@@ -27,11 +27,10 @@ set N1c1f3510 [stack 0]
       {-3 -10 -3}
     }
   name horizontal_Scharr_Matrix
-  selected true
   xpos 70
   ypos 39
  }
-push $N1c1f3510
+push $N1ca33240
  Shuffle {
   green red
   blue red
@@ -64,14 +63,14 @@ push $N1c1f3510
   xpos -40
   ypos 67
  }
- Output {
-  name Output
+ Shuffle {
+  alpha white
+  name Shuffle
   xpos -40
   ypos 91
  }
- Viewer {
-  input_process false
-  name Viewer1
+ Output {
+  name Output
   xpos -40
   ypos 115
  }

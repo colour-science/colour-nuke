@@ -1,0 +1,408 @@
+#! /Applications/Nuke8.0v1/Nuke8.0v1.app/Contents/MacOS/libnuke-8.0.v1.dylib -nx
+version 8.0 v1
+Gizmo {
+ inputs 5
+ tile_color 0xffbf00ff
+ addUserKnob {20 tangent_space_normals_previewer_Tab l "Tangent Space Normals Previewer"}
+ addUserKnob {20 parameters_Group l Parameters n 1}
+ addUserKnob {26 environment_Static_Text l Environment}
+ addUserKnob {7 environment_rx_Floating_Point_Slider l "Rotate X" R -180 180}
+ addUserKnob {7 environment_ry_Floating_Point_Slider l "Rotate Y" R -180 180}
+ addUserKnob {7 environment_rz_Floating_Point_Slider l "Rotate Z" R -180 180}
+ addUserKnob {26 geometry_Static_Text l Geometry}
+ addUserKnob {7 object_rx_Floating_Point_Slider l "Rotate X" R -180 180}
+ addUserKnob {7 object_ry_Floating_Point_Slider l "Rotate Y" R -180 180}
+ addUserKnob {7 object_rz_Floating_Point_Slider l "Rotate Z" R -180 180}
+ addUserKnob {4 object_Pulldown_Choice l Object M {Cube Sphere Cylinder Card Custom}}
+ addUserKnob {20 parameters_endGroup l endGroup n -1}
+ addUserKnob {20 about_Tab l About}
+ addUserKnob {26 description_Text l "" +STARTLINE T "Tangent Space Normals Previewer v0.1.0\n\ncolour-science.org - April 9, 2015\n\nThis Gizmo / Group helps previewing tangent space normals by using angular mapping lighting.\n\nThe Environment input is expected to be in LatLong space and diffuse or specular convoluted. EnvConvolve gizmo from Garrett (2010) can be use to perform this convolution.\n\n\[1] Garrett, M. (n.d.). EnvConvolve v1.4. Retrieved April 9, 2015, from http://www.nukepedia.com/gizmos/filter/envconvolve\n"}
+}
+ Camera2 {
+  inputs 0
+  translate {0 0 4}
+  name Camera
+  xpos 410
+  ypos -30
+ }
+set N1c9ccef0 [stack 0]
+ Input {
+  inputs 0
+  name Normals
+  xpos 400
+  ypos -273
+  number 3
+ }
+ Reformat {
+  type "to box"
+  box_width {{Background.width}}
+  box_height {{Background.height}}
+  box_fixed true
+  name normals_Reformat
+  xpos 400
+  ypos -249
+ }
+ Expression {
+  expr0 "r * 2 - 1"
+  expr1 "g *  2 - 1"
+  expr2 "b * 2 - 1"
+  name input_offset_Expression
+  xpos 400
+  ypos -225
+ }
+ Input {
+  inputs 0
+  name Diffuse
+  xpos 620
+  ypos -297
+  number 1
+ }
+ Shuffle {
+  alpha white
+  name Shuffle
+  xpos 620
+  ypos -273
+ }
+ Constant {
+  inputs 0
+  color 1
+  format "256 256 0 0 256 256 1 square_256"
+  name Constant
+  xpos 730
+  ypos -321
+ }
+ Switch {
+  inputs 2
+  which {{"\[exists parent.input1]"}}
+  name diffuse_Switch
+  xpos 620
+  ypos -249
+ }
+ Reformat {
+  type "to box"
+  box_width {{Background.width}}
+  box_height {{Background.height}}
+  box_fixed true
+  name diffuse_Reformat
+  xpos 620
+  ypos -201
+ }
+add_layer {tangent tangent.red tangent.green tangent.blue tangent.alpha}
+ ShuffleCopy {
+  inputs 2
+  alpha alpha2
+  black red
+  white green
+  red2 blue
+  green2 alpha
+  out2 tangent
+  name ShuffleCopy
+  xpos 510
+  ypos -201
+ }
+set N1c931270 [stack 0]
+ Input {
+  inputs 0
+  name Object
+  xpos 730
+  ypos -177
+  number 2
+ }
+ ApplyMaterial {
+  inputs 2
+  name ApplyMaterial
+  xpos 730
+  ypos -153
+ }
+push $N1c931270
+ Card2 {
+  control_points {3 3 3 6 
+
+1 {-0.5 -0.5 0} 0 {0.1666666865 0 0} 0 {0 0 0} 0 {0 0.1666666865 0} 0 {0 0 0} 0 {0 0 0} 
+1 {0 -0.5 0} 0 {0.1666666716 0 0} 0 {-0.1666666716 0 0} 0 {0 0.1666666865 0} 0 {0 0 0} 0 {0.5 0 0} 
+1 {0.5 -0.5 0} 0 {0 0 0} 0 {-0.1666666865 0 0} 0 {0 0.1666666865 0} 0 {0 0 0} 0 {1 0 0} 
+1 {-0.5 0 0} 0 {0.1666666865 0 0} 0 {0 0 0} 0 {0 0.1666666716 0} 0 {0 -0.1666666716 0} 0 {0 0.5 0} 
+1 {0 0 0} 0 {0.1666666716 0 0} 0 {-0.1666666716 0 0} 0 {0 0.1666666716 0} 0 {0 -0.1666666716 0} 0 {0.5 0.5 0} 
+1 {0.5 0 0} 0 {0 0 0} 0 {-0.1666666865 0 0} 0 {0 0.1666666716 0} 0 {0 -0.1666666716 0} 0 {1 0.5 0} 
+1 {-0.5 0.5 0} 0 {0.1666666865 0 0} 0 {0 0 0} 0 {0 0 0} 0 {0 -0.1666666865 0} 0 {0 1 0} 
+1 {0 0.5 0} 0 {0.1666666716 0 0} 0 {-0.1666666716 0 0} 0 {0 0 0} 0 {0 -0.1666666865 0} 0 {0.5 1 0} 
+1 {0.5 0.5 0} 0 {0 0 0} 0 {-0.1666666865 0 0} 0 {0 0 0} 0 {0 -0.1666666865 0} 0 {1 1 0} }
+  name Card
+  xpos 620
+  ypos -153
+ }
+push $N1c931270
+ Cylinder {
+  radius 0.5
+  height 1
+  rotate {0 180 0}
+  name Cylinder
+  xpos 510
+  ypos -153
+ }
+push $N1c931270
+ Sphere {
+  radius 0.5
+  rotate {0 180 0}
+  name Sphere
+  xpos 400
+  ypos -153
+ }
+push $N1c931270
+ Cube {
+  rows 1
+  columns 1
+  name Cube
+  xpos 290
+  ypos -153
+ }
+ Switch {
+  inputs 5
+  which {{parent.object_Pulldown_Choice}}
+  name Switch
+  xpos 510
+  ypos -129
+ }
+ TransformGeo {
+  rotate {{parent.object_rx_Floating_Point_Slider} {parent.object_ry_Floating_Point_Slider} {parent.object_rz_Floating_Point_Slider}}
+  name TransformGeo
+  xpos 510
+  ypos -105
+ }
+ Scene {
+  name Scene
+  xpos 520
+  ypos -78
+ }
+ Input {
+  inputs 0
+  name Background
+  label "\n"
+  xpos 620
+  ypos -9
+  number 4
+ }
+set N1cdb0a80 [stack 0]
+add_layer {point point.red point.green point.blue point.alpha}
+add_layer {normal normal.red normal.green normal.blue normal.alpha}
+ ScanlineRender {
+  inputs 3
+  samples 4
+  motion_vectors_type off
+  MB_channel none
+  output_shader_vectors true
+  P_channel point
+  N_channel normal
+  name ScanlineRender
+  xpos 510
+  ypos -9
+ }
+set N1cdb45c0 [stack 0]
+ Input {
+  inputs 0
+  name Environment
+  xpos 290
+  ypos 111
+ }
+set N1cdc3380 [stack 0]
+push $N1cdb45c0
+ Shuffle {
+  in normal
+  name normal_Shuffle
+  xpos 620
+  ypos 39
+ }
+push $N1cdb45c0
+ Shuffle {
+  in tangent
+  name tangent_Shuffle
+  xpos 400
+  ypos 39
+ }
+ MergeExpression {
+  inputs 2
+  expr0 "Ar + Br"
+  expr1 "Ag + Bg"
+  expr2 "Ab * Bb"
+  name Partial_Blending_Derivative_MergeExpression
+  xpos 510
+  ypos 39
+  cached true
+ }
+ Expression {
+  temp_name0 norme
+  temp_expr0 "sqrt(r * r + g * g + b * b)"
+  expr0 "r / abs(norme)"
+  expr1 "g / abs(norme)"
+  expr2 "b / abs(norme)"
+  name normalise_Expression
+  xpos 510
+  ypos 63
+ }
+ Group {
+  inputs 2
+  name Angular_Mapping_Lighting
+  tile_color 0xffbf00ff
+  xpos 510
+  ypos 111
+  addUserKnob {20 angular_mapping_lighting_Tab l "Angular Mapping Lighting"}
+  addUserKnob {20 parameters_Group l Parameters n 1}
+  addUserKnob {26 environment_Static_Text l Environment}
+  addUserKnob {7 rx_Floating_Point_Slider l "Rotate X" R -180 180}
+  rx_Floating_Point_Slider {{parent.environment_rx_Floating_Point_Slider}}
+  addUserKnob {7 ry_Floating_Point_Slider l "Rotate Y" R -180 180}
+  ry_Floating_Point_Slider {{parent.environment_ry_Floating_Point_Slider}}
+  addUserKnob {7 rz_Floating_Point_Slider l "Rotate Z" R -180 180}
+  rz_Floating_Point_Slider {{parent.environment_rz_Floating_Point_Slider}}
+  addUserKnob {20 parameters_endGroup l endGroup n -1}
+  addUserKnob {20 about_Tab l About}
+  addUserKnob {26 description_Text l "" +STARTLINE T "Angular Mapping Lighting v0.1.0\n\ncolour-science.org - April 9, 2015\n\nThis Gizmo / Group performs angular mapping lighting using a LatLong diffuse or specular convoluted environment texture.\n\n\[1] Garrett, M. (n.d.). EnvRelight v1.5. Retrieved April 9, 2015, from http://www.nukepedia.com/gizmos/other/envrelight\n"}
+ }
+  Input {
+   inputs 0
+   name Normals
+   xpos 290
+   ypos -537
+  }
+  Expression {
+   temp_name0 norme
+   temp_expr0 "sqrt(r * r + g * g + b * b)"
+   expr0 "r / abs(norme)"
+   expr1 "g / abs(norme)"
+   expr2 "b / abs(norme)"
+   name normalise_Expression
+   xpos 290
+   ypos -513
+  }
+  Expression {
+   temp_name0 radius
+   temp_expr0 "0.5 / pi * acos(b) / sqrt(r*r + g*g)"
+   expr0 "0.5 + (r * radius)"
+   expr1 "0.5 + (g * radius)"
+   expr2 0
+   name angular_map_projection_Expression
+   xpos 290
+   ypos -489
+  }
+  Input {
+   inputs 0
+   name Environment
+   xpos 180
+   ypos -537
+   number 1
+  }
+  Mirror {
+   Horizontal true
+   name Mirror
+   xpos 180
+   ypos -517
+  }
+  SphericalTransform {
+   input "Lat Long map"
+   output "Light Probe 360"
+   out_rx {{parent.rx_Floating_Point_Slider}}
+   out_ry {{parent.ry_Floating_Point_Slider}}
+   out_rz {{parent.rz_Floating_Point_Slider}}
+   format "256 256 0 0 256 256 1 square_256"
+   fix true
+   name SphericalTransform
+   selected true
+   xpos 180
+   ypos -493
+  }
+  Dot {
+   name Dot5
+   xpos 214
+   ypos -462
+  }
+  STMap {
+   inputs 2
+   channels rgba
+   uv rgb
+   name STMap
+   xpos 290
+   ypos -465
+  }
+  Output {
+   name Output
+   xpos 290
+   ypos -441
+  }
+ end_group
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 rgba.alpha
+  name Copy
+  xpos 510
+  ypos 131
+ }
+ Premult {
+  name Premult
+  xpos 510
+  ypos 159
+ }
+push $N1cdb45c0
+ Merge2 {
+  inputs 2
+  operation multiply
+  name diffuse_Merge
+  xpos 620
+  ypos 159
+ }
+push $N1cdb0a80
+push $N1c9ccef0
+push $N1cdc3380
+ SphericalTransform {
+  input "Lat Long map"
+  rx {{-parent.environment_rx_Floating_Point_Slider}}
+  ry {{"180 + parent.environment_ry_Floating_Point_Slider"}}
+  rz {{-parent.environment_rz_Floating_Point_Slider}}
+  fix true
+  name SphericalTransform
+  xpos 290
+  ypos 131
+ }
+ Sphere {
+  translate {0 0 4}
+  name environment_Sphere
+  xpos 290
+  ypos 159
+ }
+ Scene {
+  name environment_Scene
+  xpos 300
+  ypos 210
+ }
+push $N1cdb0a80
+ ScanlineRender {
+  inputs 3
+  motion_vectors_type off
+  MB_channel none
+  output_shader_vectors true
+  P_channel point
+  N_channel normal
+  name environment_ScanlineRender
+  xpos 400
+  ypos 231
+ }
+ Switch {
+  inputs 2
+  which {{"\[exists parent.input4]"}}
+  name background_Switch
+  xpos 510
+  ypos 231
+ }
+ Merge2 {
+  inputs 2
+  name environment_Merge
+  selected true
+  xpos 620
+  ypos 231
+ }
+ Output {
+  name Output
+  xpos 620
+  ypos 255
+ }
+end_group

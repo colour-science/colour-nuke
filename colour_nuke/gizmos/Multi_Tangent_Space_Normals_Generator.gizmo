@@ -31,7 +31,7 @@ Gizmo {
  smallest_intensity_Floating_Point_Slider 1
  addUserKnob {20 parameters_endGroup l endGroup n -1}
  addUserKnob {20 about_Tab l About}
- addUserKnob {26 description_Text l "" +STARTLINE T "Multi Tangent Space Normals Generator v0.1.0\n\ncolour-science.org - April 6, 2015\n\nThis Gizmo / Group generates tangent space normals from given input using multiple Tangent Space Normals Generators.\n\n\[1] Kolasinski, K. (2015). AwesomeBump v1.0, 1–7. Retrieved from http://awesomebump.besaba.com/wp-content/uploads/2015/01/ABoverwiev.pdf\n\[2] Wikipedia. (n.d.). Sobel operator. Retrieved April 7, 2015, from http://en.wikipedia.org/wiki/Sobel_operator"}
+ addUserKnob {26 description_Text l "" +STARTLINE T "Multi Tangent Space Normals Generator v0.1.1\n\ncolour-science.org - April 9, 2015\n\nThis Gizmo / Group generates tangent space normals from given input using multiple Tangent Space Normals Generators.\n\n\[1] Kolasinski, K. (2015). AwesomeBump v1.0, 1–7. Retrieved from http://awesomebump.besaba.com/wp-content/uploads/2015/01/ABoverwiev.pdf\n\[2] Wikipedia. (n.d.). Sobel operator. Retrieved April 7, 2015, from http://en.wikipedia.org/wiki/Sobel_operator"}
 }
  Input {
   inputs 0
@@ -39,7 +39,7 @@ Gizmo {
   xpos -260
   ypos -33
  }
-set N1df880c0 [stack 0]
+set N9fe7960 [stack 0]
  Tangent_Space_Normals_Generator {
   name Largest_Tangent_Space_Normals_Generator
   xpos -40
@@ -48,7 +48,7 @@ set N1df880c0 [stack 0]
   size_Floating_Point_Slider {{parent.largest_size_Floating_Point_Slider}}
   intensity_Floating_Point_Slider {{parent.largest_intensity_Floating_Point_Slider}}
  }
-push $N1df880c0
+push $N9fe7960
  Tangent_Space_Normals_Generator {
   name Large_Tangent_Space_Normals_Generator
   xpos -150
@@ -57,7 +57,7 @@ push $N1df880c0
   size_Floating_Point_Slider {{parent.large_size_Floating_Point_Slider}}
   intensity_Floating_Point_Slider {{parent.large_intensity_Floating_Point_Slider}}
  }
-push $N1df880c0
+push $N9fe7960
  Tangent_Space_Normals_Generator {
   name Medium_Tangent_Space_Normals_Generator
   xpos -260
@@ -66,7 +66,7 @@ push $N1df880c0
   size_Floating_Point_Slider {{parent.medium_size_Floating_Point_Slider}}
   intensity_Floating_Point_Slider {{parent.medium_intensity_Floating_Point_Slider}}
  }
-push $N1df880c0
+push $N9fe7960
  Tangent_Space_Normals_Generator {
   name Small_Tangent_Space_Normals_Generator
   xpos -370
@@ -75,7 +75,7 @@ push $N1df880c0
   size_Floating_Point_Slider {{parent.small_size_Floating_Point_Slider}}
   intensity_Floating_Point_Slider {{parent.small_intensity_Floating_Point_Slider}}
  }
-push $N1df880c0
+push $N9fe7960
  Tangent_Space_Normals_Generator {
   name Smallest_Emboss_Tangent_Space_Normals_Generator
   xpos -480
@@ -87,7 +87,6 @@ push $N1df880c0
  Partial_Derivative_Blending {
   inputs 2
   name s_Partial_Derivative_Blending
-  selected true
   xpos -370
   ypos 15
  }
@@ -109,9 +108,15 @@ push $N1df880c0
   xpos -40
   ypos 15
  }
+ Shuffle {
+  alpha white
+  name Shuffle
+  xpos -40
+  ypos 39
+ }
  Output {
   name Output
   xpos -40
-  ypos 39
+  ypos 63
  }
 end_group
