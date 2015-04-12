@@ -1,0 +1,2100 @@
+#! /Applications/Nuke8.0v1/Nuke8.0v1.app/Contents/MacOS/libnuke-8.0.v1.dylib -nx
+version 8.0 v1
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="0" y="23" w="1280" h="724" screen="0">
+        <splitter orientation="1">
+            <split size="808"/>
+            <splitter orientation="1">
+                <split size="40"/>
+                <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                    <page id="Toolbar.1"/>
+                </dock>
+                <split size="764"/>
+                <splitter orientation="2">
+                    <split size="305"/>
+                    <dock id="" activePageId="Viewer.1">
+                        <page id="Viewer.1"/>
+                    </dock>
+                    <split size="393"/>
+                    <dock id="" activePageId="DAG.1">
+                        <page id="DAG.1"/>
+                        <page id="Curve Editor.1"/>
+                        <page id="DopeSheet.1"/>
+                        <page id="Script Editor.1"/>
+                        <page id="Error Console.1"/>
+                    </dock>
+                </splitter>
+            </splitter>
+            <split size="468"/>
+            <dock id="" activePageId="Properties.1">
+                <page id="Properties.1"/>
+            </dock>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name /Users/kelsolaar/Documents/Development/colour-science/colour-nuke/colour_nuke/scripts/colour_rendition_chart.nk
+ frame 31
+ format "2048 1556 0 0 2048 1556 1 2K_Super_35(full-ap)"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+}
+Group {
+ inputs 0
+ name Colour_Rendition_Chart
+ tile_color 0xffbf00ff
+ xpos 1170
+ ypos 375
+ postage_stamp true
+ addUserKnob {20 colour_rendition_chart_Tab l "Colour Rendition Chart"}
+ addUserKnob {20 parameters_Group l Parameters n 1}
+ addUserKnob {4 colourspace_Pulldown_Choice l Colourspace M {ACES2065-1 ACEScc ACEScg ACESproxy "ALEXA Wide Gamut RGB" "Adobe RGB 1998" "Adobe Wide Gamut RGB" "Apple RGB" "Best RGB" "Beta RGB" "CIE RGB" "Cinema Gamut" "ColorMatch RGB" DCI-P3 DCI-P3+ "Don RGB 4" "ECI RGB v2" "Ekta Space PS 5" "Max RGB" "NTSC RGB" "Pal/Secam RGB" "ProPhoto RGB" "Rec. 2020" "Rec. 709" "Russell RGB" S-Gamut S-Gamut3 S-Gamut3.Cine "SMPTE-C RGB" "Xtreme RGB" sRGB}}
+ addUserKnob {7 title_opacity_Floating_Point_Slider l "Title Opacity"}
+ title_opacity_Floating_Point_Slider 1
+ addUserKnob {7 label_opacity_Floating_Point_Slider l "Label Opacity"}
+ addUserKnob {20 parameters_endGroup l endGroup n -1}
+ addUserKnob {20 about_Tab l About}
+ addUserKnob {26 description_Text l "" +STARTLINE T "Colour Rendition Chart v0.1.0\n\ncolour-science.org - April 12, 2015\n\nThis Gizmo / Group implements the X-Rite ColorChecker 2005 Classic Colour Rendition Chart.\n\nReference samples colours have been converted from CIE xyY colourspace to ACES2065-1 colourspace.\n\nMatrices converting from ACES2065-1 to RGB colourspace were computed using CAT02 chromatic adaptation transform.\n\n\[1] BabelColor. (2012). ColorChecker RGB and spectra. Retrieved from http://www.babelcolor.com/download/ColorChecker_RGB_and_spectra.xls"}
+}
+ Group {
+  inputs 0
+  name bluish_green
+  xpos 620
+  ypos -249
+  postage_stamp true
+  addUserKnob {20 sample_Tab l Sample}
+  addUserKnob {20 parameters_Group l Parameters n 1}
+  addUserKnob {19 colour_RGBA_Color_Knob l Colour}
+  colour_RGBA_Color_Knob {0.3173356144 0.4675834755 0.4194702238 1}
+  addUserKnob {6 colour_RGBA_Color_Knob_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {1 name_Text_Knob l Name}
+  name_Text_Knob "bluish green"
+  addUserKnob {1 index_Text_Knob l Index}
+  index_Text_Knob 6
+  addUserKnob {18 label_colour_RGB_Color_Knob l "Label Colour"}
+  label_colour_RGB_Color_Knob 1
+  addUserKnob {6 label_colour_RGB_Color_Knob_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {7 label_opacity_Floating_Point_Slider l "Label Opacity"}
+  label_opacity_Floating_Point_Slider {{parent.label_opacity_Floating_Point_Slider}}
+  addUserKnob {20 endGroup n -1}
+ }
+  Constant {
+   inputs 0
+   color {{parent.colour_RGBA_Color_Knob.r} {parent.colour_RGBA_Color_Knob.g} {parent.colour_RGBA_Color_Knob.b} {parent.colour_RGBA_Color_Knob.a}}
+   format "512 512 0 0 512 512 1 square_512"
+   name Constant
+   xpos 262
+   ypos 53
+  }
+  Text {
+   opacity {{parent.label_opacity_Floating_Point_Slider}}
+   message "\[knob parent.name_Text_Knob]"
+   font "\[python nuke.defaultFontPathname()]"
+   xjustify center
+   yjustify bottom
+   Transform 1
+   box {0 0 512 512}
+   scale 1.15
+   center {256 -256}
+   color {{parent.label_colour_RGB_Color_Knob.r} {parent.label_colour_RGB_Color_Knob.g} {parent.label_colour_RGB_Color_Knob.b} 1}
+   name name_Text
+   xpos 262
+   ypos 125
+  }
+  Text {
+   opacity {{parent.label_opacity_Floating_Point_Slider}}
+   message "\[knob parent.index_Text_Knob]"
+   font "\[python nuke.defaultFontPathname()]"
+   xjustify center
+   yjustify center
+   Transform 1
+   box {0 0 512 512}
+   scale 3
+   center {256 256}
+   color {{parent.label_colour_RGB_Color_Knob.r} {parent.label_colour_RGB_Color_Knob.g} {parent.label_colour_RGB_Color_Knob.b} 1}
+   name index_Text
+   xpos 262
+   ypos 149
+  }
+  Output {
+   name Output
+   xpos 262
+   ypos 173
+  }
+ end_group
+ Group {
+  inputs 0
+  name blue_flower
+  xpos 510
+  ypos -249
+  postage_stamp true
+  addUserKnob {20 sample_Tab l Sample}
+  addUserKnob {20 parameters_Group l Parameters n 1}
+  addUserKnob {19 colour_RGBA_Color_Knob l Colour}
+  colour_RGBA_Color_Knob {0.2575148032 0.2380435683 0.4045474315 1}
+  addUserKnob {6 colour_RGBA_Color_Knob_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {1 name_Text_Knob l Name}
+  name_Text_Knob "blue flower"
+  addUserKnob {1 index_Text_Knob l Index}
+  index_Text_Knob 5
+  addUserKnob {18 label_colour_RGB_Color_Knob l "Label Colour"}
+  label_colour_RGB_Color_Knob 1
+  addUserKnob {6 label_colour_RGB_Color_Knob_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {7 label_opacity_Floating_Point_Slider l "Label Opacity"}
+  label_opacity_Floating_Point_Slider {{parent.label_opacity_Floating_Point_Slider}}
+  addUserKnob {20 endGroup n -1}
+ }
+  Constant {
+   inputs 0
+   color {{parent.colour_RGBA_Color_Knob.r} {parent.colour_RGBA_Color_Knob.g} {parent.colour_RGBA_Color_Knob.b} {parent.colour_RGBA_Color_Knob.a}}
+   format "512 512 0 0 512 512 1 square_512"
+   name Constant
+   xpos 262
+   ypos 53
+  }
+  Text {
+   opacity {{parent.label_opacity_Floating_Point_Slider}}
+   message "\[knob parent.name_Text_Knob]"
+   font "\[python nuke.defaultFontPathname()]"
+   xjustify center
+   yjustify bottom
+   Transform 1
+   box {0 0 512 512}
+   scale 1.15
+   center {256 -256}
+   color {{parent.label_colour_RGB_Color_Knob.r} {parent.label_colour_RGB_Color_Knob.g} {parent.label_colour_RGB_Color_Knob.b} 1}
+   name name_Text
+   xpos 262
+   ypos 125
+  }
+  Text {
+   opacity {{parent.label_opacity_Floating_Point_Slider}}
+   message "\[knob parent.index_Text_Knob]"
+   font "\[python nuke.defaultFontPathname()]"
+   xjustify center
+   yjustify center
+   Transform 1
+   box {0 0 512 512}
+   scale 3
+   center {256 256}
+   color {{parent.label_colour_RGB_Color_Knob.r} {parent.label_colour_RGB_Color_Knob.g} {parent.label_colour_RGB_Color_Knob.b} 1}
+   name index_Text
+   xpos 262
+   ypos 149
+  }
+  Output {
+   name Output
+   xpos 262
+   ypos 173
+  }
+ end_group
+ Group {
+  inputs 0
+  name foliage
+  xpos 400
+  ypos -249
+  postage_stamp true
+  addUserKnob {20 sample_Tab l Sample}
+  addUserKnob {20 parameters_Group l Parameters n 1}
+  addUserKnob {19 colour_RGBA_Color_Knob l Colour}
+  colour_RGBA_Color_Knob {0.1107181016 0.1350309759 0.06442476482 1}
+  addUserKnob {6 colour_RGBA_Color_Knob_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {1 name_Text_Knob l Name}
+  name_Text_Knob foliage
+  addUserKnob {1 index_Text_Knob l Index}
+  index_Text_Knob 4
+  addUserKnob {18 label_colour_RGB_Color_Knob l "Label Colour"}
+  label_colour_RGB_Color_Knob 1
+  addUserKnob {6 label_colour_RGB_Color_Knob_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {7 label_opacity_Floating_Point_Slider l "Label Opacity"}
+  label_opacity_Floating_Point_Slider {{parent.label_opacity_Floating_Point_Slider}}
+  addUserKnob {20 endGroup n -1}
+ }
+  Constant {
+   inputs 0
+   color {{parent.colour_RGBA_Color_Knob.r} {parent.colour_RGBA_Color_Knob.g} {parent.colour_RGBA_Color_Knob.b} {parent.colour_RGBA_Color_Knob.a}}
+   format "512 512 0 0 512 512 1 square_512"
+   name Constant
+   xpos 262
+   ypos 53
+  }
+  Text {
+   opacity {{parent.label_opacity_Floating_Point_Slider}}
+   message "\[knob parent.name_Text_Knob]"
+   font "\[python nuke.defaultFontPathname()]"
+   xjustify center
+   yjustify bottom
+   Transform 1
+   box {0 0 512 512}
+   scale 1.15
+   center {256 -256}
+   color {{parent.label_colour_RGB_Color_Knob.r} {parent.label_colour_RGB_Color_Knob.g} {parent.label_colour_RGB_Color_Knob.b} 1}
+   name name_Text
+   xpos 262
+   ypos 125
+  }
+  Text {
+   opacity {{parent.label_opacity_Floating_Point_Slider}}
+   message "\[knob parent.index_Text_Knob]"
+   font "\[python nuke.defaultFontPathname()]"
+   xjustify center
+   yjustify center
+   Transform 1
+   box {0 0 512 512}
+   scale 3
+   center {256 256}
+   color {{parent.label_colour_RGB_Color_Knob.r} {parent.label_colour_RGB_Color_Knob.g} {parent.label_colour_RGB_Color_Knob.b} 1}
+   name index_Text
+   xpos 262
+   ypos 149
+  }
+  Output {
+   name Output
+   xpos 262
+   ypos 173
+  }
+ end_group
+ Group {
+  inputs 0
+  name blue_sky
+  xpos 290
+  ypos -249
+  postage_stamp true
+  addUserKnob {20 sample_Tab l Sample}
+  addUserKnob {20 parameters_Group l Parameters n 1}
+  addUserKnob {19 colour_RGBA_Color_Knob l Colour}
+  colour_RGBA_Color_Knob {0.1794961318 0.2010179516 0.3110921805 1}
+  addUserKnob {6 colour_RGBA_Color_Knob_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {1 name_Text_Knob l Name}
+  name_Text_Knob "blue sky"
+  addUserKnob {1 index_Text_Knob l Index}
+  index_Text_Knob 3
+  addUserKnob {18 label_colour_RGB_Color_Knob l "Label Colour"}
+  label_colour_RGB_Color_Knob 1
+  addUserKnob {6 label_colour_RGB_Color_Knob_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {7 label_opacity_Floating_Point_Slider l "Label Opacity"}
+  label_opacity_Floating_Point_Slider {{parent.label_opacity_Floating_Point_Slider}}
+  addUserKnob {20 endGroup n -1}
+ }
+  Constant {
+   inputs 0
+   color {{parent.colour_RGBA_Color_Knob.r} {parent.colour_RGBA_Color_Knob.g} {parent.colour_RGBA_Color_Knob.b} {parent.colour_RGBA_Color_Knob.a}}
+   format "512 512 0 0 512 512 1 square_512"
+   name Constant
+   xpos 262
+   ypos 53
+  }
+  Text {
+   opacity {{parent.label_opacity_Floating_Point_Slider}}
+   message "\[knob parent.name_Text_Knob]"
+   font "\[python nuke.defaultFontPathname()]"
+   xjustify center
+   yjustify bottom
+   Transform 1
+   box {0 0 512 512}
+   scale 1.15
+   center {256 -256}
+   color {{parent.label_colour_RGB_Color_Knob.r} {parent.label_colour_RGB_Color_Knob.g} {parent.label_colour_RGB_Color_Knob.b} 1}
+   name name_Text
+   xpos 262
+   ypos 125
+  }
+  Text {
+   opacity {{parent.label_opacity_Floating_Point_Slider}}
+   message "\[knob parent.index_Text_Knob]"
+   font "\[python nuke.defaultFontPathname()]"
+   xjustify center
+   yjustify center
+   Transform 1
+   box {0 0 512 512}
+   scale 3
+   center {256 256}
+   color {{parent.label_colour_RGB_Color_Knob.r} {parent.label_colour_RGB_Color_Knob.g} {parent.label_colour_RGB_Color_Knob.b} 1}
+   name index_Text
+   xpos 262
+   ypos 149
+  }
+  Output {
+   name Output
+   xpos 262
+   ypos 173
+  }
+ end_group
+ Group {
+  inputs 0
+  name light_skin
+  xpos 180
+  ypos -249
+  postage_stamp true
+  addUserKnob {20 sample_Tab l Sample}
+  addUserKnob {20 parameters_Group l Parameters n 1}
+  addUserKnob {19 colour_RGBA_Color_Knob l Colour}
+  colour_RGBA_Color_Knob {0.4007360456 0.3102014565 0.2334411039 1}
+  addUserKnob {6 colour_RGBA_Color_Knob_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {1 name_Text_Knob l Name}
+  name_Text_Knob "light skin"
+  addUserKnob {1 index_Text_Knob l Index}
+  index_Text_Knob 2
+  addUserKnob {18 label_colour_RGB_Color_Knob l "Label Colour"}
+  label_colour_RGB_Color_Knob 1
+  addUserKnob {6 label_colour_RGB_Color_Knob_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {7 label_opacity_Floating_Point_Slider l "Label Opacity"}
+  label_opacity_Floating_Point_Slider {{parent.label_opacity_Floating_Point_Slider}}
+  addUserKnob {20 endGroup n -1}
+ }
+  Constant {
+   inputs 0
+   color {{parent.colour_RGBA_Color_Knob.r} {parent.colour_RGBA_Color_Knob.g} {parent.colour_RGBA_Color_Knob.b} {parent.colour_RGBA_Color_Knob.a}}
+   format "512 512 0 0 512 512 1 square_512"
+   name Constant
+   xpos 262
+   ypos 53
+  }
+  Text {
+   opacity {{parent.label_opacity_Floating_Point_Slider}}
+   message "\[knob parent.name_Text_Knob]"
+   font "\[python nuke.defaultFontPathname()]"
+   xjustify center
+   yjustify bottom
+   Transform 1
+   box {0 0 512 512}
+   scale 1.15
+   center {256 -256}
+   color {{parent.label_colour_RGB_Color_Knob.r} {parent.label_colour_RGB_Color_Knob.g} {parent.label_colour_RGB_Color_Knob.b} 1}
+   name name_Text
+   xpos 262
+   ypos 125
+  }
+  Text {
+   opacity {{parent.label_opacity_Floating_Point_Slider}}
+   message "\[knob parent.index_Text_Knob]"
+   font "\[python nuke.defaultFontPathname()]"
+   xjustify center
+   yjustify center
+   Transform 1
+   box {0 0 512 512}
+   scale 3
+   center {256 256}
+   color {{parent.label_colour_RGB_Color_Knob.r} {parent.label_colour_RGB_Color_Knob.g} {parent.label_colour_RGB_Color_Knob.b} 1}
+   name index_Text
+   xpos 262
+   ypos 149
+  }
+  Output {
+   name Output
+   xpos 262
+   ypos 173
+  }
+ end_group
+ Group {
+  inputs 0
+  name dark_skin
+  xpos 70
+  ypos -249
+  postage_stamp true
+  addUserKnob {20 sample_Tab l Sample}
+  addUserKnob {20 parameters_Group l Parameters n 1}
+  addUserKnob {19 colour_RGBA_Color_Knob l Colour}
+  colour_RGBA_Color_Knob {0.1175898927 0.08781097776 0.06184838292 1}
+  addUserKnob {6 colour_RGBA_Color_Knob_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {1 name_Text_Knob l Name}
+  name_Text_Knob "dark skin"
+  addUserKnob {1 index_Text_Knob l Index}
+  index_Text_Knob 1
+  addUserKnob {18 label_colour_RGB_Color_Knob l "Label Colour"}
+  label_colour_RGB_Color_Knob 1
+  addUserKnob {6 label_colour_RGB_Color_Knob_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {7 label_opacity_Floating_Point_Slider l "Label Opacity"}
+  label_opacity_Floating_Point_Slider {{parent.label_opacity_Floating_Point_Slider}}
+  addUserKnob {20 endGroup n -1}
+ }
+  Constant {
+   inputs 0
+   color {{parent.colour_RGBA_Color_Knob.r} {parent.colour_RGBA_Color_Knob.g} {parent.colour_RGBA_Color_Knob.b} {parent.colour_RGBA_Color_Knob.a}}
+   format "512 512 0 0 512 512 1 square_512"
+   name Constant
+   xpos 262
+   ypos 53
+  }
+  Text {
+   opacity {{parent.label_opacity_Floating_Point_Slider}}
+   message "\[knob parent.name_Text_Knob]"
+   font "\[python nuke.defaultFontPathname()]"
+   xjustify center
+   yjustify bottom
+   Transform 1
+   box {0 0 512 512}
+   scale 1.15
+   center {256 -256}
+   color {{parent.label_colour_RGB_Color_Knob.r} {parent.label_colour_RGB_Color_Knob.g} {parent.label_colour_RGB_Color_Knob.b} 1}
+   name name_Text
+   xpos 262
+   ypos 125
+  }
+  Text {
+   opacity {{parent.label_opacity_Floating_Point_Slider}}
+   message "\[knob parent.index_Text_Knob]"
+   font "\[python nuke.defaultFontPathname()]"
+   xjustify center
+   yjustify center
+   Transform 1
+   box {0 0 512 512}
+   scale 3
+   center {256 256}
+   color {{parent.label_colour_RGB_Color_Knob.r} {parent.label_colour_RGB_Color_Knob.g} {parent.label_colour_RGB_Color_Knob.b} 1}
+   name index_Text
+   xpos 262
+   ypos 149
+  }
+  Output {
+   name Output
+   xpos 262
+   ypos 173
+  }
+ end_group
+ Group {
+  inputs 0
+  name orange_yellow
+  xpos 620
+  ypos -153
+  postage_stamp true
+  addUserKnob {20 sample_Tab l Sample}
+  addUserKnob {20 parameters_Group l Parameters n 1}
+  addUserKnob {19 colour_RGBA_Color_Knob l Colour}
+  colour_RGBA_Color_Knob {0.490389271 0.365158008 0.07497681008 1}
+  addUserKnob {6 colour_RGBA_Color_Knob_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {1 name_Text_Knob l Name}
+  name_Text_Knob "orange yellow"
+  addUserKnob {1 index_Text_Knob l Index}
+  index_Text_Knob 12
+  addUserKnob {18 label_colour_RGB_Color_Knob l "Label Colour"}
+  label_colour_RGB_Color_Knob 1
+  addUserKnob {6 label_colour_RGB_Color_Knob_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {7 label_opacity_Floating_Point_Slider l "Label Opacity"}
+  label_opacity_Floating_Point_Slider {{parent.label_opacity_Floating_Point_Slider}}
+  addUserKnob {20 endGroup n -1}
+ }
+  Constant {
+   inputs 0
+   color {{parent.colour_RGBA_Color_Knob.r} {parent.colour_RGBA_Color_Knob.g} {parent.colour_RGBA_Color_Knob.b} {parent.colour_RGBA_Color_Knob.a}}
+   format "512 512 0 0 512 512 1 square_512"
+   name Constant
+   xpos 262
+   ypos 53
+  }
+  Text {
+   opacity {{parent.label_opacity_Floating_Point_Slider}}
+   message "\[knob parent.name_Text_Knob]"
+   font "\[python nuke.defaultFontPathname()]"
+   xjustify center
+   yjustify bottom
+   Transform 1
+   box {0 0 512 512}
+   scale 1.15
+   center {256 -256}
+   color {{parent.label_colour_RGB_Color_Knob.r} {parent.label_colour_RGB_Color_Knob.g} {parent.label_colour_RGB_Color_Knob.b} 1}
+   name name_Text
+   xpos 262
+   ypos 125
+  }
+  Text {
+   opacity {{parent.label_opacity_Floating_Point_Slider}}
+   message "\[knob parent.index_Text_Knob]"
+   font "\[python nuke.defaultFontPathname()]"
+   xjustify center
+   yjustify center
+   Transform 1
+   box {0 0 512 512}
+   scale 3
+   center {256 256}
+   color {{parent.label_colour_RGB_Color_Knob.r} {parent.label_colour_RGB_Color_Knob.g} {parent.label_colour_RGB_Color_Knob.b} 1}
+   name index_Text
+   xpos 262
+   ypos 149
+  }
+  Output {
+   name Output
+   xpos 262
+   ypos 173
+  }
+ end_group
+ Group {
+  inputs 0
+  name yellow_green
+  xpos 510
+  ypos -153
+  postage_stamp true
+  addUserKnob {20 sample_Tab l Sample}
+  addUserKnob {20 parameters_Group l Parameters n 1}
+  addUserKnob {19 colour_RGBA_Color_Knob l Colour}
+  colour_RGBA_Color_Knob {0.3547790977 0.4484967893 0.1097122101 1}
+  addUserKnob {6 colour_RGBA_Color_Knob_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {1 name_Text_Knob l Name}
+  name_Text_Knob "yellow green"
+  addUserKnob {1 index_Text_Knob l Index}
+  index_Text_Knob 11
+  addUserKnob {18 label_colour_RGB_Color_Knob l "Label Colour"}
+  label_colour_RGB_Color_Knob 1
+  addUserKnob {6 label_colour_RGB_Color_Knob_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {7 label_opacity_Floating_Point_Slider l "Label Opacity"}
+  label_opacity_Floating_Point_Slider {{parent.label_opacity_Floating_Point_Slider}}
+  addUserKnob {20 endGroup n -1}
+ }
+  Constant {
+   inputs 0
+   color {{parent.colour_RGBA_Color_Knob.r} {parent.colour_RGBA_Color_Knob.g} {parent.colour_RGBA_Color_Knob.b} {parent.colour_RGBA_Color_Knob.a}}
+   format "512 512 0 0 512 512 1 square_512"
+   name Constant
+   xpos 262
+   ypos 53
+  }
+  Text {
+   opacity {{parent.label_opacity_Floating_Point_Slider}}
+   message "\[knob parent.name_Text_Knob]"
+   font "\[python nuke.defaultFontPathname()]"
+   xjustify center
+   yjustify bottom
+   Transform 1
+   box {0 0 512 512}
+   scale 1.15
+   center {256 -256}
+   color {{parent.label_colour_RGB_Color_Knob.r} {parent.label_colour_RGB_Color_Knob.g} {parent.label_colour_RGB_Color_Knob.b} 1}
+   name name_Text
+   xpos 262
+   ypos 125
+  }
+  Text {
+   opacity {{parent.label_opacity_Floating_Point_Slider}}
+   message "\[knob parent.index_Text_Knob]"
+   font "\[python nuke.defaultFontPathname()]"
+   xjustify center
+   yjustify center
+   Transform 1
+   box {0 0 512 512}
+   scale 3
+   center {256 256}
+   color {{parent.label_colour_RGB_Color_Knob.r} {parent.label_colour_RGB_Color_Knob.g} {parent.label_colour_RGB_Color_Knob.b} 1}
+   name index_Text
+   xpos 262
+   ypos 149
+  }
+  Output {
+   name Output
+   xpos 262
+   ypos 173
+  }
+ end_group
+ Group {
+  inputs 0
+  name purple
+  xpos 400
+  ypos -153
+  postage_stamp true
+  addUserKnob {20 sample_Tab l Sample}
+  addUserKnob {20 parameters_Group l Parameters n 1}
+  addUserKnob {19 colour_RGBA_Color_Knob l Colour}
+  colour_RGBA_Color_Knob {0.09058404576 0.05847922608 0.1303526512 1}
+  addUserKnob {6 colour_RGBA_Color_Knob_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {1 name_Text_Knob l Name}
+  name_Text_Knob purple
+  addUserKnob {1 index_Text_Knob l Index}
+  index_Text_Knob 10
+  addUserKnob {18 label_colour_RGB_Color_Knob l "Label Colour"}
+  label_colour_RGB_Color_Knob 1
+  addUserKnob {6 label_colour_RGB_Color_Knob_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {7 label_opacity_Floating_Point_Slider l "Label Opacity"}
+  label_opacity_Floating_Point_Slider {{parent.label_opacity_Floating_Point_Slider}}
+  addUserKnob {20 endGroup n -1}
+ }
+  Constant {
+   inputs 0
+   color {{parent.colour_RGBA_Color_Knob.r} {parent.colour_RGBA_Color_Knob.g} {parent.colour_RGBA_Color_Knob.b} {parent.colour_RGBA_Color_Knob.a}}
+   format "512 512 0 0 512 512 1 square_512"
+   name Constant
+   xpos 262
+   ypos 53
+  }
+  Text {
+   opacity {{parent.label_opacity_Floating_Point_Slider}}
+   message "\[knob parent.name_Text_Knob]"
+   font "\[python nuke.defaultFontPathname()]"
+   xjustify center
+   yjustify bottom
+   Transform 1
+   box {0 0 512 512}
+   scale 1.15
+   center {256 -256}
+   color {{parent.label_colour_RGB_Color_Knob.r} {parent.label_colour_RGB_Color_Knob.g} {parent.label_colour_RGB_Color_Knob.b} 1}
+   name name_Text
+   xpos 262
+   ypos 125
+  }
+  Text {
+   opacity {{parent.label_opacity_Floating_Point_Slider}}
+   message "\[knob parent.index_Text_Knob]"
+   font "\[python nuke.defaultFontPathname()]"
+   xjustify center
+   yjustify center
+   Transform 1
+   box {0 0 512 512}
+   scale 3
+   center {256 256}
+   color {{parent.label_colour_RGB_Color_Knob.r} {parent.label_colour_RGB_Color_Knob.g} {parent.label_colour_RGB_Color_Knob.b} 1}
+   name index_Text
+   xpos 262
+   ypos 149
+  }
+  Output {
+   name Output
+   xpos 262
+   ypos 173
+  }
+ end_group
+ Group {
+  inputs 0
+  name moderate_red
+  xpos 290
+  ypos -153
+  postage_stamp true
+  addUserKnob {20 sample_Tab l Sample}
+  addUserKnob {20 parameters_Group l Parameters n 1}
+  addUserKnob {19 colour_RGBA_Color_Knob l Colour}
+  colour_RGBA_Color_Knob {0.3030455937 0.1313905605 0.1234479127 1}
+  addUserKnob {6 colour_RGBA_Color_Knob_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {1 name_Text_Knob l Name}
+  name_Text_Knob "moderate red"
+  addUserKnob {1 index_Text_Knob l Index}
+  index_Text_Knob 9
+  addUserKnob {18 label_colour_RGB_Color_Knob l "Label Colour"}
+  label_colour_RGB_Color_Knob 1
+  addUserKnob {6 label_colour_RGB_Color_Knob_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {7 label_opacity_Floating_Point_Slider l "Label Opacity"}
+  label_opacity_Floating_Point_Slider {{parent.label_opacity_Floating_Point_Slider}}
+  addUserKnob {20 endGroup n -1}
+ }
+  Constant {
+   inputs 0
+   color {{parent.colour_RGBA_Color_Knob.r} {parent.colour_RGBA_Color_Knob.g} {parent.colour_RGBA_Color_Knob.b} {parent.colour_RGBA_Color_Knob.a}}
+   format "512 512 0 0 512 512 1 square_512"
+   name Constant
+   xpos 262
+   ypos 53
+  }
+  Text {
+   opacity {{parent.label_opacity_Floating_Point_Slider}}
+   message "\[knob parent.name_Text_Knob]"
+   font "\[python nuke.defaultFontPathname()]"
+   xjustify center
+   yjustify bottom
+   Transform 1
+   box {0 0 512 512}
+   scale 1.15
+   center {256 -256}
+   color {{parent.label_colour_RGB_Color_Knob.r} {parent.label_colour_RGB_Color_Knob.g} {parent.label_colour_RGB_Color_Knob.b} 1}
+   name name_Text
+   xpos 262
+   ypos 125
+  }
+  Text {
+   opacity {{parent.label_opacity_Floating_Point_Slider}}
+   message "\[knob parent.index_Text_Knob]"
+   font "\[python nuke.defaultFontPathname()]"
+   xjustify center
+   yjustify center
+   Transform 1
+   box {0 0 512 512}
+   scale 3
+   center {256 256}
+   color {{parent.label_colour_RGB_Color_Knob.r} {parent.label_colour_RGB_Color_Knob.g} {parent.label_colour_RGB_Color_Knob.b} 1}
+   name index_Text
+   xpos 262
+   ypos 149
+  }
+  Output {
+   name Output
+   xpos 262
+   ypos 173
+  }
+ end_group
+ Group {
+  inputs 0
+  name purplish_blue
+  xpos 180
+  ypos -153
+  postage_stamp true
+  addUserKnob {20 sample_Tab l Sample}
+  addUserKnob {20 parameters_Group l Parameters n 1}
+  addUserKnob {19 colour_RGBA_Color_Knob l Colour}
+  colour_RGBA_Color_Knob {0.1374705634 0.1303337621 0.3611476421 1}
+  addUserKnob {6 colour_RGBA_Color_Knob_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {1 name_Text_Knob l Name}
+  name_Text_Knob "purplish blue"
+  addUserKnob {1 index_Text_Knob l Index}
+  index_Text_Knob 8
+  addUserKnob {18 label_colour_RGB_Color_Knob l "Label Colour"}
+  label_colour_RGB_Color_Knob 1
+  addUserKnob {6 label_colour_RGB_Color_Knob_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {7 label_opacity_Floating_Point_Slider l "Label Opacity"}
+  label_opacity_Floating_Point_Slider {{parent.label_opacity_Floating_Point_Slider}}
+  addUserKnob {20 endGroup n -1}
+ }
+  Constant {
+   inputs 0
+   color {{parent.colour_RGBA_Color_Knob.r} {parent.colour_RGBA_Color_Knob.g} {parent.colour_RGBA_Color_Knob.b} {parent.colour_RGBA_Color_Knob.a}}
+   format "512 512 0 0 512 512 1 square_512"
+   name Constant
+   xpos 262
+   ypos 53
+  }
+  Text {
+   opacity {{parent.label_opacity_Floating_Point_Slider}}
+   message "\[knob parent.name_Text_Knob]"
+   font "\[python nuke.defaultFontPathname()]"
+   xjustify center
+   yjustify bottom
+   Transform 1
+   box {0 0 512 512}
+   scale 1.15
+   center {256 -256}
+   color {{parent.label_colour_RGB_Color_Knob.r} {parent.label_colour_RGB_Color_Knob.g} {parent.label_colour_RGB_Color_Knob.b} 1}
+   name name_Text
+   xpos 262
+   ypos 125
+  }
+  Text {
+   opacity {{parent.label_opacity_Floating_Point_Slider}}
+   message "\[knob parent.index_Text_Knob]"
+   font "\[python nuke.defaultFontPathname()]"
+   xjustify center
+   yjustify center
+   Transform 1
+   box {0 0 512 512}
+   scale 3
+   center {256 256}
+   color {{parent.label_colour_RGB_Color_Knob.r} {parent.label_colour_RGB_Color_Knob.g} {parent.label_colour_RGB_Color_Knob.b} 1}
+   name index_Text
+   xpos 262
+   ypos 149
+  }
+  Output {
+   name Output
+   xpos 262
+   ypos 173
+  }
+ end_group
+ Group {
+  inputs 0
+  name orange
+  xpos 70
+  ypos -153
+  postage_stamp true
+  addUserKnob {20 sample_Tab l Sample}
+  addUserKnob {20 parameters_Group l Parameters n 1}
+  addUserKnob {19 colour_RGBA_Color_Knob l Colour}
+  colour_RGBA_Color_Knob {0.4104087215 0.2329350475 0.06167113613 1}
+  addUserKnob {6 colour_RGBA_Color_Knob_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {1 name_Text_Knob l Name}
+  name_Text_Knob orange
+  addUserKnob {1 index_Text_Knob l Index}
+  index_Text_Knob 7
+  addUserKnob {18 label_colour_RGB_Color_Knob l "Label Colour"}
+  label_colour_RGB_Color_Knob 1
+  addUserKnob {6 label_colour_RGB_Color_Knob_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {7 label_opacity_Floating_Point_Slider l "Label Opacity"}
+  label_opacity_Floating_Point_Slider {{parent.label_opacity_Floating_Point_Slider}}
+  addUserKnob {20 endGroup n -1}
+ }
+  Constant {
+   inputs 0
+   color {{parent.colour_RGBA_Color_Knob.r} {parent.colour_RGBA_Color_Knob.g} {parent.colour_RGBA_Color_Knob.b} {parent.colour_RGBA_Color_Knob.a}}
+   format "512 512 0 0 512 512 1 square_512"
+   name Constant
+   xpos 262
+   ypos 53
+  }
+  Text {
+   opacity {{parent.label_opacity_Floating_Point_Slider}}
+   message "\[knob parent.name_Text_Knob]"
+   font "\[python nuke.defaultFontPathname()]"
+   xjustify center
+   yjustify bottom
+   Transform 1
+   box {0 0 512 512}
+   scale 1.15
+   center {256 -256}
+   color {{parent.label_colour_RGB_Color_Knob.r} {parent.label_colour_RGB_Color_Knob.g} {parent.label_colour_RGB_Color_Knob.b} 1}
+   name name_Text
+   xpos 262
+   ypos 125
+  }
+  Text {
+   opacity {{parent.label_opacity_Floating_Point_Slider}}
+   message "\[knob parent.index_Text_Knob]"
+   font "\[python nuke.defaultFontPathname()]"
+   xjustify center
+   yjustify center
+   Transform 1
+   box {0 0 512 512}
+   scale 3
+   center {256 256}
+   color {{parent.label_colour_RGB_Color_Knob.r} {parent.label_colour_RGB_Color_Knob.g} {parent.label_colour_RGB_Color_Knob.b} 1}
+   name index_Text
+   xpos 262
+   ypos 149
+  }
+  Output {
+   name Output
+   xpos 262
+   ypos 173
+  }
+ end_group
+ Group {
+  inputs 0
+  name cyan
+  xpos 620
+  ypos -57
+  postage_stamp true
+  addUserKnob {20 sample_Tab l Sample}
+  addUserKnob {20 parameters_Group l Parameters n 1}
+  addUserKnob {19 colour_RGBA_Color_Knob l Colour}
+  colour_RGBA_Color_Knob {0.1492070746 0.236484676 0.3741568628 1}
+  addUserKnob {6 colour_RGBA_Color_Knob_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {1 name_Text_Knob l Name}
+  name_Text_Knob cyan
+  addUserKnob {1 index_Text_Knob l Index}
+  index_Text_Knob 18
+  addUserKnob {18 label_colour_RGB_Color_Knob l "Label Colour"}
+  label_colour_RGB_Color_Knob 1
+  addUserKnob {6 label_colour_RGB_Color_Knob_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {7 label_opacity_Floating_Point_Slider l "Label Opacity"}
+  label_opacity_Floating_Point_Slider {{parent.label_opacity_Floating_Point_Slider}}
+  addUserKnob {20 endGroup n -1}
+ }
+  Constant {
+   inputs 0
+   color {{parent.colour_RGBA_Color_Knob.r} {parent.colour_RGBA_Color_Knob.g} {parent.colour_RGBA_Color_Knob.b} {parent.colour_RGBA_Color_Knob.a}}
+   format "512 512 0 0 512 512 1 square_512"
+   name Constant
+   xpos 262
+   ypos 53
+  }
+  Text {
+   opacity {{parent.label_opacity_Floating_Point_Slider}}
+   message "\[knob parent.name_Text_Knob]"
+   font "\[python nuke.defaultFontPathname()]"
+   xjustify center
+   yjustify bottom
+   Transform 1
+   box {0 0 512 512}
+   scale 1.15
+   center {256 -256}
+   color {{parent.label_colour_RGB_Color_Knob.r} {parent.label_colour_RGB_Color_Knob.g} {parent.label_colour_RGB_Color_Knob.b} 1}
+   name name_Text
+   xpos 262
+   ypos 125
+  }
+  Text {
+   opacity {{parent.label_opacity_Floating_Point_Slider}}
+   message "\[knob parent.index_Text_Knob]"
+   font "\[python nuke.defaultFontPathname()]"
+   xjustify center
+   yjustify center
+   Transform 1
+   box {0 0 512 512}
+   scale 3
+   center {256 256}
+   color {{parent.label_colour_RGB_Color_Knob.r} {parent.label_colour_RGB_Color_Knob.g} {parent.label_colour_RGB_Color_Knob.b} 1}
+   name index_Text
+   xpos 262
+   ypos 149
+  }
+  Output {
+   name Output
+   xpos 262
+   ypos 173
+  }
+ end_group
+ Group {
+  inputs 0
+  name magenta
+  xpos 510
+  ypos -57
+  postage_stamp true
+  addUserKnob {20 sample_Tab l Sample}
+  addUserKnob {20 parameters_Group l Parameters n 1}
+  addUserKnob {19 colour_RGBA_Color_Knob l Colour}
+  colour_RGBA_Color_Knob {0.3236886422 0.1504966823 0.2853513803 1}
+  addUserKnob {6 colour_RGBA_Color_Knob_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {1 name_Text_Knob l Name}
+  name_Text_Knob magenta
+  addUserKnob {1 index_Text_Knob l Index}
+  index_Text_Knob 17
+  addUserKnob {18 label_colour_RGB_Color_Knob l "Label Colour"}
+  label_colour_RGB_Color_Knob 1
+  addUserKnob {6 label_colour_RGB_Color_Knob_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {7 label_opacity_Floating_Point_Slider l "Label Opacity"}
+  label_opacity_Floating_Point_Slider {{parent.label_opacity_Floating_Point_Slider}}
+  addUserKnob {20 endGroup n -1}
+ }
+  Constant {
+   inputs 0
+   color {{parent.colour_RGBA_Color_Knob.r} {parent.colour_RGBA_Color_Knob.g} {parent.colour_RGBA_Color_Knob.b} {parent.colour_RGBA_Color_Knob.a}}
+   format "512 512 0 0 512 512 1 square_512"
+   name Constant
+   xpos 262
+   ypos 53
+  }
+  Text {
+   opacity {{parent.label_opacity_Floating_Point_Slider}}
+   message "\[knob parent.name_Text_Knob]"
+   font "\[python nuke.defaultFontPathname()]"
+   xjustify center
+   yjustify bottom
+   Transform 1
+   box {0 0 512 512}
+   scale 1.15
+   center {256 -256}
+   color {{parent.label_colour_RGB_Color_Knob.r} {parent.label_colour_RGB_Color_Knob.g} {parent.label_colour_RGB_Color_Knob.b} 1}
+   name name_Text
+   xpos 262
+   ypos 125
+  }
+  Text {
+   opacity {{parent.label_opacity_Floating_Point_Slider}}
+   message "\[knob parent.index_Text_Knob]"
+   font "\[python nuke.defaultFontPathname()]"
+   xjustify center
+   yjustify center
+   Transform 1
+   box {0 0 512 512}
+   scale 3
+   center {256 256}
+   color {{parent.label_colour_RGB_Color_Knob.r} {parent.label_colour_RGB_Color_Knob.g} {parent.label_colour_RGB_Color_Knob.b} 1}
+   name index_Text
+   xpos 262
+   ypos 149
+  }
+  Output {
+   name Output
+   xpos 262
+   ypos 173
+  }
+ end_group
+ Group {
+  inputs 0
+  name yellow
+  xpos 400
+  ypos -57
+  postage_stamp true
+  addUserKnob {20 sample_Tab l Sample}
+  addUserKnob {20 parameters_Group l Parameters n 1}
+  addUserKnob {19 colour_RGBA_Color_Knob l Colour}
+  colour_RGBA_Color_Knob {0.5948558976 0.5382558998 0.08916817691 1}
+  addUserKnob {6 colour_RGBA_Color_Knob_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {1 name_Text_Knob l Name}
+  name_Text_Knob yellow
+  addUserKnob {1 index_Text_Knob l Index}
+  index_Text_Knob 16
+  addUserKnob {18 label_colour_RGB_Color_Knob l "Label Colour"}
+  label_colour_RGB_Color_Knob 1
+  addUserKnob {6 label_colour_RGB_Color_Knob_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {7 label_opacity_Floating_Point_Slider l "Label Opacity"}
+  label_opacity_Floating_Point_Slider {{parent.label_opacity_Floating_Point_Slider}}
+  addUserKnob {20 endGroup n -1}
+ }
+  Constant {
+   inputs 0
+   color {{parent.colour_RGBA_Color_Knob.r} {parent.colour_RGBA_Color_Knob.g} {parent.colour_RGBA_Color_Knob.b} {parent.colour_RGBA_Color_Knob.a}}
+   format "512 512 0 0 512 512 1 square_512"
+   name Constant
+   xpos 262
+   ypos 53
+  }
+  Text {
+   opacity {{parent.label_opacity_Floating_Point_Slider}}
+   message "\[knob parent.name_Text_Knob]"
+   font "\[python nuke.defaultFontPathname()]"
+   xjustify center
+   yjustify bottom
+   Transform 1
+   box {0 0 512 512}
+   scale 1.15
+   center {256 -256}
+   color {{parent.label_colour_RGB_Color_Knob.r} {parent.label_colour_RGB_Color_Knob.g} {parent.label_colour_RGB_Color_Knob.b} 1}
+   name name_Text
+   xpos 262
+   ypos 125
+  }
+  Text {
+   opacity {{parent.label_opacity_Floating_Point_Slider}}
+   message "\[knob parent.index_Text_Knob]"
+   font "\[python nuke.defaultFontPathname()]"
+   xjustify center
+   yjustify center
+   Transform 1
+   box {0 0 512 512}
+   scale 3
+   center {256 256}
+   color {{parent.label_colour_RGB_Color_Knob.r} {parent.label_colour_RGB_Color_Knob.g} {parent.label_colour_RGB_Color_Knob.b} 1}
+   name index_Text
+   xpos 262
+   ypos 149
+  }
+  Output {
+   name Output
+   xpos 262
+   ypos 173
+  }
+ end_group
+ Group {
+  inputs 0
+  name red
+  xpos 290
+  ypos -57
+  postage_stamp true
+  addUserKnob {20 sample_Tab l Sample}
+  addUserKnob {20 parameters_Group l Parameters n 1}
+  addUserKnob {19 colour_RGBA_Color_Knob l Colour}
+  colour_RGBA_Color_Knob {0.2196081838 0.06985597223 0.04703204265 1}
+  addUserKnob {6 colour_RGBA_Color_Knob_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {1 name_Text_Knob l Name}
+  name_Text_Knob red
+  addUserKnob {1 index_Text_Knob l Index}
+  index_Text_Knob 15
+  addUserKnob {18 label_colour_RGB_Color_Knob l "Label Colour"}
+  label_colour_RGB_Color_Knob 1
+  addUserKnob {6 label_colour_RGB_Color_Knob_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {7 label_opacity_Floating_Point_Slider l "Label Opacity"}
+  label_opacity_Floating_Point_Slider {{parent.label_opacity_Floating_Point_Slider}}
+  addUserKnob {20 endGroup n -1}
+ }
+  Constant {
+   inputs 0
+   color {{parent.colour_RGBA_Color_Knob.r} {parent.colour_RGBA_Color_Knob.g} {parent.colour_RGBA_Color_Knob.b} {parent.colour_RGBA_Color_Knob.a}}
+   format "512 512 0 0 512 512 1 square_512"
+   name Constant
+   xpos 262
+   ypos 53
+  }
+  Text {
+   opacity {{parent.label_opacity_Floating_Point_Slider}}
+   message "\[knob parent.name_Text_Knob]"
+   font "\[python nuke.defaultFontPathname()]"
+   xjustify center
+   yjustify bottom
+   Transform 1
+   box {0 0 512 512}
+   scale 1.15
+   center {256 -256}
+   color {{parent.label_colour_RGB_Color_Knob.r} {parent.label_colour_RGB_Color_Knob.g} {parent.label_colour_RGB_Color_Knob.b} 1}
+   name name_Text
+   xpos 262
+   ypos 125
+  }
+  Text {
+   opacity {{parent.label_opacity_Floating_Point_Slider}}
+   message "\[knob parent.index_Text_Knob]"
+   font "\[python nuke.defaultFontPathname()]"
+   xjustify center
+   yjustify center
+   Transform 1
+   box {0 0 512 512}
+   scale 3
+   center {256 256}
+   color {{parent.label_colour_RGB_Color_Knob.r} {parent.label_colour_RGB_Color_Knob.g} {parent.label_colour_RGB_Color_Knob.b} 1}
+   name index_Text
+   xpos 262
+   ypos 149
+  }
+  Output {
+   name Output
+   xpos 262
+   ypos 173
+  }
+ end_group
+ Group {
+  inputs 0
+  name green
+  xpos 180
+  ypos -57
+  postage_stamp true
+  addUserKnob {20 sample_Tab l Sample}
+  addUserKnob {20 parameters_Group l Parameters n 1}
+  addUserKnob {19 colour_RGBA_Color_Knob l Colour}
+  colour_RGBA_Color_Knob {0.1512981811 0.2551593702 0.09620886449 1}
+  addUserKnob {6 colour_RGBA_Color_Knob_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {1 name_Text_Knob l Name}
+  name_Text_Knob green
+  addUserKnob {1 index_Text_Knob l Index}
+  index_Text_Knob 14
+  addUserKnob {18 label_colour_RGB_Color_Knob l "Label Colour"}
+  label_colour_RGB_Color_Knob 1
+  addUserKnob {6 label_colour_RGB_Color_Knob_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {7 label_opacity_Floating_Point_Slider l "Label Opacity"}
+  label_opacity_Floating_Point_Slider {{parent.label_opacity_Floating_Point_Slider}}
+  addUserKnob {20 endGroup n -1}
+ }
+  Constant {
+   inputs 0
+   color {{parent.colour_RGBA_Color_Knob.r} {parent.colour_RGBA_Color_Knob.g} {parent.colour_RGBA_Color_Knob.b} {parent.colour_RGBA_Color_Knob.a}}
+   format "512 512 0 0 512 512 1 square_512"
+   name Constant
+   xpos 262
+   ypos 53
+  }
+  Text {
+   opacity {{parent.label_opacity_Floating_Point_Slider}}
+   message "\[knob parent.name_Text_Knob]"
+   font "\[python nuke.defaultFontPathname()]"
+   xjustify center
+   yjustify bottom
+   Transform 1
+   box {0 0 512 512}
+   scale 1.15
+   center {256 -256}
+   color {{parent.label_colour_RGB_Color_Knob.r} {parent.label_colour_RGB_Color_Knob.g} {parent.label_colour_RGB_Color_Knob.b} 1}
+   name name_Text
+   xpos 262
+   ypos 125
+  }
+  Text {
+   opacity {{parent.label_opacity_Floating_Point_Slider}}
+   message "\[knob parent.index_Text_Knob]"
+   font "\[python nuke.defaultFontPathname()]"
+   xjustify center
+   yjustify center
+   Transform 1
+   box {0 0 512 512}
+   scale 3
+   center {256 256}
+   color {{parent.label_colour_RGB_Color_Knob.r} {parent.label_colour_RGB_Color_Knob.g} {parent.label_colour_RGB_Color_Knob.b} 1}
+   name index_Text
+   xpos 262
+   ypos 149
+  }
+  Output {
+   name Output
+   xpos 262
+   ypos 173
+  }
+ end_group
+ Group {
+  inputs 0
+  name blue
+  xpos 70
+  ypos -57
+  postage_stamp true
+  addUserKnob {20 sample_Tab l Sample}
+  addUserKnob {20 parameters_Group l Parameters n 1}
+  addUserKnob {19 colour_RGBA_Color_Knob l Colour}
+  colour_RGBA_Color_Knob {0.07890084161 0.07117526907 0.2582490649 1}
+  addUserKnob {6 colour_RGBA_Color_Knob_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {1 name_Text_Knob l Name}
+  name_Text_Knob blue
+  addUserKnob {1 index_Text_Knob l Index}
+  index_Text_Knob 13
+  addUserKnob {18 label_colour_RGB_Color_Knob l "Label Colour"}
+  label_colour_RGB_Color_Knob 1
+  addUserKnob {6 label_colour_RGB_Color_Knob_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {7 label_opacity_Floating_Point_Slider l "Label Opacity"}
+  label_opacity_Floating_Point_Slider {{parent.label_opacity_Floating_Point_Slider}}
+  addUserKnob {20 endGroup n -1}
+ }
+  Constant {
+   inputs 0
+   color {{parent.colour_RGBA_Color_Knob.r} {parent.colour_RGBA_Color_Knob.g} {parent.colour_RGBA_Color_Knob.b} {parent.colour_RGBA_Color_Knob.a}}
+   format "512 512 0 0 512 512 1 square_512"
+   name Constant
+   xpos 262
+   ypos 53
+  }
+  Text {
+   opacity {{parent.label_opacity_Floating_Point_Slider}}
+   message "\[knob parent.name_Text_Knob]"
+   font "\[python nuke.defaultFontPathname()]"
+   xjustify center
+   yjustify bottom
+   Transform 1
+   box {0 0 512 512}
+   scale 1.15
+   center {256 -256}
+   color {{parent.label_colour_RGB_Color_Knob.r} {parent.label_colour_RGB_Color_Knob.g} {parent.label_colour_RGB_Color_Knob.b} 1}
+   name name_Text
+   xpos 262
+   ypos 125
+  }
+  Text {
+   opacity {{parent.label_opacity_Floating_Point_Slider}}
+   message "\[knob parent.index_Text_Knob]"
+   font "\[python nuke.defaultFontPathname()]"
+   xjustify center
+   yjustify center
+   Transform 1
+   box {0 0 512 512}
+   scale 3
+   center {256 256}
+   color {{parent.label_colour_RGB_Color_Knob.r} {parent.label_colour_RGB_Color_Knob.g} {parent.label_colour_RGB_Color_Knob.b} 1}
+   name index_Text
+   xpos 262
+   ypos 149
+  }
+  Output {
+   name Output
+   xpos 262
+   ypos 173
+  }
+ end_group
+ Group {
+  inputs 0
+  name black_2_(1.5_D)
+  xpos 620
+  ypos 39
+  postage_stamp true
+  addUserKnob {20 sample_Tab l Sample}
+  addUserKnob {20 parameters_Group l Parameters n 1}
+  addUserKnob {19 colour_RGBA_Color_Knob l Colour}
+  colour_RGBA_Color_Knob {0.03111894792 0.03126786635 0.03256784104 1}
+  addUserKnob {6 colour_RGBA_Color_Knob_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {1 name_Text_Knob l Name}
+  name_Text_Knob "black 2 (1.5 D)"
+  addUserKnob {1 index_Text_Knob l Index}
+  index_Text_Knob 24
+  addUserKnob {18 label_colour_RGB_Color_Knob l "Label Colour"}
+  label_colour_RGB_Color_Knob {0 0 0}
+  addUserKnob {6 label_colour_RGB_Color_Knob_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {7 label_opacity_Floating_Point_Slider l "Label Opacity"}
+  label_opacity_Floating_Point_Slider {{parent.label_opacity_Floating_Point_Slider}}
+  addUserKnob {20 endGroup n -1}
+ }
+  Constant {
+   inputs 0
+   color {{parent.colour_RGBA_Color_Knob.r} {parent.colour_RGBA_Color_Knob.g} {parent.colour_RGBA_Color_Knob.b} {parent.colour_RGBA_Color_Knob.a}}
+   format "512 512 0 0 512 512 1 square_512"
+   name Constant
+   xpos 262
+   ypos 53
+  }
+  Text {
+   opacity {{parent.label_opacity_Floating_Point_Slider}}
+   message "\[knob parent.name_Text_Knob]"
+   font "\[python nuke.defaultFontPathname()]"
+   xjustify center
+   yjustify bottom
+   Transform 1
+   box {0 0 512 512}
+   scale 1.15
+   center {256 -256}
+   color {{parent.label_colour_RGB_Color_Knob.r} {parent.label_colour_RGB_Color_Knob.g} {parent.label_colour_RGB_Color_Knob.b} 1}
+   name name_Text
+   xpos 262
+   ypos 125
+  }
+  Text {
+   opacity {{parent.label_opacity_Floating_Point_Slider}}
+   message "\[knob parent.index_Text_Knob]"
+   font "\[python nuke.defaultFontPathname()]"
+   xjustify center
+   yjustify center
+   Transform 1
+   box {0 0 512 512}
+   scale 3
+   center {256 256}
+   color {{parent.label_colour_RGB_Color_Knob.r} {parent.label_colour_RGB_Color_Knob.g} {parent.label_colour_RGB_Color_Knob.b} 1}
+   name index_Text
+   xpos 262
+   ypos 149
+  }
+  Output {
+   name Output
+   xpos 262
+   ypos 173
+  }
+ end_group
+ Group {
+  inputs 0
+  name neutral_3.5_(1.05_D)
+  xpos 510
+  ypos 39
+  postage_stamp true
+  addUserKnob {20 sample_Tab l Sample}
+  addUserKnob {20 parameters_Group l Parameters n 1}
+  addUserKnob {19 colour_RGBA_Color_Knob l Colour}
+  colour_RGBA_Color_Knob {0.08793956328 0.08892476034 0.0920013354 1}
+  addUserKnob {6 colour_RGBA_Color_Knob_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {1 name_Text_Knob l Name}
+  name_Text_Knob "neutral 3.5 (1.05 D)"
+  addUserKnob {1 index_Text_Knob l Index}
+  index_Text_Knob 23
+  addUserKnob {18 label_colour_RGB_Color_Knob l "Label Colour"}
+  label_colour_RGB_Color_Knob {0 0 0}
+  addUserKnob {6 label_colour_RGB_Color_Knob_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {7 label_opacity_Floating_Point_Slider l "Label Opacity"}
+  label_opacity_Floating_Point_Slider {{parent.label_opacity_Floating_Point_Slider}}
+  addUserKnob {20 endGroup n -1}
+ }
+  Constant {
+   inputs 0
+   color {{parent.colour_RGBA_Color_Knob.r} {parent.colour_RGBA_Color_Knob.g} {parent.colour_RGBA_Color_Knob.b} {parent.colour_RGBA_Color_Knob.a}}
+   format "512 512 0 0 512 512 1 square_512"
+   name Constant
+   xpos 262
+   ypos 53
+  }
+  Text {
+   opacity {{parent.label_opacity_Floating_Point_Slider}}
+   message "\[knob parent.name_Text_Knob]"
+   font "\[python nuke.defaultFontPathname()]"
+   xjustify center
+   yjustify bottom
+   Transform 1
+   box {0 0 512 512}
+   scale 1.15
+   center {256 -256}
+   color {{parent.label_colour_RGB_Color_Knob.r} {parent.label_colour_RGB_Color_Knob.g} {parent.label_colour_RGB_Color_Knob.b} 1}
+   name name_Text
+   xpos 262
+   ypos 125
+  }
+  Text {
+   opacity {{parent.label_opacity_Floating_Point_Slider}}
+   message "\[knob parent.index_Text_Knob]"
+   font "\[python nuke.defaultFontPathname()]"
+   xjustify center
+   yjustify center
+   Transform 1
+   box {0 0 512 512}
+   scale 3
+   center {256 256}
+   color {{parent.label_colour_RGB_Color_Knob.r} {parent.label_colour_RGB_Color_Knob.g} {parent.label_colour_RGB_Color_Knob.b} 1}
+   name index_Text
+   xpos 262
+   ypos 149
+  }
+  Output {
+   name Output
+   xpos 262
+   ypos 173
+  }
+ end_group
+ Group {
+  inputs 0
+  name neutral_5_(.70_D)
+  xpos 400
+  ypos 39
+  postage_stamp true
+  addUserKnob {20 sample_Tab l Sample}
+  addUserKnob {20 parameters_Group l Parameters n 1}
+  addUserKnob {19 colour_RGBA_Color_Knob l Colour}
+  colour_RGBA_Color_Knob {0.1912876604 0.1917735869 0.1928980526 1}
+  addUserKnob {6 colour_RGBA_Color_Knob_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {1 name_Text_Knob l Name}
+  name_Text_Knob "neutral 5 (.70 D)"
+  addUserKnob {1 index_Text_Knob l Index}
+  index_Text_Knob 22
+  addUserKnob {18 label_colour_RGB_Color_Knob l "Label Colour"}
+  label_colour_RGB_Color_Knob {0 0 0}
+  addUserKnob {6 label_colour_RGB_Color_Knob_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {7 label_opacity_Floating_Point_Slider l "Label Opacity"}
+  label_opacity_Floating_Point_Slider {{parent.label_opacity_Floating_Point_Slider}}
+  addUserKnob {20 endGroup n -1}
+ }
+  Constant {
+   inputs 0
+   color {{parent.colour_RGBA_Color_Knob.r} {parent.colour_RGBA_Color_Knob.g} {parent.colour_RGBA_Color_Knob.b} {parent.colour_RGBA_Color_Knob.a}}
+   format "512 512 0 0 512 512 1 square_512"
+   name Constant
+   xpos 262
+   ypos 53
+  }
+  Text {
+   opacity {{parent.label_opacity_Floating_Point_Slider}}
+   message "\[knob parent.name_Text_Knob]"
+   font "\[python nuke.defaultFontPathname()]"
+   xjustify center
+   yjustify bottom
+   Transform 1
+   box {0 0 512 512}
+   scale 1.15
+   center {256 -256}
+   color {{parent.label_colour_RGB_Color_Knob.r} {parent.label_colour_RGB_Color_Knob.g} {parent.label_colour_RGB_Color_Knob.b} 1}
+   name name_Text
+   xpos 262
+   ypos 125
+  }
+  Text {
+   opacity {{parent.label_opacity_Floating_Point_Slider}}
+   message "\[knob parent.index_Text_Knob]"
+   font "\[python nuke.defaultFontPathname()]"
+   xjustify center
+   yjustify center
+   Transform 1
+   box {0 0 512 512}
+   scale 3
+   center {256 256}
+   color {{parent.label_colour_RGB_Color_Knob.r} {parent.label_colour_RGB_Color_Knob.g} {parent.label_colour_RGB_Color_Knob.b} 1}
+   name index_Text
+   xpos 262
+   ypos 149
+  }
+  Output {
+   name Output
+   xpos 262
+   ypos 173
+  }
+ end_group
+ Group {
+  inputs 0
+  name neutral_6.5_(.44_D)
+  xpos 290
+  ypos 39
+  postage_stamp true
+  addUserKnob {20 sample_Tab l Sample}
+  addUserKnob {20 parameters_Group l Parameters n 1}
+  addUserKnob {19 colour_RGBA_Color_Knob l Colour}
+  colour_RGBA_Color_Knob {0.3612008923 0.364659348 0.3671155307 1}
+  addUserKnob {6 colour_RGBA_Color_Knob_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {1 name_Text_Knob l Name}
+  name_Text_Knob "neutral 6.5 (.44 D)"
+  addUserKnob {1 index_Text_Knob l Index}
+  index_Text_Knob 21
+  addUserKnob {18 label_colour_RGB_Color_Knob l "Label Colour"}
+  label_colour_RGB_Color_Knob {0 0 0}
+  addUserKnob {6 label_colour_RGB_Color_Knob_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {7 label_opacity_Floating_Point_Slider l "Label Opacity"}
+  label_opacity_Floating_Point_Slider {{parent.label_opacity_Floating_Point_Slider}}
+  addUserKnob {20 endGroup n -1}
+ }
+  Constant {
+   inputs 0
+   color {{parent.colour_RGBA_Color_Knob.r} {parent.colour_RGBA_Color_Knob.g} {parent.colour_RGBA_Color_Knob.b} {parent.colour_RGBA_Color_Knob.a}}
+   format "512 512 0 0 512 512 1 square_512"
+   name Constant
+   xpos 262
+   ypos 53
+  }
+  Text {
+   opacity {{parent.label_opacity_Floating_Point_Slider}}
+   message "\[knob parent.name_Text_Knob]"
+   font "\[python nuke.defaultFontPathname()]"
+   xjustify center
+   yjustify bottom
+   Transform 1
+   box {0 0 512 512}
+   scale 1.15
+   center {256 -256}
+   color {{parent.label_colour_RGB_Color_Knob.r} {parent.label_colour_RGB_Color_Knob.g} {parent.label_colour_RGB_Color_Knob.b} 1}
+   name name_Text
+   xpos 262
+   ypos 125
+  }
+  Text {
+   opacity {{parent.label_opacity_Floating_Point_Slider}}
+   message "\[knob parent.index_Text_Knob]"
+   font "\[python nuke.defaultFontPathname()]"
+   xjustify center
+   yjustify center
+   Transform 1
+   box {0 0 512 512}
+   scale 3
+   center {256 256}
+   color {{parent.label_colour_RGB_Color_Knob.r} {parent.label_colour_RGB_Color_Knob.g} {parent.label_colour_RGB_Color_Knob.b} 1}
+   name index_Text
+   xpos 262
+   ypos 149
+  }
+  Output {
+   name Output
+   xpos 262
+   ypos 173
+  }
+ end_group
+ Group {
+  inputs 0
+  name neutral_8_(.23_D)
+  xpos 180
+  ypos 39
+  postage_stamp true
+  addUserKnob {20 sample_Tab l Sample}
+  addUserKnob {20 parameters_Group l Parameters n 1}
+  addUserKnob {19 colour_RGBA_Color_Knob l Colour}
+  colour_RGBA_Color_Knob {0.5869082312 0.5910734161 0.5930747282 1}
+  addUserKnob {6 colour_RGBA_Color_Knob_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {1 name_Text_Knob l Name}
+  name_Text_Knob "neutral 8 (.23 D)"
+  addUserKnob {1 index_Text_Knob l Index}
+  index_Text_Knob 20
+  addUserKnob {18 label_colour_RGB_Color_Knob l "Label Colour"}
+  label_colour_RGB_Color_Knob {0 0 0}
+  addUserKnob {6 label_colour_RGB_Color_Knob_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {7 label_opacity_Floating_Point_Slider l "Label Opacity"}
+  label_opacity_Floating_Point_Slider {{parent.label_opacity_Floating_Point_Slider}}
+  addUserKnob {20 endGroup n -1}
+ }
+  Constant {
+   inputs 0
+   color {{parent.colour_RGBA_Color_Knob.r} {parent.colour_RGBA_Color_Knob.g} {parent.colour_RGBA_Color_Knob.b} {parent.colour_RGBA_Color_Knob.a}}
+   format "512 512 0 0 512 512 1 square_512"
+   name Constant
+   xpos 262
+   ypos 53
+  }
+  Text {
+   opacity {{parent.label_opacity_Floating_Point_Slider}}
+   message "\[knob parent.name_Text_Knob]"
+   font "\[python nuke.defaultFontPathname()]"
+   xjustify center
+   yjustify bottom
+   Transform 1
+   box {0 0 512 512}
+   scale 1.15
+   center {256 -256}
+   color {{parent.label_colour_RGB_Color_Knob.r} {parent.label_colour_RGB_Color_Knob.g} {parent.label_colour_RGB_Color_Knob.b} 1}
+   name name_Text
+   xpos 262
+   ypos 125
+  }
+  Text {
+   opacity {{parent.label_opacity_Floating_Point_Slider}}
+   message "\[knob parent.index_Text_Knob]"
+   font "\[python nuke.defaultFontPathname()]"
+   xjustify center
+   yjustify center
+   Transform 1
+   box {0 0 512 512}
+   scale 3
+   center {256 256}
+   color {{parent.label_colour_RGB_Color_Knob.r} {parent.label_colour_RGB_Color_Knob.g} {parent.label_colour_RGB_Color_Knob.b} 1}
+   name index_Text
+   xpos 262
+   ypos 149
+  }
+  Output {
+   name Output
+   xpos 262
+   ypos 173
+  }
+ end_group
+ Group {
+  inputs 0
+  name white_9.5_(.05_D)
+  xpos 70
+  ypos 39
+  postage_stamp true
+  addUserKnob {20 sample_Tab l Sample}
+  addUserKnob {20 parameters_Group l Parameters n 1}
+  addUserKnob {19 colour_RGBA_Color_Knob l Colour}
+  colour_RGBA_Color_Knob {0.9098900748 0.9126820564 0.8965169926 1}
+  addUserKnob {6 colour_RGBA_Color_Knob_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {1 name_Text_Knob l Name}
+  name_Text_Knob "white 9.5 (.05 D)"
+  addUserKnob {1 index_Text_Knob l Index}
+  index_Text_Knob 19
+  addUserKnob {18 label_colour_RGB_Color_Knob l "Label Colour"}
+  label_colour_RGB_Color_Knob {0 0 0}
+  addUserKnob {6 label_colour_RGB_Color_Knob_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {7 label_opacity_Floating_Point_Slider l "Label Opacity"}
+  label_opacity_Floating_Point_Slider {{parent.label_opacity_Floating_Point_Slider}}
+  addUserKnob {20 endGroup n -1}
+ }
+  Constant {
+   inputs 0
+   color {{parent.colour_RGBA_Color_Knob.r} {parent.colour_RGBA_Color_Knob.g} {parent.colour_RGBA_Color_Knob.b} {parent.colour_RGBA_Color_Knob.a}}
+   format "512 512 0 0 512 512 1 square_512"
+   name Constant
+   xpos 262
+   ypos 53
+  }
+  Text {
+   opacity {{parent.label_opacity_Floating_Point_Slider}}
+   message "\[knob parent.name_Text_Knob]"
+   font "\[python nuke.defaultFontPathname()]"
+   xjustify center
+   yjustify bottom
+   Transform 1
+   box {0 0 512 512}
+   scale 1.15
+   center {256 -256}
+   color {{parent.label_colour_RGB_Color_Knob.r} {parent.label_colour_RGB_Color_Knob.g} {parent.label_colour_RGB_Color_Knob.b} 1}
+   name name_Text
+   xpos 262
+   ypos 125
+  }
+  Text {
+   opacity {{parent.label_opacity_Floating_Point_Slider}}
+   message "\[knob parent.index_Text_Knob]"
+   font "\[python nuke.defaultFontPathname()]"
+   xjustify center
+   yjustify center
+   Transform 1
+   box {0 0 512 512}
+   scale 3
+   center {256 256}
+   color {{parent.label_colour_RGB_Color_Knob.r} {parent.label_colour_RGB_Color_Knob.g} {parent.label_colour_RGB_Color_Knob.b} 1}
+   name index_Text
+   xpos 262
+   ypos 149
+  }
+  Output {
+   name Output
+   xpos 262
+   ypos 173
+  }
+ end_group
+ ContactSheet {
+  inputs 24
+  width {{"3072 + gap * 7"}}
+  height {{"2048 + gap * 5"}}
+  rows 4
+  columns 6
+  gap 73
+  name ContactSheet
+  xpos 840
+  ypos -225
+ }
+ Transform {
+  translate {0 56}
+  scale 0.97
+  center {1791.5 1206.5}
+  name Transform
+  xpos 840
+  ypos -201
+ }
+ Group {
+  name ACES2065_1_to_RGB
+  xpos 840
+  ypos -177
+  addUserKnob {20 ACES2065_1_to_RGB_Tab l "ACES2065-1 to RGB"}
+  addUserKnob {20 colourspace_parameters_Begin_Group l "Colourspace Parameters" n 1}
+  addUserKnob {4 colourspace_Pulldown_Choice l Colourspace M {ACES2065-1 ACEScc ACEScg ACESproxy "ALEXA Wide Gamut RGB" "Adobe RGB 1998" "Adobe Wide Gamut RGB" "Apple RGB" "Best RGB" "Beta RGB" "CIE RGB" "Cinema Gamut" "ColorMatch RGB" DCI-P3 DCI-P3+ "Don RGB 4" "ECI RGB v2" "Ekta Space PS 5" "Max RGB" "NTSC RGB" "Pal/Secam RGB" "ProPhoto RGB" "Rec. 2020" "Rec. 709" "Russell RGB" S-Gamut S-Gamut3 S-Gamut3.Cine "SMPTE-C RGB" "Xtreme RGB" sRGB}}
+  colourspace_Pulldown_Choice {{parent.colourspace_Pulldown_Choice x31 16}}
+  addUserKnob {20 paramters_endGroup l endGroup n -1}
+  addUserKnob {20 about_Tab l About}
+  addUserKnob {26 description_Text l "" +STARTLINE T "ACES2065-1 to RGB v0.1.0\n\ncolour-science.org - April 12, 2015\n\nThis Gizmo / Group computes the ACES2065-1 to RGB matrix of given colourspace."}
+ }
+  Input {
+   inputs 0
+   name Input
+   xpos -3005
+   ypos 1007
+  }
+set N2222f860 [stack 0]
+  ColorMatrix {
+   matrix {
+       {2.521977 -1.1370661 -0.3849108}
+       {-0.2754767 1.3698266 -0.0943499}
+       {-0.0159868 -0.1478183 1.1638051}
+     }
+   name ACES2065-1_to_sRGB_ColorMatrix
+   xpos -3005
+   ypos 1031
+  }
+push $N2222f860
+  ColorMatrix {
+   matrix {
+       {1.0256328 0.0169968 -0.0426296}
+       {0.3595054 0.728442 -0.0879474}
+       {-0.0020574 -0.00225 1.0043073}
+     }
+   name ACES2065-1_to_Xtreme_RGB_ColorMatrix
+   xpos -3115
+   ypos 1031
+  }
+push $N2222f860
+  ColorMatrix {
+   matrix {
+       {2.7022832 -1.2858237 -0.4164595}
+       {-0.3347366 1.4444278 -0.1096912}
+       {-0.0129893 -0.1427354 1.1557247}
+     }
+   name ACES2065-1_to_SMPTE-C_RGB_ColorMatrix
+   xpos -3225
+   ypos 1031
+  }
+push $N2222f860
+  ColorMatrix {
+   matrix {
+       {1.5554959 -0.3933013 -0.1621946}
+       {0.0090208 0.918583 0.0723961}
+       {0.0442694 0.0118504 0.9438802}
+     }
+   name ACES2065-1_to_S-Gamut3.Cine_ColorMatrix
+   xpos -3335
+   ypos 1031
+  }
+push $N2222f860
+  ColorMatrix {
+   matrix {
+       {1.3316844 -0.1875729 -0.1441115}
+       {-0.0280144 0.9887602 0.0392542}
+       {0.0125582 -0.0050703 0.9925121}
+     }
+   name ACES2065-1_to_S-Gamut3_ColorMatrix
+   xpos -3445
+   ypos 1031
+  }
+push $N2222f860
+  ColorMatrix {
+   matrix {
+       {1.3316844 -0.1875729 -0.1441115}
+       {-0.0280144 0.9887602 0.0392542}
+       {0.0125582 -0.0050703 0.9925121}
+     }
+   name ACES2065-1_to_S-Gamut_ColorMatrix
+   xpos -3555
+   ypos 1031
+  }
+push $N2222f860
+  ColorMatrix {
+   matrix {
+       {1.4115771 -0.2507302 -0.1608469}
+       {-0.1415731 1.2167353 -0.0751622}
+       {0.0060493 -0.0608153 1.054766}
+     }
+   name ACES2065-1_to_Russell_RGB_ColorMatrix
+   xpos -3665
+   ypos 1031
+  }
+push $N2222f860
+  ColorMatrix {
+   matrix {
+       {2.521977 -1.1370661 -0.3849108}
+       {-0.2754767 1.3698266 -0.0943499}
+       {-0.0159868 -0.1478183 1.1638051}
+     }
+   name ACES2065-1_to_Rec._709_ColorMatrix
+   xpos -3775
+   ypos 1031
+  }
+push $N2222f860
+  ColorMatrix {
+   matrix {
+       {1.4908886 -0.268726 -0.2221626}
+       {-0.0792374 1.1793708 -0.1001334}
+       {0.0027774 -0.0304403 1.0276629}
+     }
+   name ACES2065-1_to_Rec._2020_ColorMatrix
+   xpos -3885
+   ypos 1031
+  }
+push $N2222f860
+  ColorMatrix {
+   matrix {
+       {1.2392468 -0.1640439 -0.0752028}
+       {0.0035906 1.0896449 -0.0932355}
+       {-0.0020574 -0.00225 1.0043073}
+     }
+   name ACES2065-1_to_ProPhoto_RGB_ColorMatrix
+   xpos -3995
+   ypos 1031
+  }
+push $N2222f860
+  ColorMatrix {
+   matrix {
+       {2.4039623 -1.0313092 -0.3726531}
+       {-0.2754767 1.3698266 -0.0943499}
+       {-0.0128894 -0.1659335 1.178823}
+     }
+   name ACES2065-1_to_Pal/Secam_RGB_ColorMatrix
+   xpos -4105
+   ypos 1031
+  }
+push $N2222f860
+  ColorMatrix {
+   matrix {
+       {1.6227277 -0.3747738 -0.2479539}
+       {-0.2473268 1.4286918 -0.1813651}
+       {0.0158559 -0.082947 1.0670911}
+     }
+   name ACES2065-1_to_NTSC_RGB_ColorMatrix
+   xpos -4215
+   ypos 1031
+  }
+push $N2222f860
+  ColorMatrix {
+   matrix {
+       {1.1548931 -0.078908 -0.0759851}
+       {0.002028 1.0912957 -0.0933237}
+       {-0.0020574 -0.00225 1.0043073}
+     }
+   name ACES2065-1_to_Max_RGB_ColorMatrix
+   xpos -4325
+   ypos 1031
+  }
+push $N2222f860
+  ColorMatrix {
+   matrix {
+       {1.7194333 -0.4986715 -0.2207618}
+       {-0.121723 1.1687368 -0.0470139}
+       {0.004359 -0.0650374 1.0606784}
+     }
+   name ACES2065-1_to_Ekta_Space_PS_5_ColorMatrix
+   xpos -4435
+   ypos 1031
+  }
+push $N2222f860
+  ColorMatrix {
+   matrix {
+       {1.5846346 -0.3320682 -0.2525664}
+       {-0.2480692 1.403552 -0.1554828}
+       {0.020031 -0.1284706 1.1084397}
+     }
+   name ACES2065-1_to_ECI_RGB_v2_ColorMatrix
+   xpos -4545
+   ypos 1031
+  }
+push $N2222f860
+  ColorMatrix {
+   matrix {
+       {1.5644841 -0.3252248 -0.2392593}
+       {-0.1094767 1.191763 -0.0822863}
+       {-0.0074545 -0.0273958 1.0348502}
+     }
+   name ACES2065-1_to_Don_RGB_4_ColorMatrix
+   xpos -4655
+   ypos 1031
+  }
+push $N2222f860
+  ColorMatrix {
+   matrix {
+       {1.648544 -0.4696618 -0.1788822}
+       {-0.0071093 0.9534756 0.0536337}
+       {0.01284 -0.0044225 0.9915825}
+     }
+   name ACES2065-1_to_DCI-P3+_ColorMatrix
+   xpos -4765
+   ypos 1031
+  }
+push $N2222f860
+  ColorMatrix {
+   matrix {
+       {2.175316 -0.8290099 -0.3463062}
+       {-0.1766085 1.2810651 -0.1044565}
+       {0.0090462 -0.0672213 1.0581751}
+     }
+   name ACES2065-1_to_DCI-P3_ColorMatrix
+   xpos -4875
+   ypos 1031
+  }
+push $N2222f860
+  ColorMatrix {
+   matrix {
+       {2.1738966 -0.8471735 -0.3267231}
+       {-0.3594598 1.4816095 -0.1221498}
+       {-0.0221348 -0.2058554 1.2279902}
+     }
+   name ACES2065-1_to_ColorMatch_RGB_ColorMatrix
+   xpos -4985
+   ypos 1031
+  }
+push $N2222f860
+  ColorMatrix {
+   matrix {
+       {1.3101114 -0.198411 -0.1117004}
+       {-0.0033866 0.920262 0.0831247}
+       {0.0094362 0.16218 0.8283838}
+     }
+   name ACES2065-1_to_Cinema_Gamut_ColorMatrix
+   xpos -5095
+   ypos 1031
+  }
+push $N2222f860
+  ColorMatrix {
+   matrix {
+       {2.015162 -0.5863427 -0.4288193}
+       {0.0056749 1.0061864 -0.0118613}
+       {-0.0004484 -0.0103441 1.0107925}
+     }
+   name ACES2065-1_to_CIE_RGB_ColorMatrix
+   xpos -5205
+   ypos 1031
+  }
+push $N2222f860
+  ColorMatrix {
+   matrix {
+       {1.5110494 -0.2839239 -0.2271255}
+       {-0.1490444 1.2304027 -0.0813583}
+       {0.0055687 -0.0662031 1.0606344}
+     }
+   name ACES2065-1_to_Beta_RGB_ColorMatrix
+   xpos -5315
+   ypos 1031
+  }
+push $N2222f860
+  ColorMatrix {
+   matrix {
+       {1.5641102 -0.3243544 -0.2397558}
+       {0.0049347 1.0871521 -0.0920867}
+       {-0.0021433 -0.01564 1.0177833}
+     }
+   name ACES2065-1_to_Best_RGB_ColorMatrix
+   xpos -5425
+   ypos 1031
+  }
+push $N2222f860
+  ColorMatrix {
+   matrix {
+       {2.3344983 -0.9551886 -0.3793097}
+       {-0.3453813 1.4539972 -0.108616}
+       {-0.0100796 -0.1955701 1.2056497}
+     }
+   name ACES2065-1_to_Apple_RGB_ColorMatrix
+   xpos -5535
+   ypos 1031
+  }
+push $N2222f860
+  ColorMatrix {
+   matrix {
+       {1.3804394 -0.1099597 -0.2704798}
+       {0.003365 1.0460284 -0.0493934}
+       {-0.0024161 -0.0716152 1.0740314}
+     }
+   name ACES2065-1_to_Adobe_Wide_Gamut_RGB_ColorMatrix
+   xpos -5645
+   ypos 1031
+  }
+push $N2222f860
+  ColorMatrix {
+   matrix {
+       {1.7250368 -0.4229011 -0.3021356}
+       {-0.2754767 1.3698266 -0.0943499}
+       {-0.0266698 -0.0853379 1.1120077}
+     }
+   name ACES2065-1_to_Adobe_RGB_1998_ColorMatrix
+   xpos -5755
+   ypos 1031
+  }
+push $N2222f860
+  ColorMatrix {
+   matrix {
+       {1.5159945 -0.3613546 -0.1546574}
+       {-0.1283291 1.0193326 0.1089834}
+       {-0.010511 0.0608325 0.9495411}
+     }
+   name ACES2065-1_to_ALEXA_Wide_Gamut_RGB_ColorMatrix
+   xpos -5865
+   ypos 1031
+  }
+push $N2222f860
+  ColorMatrix {
+   matrix {
+       {1 0 0}
+       {0 1 0}
+       {0 0 1}
+     }
+   name ACES2065-1_to_ACESproxy_ColorMatrix
+   xpos -5975
+   ypos 1031
+  }
+push $N2222f860
+  ColorMatrix {
+   matrix {
+       {1.4514393 -0.2365107 -0.2149286}
+       {-0.0765538 1.1762297 -0.0996759}
+       {0.0083161 -0.0060324 0.9977163}
+     }
+   name ACES2065-1_to_ACEScg_ColorMatrix
+   xpos -6085
+   ypos 1031
+  }
+push $N2222f860
+  ColorMatrix {
+   matrix {
+       {1.4514393 -0.2365107 -0.2149286}
+       {-0.0765538 1.1762297 -0.0996759}
+       {0.0083161 -0.0060324 0.9977163}
+     }
+   name ACES2065-1_to_ACEScc_ColorMatrix
+   xpos -6195
+   ypos 1031
+  }
+push $N2222f860
+  ColorMatrix {
+   matrix {
+       {1 0 0}
+       {0 1 0}
+       {0 0 1}
+     }
+   name ACES2065-1_to_ACES2065-1_ColorMatrix
+   xpos -6305
+   ypos 1031
+  }
+  Switch {
+   inputs 31
+   which {{colourspace_Pulldown_Choice}}
+   name colourspace_Switch
+   xpos -3005
+   ypos 1055
+   addUserKnob {20 User}
+   addUserKnob {4 colourspace_Pulldown_Choice l Colourspace M {ACES2065-1 ACEScc ACEScg ACESproxy "ALEXA Wide Gamut RGB" "Adobe RGB 1998" "Adobe Wide Gamut RGB" "Apple RGB" "Best RGB" "Beta RGB" "CIE RGB" "Cinema Gamut" "ColorMatch RGB" DCI-P3 DCI-P3+ "Don RGB 4" "ECI RGB v2" "Ekta Space PS 5" "Max RGB" "NTSC RGB" "Pal/Secam RGB" "ProPhoto RGB" "Rec. 2020" "Rec. 709" "Russell RGB" S-Gamut S-Gamut3 S-Gamut3.Cine "SMPTE-C RGB" "Xtreme RGB" sRGB}}
+   colourspace_Pulldown_Choice {{parent.colourspace_Pulldown_Choice x31 16}}
+  }
+  Output {
+   name Output
+   xpos -3005
+   ypos 1079
+  }
+ end_group
+ Constant {
+  inputs 0
+  color {0.015 0.015 0.015 1}
+  format "512 512 0 0 512 512 1 square_512"
+  name Constant
+  xpos 950
+  ypos -225
+ }
+ Reformat {
+  type "to box"
+  box_width {{parent.ContactSheet.knob.width}}
+  box_height {{"parent.ContactSheet.knob.height + 112"}}
+  box_fixed true
+  name Reformat
+  xpos 950
+  ypos -153
+ }
+ Merge2 {
+  inputs 2
+  name Merge
+  xpos 840
+  ypos -153
+ }
+ Text {
+  opacity {{parent.title_opacity_Floating_Point_Slider}}
+  message "\[value ACES2065_1_to_RGB.colourspace_Pulldown_Choice] - X-Rite ColorChecker 2005 Classic"
+  font "\[python nuke.defaultFontPathname()]"
+  size 30
+  xjustify center
+  yjustify bottom
+  Transform 1
+  box {0 0 {parent.Reformat.box_width} {parent.Reformat.box_height/2}}
+  translate {0 {"center.y + size * 1.25"}}
+  scale 2
+  center {{box.r/2 x31 3583} {box.t}}
+  name title_Text
+  xpos 840
+  ypos -129
+ }
+ Output {
+  name Output
+  xpos 840
+  ypos -105
+ }
+end_group
+Viewer {
+ input_process false
+ name Viewer1
+ xpos 1170
+ ypos 447
+}
+StickyNote {
+ inputs 0
+ name StickyNote
+ tile_color 0x767676ff
+ gl_color 0x767676ff
+ label "COLOUR RENDITION CHART v0.1.0\n\ncolour-science.org - April 12, 2015\n\nThis file defines the X-Rite ColorChecker 2005 Classic Colour Rendition Chart.\n\nReference samples colours have been converted from CIE xyY colourspace to ACES2065-1 colourspace.\n\nMatrices converting from ACES2065-1 to RGB Colourspace were computed using CAT02 chromatic adaptation transform.\n\nThe following RGB colourspaces are supported:\n\n- ACES2065-1\n- ACEScc\n- ACEScg\n- ACESproxy\n- ALEXA Wide Gamut RGB\n- Adobe RGB 1998\n- Adobe Wide Gamut RGB\n- Apple RGB\n- Best RGB\n- Beta RGB\n- CIE RGB\n- Cinema Gamut\n- ColorMatch RGB\n- DCI-P3\n- DCI-P3+\n- Don RGB 4\n- ECI RGB v2\n- Ekta Space PS 5\n- Max RGB\n- NTSC RGB\n- Pal/Secam RGB\n- ProPhoto RGB\n- Rec. 2020\n- Rec. 709\n- Russell RGB\n- S-Gamut\n- S-Gamut3\n- S-Gamut3.Cine\n- SMPTE-C RGB\n- Xtreme RGB\n- sRGB\n\nMore informations are available here: https://github.com/colour-science/colour/tree/develop/colour/models/dataset\n\n\n\[1] BabelColor. (2012). ColorChecker RGB and spectra. Retrieved from http://www.babelcolor.com/download/ColorChecker_RGB_and_spectra.xls\n"
+ note_font_size 14
+ xpos 813
+ ypos -273
+}
