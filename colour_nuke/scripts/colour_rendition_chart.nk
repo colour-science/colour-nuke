@@ -41,16 +41,6 @@ Root {
  proxy_type scale
  proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
 }
-StickyNote {
- inputs 0
- name StickyNote
- tile_color 0x767676ff
- gl_color 0x767676ff
- label "COLOUR RENDITION CHART v0.1.1\n\ncolour-science.org - April 13, 2015\n\nThis file defines the X-Rite ColorChecker 2005 Classic Colour Rendition Chart.\n\nReference samples colours are converted from CIE XYZ tristimulus values to RGB colourspace.\n\nMatrices converting from CIE XYZ tristimulus to RGB Colourspace were computed using CAT02 chromatic adaptation transform.\n\nThe following RGB colourspaces are implemented:\n\n- ACES2065-1\n- ACEScc\n- ACEScg\n- ACESproxy\n- ALEXA Wide Gamut RGB\n- Adobe RGB 1998\n- Adobe Wide Gamut RGB\n- Apple RGB\n- Best RGB\n- Beta RGB\n- CIE RGB\n- Cinema Gamut\n- ColorMatch RGB\n- DCI-P3\n- DCI-P3+\n- Don RGB 4\n- ECI RGB v2\n- Ekta Space PS 5\n- Max RGB\n- NTSC RGB\n- Pal/Secam RGB\n- ProPhoto RGB\n- Rec. 2020\n- Rec. 709\n- Russell RGB\n- S-Gamut\n- S-Gamut3\n- S-Gamut3.Cine\n- SMPTE-C RGB\n- Xtreme RGB\n- sRGB\n\nRendered colour rendition charts can be downloaded at this url: https://github.com/colour-science/colour-nuke/tree/master/colour_nuke/resources/images/ColorChecker2005\n\nMore informations are available here: https://github.com/colour-science/colour/tree/develop/colour/models/dataset\n\nLatest version of the file will always be available at this url: https://github.com/colour-science/colour-nuke/blob/master/colour_nuke/scripts/colour_rendition_chart.nk\n\n\[1] BabelColor. (2012). ColorChecker RGB and spectra. Retrieved from http://www.babelcolor.com/download/ColorChecker_RGB_and_spectra.xls\n"
- note_font_size 14
- xpos 739
- ypos -267
-}
 Group {
  inputs 0
  name Colour_Rendition_Chart
@@ -66,7 +56,7 @@ Group {
  addUserKnob {7 label_opacity_Floating_Point_Slider l "Label Opacity"}
  addUserKnob {20 parameters_endGroup l endGroup n -1}
  addUserKnob {20 about_Tab l About}
- addUserKnob {26 description_Text l "" +STARTLINE T "Colour Rendition Chart v0.1.1\n\ncolour-science.org - April 13, 2015\n\nThis Gizmo / Group implements the X-Rite ColorChecker 2005 Classic Colour Rendition Chart.\n\nReference samples colours are converted from CIE XYZ tristimulus values to RGB colourspace.\n\nMatrices converting from CIE XYZ tristimulus to RGB Colourspace were computed using CAT02 chromatic adaptation transform.\n\n\[1] BabelColor. (2012). ColorChecker RGB and spectra. Retrieved from http://www.babelcolor.com/download/ColorChecker_RGB_and_spectra.xls"}
+ addUserKnob {26 description_Text l "" +STARTLINE T "Colour Rendition Chart v0.1.1\n\ncolour-science.org - April 13, 2015\n\nThis Gizmo / Group implements the X-Rite ColorChecker 2005 Classic Colour Rendition Chart.\n\nReference samples colours are converted from CIE XYZ tristimulus values to RGB colourspace.\n\nMatrices converting from CIE XYZ tristimulus to RGB colourspace were computed using CAT02 chromatic adaptation transform.\n\n\[1] BabelColor. (2012). ColorChecker RGB and spectra. Retrieved from http://www.babelcolor.com/download/ColorChecker_RGB_and_spectra.xls"}
 }
  Group {
   inputs 0
@@ -3063,4 +3053,15 @@ Viewer {
  name Viewer1
  xpos 1170
  ypos 447
+}
+StickyNote {
+ inputs 0
+ name StickyNote
+ tile_color 0x767676ff
+ gl_color 0x767676ff
+ label "COLOUR RENDITION CHART v0.1.1\n\ncolour-science.org - April 13, 2015\n\nThis file defines the X-Rite ColorChecker 2005 Classic Colour Rendition Chart.\n\nReference samples colours are converted from CIE XYZ tristimulus values to RGB colourspace.\n\nMatrices converting from CIE XYZ tristimulus to RGB colourspace were computed using CAT02 chromatic adaptation transform.\n\nThe following RGB colourspaces are implemented:\n\n- ACES2065-1\n- ACEScc\n- ACEScg\n- ACESproxy\n- ALEXA Wide Gamut RGB\n- Adobe RGB 1998\n- Adobe Wide Gamut RGB\n- Apple RGB\n- Best RGB\n- Beta RGB\n- CIE RGB\n- Cinema Gamut\n- ColorMatch RGB\n- DCI-P3\n- DCI-P3+\n- Don RGB 4\n- ECI RGB v2\n- Ekta Space PS 5\n- Max RGB\n- NTSC RGB\n- Pal/Secam RGB\n- ProPhoto RGB\n- Rec. 2020\n- Rec. 709\n- Russell RGB\n- S-Gamut\n- S-Gamut3\n- S-Gamut3.Cine\n- SMPTE-C RGB\n- Xtreme RGB\n- sRGB\n\nRendered colour rendition charts can be downloaded at this url: https://github.com/colour-science/colour-nuke/tree/master/colour_nuke/resources/images/ColorChecker2005\n\nMore informations are available here: https://github.com/colour-science/colour/tree/develop/colour/models/dataset\n\nLatest version of the file will always be available at this url: https://github.com/colour-science/colour-nuke/blob/master/colour_nuke/scripts/colour_rendition_chart.nk\n\n\[1] BabelColor. (2012). ColorChecker RGB and spectra. Retrieved from http://www.babelcolor.com/download/ColorChecker_RGB_and_spectra.xls\n"
+ note_font_size 14
+ selected true
+ xpos 739
+ ypos -267
 }
