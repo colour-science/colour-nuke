@@ -2,7 +2,7 @@
 version 8.0 v1
 define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
 <layout version="1.0">
-    <window x="0" y="23" w="1280" h="717" screen="0">
+    <window x="0" y="23" w="1280" h="725" screen="0">
         <splitter orientation="1">
             <split size="808"/>
             <splitter orientation="1">
@@ -12,11 +12,11 @@ define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
                 </dock>
                 <split size="764"/>
                 <splitter orientation="2">
-                    <split size="406"/>
+                    <split size="410"/>
                     <dock id="" activePageId="Viewer.1">
                         <page id="Viewer.1"/>
                     </dock>
-                    <split size="285"/>
+                    <split size="289"/>
                     <dock id="" activePageId="DAG.1">
                         <page id="DAG.1"/>
                         <page id="Curve Editor.1"/>
@@ -39,50 +39,40 @@ Root {
  proxy_type scale
  proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
 }
-StickyNote {
- inputs 0
- name StickyNote
- tile_color 0x767676ff
- gl_color 0x767676ff
- label "GLOBAL TONEMAPPING OPERATORS 1.1\n\ncolour-science.org - May 5, 2015\n\nThis file is a playground for implementation of various Global Tonemapping Operators.\n\nBecause Nuke is unable of realtime computation of image average, min and max values, some operators need a domain precomputation.\n\nMore informations are available in the following IPython Notebook:\n\nhttp://nbviewer.ipython.org/github/colour-science/colour-ramblings/blob/master/global_tonemapping_operators.ipynb\n\nLatest version of the file will always be available at this url: https://github.com/colour-science/colour-nuke/blob/master/colour_nuke/scripts/global_tonemapping_operators.nk\n\n"
- note_font_size 14
- xpos -358
- ypos -333
-}
 Constant {
  inputs 0
  channels rgb
  format "512 512 0 0 512 512 1 square_512"
  name Constant
- xpos -150
- ypos -129
+ xpos 359
+ ypos -134
 }
-set N22104880 [stack 0]
+set N1d6b3780 [stack 0]
 Invert {
  name Invert
- xpos -260
- ypos -109
+ xpos 249
+ ypos -114
 }
 Transform {
  translate {128 0}
  scale {0.5 1}
  center {256 256}
  name Transform
- xpos -260
- ypos -81
+ xpos 249
+ ypos -86
 }
 Dot {
  name Dot1
- xpos -226
- ypos -30
+ xpos 283
+ ypos -35
 }
-push $N22104880
+push $N1d6b3780
 Ramp {
  p0 {0 0}
  p1 {0 512}
  name LDR_Ramp
- xpos -150
- ypos -57
+ xpos 359
+ ypos -62
 }
 Ramp {
  inputs 1+1
@@ -90,509 +80,257 @@ Ramp {
  p1 {0 512}
  color {6 3 1.5 4}
  name HDR_Ramp
- xpos -150
- ypos -33
+ xpos 359
+ ypos -38
 }
-set N28105100 [stack 0]
+set N1d6edaf0 [stack 0]
 Group {
- name Schlick94_Tonemapping_Operator
+ name Simple_Tonemapping_Operator
  tile_color 0xffbf00ff
- xpos -40
- ypos 63
- addUserKnob {20 Schlick94_tonemapping_operator_tab l "Schlick (1994) Tonemapping Operator"}
- addUserKnob {20 tone_parameters_Group l "Tone Parameters" n 1}
- addUserKnob {22 compute_limits_Python_Script_Button l "Compute Domain" t "Computes the domain / range of internal nodes. \n\nThe domain has to be manually recomputed each time that up-stream graph is changed." T nuke.toNode('domain_CurveTool').knob('go').execute() +STARTLINE}
- addUserKnob {22 reset_domain_Python_Script_Button l "Reset Domain" t "Reset the domain / range of internal nodes. " -STARTLINE T "node =  nuke.toNode('domain_CurveTool')\n\nknob = node.knob('maxlumapixdata')\nknob.clearAnimated()\nknob.setValue((0, 0))\n\nknob = node.knob('maxlumapixvalue')\nknob.clearAnimated()\nknob.setValue(1)\n\nknob = node.knob('minlumapixdata')\nknob.clearAnimated()\nknob.setValue((0, 0))\n\nknob = node.knob('minlumapixvalue')\nknob.clearAnimated()\nknob.setValue(0)"}
- addUserKnob {7 p_Floating_Point_Slider l p R 1 5}
- p_Floating_Point_Slider 1
- addUserKnob {20 tone_parameters_endGroup l endGroup n -1}
+ xpos 469
+ ypos -62
+ addUserKnob {20 simple_tonemapping_operator_tab l "Simple Tonemapping Operator"}
  addUserKnob {20 miscellaneous_Group l "Miscellaneous Parameters" n 1}
- addUserKnob {4 colourspace_Pulldown_Choice l Colourspace M {ACES2065-1 ACEScc ACEScg ACESproxy "ALEXA Wide Gamut RGB" "Adobe RGB 1998" "Adobe Wide Gamut RGB" "Apple RGB" "Best RGB" "Beta RGB" "CIE RGB" "Cinema Gamut" "ColorMatch RGB" DCI-P3 DCI-P3+ DRAGONcolor DRAGONcolor2 "Don RGB 4" "ECI RGB v2" "Ekta Space PS 5" "Max RGB" "NTSC RGB" "Pal/Secam RGB" "ProPhoto RGB" REDcolor2 REDcolor3 REDcolor4 "Rec. 2020" "Rec. 709" "Russell RGB" S-Gamut S-Gamut3 S-Gamut3.Cine "SMPTE-C RGB" V-Gamut "Xtreme RGB" sRGB}}
- colourspace_Pulldown_Choice sRGB
  addUserKnob {7 mix_Floating_Point_Slider l Mix t "Dissolve between the original image at 0 and the full effect at 1."}
  mix_Floating_Point_Slider 1
- addUserKnob {6 clamp_output_Check_Box l "Clamp Output" t "Output values are clamped within \[0, 1] domain." +STARTLINE}
- clamp_output_Check_Box true
  addUserKnob {20 miscellaneous_endGroup l endGroup n -1}
  addUserKnob {20 about_Tab l About}
- addUserKnob {26 description_Text l "" +STARTLINE T "Schlick (1994) Tonemapping Operator v0.1.1\n\ncolour-science.org - May 5, 2015\n\nThis Gizmo / Group implements Schlick (1994) Tonemapping Operator.\n\n\[1] Schlick, C. (1994). Quantization Techniques for Visualization of High Dynamic Range Pictures. Proceedings of the Fifth Eurographics Workshop on Rendering, (Section 5), 7–18.\n\[2] Banterle, F., Artusi, A., Debattista, K., & Chalmers, A. (2011). 3.2.3 Quantization Techniques. Advanced High Dynamic Range Imaging. A K Peters/CRC Press. ISBN:978-1568817194"}
+ addUserKnob {26 description_Text l "" +STARTLINE T "Simple Tonemapping Operator v0.1.0\n\ncolour-science.org - March 17, 2015\n\nThis Gizmo / Group implements a Simple Tonemapping Operator.\n\n\[1] Wikipedia. (n.d.). Tonemapping - Purpose and methods. Retrieved March 15, 2015, from http://en.wikipedia.org/wiki/Tone_mapping#Purpose_and_methods"}
 }
  Input {
   inputs 0
   name Input
-  xpos -150
-  ypos -177
+  xpos 55
+  ypos -54
  }
-set N1d68b390 [stack 0]
- Dot {
-  name Dot7
-  xpos -116
-  ypos -102
+set N22551550 [stack 0]
+ Expression {
+  expr0 r/(r+1)
+  expr1 g/(g+1)
+  expr2 b/(b+1)
+  name simple_tonemapping_operator_Expression
+  xpos 55
+  ypos -30
  }
-set N1d628360 [stack 0]
-push 0
-push $N1d628360
-push $N1d68b390
+push $N22551550
  Dot {
   name Dot1
-  xpos -116
-  ypos -198
+  xpos 165
+  ypos -51
  }
- Group {
-  name RGB_Luminance
+ Dot {
+  name Dot2
+  xpos 165
+  ypos 1
+ }
+ Dissolve {
+  inputs 2
+  which {{parent.mix_Floating_Point_Slider}}
+  name Dissolve
   selected true
-  xpos -370
-  ypos -201
-  addUserKnob {20 RGB_luminance_Tab l "RGB Luminance"}
-  addUserKnob {20 colourspace_parameters_Begin_Group l "Colourspace Parameters" n 1}
-  addUserKnob {4 colourspace_Pulldown_Choice l Colourspace M {ACES2065-1 ACEScc ACEScg ACESproxy "ALEXA Wide Gamut RGB" "Adobe RGB 1998" "Adobe Wide Gamut RGB" "Apple RGB" "Best RGB" "Beta RGB" "CIE RGB" "Cinema Gamut" "ColorMatch RGB" DCI-P3 DCI-P3+ DRAGONcolor DRAGONcolor2 "Don RGB 4" "ECI RGB v2" "Ekta Space PS 5" "Max RGB" "NTSC RGB" "Pal/Secam RGB" "ProPhoto RGB" REDcolor2 REDcolor3 REDcolor4 "Rec. 2020" "Rec. 709" "Russell RGB" S-Gamut S-Gamut3 S-Gamut3.Cine "SMPTE-C RGB" V-Gamut "Xtreme RGB" sRGB}}
-  colourspace_Pulldown_Choice {{parent.colourspace_Pulldown_Choice}}
-  addUserKnob {20 endGroup n -1}
-  addUserKnob {20 about_Tab l About}
-  addUserKnob {26 description_Text l "" +STARTLINE T "RGB Luminance v0.1.1\n\ncolour-science.org - May 5, 2015\n\nThis Gizmo / Group computes the \"RGB Luminance\" of given colourspace."}
+  xpos 55
+  ypos -6
  }
-  Input {
-   inputs 0
-   name Input
-   xpos -2350
-   ypos 159
-  }
-set N1d6e3650 [stack 0]
-  Expression {
-   expr0 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
-   expr1 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
-   expr2 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
-   name sRGB_luminance_Expression
-   xpos -2350
-   ypos 183
-  }
-push $N1d6e3650
-  Expression {
-   expr0 "0.0 * r + 1.0 * g + 0.0 * b"
-   expr1 "0.0 * r + 1.0 * g + 0.0 * b"
-   expr2 "0.0 * r + 1.0 * g + 0.0 * b"
-   name Xtreme_RGB_luminance_Expression
-   xpos -2460
-   ypos 183
-  }
-push $N1d6e3650
-  Expression {
-   expr0 "0.260681632101 * r + 0.774893299809 * g + -0.0355749319099 * b"
-   expr1 "0.260681632101 * r + 0.774893299809 * g + -0.0355749319099 * b"
-   expr2 "0.260681632101 * r + 0.774893299809 * g + -0.0355749319099 * b"
-   name V-Gamut_luminance_Expression
-   selected true
-   xpos -2570
-   ypos 183
-  }
-push $N1d6e3650
-  Expression {
-   expr0 "0.212374157009 * r + 0.701076498009 * g + 0.0865493449823 * b"
-   expr1 "0.212374157009 * r + 0.701076498009 * g + 0.0865493449823 * b"
-   expr2 "0.212374157009 * r + 0.701076498009 * g + 0.0865493449823 * b"
-   name SMPTE-C_RGB_luminance_Expression
-   xpos -2680
-   ypos 183
-  }
-push $N1d6e3650
-  Expression {
-   expr0 "0.215072070849 * r + 0.885058455418 * g + -0.100130526267 * b"
-   expr1 "0.215072070849 * r + 0.885058455418 * g + -0.100130526267 * b"
-   expr2 "0.215072070849 * r + 0.885058455418 * g + -0.100130526267 * b"
-   name S-Gamut3.Cine_luminance_Expression
-   xpos -2790
-   ypos 183
-  }
-push $N1d6e3650
-  Expression {
-   expr0 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
-   expr1 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
-   expr2 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
-   name S-Gamut3_luminance_Expression
-   xpos -2900
-   ypos 183
-  }
-push $N1d6e3650
-  Expression {
-   expr0 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
-   expr1 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
-   expr2 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
-   name S-Gamut_luminance_Expression
-   xpos -3010
-   ypos 183
-  }
-push $N1d6e3650
-  Expression {
-   expr0 "0.315199106486 * r + 0.664839320751 * g + 0.0199615727626 * b"
-   expr1 "0.315199106486 * r + 0.664839320751 * g + 0.0199615727626 * b"
-   expr2 "0.315199106486 * r + 0.664839320751 * g + 0.0199615727626 * b"
-   name Russell_RGB_luminance_Expression
-   xpos -3120
-   ypos 183
-  }
-push $N1d6e3650
-  Expression {
-   expr0 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
-   expr1 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
-   expr2 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
-   name Rec._709_luminance_Expression
-   xpos -3230
-   ypos 183
-  }
-push $N1d6e3650
-  Expression {
-   expr0 "0.262698338957 * r + 0.678008765773 * g + 0.0592928952706 * b"
-   expr1 "0.262698338957 * r + 0.678008765773 * g + 0.0592928952706 * b"
-   expr2 "0.262698338957 * r + 0.678008765773 * g + 0.0592928952706 * b"
-   name Rec._2020_luminance_Expression
-   xpos -3340
-   ypos 183
-  }
-push $N1d6e3650
-  Expression {
-   expr0 "0.203484555969 * r + 0.72639105456 * g + 0.0701243894714 * b"
-   expr1 "0.203484555969 * r + 0.72639105456 * g + 0.0701243894714 * b"
-   expr2 "0.203484555969 * r + 0.72639105456 * g + 0.0701243894714 * b"
-   name REDcolor4_luminance_Expression
-   xpos -3450
-   ypos 183
-  }
-push $N1d6e3650
-  Expression {
-   expr0 "0.221768124882 * r + 0.788760003697 * g + -0.0105281285791 * b"
-   expr1 "0.221768124882 * r + 0.788760003697 * g + -0.0105281285791 * b"
-   expr2 "0.221768124882 * r + 0.788760003697 * g + -0.0105281285791 * b"
-   name REDcolor3_luminance_Expression
-   xpos -3560
-   ypos 183
-  }
-push $N1d6e3650
-  Expression {
-   expr0 "0.16451940323 * r + 0.872165887407 * g + -0.0366852906372 * b"
-   expr1 "0.16451940323 * r + 0.872165887407 * g + -0.0366852906372 * b"
-   expr2 "0.16451940323 * r + 0.872165887407 * g + -0.0366852906372 * b"
-   name REDcolor2_luminance_Expression
-   xpos -3670
-   ypos 183
-  }
-push $N1d6e3650
-  Expression {
-   expr0 "0.288037453913 * r + 0.711876883439 * g + 8.56626476195e-05 * b"
-   expr1 "0.288037453913 * r + 0.711876883439 * g + 8.56626476195e-05 * b"
-   expr2 "0.288037453913 * r + 0.711876883439 * g + 8.56626476195e-05 * b"
-   name ProPhoto_RGB_luminance_Expression
-   xpos -3780
-   ypos 183
-  }
-push $N1d6e3650
-  Expression {
-   expr0 "0.222002313106 * r + 0.706668898724 * g + 0.0713287881697 * b"
-   expr1 "0.222002313106 * r + 0.706668898724 * g + 0.0713287881697 * b"
-   expr2 "0.222002313106 * r + 0.706668898724 * g + 0.0713287881697 * b"
-   name Pal/Secam_RGB_luminance_Expression
-   xpos -3890
-   ypos 183
-  }
-push $N1d6e3650
-  Expression {
-   expr0 "0.29890307025 * r + 0.586619854659 * g + 0.114477075091 * b"
-   expr1 "0.29890307025 * r + 0.586619854659 * g + 0.114477075091 * b"
-   expr2 "0.29890307025 * r + 0.586619854659 * g + 0.114477075091 * b"
-   name NTSC_RGB_luminance_Expression
-   xpos -4000
-   ypos 183
-  }
-push $N1d6e3650
-  Expression {
-   expr0 "0.310077340675 * r + 0.689922659325 * g + 0.0 * b"
-   expr1 "0.310077340675 * r + 0.689922659325 * g + 0.0 * b"
-   expr2 "0.310077340675 * r + 0.689922659325 * g + 0.0 * b"
-   name Max_RGB_luminance_Expression
-   xpos -4110
-   ypos 183
-  }
-push $N1d6e3650
-  Expression {
-   expr0 "0.261098890455 * r + 0.734900118525 * g + 0.00400099101932 * b"
-   expr1 "0.261098890455 * r + 0.734900118525 * g + 0.00400099101932 * b"
-   expr2 "0.261098890455 * r + 0.734900118525 * g + 0.00400099101932 * b"
-   name Ekta_Space_PS_5_luminance_Expression
-   xpos -4220
-   ypos 183
-  }
-push $N1d6e3650
-  Expression {
-   expr0 "0.320104742337 * r + 0.601874395246 * g + 0.078020862417 * b"
-   expr1 "0.320104742337 * r + 0.601874395246 * g + 0.078020862417 * b"
-   expr2 "0.320104742337 * r + 0.601874395246 * g + 0.078020862417 * b"
-   name ECI_RGB_v2_luminance_Expression
-   xpos -4330
-   ypos 183
-  }
-push $N1d6e3650
-  Expression {
-   expr0 "0.278090415226 * r + 0.687901558611 * g + 0.0340080261629 * b"
-   expr1 "0.278090415226 * r + 0.687901558611 * g + 0.0340080261629 * b"
-   expr2 "0.278090415226 * r + 0.687901558611 * g + 0.0340080261629 * b"
-   name Don_RGB_4_luminance_Expression
-   xpos -4440
-   ypos 183
-  }
-push $N1d6e3650
-  Expression {
-   expr0 "0.186660738109 * r + 0.74118120047 * g + 0.0721580614212 * b"
-   expr1 "0.186660738109 * r + 0.74118120047 * g + 0.0721580614212 * b"
-   expr2 "0.186660738109 * r + 0.74118120047 * g + 0.0721580614212 * b"
-   name DRAGONcolor2_luminance_Expression
-   xpos -4550
-   ypos 183
-  }
-push $N1d6e3650
-  Expression {
-   expr0 "0.215087180914 * r + 0.849257379828 * g + -0.0643445607425 * b"
-   expr1 "0.215087180914 * r + 0.849257379828 * g + -0.0643445607425 * b"
-   expr2 "0.215087180914 * r + 0.849257379828 * g + -0.0643445607425 * b"
-   name DRAGONcolor_luminance_Expression
-   xpos -4660
-   ypos 183
-  }
-push $N1d6e3650
-  Expression {
-   expr0 "0.203986297104 * r + 0.882591093117 * g + -0.0865773902211 * b"
-   expr1 "0.203986297104 * r + 0.882591093117 * g + -0.0865773902211 * b"
-   expr2 "0.203986297104 * r + 0.882591093117 * g + -0.0865773902211 * b"
-   name DCI-P3+_luminance_Expression
-   xpos -4770
-   ypos 183
-  }
-push $N1d6e3650
-  Expression {
-   expr0 "0.209491677913 * r + 0.721595254161 * g + 0.0689130679262 * b"
-   expr1 "0.209491677913 * r + 0.721595254161 * g + 0.0689130679262 * b"
-   expr2 "0.209491677913 * r + 0.721595254161 * g + 0.0689130679262 * b"
-   name DCI-P3_luminance_Expression
-   xpos -4880
-   ypos 183
-  }
-push $N1d6e3650
-  Expression {
-   expr0 "0.274880515737 * r + 0.658137117154 * g + 0.0669823671092 * b"
-   expr1 "0.274880515737 * r + 0.658137117154 * g + 0.0669823671092 * b"
-   expr2 "0.274880515737 * r + 0.658137117154 * g + 0.0669823671092 * b"
-   name ColorMatch_RGB_luminance_Expression
-   xpos -4990
-   ypos 183
-  }
-push $N1d6e3650
-  Expression {
-   expr0 "0.261256555898 * r + 0.869631208967 * g + -0.130887764865 * b"
-   expr1 "0.261256555898 * r + 0.869631208967 * g + -0.130887764865 * b"
-   expr2 "0.261256555898 * r + 0.869631208967 * g + -0.130887764865 * b"
-   name Cinema_Gamut_luminance_Expression
-   xpos -5100
-   ypos 183
-  }
-push $N1d6e3650
-  Expression {
-   expr0 "0.176204436534 * r + 0.812984693878 * g + 0.0108108695884 * b"
-   expr1 "0.176204436534 * r + 0.812984693878 * g + 0.0108108695884 * b"
-   expr2 "0.176204436534 * r + 0.812984693878 * g + 0.0108108695884 * b"
-   name CIE_RGB_luminance_Expression
-   xpos -5210
-   ypos 183
-  }
-push $N1d6e3650
-  Expression {
-   expr0 "0.303270045405 * r + 0.663789543861 * g + 0.0329404107343 * b"
-   expr1 "0.303270045405 * r + 0.663789543861 * g + 0.0329404107343 * b"
-   expr2 "0.303270045405 * r + 0.663789543861 * g + 0.0329404107343 * b"
-   name Beta_RGB_luminance_Expression
-   xpos -5320
-   ypos 183
-  }
-push $N1d6e3650
-  Expression {
-   expr0 "0.227563471677 * r + 0.738429482666 * g + 0.0340070456574 * b"
-   expr1 "0.227563471677 * r + 0.738429482666 * g + 0.0340070456574 * b"
-   expr2 "0.227563471677 * r + 0.738429482666 * g + 0.0340070456574 * b"
-   name Best_RGB_luminance_Expression
-   xpos -5430
-   ypos 183
-  }
-push $N1d6e3650
-  Expression {
-   expr0 "0.244614394775 * r + 0.672060284019 * g + 0.0833253212057 * b"
-   expr1 "0.244614394775 * r + 0.672060284019 * g + 0.0833253212057 * b"
-   expr2 "0.244614394775 * r + 0.672060284019 * g + 0.0833253212057 * b"
-   name Apple_RGB_luminance_Expression
-   xpos -5540
-   ypos 183
-  }
-push $N1d6e3650
-  Expression {
-   expr0 "0.258690663895 * r + 0.724718154549 * g + 0.0165911815566 * b"
-   expr1 "0.258690663895 * r + 0.724718154549 * g + 0.0165911815566 * b"
-   expr2 "0.258690663895 * r + 0.724718154549 * g + 0.0165911815566 * b"
-   name Adobe_Wide_Gamut_RGB_luminance_Expression
-   xpos -5650
-   ypos 183
-  }
-push $N1d6e3650
-  Expression {
-   expr0 "0.29734448514 * r + 0.627376113264 * g + 0.0752794015963 * b"
-   expr1 "0.29734448514 * r + 0.627376113264 * g + 0.0752794015963 * b"
-   expr2 "0.29734448514 * r + 0.627376113264 * g + 0.0752794015963 * b"
-   name Adobe_RGB_1998_luminance_Expression
-   xpos -5760
-   ypos 183
-  }
-push $N1d6e3650
-  Expression {
-   expr0 "0.291948669899 * r + 0.823830265984 * g + -0.115778935883 * b"
-   expr1 "0.291948669899 * r + 0.823830265984 * g + -0.115778935883 * b"
-   expr2 "0.291948669899 * r + 0.823830265984 * g + -0.115778935883 * b"
-   name ALEXA_Wide_Gamut_RGB_luminance_Expression
-   xpos -5870
-   ypos 183
-  }
-push $N1d6e3650
-  Expression {
-   expr0 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
-   expr1 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
-   expr2 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
-   name ACESproxy_luminance_Expression
-   xpos -5980
-   ypos 183
-  }
-push $N1d6e3650
-  Expression {
-   expr0 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
-   expr1 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
-   expr2 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
-   name ACEScg_luminance_Expression
-   xpos -6090
-   ypos 183
-  }
-push $N1d6e3650
-  Expression {
-   expr0 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
-   expr1 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
-   expr2 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
-   name ACEScc_luminance_Expression
-   xpos -6200
-   ypos 183
-  }
-push $N1d6e3650
-  Expression {
-   expr0 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
-   expr1 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
-   expr2 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
-   name ACES2065-1_luminance_Expression
-   xpos -6310
-   ypos 183
-  }
-  Switch {
-   inputs 37
-   which {{colourspace_Pulldown_Choice}}
-   name colourspace_Switch
-   xpos -2350
-   ypos 207
-   addUserKnob {20 User}
-   addUserKnob {4 colourspace_Pulldown_Choice l Colourspace M {ACES2065-1 ACEScc ACEScg ACESproxy "ALEXA Wide Gamut RGB" "Adobe RGB 1998" "Adobe Wide Gamut RGB" "Apple RGB" "Best RGB" "Beta RGB" "CIE RGB" "Cinema Gamut" "ColorMatch RGB" DCI-P3 DCI-P3+ DRAGONcolor DRAGONcolor2 "Don RGB 4" "ECI RGB v2" "Ekta Space PS 5" "Max RGB" "NTSC RGB" "Pal/Secam RGB" "ProPhoto RGB" REDcolor2 REDcolor3 REDcolor4 "Rec. 2020" "Rec. 709" "Russell RGB" S-Gamut S-Gamut3 S-Gamut3.Cine "SMPTE-C RGB" V-Gamut "Xtreme RGB" sRGB}}
-   colourspace_Pulldown_Choice {{parent.colourspace_Pulldown_Choice}}
-  }
-  Output {
-   name Output
-   xpos -2350
-   ypos 231
-  }
- end_group
-set N1d68bae0 [stack 0]
+ Output {
+  name Output
+  xpos 55
+  ypos 26
+ }
+end_group
+push $N1d6edaf0
+Group {
+ name Filmic_Tonemapping_Operator
+ tile_color 0xffbf00ff
+ xpos 469
+ ypos 106
+ addUserKnob {20 filmic_tonemapping_operator_Tab l "Filmic Tonemapping Operator"}
+ addUserKnob {20 tone_parameters_Group l "Tone Parameters" n 1}
+ addUserKnob {7 A_Floating_Point_Slider l "Shoulder Strength"}
+ A_Floating_Point_Slider 0.22
+ addUserKnob {7 B_Floating_Point_Slider l "Linear Strength"}
+ B_Floating_Point_Slider 0.3
+ addUserKnob {7 C_Floating_Point_Slider l "Linear Angle"}
+ C_Floating_Point_Slider 0.1
+ addUserKnob {7 D_Floating_Point_Slider l "Toe Strength"}
+ D_Floating_Point_Slider 0.2
+ addUserKnob {7 E_Floating_Point_Slider l "Toe Numerator"}
+ E_Floating_Point_Slider 0.01
+ addUserKnob {7 F_Floating_Point_Slider l "Toe Denominator"}
+ F_Floating_Point_Slider 0.3
+ addUserKnob {20 tone_parameters_endGroup l endGroup n -1}
+ addUserKnob {20 miscellaneous_parameters_Group l "Miscellaneous Parameters" n 1}
+ addUserKnob {7 mix_Floating_Point_Slider l Mix t "Dissolve between the original image at 0 and the full effect at 1."}
+ mix_Floating_Point_Slider 1
+ addUserKnob {7 exposure_bias_Floating_Point_Slider l "Exposure Bias"}
+ exposure_bias_Floating_Point_Slider 2
+ addUserKnob {6 clamp_output_Check_Box l "Clamp Output" t "Output values are clamped within \[0, 1] domain." +STARTLINE}
+ clamp_output_Check_Box true
+ addUserKnob {20 miscellaneous_parameters_endGroup l endGroup n -1}
+ addUserKnob {20 about_Tab l About}
+ addUserKnob {26 description_Text l "" +STARTLINE T "Filming Tonemapping Operator v0.1.0\n\ncolour-science.org - March 17, 2015\n\nThis Gizmo / Group implements the Filming Tonemapping Operator from Uncharted 2 by John Habble which is based on Haarm-Peter Duiker curve.\n\n\[1] Habble, J. (2010). Filmic Tonemapping Operators. Retrieved March 15, 2015, from http://filmicgames.com/archives/75\n\[2] Habble, J. (2010). Uncharted 2: HDR Lighting. Retrieved March 15, 2015, from http://www.slideshare.net/ozlael/hable-john-uncharted2-hdr-lighting"}
+}
+ Input {
+  inputs 0
+  name Input
+  xpos 13
+  ypos -125
+ }
+set N225b43c0 [stack 0]
  Dot {
-  name Dot4
-  xpos -446
-  ypos -198
+  name Dot1
+  xpos 123
+  ypos -122
  }
  Dot {
-  name Dot5
-  xpos -446
-  ypos -126
+  name Dot2
+  xpos 123
+  ypos 22
  }
-set N17ea23b0 [stack 0]
+push $N225b43c0
+ Multiply {
+  value {{parent.filmic_tonemapping_operator_Expression.exposure_bias_Floating_Point_Slider}}
+  name exposure_bias_Multiply
+  xpos 13
+  ypos -101
+ }
  Expression {
-  channel3 rgb
-  expr3 "(p_Floating_Point_Slider * r) / (p_Floating_Point_Slider * r - r + L_max_Floating_Point_Slider)"
-  name Schlick94_tonemapping_operator_Expression
-  xpos -260
-  ypos -129
+  temp_name0 toe_angle
+  temp_expr0 E_Floating_Point_Slider/F_Floating_Point_Slider
+  expr0 ((r*(A_Floating_Point_Slider*r+C_Floating_Point_Slider*B_Floating_Point_Slider)+D_Floating_Point_Slider*E_Floating_Point_Slider)/(r*(A_Floating_Point_Slider*r+B_Floating_Point_Slider)+D_Floating_Point_Slider*F_Floating_Point_Slider))-toe_angle
+  expr1 ((g*(A_Floating_Point_Slider*g+C_Floating_Point_Slider*B_Floating_Point_Slider)+D_Floating_Point_Slider*E_Floating_Point_Slider)/(g*(A_Floating_Point_Slider*g+B_Floating_Point_Slider)+D_Floating_Point_Slider*F_Floating_Point_Slider))-toe_angle
+  expr2 ((b*(A_Floating_Point_Slider*b+C_Floating_Point_Slider*B_Floating_Point_Slider)+D_Floating_Point_Slider*E_Floating_Point_Slider)/(b*(A_Floating_Point_Slider*b+B_Floating_Point_Slider)+D_Floating_Point_Slider*F_Floating_Point_Slider))-toe_angle
+  expr3 a
+  name filmic_tonemapping_operator_Expression
+  xpos 13
+  ypos -69
   addUserKnob {20 User}
-  addUserKnob {7 p_Floating_Point_Slider l p}
-  p_Floating_Point_Slider {{parent.p_Floating_Point_Slider}}
-  addUserKnob {7 L_max_Floating_Point_Slider l L_max}
-  L_max_Floating_Point_Slider {{parent.domain_CurveTool.maxlumapixvalue}}
+  addUserKnob {7 exposure_bias_Floating_Point_Slider l "Exposure Bias"}
+  exposure_bias_Floating_Point_Slider {{parent.exposure_bias_Floating_Point_Slider}}
+  addUserKnob {7 A_Floating_Point_Slider l "Shoulder Strength"}
+  A_Floating_Point_Slider {{parent.A_Floating_Point_Slider}}
+  addUserKnob {7 B_Floating_Point_Slider l "Linear Strength"}
+  B_Floating_Point_Slider {{parent.B_Floating_Point_Slider}}
+  addUserKnob {7 C_Floating_Point_Slider l "Linear Angle"}
+  C_Floating_Point_Slider {{parent.C_Floating_Point_Slider}}
+  addUserKnob {7 D_Floating_Point_Slider l "Toe Strength"}
+  D_Floating_Point_Slider {{parent.D_Floating_Point_Slider}}
+  addUserKnob {7 E_Floating_Point_Slider l "Toe Numerator"}
+  E_Floating_Point_Slider {{parent.E_Floating_Point_Slider}}
+  addUserKnob {7 F_Floating_Point_Slider l "Toe Denominator"}
+  F_Floating_Point_Slider {{parent.F_Floating_Point_Slider}}
+  addUserKnob {7 linear_whitepoint_Floating_Point_Slider l "Linear Whitepoint"}
+  linear_whitepoint_Floating_Point_Slider 11.2
+  addUserKnob {7 linear_white_Floating_Point_Slider l "Linear White"}
+  linear_white_Floating_Point_Slider {{((linear_whitepoint_Floating_Point_Slider*(A_Floating_Point_Slider*linear_whitepoint_Floating_Point_Slider+C_Floating_Point_Slider*B_Floating_Point_Slider)+D_Floating_Point_Slider*E_Floating_Point_Slider)/(linear_whitepoint_Floating_Point_Slider*(A_Floating_Point_Slider*linear_whitepoint_Floating_Point_Slider+B_Floating_Point_Slider)+D_Floating_Point_Slider*F_Floating_Point_Slider))-E_Floating_Point_Slider/F_Floating_Point_Slider}}
  }
- Merge2 {
-  inputs 2
-  operation multiply
-  name multiply_Merge
-  xpos -260
-  ypos -105
+ Multiply {
+  value {{1/parent.filmic_tonemapping_operator_Expression.linear_white_Floating_Point_Slider}}
+  name linear_white_Multiply
+  xpos 13
+  ypos -45
  }
-push $N17ea23b0
- Dot {
-  name Dot8
-  xpos -446
-  ypos -78
- }
- Merge2 {
-  inputs 2
-  operation divide
-  name divide_Merge
-  xpos -260
-  ypos -81
- }
-set N17ec1140 [stack 0]
+set N225d7250 [stack 0]
  Clamp {
   name Clamp
-  xpos -370
-  ypos -61
+  xpos -97
+  ypos -13
  }
-push $N17ec1140
+push $N225d7250
  Switch {
   inputs 2
   which {{parent.clamp_output_Check_Box}}
   name clamp_Switch
-  xpos -260
-  ypos -52
- }
-push $N1d68b390
- Dot {
-  name Dot2
-  xpos -6
-  ypos -174
- }
- Dot {
-  name Dot3
-  xpos -6
-  ypos -49
+  xpos 13
+  ypos -9
  }
  Dissolve {
-  inputs 3+1
-  which {{parent.mix_Floating_Point_Slider}}
+  inputs 2
+  which {{1-parent.mix_Floating_Point_Slider}}
   name Dissolve
-  xpos -150
-  ypos -56
+  xpos 13
+  ypos 15
  }
  Output {
   name Output
-  xpos -150
-  ypos -24
+  xpos 13
+  ypos 43
  }
-push $N1d68bae0
+end_group
+Viewer {
+ input_process false
+ name Viewer1
+ xpos 469
+ ypos 130
+}
+StickyNote {
+ inputs 0
+ name StickyNote
+ tile_color 0x767676ff
+ gl_color 0x767676ff
+ label "GLOBAL TONEMAPPING OPERATORS 1.2\n\ncolour-science.org - May 6, 2015\n\nThis file is a playground for implementation of various Global Tonemapping Operators.\n\nBecause Nuke is unable of realtime computation of image average, min and max values, some operators need a domain precomputation.\n\nMore informations are available in the following IPython Notebook:\n\nhttp://nbviewer.ipython.org/github/colour-science/colour-ramblings/blob/master/global_tonemapping_operators.ipynb\n\nLatest version of the file will always be available at this url: https://github.com/colour-science/colour-nuke/blob/master/colour_nuke/scripts/global_tonemapping_operators.nk\n\n"
+ note_font_size 14
+ xpos 151
+ ypos -338
+}
+push $N1d6edaf0
+Group {
+ name Normalisation_Tonemapping_Operator
+ tile_color 0xffbf00ff
+ xpos 469
+ ypos -38
+ addUserKnob {20 normalisation_tonemapping_operator_tab l "Normalisation Tonemapping Operator"}
+ addUserKnob {20 tone_parameters_Group l "Tone Parameters" n 1}
+ addUserKnob {22 compute_limits_Python_Script_Button l "Compute Domain" t "Computes the domain / range of internal nodes. \n\nThe domain has to be manually recomputed each time that up-stream graph is changed." T nuke.toNode('domain_CurveTool').knob('go').execute() +STARTLINE}
+ addUserKnob {22 reset_domain_Python_Script_Button l "Reset Domain" t "Reset the domain / range of internal nodes. " -STARTLINE T "node =  nuke.toNode('domain_CurveTool')\n\nknob = node.knob('maxlumapixdata')\nknob.clearAnimated()\nknob.setValue((0, 0))\n\nknob = node.knob('maxlumapixvalue')\nknob.clearAnimated()\nknob.setValue(1)\n\nknob = node.knob('minlumapixdata')\nknob.clearAnimated()\nknob.setValue((0, 0))\n\nknob = node.knob('minlumapixvalue')\nknob.clearAnimated()\nknob.setValue(0)"}
+ addUserKnob {20 tone_parameters_endGroup l endGroup n -1}
+ addUserKnob {20 miscellaneous_Group l "Miscellaneous Parameters" n 1}
+ addUserKnob {7 mix_Floating_Point_Slider l Mix t "Dissolve between the original image at 0 and the full effect at 1."}
+ mix_Floating_Point_Slider 1
+ addUserKnob {20 miscellaneous_endGroup l endGroup n -1}
+ addUserKnob {20 about_Tab l About}
+ addUserKnob {26 description_Text l "" +STARTLINE T "Normalisation Tonemapping Operator v0.1.0\n\ncolour-science.org - March 17, 2015\n\nThis Gizmo / Group implements a Normalisation Tonemapping Operator.\n\n\[1] Banterle, F., Artusi, A., Debattista, K., & Chalmers, A. (2011). 3.2.1 Simple Mapping Methods. In Advanced High Dynamic Range Imaging (pp. 38–41). A K Peters/CRC Press. ISBN:978-1568817194\n"}
+}
+ Input {
+  inputs 0
+  name Input
+  xpos -97
+  ypos -163
+ }
+set N2251bf10 [stack 0]
+ Multiply {
+  value {{"1 / max(domain_CurveTool.maxlumapixvalue.r, domain_CurveTool.maxlumapixvalue.g, domain_CurveTool.maxlumapixvalue.b)"}}
+  name normalisation_Multiply
+  xpos -97
+  ypos -133
+ }
+push $N2251bf10
  Dot {
-  name Dot6
-  xpos -336
-  ypos -174
+  name Dot2
+  xpos 71
+  ypos -160
+ }
+ Dot {
+  name Dot3
+  xpos 71
+  ypos -94
+ }
+ Dissolve {
+  inputs 2
+  which {{parent.mix_Floating_Point_Slider}}
+  name Dissolve
+  xpos -97
+  ypos -101
+ }
+ Output {
+  name Output
+  xpos -97
+  ypos -69
+ }
+push $N2251bf10
+ Dot {
+  name Dot1
+  xpos -207
+  ypos -160
  }
  CurveTool {
   operation "Max Luma Pixel"
@@ -601,1048 +339,17 @@ push $N1d68bae0
   autocropdata {1071 712 3214 2136}
   maxlumapixvalue 1
   name domain_CurveTool
-  xpos -260
-  ypos -177
- }
-end_group
-push $N28105100
-Group {
- name Exponential_Tonemapping_Operator
- tile_color 0xffbf00ff
- xpos -40
- ypos 39
- addUserKnob {20 exponential_tonemapping_operator_tab l "Exponential Tonemapping Operator"}
- addUserKnob {20 tone_parameters_Group l "Tone Parameters" n 1}
- addUserKnob {22 compute_limits_Python_Script_Button l "Compute Domain" t "Computes the domain / range of internal nodes. \n\nThe domain has to be manually recomputed each time that up-stream graph is changed." T nuke.toNode('domain_CurveTool').knob('go').execute() +STARTLINE}
- addUserKnob {22 reset_domain_Python_Script_Button l "Reset Domain" t "Reset the domain / range of internal nodes. " -STARTLINE T "node =  nuke.toNode('domain_CurveTool')\n\nknob = node.knob('maxlumapixdata')\nknob.clearAnimated()\nknob.setValue((0, 0))\n\nknob = node.knob('maxlumapixvalue')\nknob.clearAnimated()\nknob.setValue(1)\n\nknob = node.knob('minlumapixdata')\nknob.clearAnimated()\nknob.setValue((0, 0))\n\nknob = node.knob('minlumapixvalue')\nknob.clearAnimated()\nknob.setValue(0)"}
- addUserKnob {7 p_Floating_Point_Slider l p}
- p_Floating_Point_Slider 1
- addUserKnob {7 q_Floating_Point_Slider l q R 1 3}
- q_Floating_Point_Slider 1
- addUserKnob {20 tone_parameters_endGroup l endGroup n -1}
- addUserKnob {20 miscellaneous_Group l "Miscellaneous Parameters" n 1}
- addUserKnob {4 colourspace_Pulldown_Choice l Colourspace M {ACES2065-1 ACEScc ACEScg ACESproxy "ALEXA Wide Gamut RGB" "Adobe RGB 1998" "Adobe Wide Gamut RGB" "Apple RGB" "Best RGB" "Beta RGB" "CIE RGB" "Cinema Gamut" "ColorMatch RGB" DCI-P3 DCI-P3+ DRAGONcolor DRAGONcolor2 "Don RGB 4" "ECI RGB v2" "Ekta Space PS 5" "Max RGB" "NTSC RGB" "Pal/Secam RGB" "ProPhoto RGB" REDcolor2 REDcolor3 REDcolor4 "Rec. 2020" "Rec. 709" "Russell RGB" S-Gamut S-Gamut3 S-Gamut3.Cine "SMPTE-C RGB" V-Gamut "Xtreme RGB" sRGB}}
- colourspace_Pulldown_Choice sRGB
- addUserKnob {7 mix_Floating_Point_Slider l Mix t "Dissolve between the original image at 0 and the full effect at 1."}
- mix_Floating_Point_Slider 1
- addUserKnob {6 clamp_output_Check_Box l "Clamp Output" t "Output values are clamped within \[0, 1] domain." +STARTLINE}
- clamp_output_Check_Box true
- addUserKnob {20 miscellaneous_endGroup l endGroup n -1}
- addUserKnob {20 about_Tab l About}
- addUserKnob {26 description_Text l "" +STARTLINE T "Exponential Tonemapping Operator v0.1.1\n\ncolour-science.org - May 5, 2015\n\nThis Gizmo / Group implements an Exponential Tonemapping Operator.\n\n\[1] Schlick, C. (1994). Quantization Techniques for Visualization of High Dynamic Range Pictures. Proceedings of the Fifth Eurographics Workshop on Rendering, (Section 5), 7–18."}
-}
- Input {
-  inputs 0
-  name Input
-  xpos -150
-  ypos -177
- }
-set N281f1210 [stack 0]
- Dot {
-  name Dot7
-  xpos -116
-  ypos -102
- }
-set N281f4cb0 [stack 0]
-push 0
-push $N281f4cb0
-push $N281f1210
- Dot {
-  name Dot1
-  xpos -116
-  ypos -198
- }
- Group {
-  name RGB_Luminance
   selected true
-  xpos -370
-  ypos -201
-  addUserKnob {20 RGB_luminance_Tab l "RGB Luminance"}
-  addUserKnob {20 colourspace_parameters_Begin_Group l "Colourspace Parameters" n 1}
-  addUserKnob {4 colourspace_Pulldown_Choice l Colourspace M {ACES2065-1 ACEScc ACEScg ACESproxy "ALEXA Wide Gamut RGB" "Adobe RGB 1998" "Adobe Wide Gamut RGB" "Apple RGB" "Best RGB" "Beta RGB" "CIE RGB" "Cinema Gamut" "ColorMatch RGB" DCI-P3 DCI-P3+ DRAGONcolor DRAGONcolor2 "Don RGB 4" "ECI RGB v2" "Ekta Space PS 5" "Max RGB" "NTSC RGB" "Pal/Secam RGB" "ProPhoto RGB" REDcolor2 REDcolor3 REDcolor4 "Rec. 2020" "Rec. 709" "Russell RGB" S-Gamut S-Gamut3 S-Gamut3.Cine "SMPTE-C RGB" V-Gamut "Xtreme RGB" sRGB}}
-  colourspace_Pulldown_Choice {{parent.colourspace_Pulldown_Choice}}
-  addUserKnob {20 endGroup n -1}
-  addUserKnob {20 about_Tab l About}
-  addUserKnob {26 description_Text l "" +STARTLINE T "RGB Luminance v0.1.1\n\ncolour-science.org - May 5, 2015\n\nThis Gizmo / Group computes the \"RGB Luminance\" of given colourspace."}
- }
-  Input {
-   inputs 0
-   name Input
-   xpos -2350
-   ypos 159
-  }
-set N21fdb1f0 [stack 0]
-  Expression {
-   expr0 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
-   expr1 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
-   expr2 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
-   name sRGB_luminance_Expression
-   xpos -2350
-   ypos 183
-  }
-push $N21fdb1f0
-  Expression {
-   expr0 "0.0 * r + 1.0 * g + 0.0 * b"
-   expr1 "0.0 * r + 1.0 * g + 0.0 * b"
-   expr2 "0.0 * r + 1.0 * g + 0.0 * b"
-   name Xtreme_RGB_luminance_Expression
-   xpos -2460
-   ypos 183
-  }
-push $N21fdb1f0
-  Expression {
-   expr0 "0.260681632101 * r + 0.774893299809 * g + -0.0355749319099 * b"
-   expr1 "0.260681632101 * r + 0.774893299809 * g + -0.0355749319099 * b"
-   expr2 "0.260681632101 * r + 0.774893299809 * g + -0.0355749319099 * b"
-   name V-Gamut_luminance_Expression
-   selected true
-   xpos -2570
-   ypos 183
-  }
-push $N21fdb1f0
-  Expression {
-   expr0 "0.212374157009 * r + 0.701076498009 * g + 0.0865493449823 * b"
-   expr1 "0.212374157009 * r + 0.701076498009 * g + 0.0865493449823 * b"
-   expr2 "0.212374157009 * r + 0.701076498009 * g + 0.0865493449823 * b"
-   name SMPTE-C_RGB_luminance_Expression
-   xpos -2680
-   ypos 183
-  }
-push $N21fdb1f0
-  Expression {
-   expr0 "0.215072070849 * r + 0.885058455418 * g + -0.100130526267 * b"
-   expr1 "0.215072070849 * r + 0.885058455418 * g + -0.100130526267 * b"
-   expr2 "0.215072070849 * r + 0.885058455418 * g + -0.100130526267 * b"
-   name S-Gamut3.Cine_luminance_Expression
-   xpos -2790
-   ypos 183
-  }
-push $N21fdb1f0
-  Expression {
-   expr0 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
-   expr1 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
-   expr2 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
-   name S-Gamut3_luminance_Expression
-   xpos -2900
-   ypos 183
-  }
-push $N21fdb1f0
-  Expression {
-   expr0 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
-   expr1 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
-   expr2 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
-   name S-Gamut_luminance_Expression
-   xpos -3010
-   ypos 183
-  }
-push $N21fdb1f0
-  Expression {
-   expr0 "0.315199106486 * r + 0.664839320751 * g + 0.0199615727626 * b"
-   expr1 "0.315199106486 * r + 0.664839320751 * g + 0.0199615727626 * b"
-   expr2 "0.315199106486 * r + 0.664839320751 * g + 0.0199615727626 * b"
-   name Russell_RGB_luminance_Expression
-   xpos -3120
-   ypos 183
-  }
-push $N21fdb1f0
-  Expression {
-   expr0 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
-   expr1 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
-   expr2 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
-   name Rec._709_luminance_Expression
-   xpos -3230
-   ypos 183
-  }
-push $N21fdb1f0
-  Expression {
-   expr0 "0.262698338957 * r + 0.678008765773 * g + 0.0592928952706 * b"
-   expr1 "0.262698338957 * r + 0.678008765773 * g + 0.0592928952706 * b"
-   expr2 "0.262698338957 * r + 0.678008765773 * g + 0.0592928952706 * b"
-   name Rec._2020_luminance_Expression
-   xpos -3340
-   ypos 183
-  }
-push $N21fdb1f0
-  Expression {
-   expr0 "0.203484555969 * r + 0.72639105456 * g + 0.0701243894714 * b"
-   expr1 "0.203484555969 * r + 0.72639105456 * g + 0.0701243894714 * b"
-   expr2 "0.203484555969 * r + 0.72639105456 * g + 0.0701243894714 * b"
-   name REDcolor4_luminance_Expression
-   xpos -3450
-   ypos 183
-  }
-push $N21fdb1f0
-  Expression {
-   expr0 "0.221768124882 * r + 0.788760003697 * g + -0.0105281285791 * b"
-   expr1 "0.221768124882 * r + 0.788760003697 * g + -0.0105281285791 * b"
-   expr2 "0.221768124882 * r + 0.788760003697 * g + -0.0105281285791 * b"
-   name REDcolor3_luminance_Expression
-   xpos -3560
-   ypos 183
-  }
-push $N21fdb1f0
-  Expression {
-   expr0 "0.16451940323 * r + 0.872165887407 * g + -0.0366852906372 * b"
-   expr1 "0.16451940323 * r + 0.872165887407 * g + -0.0366852906372 * b"
-   expr2 "0.16451940323 * r + 0.872165887407 * g + -0.0366852906372 * b"
-   name REDcolor2_luminance_Expression
-   xpos -3670
-   ypos 183
-  }
-push $N21fdb1f0
-  Expression {
-   expr0 "0.288037453913 * r + 0.711876883439 * g + 8.56626476195e-05 * b"
-   expr1 "0.288037453913 * r + 0.711876883439 * g + 8.56626476195e-05 * b"
-   expr2 "0.288037453913 * r + 0.711876883439 * g + 8.56626476195e-05 * b"
-   name ProPhoto_RGB_luminance_Expression
-   xpos -3780
-   ypos 183
-  }
-push $N21fdb1f0
-  Expression {
-   expr0 "0.222002313106 * r + 0.706668898724 * g + 0.0713287881697 * b"
-   expr1 "0.222002313106 * r + 0.706668898724 * g + 0.0713287881697 * b"
-   expr2 "0.222002313106 * r + 0.706668898724 * g + 0.0713287881697 * b"
-   name Pal/Secam_RGB_luminance_Expression
-   xpos -3890
-   ypos 183
-  }
-push $N21fdb1f0
-  Expression {
-   expr0 "0.29890307025 * r + 0.586619854659 * g + 0.114477075091 * b"
-   expr1 "0.29890307025 * r + 0.586619854659 * g + 0.114477075091 * b"
-   expr2 "0.29890307025 * r + 0.586619854659 * g + 0.114477075091 * b"
-   name NTSC_RGB_luminance_Expression
-   xpos -4000
-   ypos 183
-  }
-push $N21fdb1f0
-  Expression {
-   expr0 "0.310077340675 * r + 0.689922659325 * g + 0.0 * b"
-   expr1 "0.310077340675 * r + 0.689922659325 * g + 0.0 * b"
-   expr2 "0.310077340675 * r + 0.689922659325 * g + 0.0 * b"
-   name Max_RGB_luminance_Expression
-   xpos -4110
-   ypos 183
-  }
-push $N21fdb1f0
-  Expression {
-   expr0 "0.261098890455 * r + 0.734900118525 * g + 0.00400099101932 * b"
-   expr1 "0.261098890455 * r + 0.734900118525 * g + 0.00400099101932 * b"
-   expr2 "0.261098890455 * r + 0.734900118525 * g + 0.00400099101932 * b"
-   name Ekta_Space_PS_5_luminance_Expression
-   xpos -4220
-   ypos 183
-  }
-push $N21fdb1f0
-  Expression {
-   expr0 "0.320104742337 * r + 0.601874395246 * g + 0.078020862417 * b"
-   expr1 "0.320104742337 * r + 0.601874395246 * g + 0.078020862417 * b"
-   expr2 "0.320104742337 * r + 0.601874395246 * g + 0.078020862417 * b"
-   name ECI_RGB_v2_luminance_Expression
-   xpos -4330
-   ypos 183
-  }
-push $N21fdb1f0
-  Expression {
-   expr0 "0.278090415226 * r + 0.687901558611 * g + 0.0340080261629 * b"
-   expr1 "0.278090415226 * r + 0.687901558611 * g + 0.0340080261629 * b"
-   expr2 "0.278090415226 * r + 0.687901558611 * g + 0.0340080261629 * b"
-   name Don_RGB_4_luminance_Expression
-   xpos -4440
-   ypos 183
-  }
-push $N21fdb1f0
-  Expression {
-   expr0 "0.186660738109 * r + 0.74118120047 * g + 0.0721580614212 * b"
-   expr1 "0.186660738109 * r + 0.74118120047 * g + 0.0721580614212 * b"
-   expr2 "0.186660738109 * r + 0.74118120047 * g + 0.0721580614212 * b"
-   name DRAGONcolor2_luminance_Expression
-   xpos -4550
-   ypos 183
-  }
-push $N21fdb1f0
-  Expression {
-   expr0 "0.215087180914 * r + 0.849257379828 * g + -0.0643445607425 * b"
-   expr1 "0.215087180914 * r + 0.849257379828 * g + -0.0643445607425 * b"
-   expr2 "0.215087180914 * r + 0.849257379828 * g + -0.0643445607425 * b"
-   name DRAGONcolor_luminance_Expression
-   xpos -4660
-   ypos 183
-  }
-push $N21fdb1f0
-  Expression {
-   expr0 "0.203986297104 * r + 0.882591093117 * g + -0.0865773902211 * b"
-   expr1 "0.203986297104 * r + 0.882591093117 * g + -0.0865773902211 * b"
-   expr2 "0.203986297104 * r + 0.882591093117 * g + -0.0865773902211 * b"
-   name DCI-P3+_luminance_Expression
-   xpos -4770
-   ypos 183
-  }
-push $N21fdb1f0
-  Expression {
-   expr0 "0.209491677913 * r + 0.721595254161 * g + 0.0689130679262 * b"
-   expr1 "0.209491677913 * r + 0.721595254161 * g + 0.0689130679262 * b"
-   expr2 "0.209491677913 * r + 0.721595254161 * g + 0.0689130679262 * b"
-   name DCI-P3_luminance_Expression
-   xpos -4880
-   ypos 183
-  }
-push $N21fdb1f0
-  Expression {
-   expr0 "0.274880515737 * r + 0.658137117154 * g + 0.0669823671092 * b"
-   expr1 "0.274880515737 * r + 0.658137117154 * g + 0.0669823671092 * b"
-   expr2 "0.274880515737 * r + 0.658137117154 * g + 0.0669823671092 * b"
-   name ColorMatch_RGB_luminance_Expression
-   xpos -4990
-   ypos 183
-  }
-push $N21fdb1f0
-  Expression {
-   expr0 "0.261256555898 * r + 0.869631208967 * g + -0.130887764865 * b"
-   expr1 "0.261256555898 * r + 0.869631208967 * g + -0.130887764865 * b"
-   expr2 "0.261256555898 * r + 0.869631208967 * g + -0.130887764865 * b"
-   name Cinema_Gamut_luminance_Expression
-   xpos -5100
-   ypos 183
-  }
-push $N21fdb1f0
-  Expression {
-   expr0 "0.176204436534 * r + 0.812984693878 * g + 0.0108108695884 * b"
-   expr1 "0.176204436534 * r + 0.812984693878 * g + 0.0108108695884 * b"
-   expr2 "0.176204436534 * r + 0.812984693878 * g + 0.0108108695884 * b"
-   name CIE_RGB_luminance_Expression
-   xpos -5210
-   ypos 183
-  }
-push $N21fdb1f0
-  Expression {
-   expr0 "0.303270045405 * r + 0.663789543861 * g + 0.0329404107343 * b"
-   expr1 "0.303270045405 * r + 0.663789543861 * g + 0.0329404107343 * b"
-   expr2 "0.303270045405 * r + 0.663789543861 * g + 0.0329404107343 * b"
-   name Beta_RGB_luminance_Expression
-   xpos -5320
-   ypos 183
-  }
-push $N21fdb1f0
-  Expression {
-   expr0 "0.227563471677 * r + 0.738429482666 * g + 0.0340070456574 * b"
-   expr1 "0.227563471677 * r + 0.738429482666 * g + 0.0340070456574 * b"
-   expr2 "0.227563471677 * r + 0.738429482666 * g + 0.0340070456574 * b"
-   name Best_RGB_luminance_Expression
-   xpos -5430
-   ypos 183
-  }
-push $N21fdb1f0
-  Expression {
-   expr0 "0.244614394775 * r + 0.672060284019 * g + 0.0833253212057 * b"
-   expr1 "0.244614394775 * r + 0.672060284019 * g + 0.0833253212057 * b"
-   expr2 "0.244614394775 * r + 0.672060284019 * g + 0.0833253212057 * b"
-   name Apple_RGB_luminance_Expression
-   xpos -5540
-   ypos 183
-  }
-push $N21fdb1f0
-  Expression {
-   expr0 "0.258690663895 * r + 0.724718154549 * g + 0.0165911815566 * b"
-   expr1 "0.258690663895 * r + 0.724718154549 * g + 0.0165911815566 * b"
-   expr2 "0.258690663895 * r + 0.724718154549 * g + 0.0165911815566 * b"
-   name Adobe_Wide_Gamut_RGB_luminance_Expression
-   xpos -5650
-   ypos 183
-  }
-push $N21fdb1f0
-  Expression {
-   expr0 "0.29734448514 * r + 0.627376113264 * g + 0.0752794015963 * b"
-   expr1 "0.29734448514 * r + 0.627376113264 * g + 0.0752794015963 * b"
-   expr2 "0.29734448514 * r + 0.627376113264 * g + 0.0752794015963 * b"
-   name Adobe_RGB_1998_luminance_Expression
-   xpos -5760
-   ypos 183
-  }
-push $N21fdb1f0
-  Expression {
-   expr0 "0.291948669899 * r + 0.823830265984 * g + -0.115778935883 * b"
-   expr1 "0.291948669899 * r + 0.823830265984 * g + -0.115778935883 * b"
-   expr2 "0.291948669899 * r + 0.823830265984 * g + -0.115778935883 * b"
-   name ALEXA_Wide_Gamut_RGB_luminance_Expression
-   xpos -5870
-   ypos 183
-  }
-push $N21fdb1f0
-  Expression {
-   expr0 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
-   expr1 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
-   expr2 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
-   name ACESproxy_luminance_Expression
-   xpos -5980
-   ypos 183
-  }
-push $N21fdb1f0
-  Expression {
-   expr0 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
-   expr1 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
-   expr2 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
-   name ACEScg_luminance_Expression
-   xpos -6090
-   ypos 183
-  }
-push $N21fdb1f0
-  Expression {
-   expr0 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
-   expr1 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
-   expr2 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
-   name ACEScc_luminance_Expression
-   xpos -6200
-   ypos 183
-  }
-push $N21fdb1f0
-  Expression {
-   expr0 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
-   expr1 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
-   expr2 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
-   name ACES2065-1_luminance_Expression
-   xpos -6310
-   ypos 183
-  }
-  Switch {
-   inputs 37
-   which {{colourspace_Pulldown_Choice}}
-   name colourspace_Switch
-   xpos -2350
-   ypos 207
-   addUserKnob {20 User}
-   addUserKnob {4 colourspace_Pulldown_Choice l Colourspace M {ACES2065-1 ACEScc ACEScg ACESproxy "ALEXA Wide Gamut RGB" "Adobe RGB 1998" "Adobe Wide Gamut RGB" "Apple RGB" "Best RGB" "Beta RGB" "CIE RGB" "Cinema Gamut" "ColorMatch RGB" DCI-P3 DCI-P3+ DRAGONcolor DRAGONcolor2 "Don RGB 4" "ECI RGB v2" "Ekta Space PS 5" "Max RGB" "NTSC RGB" "Pal/Secam RGB" "ProPhoto RGB" REDcolor2 REDcolor3 REDcolor4 "Rec. 2020" "Rec. 709" "Russell RGB" S-Gamut S-Gamut3 S-Gamut3.Cine "SMPTE-C RGB" V-Gamut "Xtreme RGB" sRGB}}
-   colourspace_Pulldown_Choice {{parent.colourspace_Pulldown_Choice}}
-  }
-  Output {
-   name Output
-   xpos -2350
-   ypos 231
-  }
- end_group
-set N21fc4790 [stack 0]
- Dot {
-  name Dot4
-  xpos -446
-  ypos -198
- }
- Dot {
-  name Dot5
-  xpos -446
-  ypos -126
- }
-set N1f874140 [stack 0]
- Expression {
-  channel3 rgb
-  expr3 "(r / L_max_Floating_Point_Slider) ** (p_Floating_Point_Slider / q_Floating_Point_Slider)"
-  name exponential_tonemapping_operator_Expression
-  xpos -260
+  xpos -241
   ypos -129
-  addUserKnob {20 User}
-  addUserKnob {7 p_Floating_Point_Slider l p}
-  p_Floating_Point_Slider {{parent.p_Floating_Point_Slider}}
-  addUserKnob {7 q_Floating_Point_Slider l q}
-  q_Floating_Point_Slider {{parent.q_Floating_Point_Slider}}
-  addUserKnob {7 L_max_Floating_Point_Slider l L_max}
-  L_max_Floating_Point_Slider {{parent.domain_CurveTool.maxlumapixvalue}}
- }
- Merge2 {
-  inputs 2
-  operation multiply
-  name multiply_Merge
-  xpos -260
-  ypos -105
- }
-push $N1f874140
- Dot {
-  name Dot8
-  xpos -446
-  ypos -78
- }
- Merge2 {
-  inputs 2
-  operation divide
-  name divide_Merge
-  xpos -260
-  ypos -81
- }
-set N1f8518c0 [stack 0]
- Clamp {
-  name Clamp
-  xpos -370
-  ypos -61
- }
-push $N1f8518c0
- Switch {
-  inputs 2
-  which {{parent.clamp_output_Check_Box}}
-  name clamp_Switch
-  xpos -260
-  ypos -52
- }
-push $N281f1210
- Dot {
-  name Dot2
-  xpos -6
-  ypos -174
- }
- Dot {
-  name Dot3
-  xpos -6
-  ypos -49
- }
- Dissolve {
-  inputs 3+1
-  which {{parent.mix_Floating_Point_Slider}}
-  name Dissolve
-  xpos -150
-  ypos -56
- }
- Output {
-  name Output
-  xpos -150
-  ypos -24
- }
-push $N21fc4790
- Dot {
-  name Dot6
-  xpos -336
-  ypos -174
- }
- CurveTool {
-  operation "Max Luma Pixel"
-  avgframes 1
-  ROI {0 0 {Input.width} {Input.height}}
-  autocropdata {1071 712 3214 2136}
-  maxlumapixvalue 1
-  name domain_CurveTool
-  xpos -260
-  ypos -177
  }
 end_group
-push $N28105100
-Group {
- name Logarithmic_Tonemapping_Operator
- tile_color 0xffbf00ff
- xpos -40
- ypos 15
- addUserKnob {20 logarithmic_tonemapping_operator_tab l "Logarithmic Tonemapping Operator"}
- addUserKnob {20 tone_parameters_Group l "Tone Parameters" n 1}
- addUserKnob {22 compute_limits_Python_Script_Button l "Compute Domain" t "Computes the domain / range of internal nodes. \n\nThe domain has to be manually recomputed each time that up-stream graph is changed." T nuke.toNode('domain_CurveTool').knob('go').execute() +STARTLINE}
- addUserKnob {22 reset_domain_Python_Script_Button l "Reset Domain" t "Reset the domain / range of internal nodes. " -STARTLINE T "node =  nuke.toNode('domain_CurveTool')\n\nknob = node.knob('maxlumapixdata')\nknob.clearAnimated()\nknob.setValue((0, 0))\n\nknob = node.knob('maxlumapixvalue')\nknob.clearAnimated()\nknob.setValue(1)\n\nknob = node.knob('minlumapixdata')\nknob.clearAnimated()\nknob.setValue((0, 0))\n\nknob = node.knob('minlumapixvalue')\nknob.clearAnimated()\nknob.setValue(0)"}
- addUserKnob {7 p_Floating_Point_Slider l p R 0.2 5}
- p_Floating_Point_Slider 1
- addUserKnob {7 q_Floating_Point_Slider l q R 1 3}
- q_Floating_Point_Slider 1
- addUserKnob {20 tone_parameters_endGroup l endGroup n -1}
- addUserKnob {20 miscellaneous_Group l "Miscellaneous Parameters" n 1}
- addUserKnob {4 colourspace_Pulldown_Choice l Colourspace M {ACES2065-1 ACEScc ACEScg ACESproxy "ALEXA Wide Gamut RGB" "Adobe RGB 1998" "Adobe Wide Gamut RGB" "Apple RGB" "Best RGB" "Beta RGB" "CIE RGB" "Cinema Gamut" "ColorMatch RGB" DCI-P3 DCI-P3+ DRAGONcolor DRAGONcolor2 "Don RGB 4" "ECI RGB v2" "Ekta Space PS 5" "Max RGB" "NTSC RGB" "Pal/Secam RGB" "ProPhoto RGB" REDcolor2 REDcolor3 REDcolor4 "Rec. 2020" "Rec. 709" "Russell RGB" S-Gamut S-Gamut3 S-Gamut3.Cine "SMPTE-C RGB" V-Gamut "Xtreme RGB" sRGB}}
- colourspace_Pulldown_Choice sRGB
- addUserKnob {7 mix_Floating_Point_Slider l Mix t "Dissolve between the original image at 0 and the full effect at 1."}
- mix_Floating_Point_Slider 1
- addUserKnob {6 clamp_output_Check_Box l "Clamp Output" t "Output values are clamped within \[0, 1] domain." +STARTLINE}
- clamp_output_Check_Box true
- addUserKnob {20 miscellaneous_endGroup l endGroup n -1}
- addUserKnob {20 about_Tab l About}
- addUserKnob {26 description_Text l "" +STARTLINE T "Logarithmic Tonemapping Operator v0.1.1\n\ncolour-science.org - May 5, 2015\n\nThis Gizmo / Group implements a Logarithmic Tonemapping Operator.\n\n\[1] Schlick, C. (1994). Quantization Techniques for Visualization of High Dynamic Range Pictures. Proceedings of the Fifth Eurographics Workshop on Rendering, (Section 5), 7–18."}
-}
- Input {
-  inputs 0
-  name Input
-  xpos -150
-  ypos -177
- }
-set N27945ae0 [stack 0]
- Dot {
-  name Dot7
-  xpos -116
-  ypos -102
- }
-set N27949580 [stack 0]
-push 0
-push $N27949580
-push $N27945ae0
- Dot {
-  name Dot1
-  xpos -116
-  ypos -198
- }
- Group {
-  name RGB_Luminance
-  selected true
-  xpos -370
-  ypos -201
-  addUserKnob {20 RGB_luminance_Tab l "RGB Luminance"}
-  addUserKnob {20 colourspace_parameters_Begin_Group l "Colourspace Parameters" n 1}
-  addUserKnob {4 colourspace_Pulldown_Choice l Colourspace M {ACES2065-1 ACEScc ACEScg ACESproxy "ALEXA Wide Gamut RGB" "Adobe RGB 1998" "Adobe Wide Gamut RGB" "Apple RGB" "Best RGB" "Beta RGB" "CIE RGB" "Cinema Gamut" "ColorMatch RGB" DCI-P3 DCI-P3+ DRAGONcolor DRAGONcolor2 "Don RGB 4" "ECI RGB v2" "Ekta Space PS 5" "Max RGB" "NTSC RGB" "Pal/Secam RGB" "ProPhoto RGB" REDcolor2 REDcolor3 REDcolor4 "Rec. 2020" "Rec. 709" "Russell RGB" S-Gamut S-Gamut3 S-Gamut3.Cine "SMPTE-C RGB" V-Gamut "Xtreme RGB" sRGB}}
-  colourspace_Pulldown_Choice {{parent.colourspace_Pulldown_Choice}}
-  addUserKnob {20 endGroup n -1}
-  addUserKnob {20 about_Tab l About}
-  addUserKnob {26 description_Text l "" +STARTLINE T "RGB Luminance v0.1.1\n\ncolour-science.org - May 5, 2015\n\nThis Gizmo / Group computes the \"RGB Luminance\" of given colourspace."}
- }
-  Input {
-   inputs 0
-   name Input
-   xpos -2350
-   ypos 159
-  }
-set N27958f90 [stack 0]
-  Expression {
-   expr0 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
-   expr1 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
-   expr2 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
-   name sRGB_luminance_Expression
-   xpos -2350
-   ypos 183
-  }
-push $N27958f90
-  Expression {
-   expr0 "0.0 * r + 1.0 * g + 0.0 * b"
-   expr1 "0.0 * r + 1.0 * g + 0.0 * b"
-   expr2 "0.0 * r + 1.0 * g + 0.0 * b"
-   name Xtreme_RGB_luminance_Expression
-   xpos -2460
-   ypos 183
-  }
-push $N27958f90
-  Expression {
-   expr0 "0.260681632101 * r + 0.774893299809 * g + -0.0355749319099 * b"
-   expr1 "0.260681632101 * r + 0.774893299809 * g + -0.0355749319099 * b"
-   expr2 "0.260681632101 * r + 0.774893299809 * g + -0.0355749319099 * b"
-   name V-Gamut_luminance_Expression
-   xpos -2570
-   ypos 183
-  }
-push $N27958f90
-  Expression {
-   expr0 "0.212374157009 * r + 0.701076498009 * g + 0.0865493449823 * b"
-   expr1 "0.212374157009 * r + 0.701076498009 * g + 0.0865493449823 * b"
-   expr2 "0.212374157009 * r + 0.701076498009 * g + 0.0865493449823 * b"
-   name SMPTE-C_RGB_luminance_Expression
-   xpos -2680
-   ypos 183
-  }
-push $N27958f90
-  Expression {
-   expr0 "0.215072070849 * r + 0.885058455418 * g + -0.100130526267 * b"
-   expr1 "0.215072070849 * r + 0.885058455418 * g + -0.100130526267 * b"
-   expr2 "0.215072070849 * r + 0.885058455418 * g + -0.100130526267 * b"
-   name S-Gamut3.Cine_luminance_Expression
-   xpos -2790
-   ypos 183
-  }
-push $N27958f90
-  Expression {
-   expr0 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
-   expr1 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
-   expr2 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
-   name S-Gamut3_luminance_Expression
-   xpos -2900
-   ypos 183
-  }
-push $N27958f90
-  Expression {
-   expr0 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
-   expr1 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
-   expr2 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
-   name S-Gamut_luminance_Expression
-   xpos -3010
-   ypos 183
-  }
-push $N27958f90
-  Expression {
-   expr0 "0.315199106486 * r + 0.664839320751 * g + 0.0199615727626 * b"
-   expr1 "0.315199106486 * r + 0.664839320751 * g + 0.0199615727626 * b"
-   expr2 "0.315199106486 * r + 0.664839320751 * g + 0.0199615727626 * b"
-   name Russell_RGB_luminance_Expression
-   xpos -3120
-   ypos 183
-  }
-push $N27958f90
-  Expression {
-   expr0 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
-   expr1 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
-   expr2 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
-   name Rec._709_luminance_Expression
-   xpos -3230
-   ypos 183
-  }
-push $N27958f90
-  Expression {
-   expr0 "0.262698338957 * r + 0.678008765773 * g + 0.0592928952706 * b"
-   expr1 "0.262698338957 * r + 0.678008765773 * g + 0.0592928952706 * b"
-   expr2 "0.262698338957 * r + 0.678008765773 * g + 0.0592928952706 * b"
-   name Rec._2020_luminance_Expression
-   xpos -3340
-   ypos 183
-  }
-push $N27958f90
-  Expression {
-   expr0 "0.203484555969 * r + 0.72639105456 * g + 0.0701243894714 * b"
-   expr1 "0.203484555969 * r + 0.72639105456 * g + 0.0701243894714 * b"
-   expr2 "0.203484555969 * r + 0.72639105456 * g + 0.0701243894714 * b"
-   name REDcolor4_luminance_Expression
-   xpos -3450
-   ypos 183
-  }
-push $N27958f90
-  Expression {
-   expr0 "0.221768124882 * r + 0.788760003697 * g + -0.0105281285791 * b"
-   expr1 "0.221768124882 * r + 0.788760003697 * g + -0.0105281285791 * b"
-   expr2 "0.221768124882 * r + 0.788760003697 * g + -0.0105281285791 * b"
-   name REDcolor3_luminance_Expression
-   xpos -3560
-   ypos 183
-  }
-push $N27958f90
-  Expression {
-   expr0 "0.16451940323 * r + 0.872165887407 * g + -0.0366852906372 * b"
-   expr1 "0.16451940323 * r + 0.872165887407 * g + -0.0366852906372 * b"
-   expr2 "0.16451940323 * r + 0.872165887407 * g + -0.0366852906372 * b"
-   name REDcolor2_luminance_Expression
-   xpos -3670
-   ypos 183
-  }
-push $N27958f90
-  Expression {
-   expr0 "0.288037453913 * r + 0.711876883439 * g + 8.56626476195e-05 * b"
-   expr1 "0.288037453913 * r + 0.711876883439 * g + 8.56626476195e-05 * b"
-   expr2 "0.288037453913 * r + 0.711876883439 * g + 8.56626476195e-05 * b"
-   name ProPhoto_RGB_luminance_Expression
-   xpos -3780
-   ypos 183
-  }
-push $N27958f90
-  Expression {
-   expr0 "0.222002313106 * r + 0.706668898724 * g + 0.0713287881697 * b"
-   expr1 "0.222002313106 * r + 0.706668898724 * g + 0.0713287881697 * b"
-   expr2 "0.222002313106 * r + 0.706668898724 * g + 0.0713287881697 * b"
-   name Pal/Secam_RGB_luminance_Expression
-   xpos -3890
-   ypos 183
-  }
-push $N27958f90
-  Expression {
-   expr0 "0.29890307025 * r + 0.586619854659 * g + 0.114477075091 * b"
-   expr1 "0.29890307025 * r + 0.586619854659 * g + 0.114477075091 * b"
-   expr2 "0.29890307025 * r + 0.586619854659 * g + 0.114477075091 * b"
-   name NTSC_RGB_luminance_Expression
-   xpos -4000
-   ypos 183
-  }
-push $N27958f90
-  Expression {
-   expr0 "0.310077340675 * r + 0.689922659325 * g + 0.0 * b"
-   expr1 "0.310077340675 * r + 0.689922659325 * g + 0.0 * b"
-   expr2 "0.310077340675 * r + 0.689922659325 * g + 0.0 * b"
-   name Max_RGB_luminance_Expression
-   xpos -4110
-   ypos 183
-  }
-push $N27958f90
-  Expression {
-   expr0 "0.261098890455 * r + 0.734900118525 * g + 0.00400099101932 * b"
-   expr1 "0.261098890455 * r + 0.734900118525 * g + 0.00400099101932 * b"
-   expr2 "0.261098890455 * r + 0.734900118525 * g + 0.00400099101932 * b"
-   name Ekta_Space_PS_5_luminance_Expression
-   xpos -4220
-   ypos 183
-  }
-push $N27958f90
-  Expression {
-   expr0 "0.320104742337 * r + 0.601874395246 * g + 0.078020862417 * b"
-   expr1 "0.320104742337 * r + 0.601874395246 * g + 0.078020862417 * b"
-   expr2 "0.320104742337 * r + 0.601874395246 * g + 0.078020862417 * b"
-   name ECI_RGB_v2_luminance_Expression
-   xpos -4330
-   ypos 183
-  }
-push $N27958f90
-  Expression {
-   expr0 "0.278090415226 * r + 0.687901558611 * g + 0.0340080261629 * b"
-   expr1 "0.278090415226 * r + 0.687901558611 * g + 0.0340080261629 * b"
-   expr2 "0.278090415226 * r + 0.687901558611 * g + 0.0340080261629 * b"
-   name Don_RGB_4_luminance_Expression
-   xpos -4440
-   ypos 183
-  }
-push $N27958f90
-  Expression {
-   expr0 "0.186660738109 * r + 0.74118120047 * g + 0.0721580614212 * b"
-   expr1 "0.186660738109 * r + 0.74118120047 * g + 0.0721580614212 * b"
-   expr2 "0.186660738109 * r + 0.74118120047 * g + 0.0721580614212 * b"
-   name DRAGONcolor2_luminance_Expression
-   xpos -4550
-   ypos 183
-  }
-push $N27958f90
-  Expression {
-   expr0 "0.215087180914 * r + 0.849257379828 * g + -0.0643445607425 * b"
-   expr1 "0.215087180914 * r + 0.849257379828 * g + -0.0643445607425 * b"
-   expr2 "0.215087180914 * r + 0.849257379828 * g + -0.0643445607425 * b"
-   name DRAGONcolor_luminance_Expression
-   xpos -4660
-   ypos 183
-  }
-push $N27958f90
-  Expression {
-   expr0 "0.203986297104 * r + 0.882591093117 * g + -0.0865773902211 * b"
-   expr1 "0.203986297104 * r + 0.882591093117 * g + -0.0865773902211 * b"
-   expr2 "0.203986297104 * r + 0.882591093117 * g + -0.0865773902211 * b"
-   name DCI-P3+_luminance_Expression
-   xpos -4770
-   ypos 183
-  }
-push $N27958f90
-  Expression {
-   expr0 "0.209491677913 * r + 0.721595254161 * g + 0.0689130679262 * b"
-   expr1 "0.209491677913 * r + 0.721595254161 * g + 0.0689130679262 * b"
-   expr2 "0.209491677913 * r + 0.721595254161 * g + 0.0689130679262 * b"
-   name DCI-P3_luminance_Expression
-   xpos -4880
-   ypos 183
-  }
-push $N27958f90
-  Expression {
-   expr0 "0.274880515737 * r + 0.658137117154 * g + 0.0669823671092 * b"
-   expr1 "0.274880515737 * r + 0.658137117154 * g + 0.0669823671092 * b"
-   expr2 "0.274880515737 * r + 0.658137117154 * g + 0.0669823671092 * b"
-   name ColorMatch_RGB_luminance_Expression
-   xpos -4990
-   ypos 183
-  }
-push $N27958f90
-  Expression {
-   expr0 "0.261256555898 * r + 0.869631208967 * g + -0.130887764865 * b"
-   expr1 "0.261256555898 * r + 0.869631208967 * g + -0.130887764865 * b"
-   expr2 "0.261256555898 * r + 0.869631208967 * g + -0.130887764865 * b"
-   name Cinema_Gamut_luminance_Expression
-   xpos -5100
-   ypos 183
-  }
-push $N27958f90
-  Expression {
-   expr0 "0.176204436534 * r + 0.812984693878 * g + 0.0108108695884 * b"
-   expr1 "0.176204436534 * r + 0.812984693878 * g + 0.0108108695884 * b"
-   expr2 "0.176204436534 * r + 0.812984693878 * g + 0.0108108695884 * b"
-   name CIE_RGB_luminance_Expression
-   xpos -5210
-   ypos 183
-  }
-push $N27958f90
-  Expression {
-   expr0 "0.303270045405 * r + 0.663789543861 * g + 0.0329404107343 * b"
-   expr1 "0.303270045405 * r + 0.663789543861 * g + 0.0329404107343 * b"
-   expr2 "0.303270045405 * r + 0.663789543861 * g + 0.0329404107343 * b"
-   name Beta_RGB_luminance_Expression
-   xpos -5320
-   ypos 183
-  }
-push $N27958f90
-  Expression {
-   expr0 "0.227563471677 * r + 0.738429482666 * g + 0.0340070456574 * b"
-   expr1 "0.227563471677 * r + 0.738429482666 * g + 0.0340070456574 * b"
-   expr2 "0.227563471677 * r + 0.738429482666 * g + 0.0340070456574 * b"
-   name Best_RGB_luminance_Expression
-   xpos -5430
-   ypos 183
-  }
-push $N27958f90
-  Expression {
-   expr0 "0.244614394775 * r + 0.672060284019 * g + 0.0833253212057 * b"
-   expr1 "0.244614394775 * r + 0.672060284019 * g + 0.0833253212057 * b"
-   expr2 "0.244614394775 * r + 0.672060284019 * g + 0.0833253212057 * b"
-   name Apple_RGB_luminance_Expression
-   xpos -5540
-   ypos 183
-  }
-push $N27958f90
-  Expression {
-   expr0 "0.258690663895 * r + 0.724718154549 * g + 0.0165911815566 * b"
-   expr1 "0.258690663895 * r + 0.724718154549 * g + 0.0165911815566 * b"
-   expr2 "0.258690663895 * r + 0.724718154549 * g + 0.0165911815566 * b"
-   name Adobe_Wide_Gamut_RGB_luminance_Expression
-   xpos -5650
-   ypos 183
-  }
-push $N27958f90
-  Expression {
-   expr0 "0.29734448514 * r + 0.627376113264 * g + 0.0752794015963 * b"
-   expr1 "0.29734448514 * r + 0.627376113264 * g + 0.0752794015963 * b"
-   expr2 "0.29734448514 * r + 0.627376113264 * g + 0.0752794015963 * b"
-   name Adobe_RGB_1998_luminance_Expression
-   xpos -5760
-   ypos 183
-  }
-push $N27958f90
-  Expression {
-   expr0 "0.291948669899 * r + 0.823830265984 * g + -0.115778935883 * b"
-   expr1 "0.291948669899 * r + 0.823830265984 * g + -0.115778935883 * b"
-   expr2 "0.291948669899 * r + 0.823830265984 * g + -0.115778935883 * b"
-   name ALEXA_Wide_Gamut_RGB_luminance_Expression
-   xpos -5870
-   ypos 183
-  }
-push $N27958f90
-  Expression {
-   expr0 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
-   expr1 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
-   expr2 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
-   name ACESproxy_luminance_Expression
-   xpos -5980
-   ypos 183
-  }
-push $N27958f90
-  Expression {
-   expr0 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
-   expr1 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
-   expr2 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
-   name ACEScg_luminance_Expression
-   xpos -6090
-   ypos 183
-  }
-push $N27958f90
-  Expression {
-   expr0 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
-   expr1 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
-   expr2 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
-   name ACEScc_luminance_Expression
-   xpos -6200
-   ypos 183
-  }
-push $N27958f90
-  Expression {
-   expr0 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
-   expr1 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
-   expr2 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
-   name ACES2065-1_luminance_Expression
-   xpos -6310
-   ypos 183
-  }
-  Switch {
-   inputs 37
-   which {{colourspace_Pulldown_Choice}}
-   name colourspace_Switch
-   selected true
-   xpos -2350
-   ypos 207
-   addUserKnob {20 User}
-   addUserKnob {4 colourspace_Pulldown_Choice l Colourspace M {ACES2065-1 ACEScc ACEScg ACESproxy "ALEXA Wide Gamut RGB" "Adobe RGB 1998" "Adobe Wide Gamut RGB" "Apple RGB" "Best RGB" "Beta RGB" "CIE RGB" "Cinema Gamut" "ColorMatch RGB" DCI-P3 DCI-P3+ DRAGONcolor DRAGONcolor2 "Don RGB 4" "ECI RGB v2" "Ekta Space PS 5" "Max RGB" "NTSC RGB" "Pal/Secam RGB" "ProPhoto RGB" REDcolor2 REDcolor3 REDcolor4 "Rec. 2020" "Rec. 709" "Russell RGB" S-Gamut S-Gamut3 S-Gamut3.Cine "SMPTE-C RGB" V-Gamut "Xtreme RGB" sRGB}}
-   colourspace_Pulldown_Choice {{parent.colourspace_Pulldown_Choice}}
-  }
-  Output {
-   name Output
-   xpos -2350
-   ypos 231
-  }
- end_group
-set N27951030 [stack 0]
- Dot {
-  name Dot4
-  xpos -446
-  ypos -198
- }
- Dot {
-  name Dot5
-  xpos -446
-  ypos -126
- }
-set N1d5f3f20 [stack 0]
- Expression {
-  channel3 rgb
-  expr3 "(log(1 + p_Floating_Point_Slider * r) / log(1 + p_Floating_Point_Slider * L_max_Floating_Point_Slider)) ** (1 / q_Floating_Point_Slider)"
-  name logarithmic_tonemapping_operator_Expression
-  xpos -260
-  ypos -129
-  addUserKnob {20 User}
-  addUserKnob {7 p_Floating_Point_Slider l p}
-  p_Floating_Point_Slider {{parent.p_Floating_Point_Slider}}
-  addUserKnob {7 q_Floating_Point_Slider l q}
-  q_Floating_Point_Slider {{parent.q_Floating_Point_Slider}}
-  addUserKnob {7 L_max_Floating_Point_Slider l L_max}
-  L_max_Floating_Point_Slider {{parent.domain_CurveTool.maxlumapixvalue}}
- }
- Merge2 {
-  inputs 2
-  operation multiply
-  name multiply_Merge
-  xpos -260
-  ypos -105
- }
-push $N1d5f3f20
- Dot {
-  name Dot8
-  xpos -446
-  ypos -78
- }
- Merge2 {
-  inputs 2
-  operation divide
-  name divide_Merge
-  xpos -260
-  ypos -81
- }
-set N1d503170 [stack 0]
- Clamp {
-  name Clamp
-  xpos -370
-  ypos -61
- }
-push $N1d503170
- Switch {
-  inputs 2
-  which {{parent.clamp_output_Check_Box}}
-  name clamp_Switch
-  xpos -260
-  ypos -52
- }
-push $N27945ae0
- Dot {
-  name Dot2
-  xpos -6
-  ypos -174
- }
- Dot {
-  name Dot3
-  xpos -6
-  ypos -49
- }
- Dissolve {
-  inputs 3+1
-  which {{parent.mix_Floating_Point_Slider}}
-  name Dissolve
-  xpos -150
-  ypos -56
- }
- Output {
-  name Output
-  xpos -150
-  ypos -24
- }
-push $N27951030
- Dot {
-  name Dot6
-  xpos -336
-  ypos -174
- }
- CurveTool {
-  operation "Max Luma Pixel"
-  avgframes 1
-  ROI {0 0 {Input.width} {Input.height}}
-  autocropdata {1071 712 3214 2136}
-  maxlumapixvalue 1
-  name domain_CurveTool
-  xpos -260
-  ypos -177
- }
-end_group
-push $N28105100
+push $N1d6edaf0
 Group {
  name Gamma_Tonemapping_Operator
  tile_color 0xffbf00ff
- xpos -40
- ypos -9
+ xpos 469
+ ypos -14
  addUserKnob {20 gamma_tonemapping_operator_tab l "Gamma Tonemapping Operator"}
  addUserKnob {20 tone_parameters_Group l "Tone Parameters" n 1}
  addUserKnob {7 exposure_Floating_Point_Slider l Exposure R -5 5}
@@ -1679,13 +386,13 @@ Group {
   addUserKnob {7 gamma_Floating_Point_Slider l Gamma}
   gamma_Floating_Point_Slider {{parent.gamma_Floating_Point_Slider}}
  }
-set N27901da0 [stack 0]
+set N1dfe0230 [stack 0]
  Clamp {
   name Clamp
   xpos -55
   ypos -10
  }
-push $N27901da0
+push $N1dfe0230
  Switch {
   inputs 2
   which {{parent.clamp_output_Check_Box}}
@@ -1693,7 +400,7 @@ push $N27901da0
   xpos 55
   ypos -6
  }
-push $N27901da0
+push $N1dfe0230
  Dot {
   name Dot1
   xpos 165
@@ -1717,65 +424,518 @@ push $N27901da0
   ypos 50
  }
 end_group
-push $N28105100
+push $N1d6edaf0
 Group {
- name Normalisation_Tonemapping_Operator
+ name Logarithmic_Tonemapping_Operator
  tile_color 0xffbf00ff
- xpos -40
- ypos -33
- addUserKnob {20 normalisation_tonemapping_operator_tab l "Normalisation Tonemapping Operator"}
+ xpos 469
+ ypos 10
+ addUserKnob {20 logarithmic_tonemapping_operator_tab l "Logarithmic Tonemapping Operator"}
  addUserKnob {20 tone_parameters_Group l "Tone Parameters" n 1}
  addUserKnob {22 compute_limits_Python_Script_Button l "Compute Domain" t "Computes the domain / range of internal nodes. \n\nThe domain has to be manually recomputed each time that up-stream graph is changed." T nuke.toNode('domain_CurveTool').knob('go').execute() +STARTLINE}
  addUserKnob {22 reset_domain_Python_Script_Button l "Reset Domain" t "Reset the domain / range of internal nodes. " -STARTLINE T "node =  nuke.toNode('domain_CurveTool')\n\nknob = node.knob('maxlumapixdata')\nknob.clearAnimated()\nknob.setValue((0, 0))\n\nknob = node.knob('maxlumapixvalue')\nknob.clearAnimated()\nknob.setValue(1)\n\nknob = node.knob('minlumapixdata')\nknob.clearAnimated()\nknob.setValue((0, 0))\n\nknob = node.knob('minlumapixvalue')\nknob.clearAnimated()\nknob.setValue(0)"}
+ addUserKnob {7 p_Floating_Point_Slider l p R 0.2 5}
+ p_Floating_Point_Slider 1
+ addUserKnob {7 q_Floating_Point_Slider l q R 1 3}
+ q_Floating_Point_Slider 1
  addUserKnob {20 tone_parameters_endGroup l endGroup n -1}
  addUserKnob {20 miscellaneous_Group l "Miscellaneous Parameters" n 1}
+ addUserKnob {4 colourspace_Pulldown_Choice l Colourspace M {ACES2065-1 ACEScc ACEScg ACESproxy "ALEXA Wide Gamut RGB" "Adobe RGB 1998" "Adobe Wide Gamut RGB" "Apple RGB" "Best RGB" "Beta RGB" "CIE RGB" "Cinema Gamut" "ColorMatch RGB" DCI-P3 DCI-P3+ DRAGONcolor DRAGONcolor2 "Don RGB 4" "ECI RGB v2" "Ekta Space PS 5" "Max RGB" "NTSC RGB" "Pal/Secam RGB" "ProPhoto RGB" REDcolor REDcolor2 REDcolor3 REDcolor4 "Rec. 2020" "Rec. 709" "Russell RGB" S-Gamut S-Gamut3 S-Gamut3.Cine "SMPTE-C RGB" V-Gamut "Xtreme RGB" sRGB}}
+ colourspace_Pulldown_Choice sRGB
  addUserKnob {7 mix_Floating_Point_Slider l Mix t "Dissolve between the original image at 0 and the full effect at 1."}
  mix_Floating_Point_Slider 1
+ addUserKnob {6 clamp_output_Check_Box l "Clamp Output" t "Output values are clamped within \[0, 1] domain." +STARTLINE}
+ clamp_output_Check_Box true
  addUserKnob {20 miscellaneous_endGroup l endGroup n -1}
  addUserKnob {20 about_Tab l About}
- addUserKnob {26 description_Text l "" +STARTLINE T "Normalisation Tonemapping Operator v0.1.0\n\ncolour-science.org - March 17, 2015\n\nThis Gizmo / Group implements a Normalisation Tonemapping Operator.\n\n\[1] Banterle, F., Artusi, A., Debattista, K., & Chalmers, A. (2011). 3.2.1 Simple Mapping Methods. In Advanced High Dynamic Range Imaging (pp. 38–41). A K Peters/CRC Press. ISBN:978-1568817194\n"}
+ addUserKnob {26 description_Text l "" +STARTLINE T "Logarithmic Tonemapping Operator v0.1.2\n\ncolour-science.org - May 6, 2015\n\nThis Gizmo / Group implements a Logarithmic Tonemapping Operator.\n\n\[1] Schlick, C. (1994). Quantization Techniques for Visualization of High Dynamic Range Pictures. Proceedings of the Fifth Eurographics Workshop on Rendering, (Section 5), 7–18."}
 }
  Input {
   inputs 0
   name Input
-  xpos -97
-  ypos -163
+  xpos -150
+  ypos -177
  }
-set N281b30d0 [stack 0]
- Multiply {
-  value {{"1 / max(domain_CurveTool.maxlumapixvalue.r, domain_CurveTool.maxlumapixvalue.g, domain_CurveTool.maxlumapixvalue.b)"}}
-  name normalisation_Multiply
-  xpos -97
-  ypos -133
+set N1e3e0340 [stack 0]
+ Dot {
+  name Dot7
+  xpos -116
+  ypos -102
  }
-push $N281b30d0
+set N1e3e3e10 [stack 0]
+push 0
+push $N1e3e3e10
+push $N1e3e0340
+ Dot {
+  name Dot1
+  xpos -116
+  ypos -198
+ }
+ Group {
+  name RGB_Luminance
+  selected true
+  xpos -370
+  ypos -201
+  addUserKnob {20 RGB_luminance_Tab l "RGB Luminance"}
+  addUserKnob {20 colourspace_parameters_Begin_Group l "Colourspace Parameters" n 1}
+  addUserKnob {4 colourspace_Pulldown_Choice l Colourspace M {ACES2065-1 ACEScc ACEScg ACESproxy "ALEXA Wide Gamut RGB" "Adobe RGB 1998" "Adobe Wide Gamut RGB" "Apple RGB" "Best RGB" "Beta RGB" "CIE RGB" "Cinema Gamut" "ColorMatch RGB" DCI-P3 DCI-P3+ DRAGONcolor DRAGONcolor2 "Don RGB 4" "ECI RGB v2" "Ekta Space PS 5" "Max RGB" "NTSC RGB" "Pal/Secam RGB" "ProPhoto RGB" REDcolor REDcolor2 REDcolor3 REDcolor4 "Rec. 2020" "Rec. 709" "Russell RGB" S-Gamut S-Gamut3 S-Gamut3.Cine "SMPTE-C RGB" V-Gamut "Xtreme RGB" sRGB}}
+  colourspace_Pulldown_Choice {{parent.colourspace_Pulldown_Choice}}
+  addUserKnob {20 endGroup n -1}
+  addUserKnob {20 about_Tab l About}
+  addUserKnob {26 description_Text l "" +STARTLINE T "RGB Luminance v0.1.2\n\ncolour-science.org - May 6, 2015\n\nThis Gizmo / Group computes the \"RGB Luminance\" of given colourspace."}
+ }
+  Input {
+   inputs 0
+   name Input
+   xpos -4880
+   ypos -273
+  }
+set N234cb6d0 [stack 0]
+  Expression {
+   expr0 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
+   expr1 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
+   expr2 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
+   name sRGB_luminance_Expression
+   xpos -4880
+   ypos -249
+  }
+push $N234cb6d0
+  Expression {
+   expr0 "0.0 * r + 1.0 * g + 0.0 * b"
+   expr1 "0.0 * r + 1.0 * g + 0.0 * b"
+   expr2 "0.0 * r + 1.0 * g + 0.0 * b"
+   name Xtreme_RGB_luminance_Expression
+   xpos -4990
+   ypos -225
+  }
+push $N234cb6d0
+  Expression {
+   expr0 "0.260681632101 * r + 0.774893299809 * g + -0.0355749319099 * b"
+   expr1 "0.260681632101 * r + 0.774893299809 * g + -0.0355749319099 * b"
+   expr2 "0.260681632101 * r + 0.774893299809 * g + -0.0355749319099 * b"
+   name V-Gamut_luminance_Expression
+   xpos -5100
+   ypos -225
+  }
+push $N234cb6d0
+  Expression {
+   expr0 "0.212374157009 * r + 0.701076498009 * g + 0.0865493449823 * b"
+   expr1 "0.212374157009 * r + 0.701076498009 * g + 0.0865493449823 * b"
+   expr2 "0.212374157009 * r + 0.701076498009 * g + 0.0865493449823 * b"
+   name SMPTE-C_RGB_luminance_Expression
+   xpos -5210
+   ypos -225
+  }
+push $N234cb6d0
+  Expression {
+   expr0 "0.215072070849 * r + 0.885058455418 * g + -0.100130526267 * b"
+   expr1 "0.215072070849 * r + 0.885058455418 * g + -0.100130526267 * b"
+   expr2 "0.215072070849 * r + 0.885058455418 * g + -0.100130526267 * b"
+   name S-Gamut3.Cine_luminance_Expression
+   xpos -5320
+   ypos -225
+  }
+push $N234cb6d0
+  Expression {
+   expr0 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
+   expr1 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
+   expr2 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
+   name S-Gamut3_luminance_Expression
+   xpos -5430
+   ypos -225
+  }
+push $N234cb6d0
+  Expression {
+   expr0 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
+   expr1 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
+   expr2 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
+   name S-Gamut_luminance_Expression
+   xpos -5540
+   ypos -225
+  }
+push $N234cb6d0
+  Expression {
+   expr0 "0.315199106486 * r + 0.664839320751 * g + 0.0199615727626 * b"
+   expr1 "0.315199106486 * r + 0.664839320751 * g + 0.0199615727626 * b"
+   expr2 "0.315199106486 * r + 0.664839320751 * g + 0.0199615727626 * b"
+   name Russell_RGB_luminance_Expression
+   xpos -5650
+   ypos -225
+  }
+push $N234cb6d0
+  Expression {
+   expr0 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
+   expr1 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
+   expr2 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
+   name Rec._709_luminance_Expression
+   xpos -5760
+   ypos -225
+  }
+push $N234cb6d0
+  Expression {
+   expr0 "0.262698338957 * r + 0.678008765773 * g + 0.0592928952706 * b"
+   expr1 "0.262698338957 * r + 0.678008765773 * g + 0.0592928952706 * b"
+   expr2 "0.262698338957 * r + 0.678008765773 * g + 0.0592928952706 * b"
+   name Rec._2020_luminance_Expression
+   xpos -5870
+   ypos -225
+  }
+push $N234cb6d0
+  Expression {
+   expr0 "0.203484555969 * r + 0.72639105456 * g + 0.0701243894714 * b"
+   expr1 "0.203484555969 * r + 0.72639105456 * g + 0.0701243894714 * b"
+   expr2 "0.203484555969 * r + 0.72639105456 * g + 0.0701243894714 * b"
+   name REDcolor4_luminance_Expression
+   xpos -5980
+   ypos -225
+  }
+push $N234cb6d0
+  Expression {
+   expr0 "0.221768124882 * r + 0.788760003697 * g + -0.0105281285791 * b"
+   expr1 "0.221768124882 * r + 0.788760003697 * g + -0.0105281285791 * b"
+   expr2 "0.221768124882 * r + 0.788760003697 * g + -0.0105281285791 * b"
+   name REDcolor3_luminance_Expression
+   xpos -6090
+   ypos -225
+  }
+push $N234cb6d0
+  Expression {
+   expr0 "0.16451940323 * r + 0.872165887407 * g + -0.0366852906372 * b"
+   expr1 "0.16451940323 * r + 0.872165887407 * g + -0.0366852906372 * b"
+   expr2 "0.16451940323 * r + 0.872165887407 * g + -0.0366852906372 * b"
+   name REDcolor2_luminance_Expression
+   xpos -6200
+   ypos -225
+  }
+push $N234cb6d0
+  Expression {
+   expr0 "0.194034143173 * r + 0.763419238516 * g + 0.0425466183108 * b"
+   expr1 "0.194034143173 * r + 0.763419238516 * g + 0.0425466183108 * b"
+   expr2 "0.194034143173 * r + 0.763419238516 * g + 0.0425466183108 * b"
+   name REDcolor_luminance_Expression
+   xpos -6310
+   ypos -225
+  }
+push $N234cb6d0
+  Expression {
+   expr0 "0.288037453913 * r + 0.711876883439 * g + 8.56626476195e-05 * b"
+   expr1 "0.288037453913 * r + 0.711876883439 * g + 8.56626476195e-05 * b"
+   expr2 "0.288037453913 * r + 0.711876883439 * g + 8.56626476195e-05 * b"
+   name ProPhoto_RGB_luminance_Expression
+   xpos -6420
+   ypos -225
+  }
+push $N234cb6d0
+  Expression {
+   expr0 "0.222002313106 * r + 0.706668898724 * g + 0.0713287881697 * b"
+   expr1 "0.222002313106 * r + 0.706668898724 * g + 0.0713287881697 * b"
+   expr2 "0.222002313106 * r + 0.706668898724 * g + 0.0713287881697 * b"
+   name Pal/Secam_RGB_luminance_Expression
+   xpos -6530
+   ypos -225
+  }
+push $N234cb6d0
+  Expression {
+   expr0 "0.29890307025 * r + 0.586619854659 * g + 0.114477075091 * b"
+   expr1 "0.29890307025 * r + 0.586619854659 * g + 0.114477075091 * b"
+   expr2 "0.29890307025 * r + 0.586619854659 * g + 0.114477075091 * b"
+   name NTSC_RGB_luminance_Expression
+   xpos -6640
+   ypos -225
+  }
+push $N234cb6d0
+  Expression {
+   expr0 "0.310077340675 * r + 0.689922659325 * g + 0.0 * b"
+   expr1 "0.310077340675 * r + 0.689922659325 * g + 0.0 * b"
+   expr2 "0.310077340675 * r + 0.689922659325 * g + 0.0 * b"
+   name Max_RGB_luminance_Expression
+   xpos -6750
+   ypos -225
+  }
+push $N234cb6d0
+  Expression {
+   expr0 "0.261098890455 * r + 0.734900118525 * g + 0.00400099101932 * b"
+   expr1 "0.261098890455 * r + 0.734900118525 * g + 0.00400099101932 * b"
+   expr2 "0.261098890455 * r + 0.734900118525 * g + 0.00400099101932 * b"
+   name Ekta_Space_PS_5_luminance_Expression
+   xpos -6860
+   ypos -225
+  }
+push $N234cb6d0
+  Expression {
+   expr0 "0.320104742337 * r + 0.601874395246 * g + 0.078020862417 * b"
+   expr1 "0.320104742337 * r + 0.601874395246 * g + 0.078020862417 * b"
+   expr2 "0.320104742337 * r + 0.601874395246 * g + 0.078020862417 * b"
+   name ECI_RGB_v2_luminance_Expression
+   xpos -6970
+   ypos -225
+  }
+push $N234cb6d0
+  Expression {
+   expr0 "0.278090415226 * r + 0.687901558611 * g + 0.0340080261629 * b"
+   expr1 "0.278090415226 * r + 0.687901558611 * g + 0.0340080261629 * b"
+   expr2 "0.278090415226 * r + 0.687901558611 * g + 0.0340080261629 * b"
+   name Don_RGB_4_luminance_Expression
+   xpos -7080
+   ypos -225
+  }
+push $N234cb6d0
+  Expression {
+   expr0 "0.186660738109 * r + 0.74118120047 * g + 0.0721580614212 * b"
+   expr1 "0.186660738109 * r + 0.74118120047 * g + 0.0721580614212 * b"
+   expr2 "0.186660738109 * r + 0.74118120047 * g + 0.0721580614212 * b"
+   name DRAGONcolor2_luminance_Expression
+   xpos -7190
+   ypos -225
+  }
+push $N234cb6d0
+  Expression {
+   expr0 "0.215087180914 * r + 0.849257379828 * g + -0.0643445607425 * b"
+   expr1 "0.215087180914 * r + 0.849257379828 * g + -0.0643445607425 * b"
+   expr2 "0.215087180914 * r + 0.849257379828 * g + -0.0643445607425 * b"
+   name DRAGONcolor_luminance_Expression
+   xpos -7300
+   ypos -225
+  }
+push $N234cb6d0
+  Expression {
+   expr0 "0.203986297104 * r + 0.882591093117 * g + -0.0865773902211 * b"
+   expr1 "0.203986297104 * r + 0.882591093117 * g + -0.0865773902211 * b"
+   expr2 "0.203986297104 * r + 0.882591093117 * g + -0.0865773902211 * b"
+   name DCI-P3+_luminance_Expression
+   xpos -7410
+   ypos -225
+  }
+push $N234cb6d0
+  Expression {
+   expr0 "0.209491677913 * r + 0.721595254161 * g + 0.0689130679262 * b"
+   expr1 "0.209491677913 * r + 0.721595254161 * g + 0.0689130679262 * b"
+   expr2 "0.209491677913 * r + 0.721595254161 * g + 0.0689130679262 * b"
+   name DCI-P3_luminance_Expression
+   xpos -7520
+   ypos -225
+  }
+push $N234cb6d0
+  Expression {
+   expr0 "0.274880515737 * r + 0.658137117154 * g + 0.0669823671092 * b"
+   expr1 "0.274880515737 * r + 0.658137117154 * g + 0.0669823671092 * b"
+   expr2 "0.274880515737 * r + 0.658137117154 * g + 0.0669823671092 * b"
+   name ColorMatch_RGB_luminance_Expression
+   xpos -7630
+   ypos -225
+  }
+push $N234cb6d0
+  Expression {
+   expr0 "0.261256555898 * r + 0.869631208967 * g + -0.130887764865 * b"
+   expr1 "0.261256555898 * r + 0.869631208967 * g + -0.130887764865 * b"
+   expr2 "0.261256555898 * r + 0.869631208967 * g + -0.130887764865 * b"
+   name Cinema_Gamut_luminance_Expression
+   xpos -7740
+   ypos -225
+  }
+push $N234cb6d0
+  Expression {
+   expr0 "0.176204436534 * r + 0.812984693878 * g + 0.0108108695884 * b"
+   expr1 "0.176204436534 * r + 0.812984693878 * g + 0.0108108695884 * b"
+   expr2 "0.176204436534 * r + 0.812984693878 * g + 0.0108108695884 * b"
+   name CIE_RGB_luminance_Expression
+   xpos -7850
+   ypos -225
+  }
+push $N234cb6d0
+  Expression {
+   expr0 "0.303270045405 * r + 0.663789543861 * g + 0.0329404107343 * b"
+   expr1 "0.303270045405 * r + 0.663789543861 * g + 0.0329404107343 * b"
+   expr2 "0.303270045405 * r + 0.663789543861 * g + 0.0329404107343 * b"
+   name Beta_RGB_luminance_Expression
+   xpos -7960
+   ypos -225
+  }
+push $N234cb6d0
+  Expression {
+   expr0 "0.227563471677 * r + 0.738429482666 * g + 0.0340070456574 * b"
+   expr1 "0.227563471677 * r + 0.738429482666 * g + 0.0340070456574 * b"
+   expr2 "0.227563471677 * r + 0.738429482666 * g + 0.0340070456574 * b"
+   name Best_RGB_luminance_Expression
+   xpos -8070
+   ypos -225
+  }
+push $N234cb6d0
+  Expression {
+   expr0 "0.244614394775 * r + 0.672060284019 * g + 0.0833253212057 * b"
+   expr1 "0.244614394775 * r + 0.672060284019 * g + 0.0833253212057 * b"
+   expr2 "0.244614394775 * r + 0.672060284019 * g + 0.0833253212057 * b"
+   name Apple_RGB_luminance_Expression
+   xpos -8180
+   ypos -225
+  }
+push $N234cb6d0
+  Expression {
+   expr0 "0.258690663895 * r + 0.724718154549 * g + 0.0165911815566 * b"
+   expr1 "0.258690663895 * r + 0.724718154549 * g + 0.0165911815566 * b"
+   expr2 "0.258690663895 * r + 0.724718154549 * g + 0.0165911815566 * b"
+   name Adobe_Wide_Gamut_RGB_luminance_Expression
+   xpos -8290
+   ypos -225
+  }
+push $N234cb6d0
+  Expression {
+   expr0 "0.29734448514 * r + 0.627376113264 * g + 0.0752794015963 * b"
+   expr1 "0.29734448514 * r + 0.627376113264 * g + 0.0752794015963 * b"
+   expr2 "0.29734448514 * r + 0.627376113264 * g + 0.0752794015963 * b"
+   name Adobe_RGB_1998_luminance_Expression
+   xpos -8400
+   ypos -225
+  }
+push $N234cb6d0
+  Expression {
+   expr0 "0.291948669899 * r + 0.823830265984 * g + -0.115778935883 * b"
+   expr1 "0.291948669899 * r + 0.823830265984 * g + -0.115778935883 * b"
+   expr2 "0.291948669899 * r + 0.823830265984 * g + -0.115778935883 * b"
+   name ALEXA_Wide_Gamut_RGB_luminance_Expression
+   xpos -8510
+   ypos -225
+  }
+push $N234cb6d0
+  Expression {
+   expr0 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
+   expr1 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
+   expr2 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
+   name ACESproxy_luminance_Expression
+   xpos -8620
+   ypos -225
+  }
+push $N234cb6d0
+  Expression {
+   expr0 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
+   expr1 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
+   expr2 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
+   name ACEScg_luminance_Expression
+   xpos -8730
+   ypos -225
+  }
+push $N234cb6d0
+  Expression {
+   expr0 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
+   expr1 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
+   expr2 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
+   name ACEScc_luminance_Expression
+   xpos -8840
+   ypos -225
+  }
+push $N234cb6d0
+  Expression {
+   expr0 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
+   expr1 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
+   expr2 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
+   name ACES2065-1_luminance_Expression
+   xpos -8950
+   ypos -225
+  }
+  Switch {
+   inputs 38
+   which {{colourspace_Pulldown_Choice}}
+   name colourspace_Switch
+   xpos -4880
+   ypos -225
+   addUserKnob {20 User}
+   addUserKnob {4 colourspace_Pulldown_Choice l Colourspace M {ACES2065-1 ACEScc ACEScg ACESproxy "ALEXA Wide Gamut RGB" "Adobe RGB 1998" "Adobe Wide Gamut RGB" "Apple RGB" "Best RGB" "Beta RGB" "CIE RGB" "Cinema Gamut" "ColorMatch RGB" DCI-P3 DCI-P3+ DRAGONcolor DRAGONcolor2 "Don RGB 4" "ECI RGB v2" "Ekta Space PS 5" "Max RGB" "NTSC RGB" "Pal/Secam RGB" "ProPhoto RGB" REDcolor REDcolor2 REDcolor3 REDcolor4 "Rec. 2020" "Rec. 709" "Russell RGB" S-Gamut S-Gamut3 S-Gamut3.Cine "SMPTE-C RGB" V-Gamut "Xtreme RGB" sRGB}}
+   colourspace_Pulldown_Choice {{parent.colourspace_Pulldown_Choice}}
+  }
+  Output {
+   name Output
+   xpos -4880
+   ypos -201
+  }
+ end_group
+set N234cb310 [stack 0]
+ Dot {
+  name Dot4
+  xpos -446
+  ypos -198
+ }
+ Dot {
+  name Dot5
+  xpos -446
+  ypos -126
+ }
+set N2243e220 [stack 0]
+ Expression {
+  channel3 rgb
+  expr3 "(log(1 + p_Floating_Point_Slider * r) / log(1 + p_Floating_Point_Slider * L_max_Floating_Point_Slider)) ** (1 / q_Floating_Point_Slider)"
+  name logarithmic_tonemapping_operator_Expression
+  xpos -260
+  ypos -129
+  addUserKnob {20 User}
+  addUserKnob {7 p_Floating_Point_Slider l p}
+  p_Floating_Point_Slider {{parent.p_Floating_Point_Slider}}
+  addUserKnob {7 q_Floating_Point_Slider l q}
+  q_Floating_Point_Slider {{parent.q_Floating_Point_Slider}}
+  addUserKnob {7 L_max_Floating_Point_Slider l L_max}
+  L_max_Floating_Point_Slider {{parent.domain_CurveTool.maxlumapixvalue}}
+ }
+ Merge2 {
+  inputs 2
+  operation multiply
+  name multiply_Merge
+  xpos -260
+  ypos -105
+ }
+push $N2243e220
+ Dot {
+  name Dot8
+  xpos -446
+  ypos -78
+ }
+ Merge2 {
+  inputs 2
+  operation divide
+  name divide_Merge
+  xpos -260
+  ypos -81
+ }
+set N2245d640 [stack 0]
+ Clamp {
+  name Clamp
+  xpos -370
+  ypos -61
+ }
+push $N2245d640
+ Switch {
+  inputs 2
+  which {{parent.clamp_output_Check_Box}}
+  name clamp_Switch
+  xpos -260
+  ypos -52
+ }
+push $N1e3e0340
  Dot {
   name Dot2
-  xpos 71
-  ypos -160
+  xpos -6
+  ypos -174
  }
  Dot {
   name Dot3
-  xpos 71
-  ypos -94
+  xpos -6
+  ypos -49
  }
  Dissolve {
-  inputs 2
+  inputs 3+1
   which {{parent.mix_Floating_Point_Slider}}
   name Dissolve
-  xpos -97
-  ypos -101
+  xpos -150
+  ypos -56
  }
  Output {
   name Output
-  xpos -97
-  ypos -69
+  xpos -150
+  ypos -24
  }
-push $N281b30d0
+push $N234cb310
  Dot {
-  name Dot1
-  xpos -207
-  ypos -160
+  name Dot6
+  xpos -336
+  ypos -174
  }
  CurveTool {
   operation "Max Luma Pixel"
@@ -1784,71 +944,1060 @@ push $N281b30d0
   autocropdata {1071 712 3214 2136}
   maxlumapixvalue 1
   name domain_CurveTool
-  selected true
-  xpos -241
-  ypos -129
+  xpos -260
+  ypos -177
  }
 end_group
-push $N28105100
+push $N1d6edaf0
 Group {
- name Simple_Tonemapping_Operator
+ name Exponential_Tonemapping_Operator
  tile_color 0xffbf00ff
- xpos -40
- ypos -57
- addUserKnob {20 simple_tonemapping_operator_tab l "Simple Tonemapping Operator"}
+ xpos 469
+ ypos 34
+ addUserKnob {20 exponential_tonemapping_operator_tab l "Exponential Tonemapping Operator"}
+ addUserKnob {20 tone_parameters_Group l "Tone Parameters" n 1}
+ addUserKnob {22 compute_limits_Python_Script_Button l "Compute Domain" t "Computes the domain / range of internal nodes. \n\nThe domain has to be manually recomputed each time that up-stream graph is changed." T nuke.toNode('domain_CurveTool').knob('go').execute() +STARTLINE}
+ addUserKnob {22 reset_domain_Python_Script_Button l "Reset Domain" t "Reset the domain / range of internal nodes. " -STARTLINE T "node =  nuke.toNode('domain_CurveTool')\n\nknob = node.knob('maxlumapixdata')\nknob.clearAnimated()\nknob.setValue((0, 0))\n\nknob = node.knob('maxlumapixvalue')\nknob.clearAnimated()\nknob.setValue(1)\n\nknob = node.knob('minlumapixdata')\nknob.clearAnimated()\nknob.setValue((0, 0))\n\nknob = node.knob('minlumapixvalue')\nknob.clearAnimated()\nknob.setValue(0)"}
+ addUserKnob {7 p_Floating_Point_Slider l p}
+ p_Floating_Point_Slider 1
+ addUserKnob {7 q_Floating_Point_Slider l q R 1 3}
+ q_Floating_Point_Slider 1
+ addUserKnob {20 tone_parameters_endGroup l endGroup n -1}
  addUserKnob {20 miscellaneous_Group l "Miscellaneous Parameters" n 1}
+ addUserKnob {4 colourspace_Pulldown_Choice l Colourspace M {ACES2065-1 ACEScc ACEScg ACESproxy "ALEXA Wide Gamut RGB" "Adobe RGB 1998" "Adobe Wide Gamut RGB" "Apple RGB" "Best RGB" "Beta RGB" "CIE RGB" "Cinema Gamut" "ColorMatch RGB" DCI-P3 DCI-P3+ DRAGONcolor DRAGONcolor2 "Don RGB 4" "ECI RGB v2" "Ekta Space PS 5" "Max RGB" "NTSC RGB" "Pal/Secam RGB" "ProPhoto RGB" REDcolor REDcolor2 REDcolor3 REDcolor4 "Rec. 2020" "Rec. 709" "Russell RGB" S-Gamut S-Gamut3 S-Gamut3.Cine "SMPTE-C RGB" V-Gamut "Xtreme RGB" sRGB}}
+ colourspace_Pulldown_Choice sRGB
  addUserKnob {7 mix_Floating_Point_Slider l Mix t "Dissolve between the original image at 0 and the full effect at 1."}
  mix_Floating_Point_Slider 1
+ addUserKnob {6 clamp_output_Check_Box l "Clamp Output" t "Output values are clamped within \[0, 1] domain." +STARTLINE}
+ clamp_output_Check_Box true
  addUserKnob {20 miscellaneous_endGroup l endGroup n -1}
  addUserKnob {20 about_Tab l About}
- addUserKnob {26 description_Text l "" +STARTLINE T "Simple Tonemapping Operator v0.1.0\n\ncolour-science.org - March 17, 2015\n\nThis Gizmo / Group implements a Simple Tonemapping Operator.\n\n\[1] Wikipedia. (n.d.). Tonemapping - Purpose and methods. Retrieved March 15, 2015, from http://en.wikipedia.org/wiki/Tone_mapping#Purpose_and_methods"}
+ addUserKnob {26 description_Text l "" +STARTLINE T "Exponential Tonemapping Operator v0.1.2\n\ncolour-science.org - May 6, 2015\n\nThis Gizmo / Group implements an Exponential Tonemapping Operator.\n\n\[1] Schlick, C. (1994). Quantization Techniques for Visualization of High Dynamic Range Pictures. Proceedings of the Fifth Eurographics Workshop on Rendering, (Section 5), 7–18."}
 }
  Input {
   inputs 0
   name Input
-  xpos 55
-  ypos -54
+  xpos -150
+  ypos -177
  }
-set N22107330 [stack 0]
- Expression {
-  expr0 r/(r+1)
-  expr1 g/(g+1)
-  expr2 b/(b+1)
-  name simple_tonemapping_operator_Expression
-  xpos 55
-  ypos -30
+set N1cf750c0 [stack 0]
+ Dot {
+  name Dot7
+  xpos -116
+  ypos -102
  }
-push $N22107330
+set N1cf705b0 [stack 0]
+push 0
+push $N1cf705b0
+push $N1cf750c0
  Dot {
   name Dot1
-  xpos 165
-  ypos -51
+  xpos -116
+  ypos -198
+ }
+ Group {
+  name RGB_Luminance
+  selected true
+  xpos -370
+  ypos -201
+  addUserKnob {20 RGB_luminance_Tab l "RGB Luminance"}
+  addUserKnob {20 colourspace_parameters_Begin_Group l "Colourspace Parameters" n 1}
+  addUserKnob {4 colourspace_Pulldown_Choice l Colourspace M {ACES2065-1 ACEScc ACEScg ACESproxy "ALEXA Wide Gamut RGB" "Adobe RGB 1998" "Adobe Wide Gamut RGB" "Apple RGB" "Best RGB" "Beta RGB" "CIE RGB" "Cinema Gamut" "ColorMatch RGB" DCI-P3 DCI-P3+ DRAGONcolor DRAGONcolor2 "Don RGB 4" "ECI RGB v2" "Ekta Space PS 5" "Max RGB" "NTSC RGB" "Pal/Secam RGB" "ProPhoto RGB" REDcolor REDcolor2 REDcolor3 REDcolor4 "Rec. 2020" "Rec. 709" "Russell RGB" S-Gamut S-Gamut3 S-Gamut3.Cine "SMPTE-C RGB" V-Gamut "Xtreme RGB" sRGB}}
+  colourspace_Pulldown_Choice {{parent.colourspace_Pulldown_Choice}}
+  addUserKnob {20 endGroup n -1}
+  addUserKnob {20 about_Tab l About}
+  addUserKnob {26 description_Text l "" +STARTLINE T "RGB Luminance v0.1.2\n\ncolour-science.org - May 6, 2015\n\nThis Gizmo / Group computes the \"RGB Luminance\" of given colourspace."}
+ }
+  Input {
+   inputs 0
+   name Input
+   xpos -4880
+   ypos -273
+  }
+set N23410ec0 [stack 0]
+  Expression {
+   expr0 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
+   expr1 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
+   expr2 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
+   name sRGB_luminance_Expression
+   xpos -4880
+   ypos -249
+  }
+push $N23410ec0
+  Expression {
+   expr0 "0.0 * r + 1.0 * g + 0.0 * b"
+   expr1 "0.0 * r + 1.0 * g + 0.0 * b"
+   expr2 "0.0 * r + 1.0 * g + 0.0 * b"
+   name Xtreme_RGB_luminance_Expression
+   xpos -4990
+   ypos -225
+  }
+push $N23410ec0
+  Expression {
+   expr0 "0.260681632101 * r + 0.774893299809 * g + -0.0355749319099 * b"
+   expr1 "0.260681632101 * r + 0.774893299809 * g + -0.0355749319099 * b"
+   expr2 "0.260681632101 * r + 0.774893299809 * g + -0.0355749319099 * b"
+   name V-Gamut_luminance_Expression
+   xpos -5100
+   ypos -225
+  }
+push $N23410ec0
+  Expression {
+   expr0 "0.212374157009 * r + 0.701076498009 * g + 0.0865493449823 * b"
+   expr1 "0.212374157009 * r + 0.701076498009 * g + 0.0865493449823 * b"
+   expr2 "0.212374157009 * r + 0.701076498009 * g + 0.0865493449823 * b"
+   name SMPTE-C_RGB_luminance_Expression
+   xpos -5210
+   ypos -225
+  }
+push $N23410ec0
+  Expression {
+   expr0 "0.215072070849 * r + 0.885058455418 * g + -0.100130526267 * b"
+   expr1 "0.215072070849 * r + 0.885058455418 * g + -0.100130526267 * b"
+   expr2 "0.215072070849 * r + 0.885058455418 * g + -0.100130526267 * b"
+   name S-Gamut3.Cine_luminance_Expression
+   xpos -5320
+   ypos -225
+  }
+push $N23410ec0
+  Expression {
+   expr0 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
+   expr1 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
+   expr2 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
+   name S-Gamut3_luminance_Expression
+   xpos -5430
+   ypos -225
+  }
+push $N23410ec0
+  Expression {
+   expr0 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
+   expr1 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
+   expr2 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
+   name S-Gamut_luminance_Expression
+   xpos -5540
+   ypos -225
+  }
+push $N23410ec0
+  Expression {
+   expr0 "0.315199106486 * r + 0.664839320751 * g + 0.0199615727626 * b"
+   expr1 "0.315199106486 * r + 0.664839320751 * g + 0.0199615727626 * b"
+   expr2 "0.315199106486 * r + 0.664839320751 * g + 0.0199615727626 * b"
+   name Russell_RGB_luminance_Expression
+   xpos -5650
+   ypos -225
+  }
+push $N23410ec0
+  Expression {
+   expr0 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
+   expr1 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
+   expr2 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
+   name Rec._709_luminance_Expression
+   xpos -5760
+   ypos -225
+  }
+push $N23410ec0
+  Expression {
+   expr0 "0.262698338957 * r + 0.678008765773 * g + 0.0592928952706 * b"
+   expr1 "0.262698338957 * r + 0.678008765773 * g + 0.0592928952706 * b"
+   expr2 "0.262698338957 * r + 0.678008765773 * g + 0.0592928952706 * b"
+   name Rec._2020_luminance_Expression
+   xpos -5870
+   ypos -225
+  }
+push $N23410ec0
+  Expression {
+   expr0 "0.203484555969 * r + 0.72639105456 * g + 0.0701243894714 * b"
+   expr1 "0.203484555969 * r + 0.72639105456 * g + 0.0701243894714 * b"
+   expr2 "0.203484555969 * r + 0.72639105456 * g + 0.0701243894714 * b"
+   name REDcolor4_luminance_Expression
+   xpos -5980
+   ypos -225
+  }
+push $N23410ec0
+  Expression {
+   expr0 "0.221768124882 * r + 0.788760003697 * g + -0.0105281285791 * b"
+   expr1 "0.221768124882 * r + 0.788760003697 * g + -0.0105281285791 * b"
+   expr2 "0.221768124882 * r + 0.788760003697 * g + -0.0105281285791 * b"
+   name REDcolor3_luminance_Expression
+   xpos -6090
+   ypos -225
+  }
+push $N23410ec0
+  Expression {
+   expr0 "0.16451940323 * r + 0.872165887407 * g + -0.0366852906372 * b"
+   expr1 "0.16451940323 * r + 0.872165887407 * g + -0.0366852906372 * b"
+   expr2 "0.16451940323 * r + 0.872165887407 * g + -0.0366852906372 * b"
+   name REDcolor2_luminance_Expression
+   xpos -6200
+   ypos -225
+  }
+push $N23410ec0
+  Expression {
+   expr0 "0.194034143173 * r + 0.763419238516 * g + 0.0425466183108 * b"
+   expr1 "0.194034143173 * r + 0.763419238516 * g + 0.0425466183108 * b"
+   expr2 "0.194034143173 * r + 0.763419238516 * g + 0.0425466183108 * b"
+   name REDcolor_luminance_Expression
+   xpos -6310
+   ypos -225
+  }
+push $N23410ec0
+  Expression {
+   expr0 "0.288037453913 * r + 0.711876883439 * g + 8.56626476195e-05 * b"
+   expr1 "0.288037453913 * r + 0.711876883439 * g + 8.56626476195e-05 * b"
+   expr2 "0.288037453913 * r + 0.711876883439 * g + 8.56626476195e-05 * b"
+   name ProPhoto_RGB_luminance_Expression
+   xpos -6420
+   ypos -225
+  }
+push $N23410ec0
+  Expression {
+   expr0 "0.222002313106 * r + 0.706668898724 * g + 0.0713287881697 * b"
+   expr1 "0.222002313106 * r + 0.706668898724 * g + 0.0713287881697 * b"
+   expr2 "0.222002313106 * r + 0.706668898724 * g + 0.0713287881697 * b"
+   name Pal/Secam_RGB_luminance_Expression
+   xpos -6530
+   ypos -225
+  }
+push $N23410ec0
+  Expression {
+   expr0 "0.29890307025 * r + 0.586619854659 * g + 0.114477075091 * b"
+   expr1 "0.29890307025 * r + 0.586619854659 * g + 0.114477075091 * b"
+   expr2 "0.29890307025 * r + 0.586619854659 * g + 0.114477075091 * b"
+   name NTSC_RGB_luminance_Expression
+   xpos -6640
+   ypos -225
+  }
+push $N23410ec0
+  Expression {
+   expr0 "0.310077340675 * r + 0.689922659325 * g + 0.0 * b"
+   expr1 "0.310077340675 * r + 0.689922659325 * g + 0.0 * b"
+   expr2 "0.310077340675 * r + 0.689922659325 * g + 0.0 * b"
+   name Max_RGB_luminance_Expression
+   xpos -6750
+   ypos -225
+  }
+push $N23410ec0
+  Expression {
+   expr0 "0.261098890455 * r + 0.734900118525 * g + 0.00400099101932 * b"
+   expr1 "0.261098890455 * r + 0.734900118525 * g + 0.00400099101932 * b"
+   expr2 "0.261098890455 * r + 0.734900118525 * g + 0.00400099101932 * b"
+   name Ekta_Space_PS_5_luminance_Expression
+   xpos -6860
+   ypos -225
+  }
+push $N23410ec0
+  Expression {
+   expr0 "0.320104742337 * r + 0.601874395246 * g + 0.078020862417 * b"
+   expr1 "0.320104742337 * r + 0.601874395246 * g + 0.078020862417 * b"
+   expr2 "0.320104742337 * r + 0.601874395246 * g + 0.078020862417 * b"
+   name ECI_RGB_v2_luminance_Expression
+   xpos -6970
+   ypos -225
+  }
+push $N23410ec0
+  Expression {
+   expr0 "0.278090415226 * r + 0.687901558611 * g + 0.0340080261629 * b"
+   expr1 "0.278090415226 * r + 0.687901558611 * g + 0.0340080261629 * b"
+   expr2 "0.278090415226 * r + 0.687901558611 * g + 0.0340080261629 * b"
+   name Don_RGB_4_luminance_Expression
+   xpos -7080
+   ypos -225
+  }
+push $N23410ec0
+  Expression {
+   expr0 "0.186660738109 * r + 0.74118120047 * g + 0.0721580614212 * b"
+   expr1 "0.186660738109 * r + 0.74118120047 * g + 0.0721580614212 * b"
+   expr2 "0.186660738109 * r + 0.74118120047 * g + 0.0721580614212 * b"
+   name DRAGONcolor2_luminance_Expression
+   xpos -7190
+   ypos -225
+  }
+push $N23410ec0
+  Expression {
+   expr0 "0.215087180914 * r + 0.849257379828 * g + -0.0643445607425 * b"
+   expr1 "0.215087180914 * r + 0.849257379828 * g + -0.0643445607425 * b"
+   expr2 "0.215087180914 * r + 0.849257379828 * g + -0.0643445607425 * b"
+   name DRAGONcolor_luminance_Expression
+   xpos -7300
+   ypos -225
+  }
+push $N23410ec0
+  Expression {
+   expr0 "0.203986297104 * r + 0.882591093117 * g + -0.0865773902211 * b"
+   expr1 "0.203986297104 * r + 0.882591093117 * g + -0.0865773902211 * b"
+   expr2 "0.203986297104 * r + 0.882591093117 * g + -0.0865773902211 * b"
+   name DCI-P3+_luminance_Expression
+   xpos -7410
+   ypos -225
+  }
+push $N23410ec0
+  Expression {
+   expr0 "0.209491677913 * r + 0.721595254161 * g + 0.0689130679262 * b"
+   expr1 "0.209491677913 * r + 0.721595254161 * g + 0.0689130679262 * b"
+   expr2 "0.209491677913 * r + 0.721595254161 * g + 0.0689130679262 * b"
+   name DCI-P3_luminance_Expression
+   xpos -7520
+   ypos -225
+  }
+push $N23410ec0
+  Expression {
+   expr0 "0.274880515737 * r + 0.658137117154 * g + 0.0669823671092 * b"
+   expr1 "0.274880515737 * r + 0.658137117154 * g + 0.0669823671092 * b"
+   expr2 "0.274880515737 * r + 0.658137117154 * g + 0.0669823671092 * b"
+   name ColorMatch_RGB_luminance_Expression
+   xpos -7630
+   ypos -225
+  }
+push $N23410ec0
+  Expression {
+   expr0 "0.261256555898 * r + 0.869631208967 * g + -0.130887764865 * b"
+   expr1 "0.261256555898 * r + 0.869631208967 * g + -0.130887764865 * b"
+   expr2 "0.261256555898 * r + 0.869631208967 * g + -0.130887764865 * b"
+   name Cinema_Gamut_luminance_Expression
+   xpos -7740
+   ypos -225
+  }
+push $N23410ec0
+  Expression {
+   expr0 "0.176204436534 * r + 0.812984693878 * g + 0.0108108695884 * b"
+   expr1 "0.176204436534 * r + 0.812984693878 * g + 0.0108108695884 * b"
+   expr2 "0.176204436534 * r + 0.812984693878 * g + 0.0108108695884 * b"
+   name CIE_RGB_luminance_Expression
+   xpos -7850
+   ypos -225
+  }
+push $N23410ec0
+  Expression {
+   expr0 "0.303270045405 * r + 0.663789543861 * g + 0.0329404107343 * b"
+   expr1 "0.303270045405 * r + 0.663789543861 * g + 0.0329404107343 * b"
+   expr2 "0.303270045405 * r + 0.663789543861 * g + 0.0329404107343 * b"
+   name Beta_RGB_luminance_Expression
+   xpos -7960
+   ypos -225
+  }
+push $N23410ec0
+  Expression {
+   expr0 "0.227563471677 * r + 0.738429482666 * g + 0.0340070456574 * b"
+   expr1 "0.227563471677 * r + 0.738429482666 * g + 0.0340070456574 * b"
+   expr2 "0.227563471677 * r + 0.738429482666 * g + 0.0340070456574 * b"
+   name Best_RGB_luminance_Expression
+   xpos -8070
+   ypos -225
+  }
+push $N23410ec0
+  Expression {
+   expr0 "0.244614394775 * r + 0.672060284019 * g + 0.0833253212057 * b"
+   expr1 "0.244614394775 * r + 0.672060284019 * g + 0.0833253212057 * b"
+   expr2 "0.244614394775 * r + 0.672060284019 * g + 0.0833253212057 * b"
+   name Apple_RGB_luminance_Expression
+   xpos -8180
+   ypos -225
+  }
+push $N23410ec0
+  Expression {
+   expr0 "0.258690663895 * r + 0.724718154549 * g + 0.0165911815566 * b"
+   expr1 "0.258690663895 * r + 0.724718154549 * g + 0.0165911815566 * b"
+   expr2 "0.258690663895 * r + 0.724718154549 * g + 0.0165911815566 * b"
+   name Adobe_Wide_Gamut_RGB_luminance_Expression
+   xpos -8290
+   ypos -225
+  }
+push $N23410ec0
+  Expression {
+   expr0 "0.29734448514 * r + 0.627376113264 * g + 0.0752794015963 * b"
+   expr1 "0.29734448514 * r + 0.627376113264 * g + 0.0752794015963 * b"
+   expr2 "0.29734448514 * r + 0.627376113264 * g + 0.0752794015963 * b"
+   name Adobe_RGB_1998_luminance_Expression
+   xpos -8400
+   ypos -225
+  }
+push $N23410ec0
+  Expression {
+   expr0 "0.291948669899 * r + 0.823830265984 * g + -0.115778935883 * b"
+   expr1 "0.291948669899 * r + 0.823830265984 * g + -0.115778935883 * b"
+   expr2 "0.291948669899 * r + 0.823830265984 * g + -0.115778935883 * b"
+   name ALEXA_Wide_Gamut_RGB_luminance_Expression
+   xpos -8510
+   ypos -225
+  }
+push $N23410ec0
+  Expression {
+   expr0 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
+   expr1 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
+   expr2 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
+   name ACESproxy_luminance_Expression
+   xpos -8620
+   ypos -225
+  }
+push $N23410ec0
+  Expression {
+   expr0 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
+   expr1 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
+   expr2 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
+   name ACEScg_luminance_Expression
+   xpos -8730
+   ypos -225
+  }
+push $N23410ec0
+  Expression {
+   expr0 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
+   expr1 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
+   expr2 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
+   name ACEScc_luminance_Expression
+   xpos -8840
+   ypos -225
+  }
+push $N23410ec0
+  Expression {
+   expr0 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
+   expr1 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
+   expr2 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
+   name ACES2065-1_luminance_Expression
+   xpos -8950
+   ypos -225
+  }
+  Switch {
+   inputs 38
+   which {{colourspace_Pulldown_Choice}}
+   name colourspace_Switch
+   xpos -4880
+   ypos -225
+   addUserKnob {20 User}
+   addUserKnob {4 colourspace_Pulldown_Choice l Colourspace M {ACES2065-1 ACEScc ACEScg ACESproxy "ALEXA Wide Gamut RGB" "Adobe RGB 1998" "Adobe Wide Gamut RGB" "Apple RGB" "Best RGB" "Beta RGB" "CIE RGB" "Cinema Gamut" "ColorMatch RGB" DCI-P3 DCI-P3+ DRAGONcolor DRAGONcolor2 "Don RGB 4" "ECI RGB v2" "Ekta Space PS 5" "Max RGB" "NTSC RGB" "Pal/Secam RGB" "ProPhoto RGB" REDcolor REDcolor2 REDcolor3 REDcolor4 "Rec. 2020" "Rec. 709" "Russell RGB" S-Gamut S-Gamut3 S-Gamut3.Cine "SMPTE-C RGB" V-Gamut "Xtreme RGB" sRGB}}
+   colourspace_Pulldown_Choice {{parent.colourspace_Pulldown_Choice}}
+  }
+  Output {
+   name Output
+   xpos -4880
+   ypos -201
+  }
+ end_group
+set N23462940 [stack 0]
+ Dot {
+  name Dot4
+  xpos -446
+  ypos -198
  }
  Dot {
+  name Dot5
+  xpos -446
+  ypos -126
+ }
+set N1e3783f0 [stack 0]
+ Expression {
+  channel3 rgb
+  expr3 "(r / L_max_Floating_Point_Slider) ** (p_Floating_Point_Slider / q_Floating_Point_Slider)"
+  name exponential_tonemapping_operator_Expression
+  xpos -260
+  ypos -129
+  addUserKnob {20 User}
+  addUserKnob {7 p_Floating_Point_Slider l p}
+  p_Floating_Point_Slider {{parent.p_Floating_Point_Slider}}
+  addUserKnob {7 q_Floating_Point_Slider l q}
+  q_Floating_Point_Slider {{parent.q_Floating_Point_Slider}}
+  addUserKnob {7 L_max_Floating_Point_Slider l L_max}
+  L_max_Floating_Point_Slider {{parent.domain_CurveTool.maxlumapixvalue}}
+ }
+ Merge2 {
+  inputs 2
+  operation multiply
+  name multiply_Merge
+  xpos -260
+  ypos -105
+ }
+push $N1e3783f0
+ Dot {
+  name Dot8
+  xpos -446
+  ypos -78
+ }
+ Merge2 {
+  inputs 2
+  operation divide
+  name divide_Merge
+  xpos -260
+  ypos -81
+ }
+set N1e397800 [stack 0]
+ Clamp {
+  name Clamp
+  xpos -370
+  ypos -61
+ }
+push $N1e397800
+ Switch {
+  inputs 2
+  which {{parent.clamp_output_Check_Box}}
+  name clamp_Switch
+  xpos -260
+  ypos -52
+ }
+push $N1cf750c0
+ Dot {
   name Dot2
-  xpos 165
-  ypos 1
+  xpos -6
+  ypos -174
+ }
+ Dot {
+  name Dot3
+  xpos -6
+  ypos -49
  }
  Dissolve {
-  inputs 2
+  inputs 3+1
   which {{parent.mix_Floating_Point_Slider}}
   name Dissolve
-  selected true
-  xpos 55
-  ypos -6
+  xpos -150
+  ypos -56
  }
  Output {
   name Output
-  xpos 55
-  ypos 26
+  xpos -150
+  ypos -24
+ }
+push $N23462940
+ Dot {
+  name Dot6
+  xpos -336
+  ypos -174
+ }
+ CurveTool {
+  operation "Max Luma Pixel"
+  avgframes 1
+  ROI {0 0 {Input.width} {Input.height}}
+  autocropdata {1071 712 3214 2136}
+  maxlumapixvalue 1
+  name domain_CurveTool
+  xpos -260
+  ypos -177
  }
 end_group
-push $N28105100
+push $N1d6edaf0
+Group {
+ name Schlick94_Tonemapping_Operator
+ tile_color 0xffbf00ff
+ xpos 469
+ ypos 58
+ addUserKnob {20 Schlick94_tonemapping_operator_tab l "Schlick (1994) Tonemapping Operator"}
+ addUserKnob {20 tone_parameters_Group l "Tone Parameters" n 1}
+ addUserKnob {22 compute_limits_Python_Script_Button l "Compute Domain" t "Computes the domain / range of internal nodes. \n\nThe domain has to be manually recomputed each time that up-stream graph is changed." T nuke.toNode('domain_CurveTool').knob('go').execute() +STARTLINE}
+ addUserKnob {22 reset_domain_Python_Script_Button l "Reset Domain" t "Reset the domain / range of internal nodes. " -STARTLINE T "node =  nuke.toNode('domain_CurveTool')\n\nknob = node.knob('maxlumapixdata')\nknob.clearAnimated()\nknob.setValue((0, 0))\n\nknob = node.knob('maxlumapixvalue')\nknob.clearAnimated()\nknob.setValue(1)\n\nknob = node.knob('minlumapixdata')\nknob.clearAnimated()\nknob.setValue((0, 0))\n\nknob = node.knob('minlumapixvalue')\nknob.clearAnimated()\nknob.setValue(0)"}
+ addUserKnob {7 p_Floating_Point_Slider l p R 1 5}
+ p_Floating_Point_Slider 1
+ addUserKnob {20 tone_parameters_endGroup l endGroup n -1}
+ addUserKnob {20 miscellaneous_Group l "Miscellaneous Parameters" n 1}
+ addUserKnob {4 colourspace_Pulldown_Choice l Colourspace M {ACES2065-1 ACEScc ACEScg ACESproxy "ALEXA Wide Gamut RGB" "Adobe RGB 1998" "Adobe Wide Gamut RGB" "Apple RGB" "Best RGB" "Beta RGB" "CIE RGB" "Cinema Gamut" "ColorMatch RGB" DCI-P3 DCI-P3+ DRAGONcolor DRAGONcolor2 "Don RGB 4" "ECI RGB v2" "Ekta Space PS 5" "Max RGB" "NTSC RGB" "Pal/Secam RGB" "ProPhoto RGB" REDcolor REDcolor2 REDcolor3 REDcolor4 "Rec. 2020" "Rec. 709" "Russell RGB" S-Gamut S-Gamut3 S-Gamut3.Cine "SMPTE-C RGB" V-Gamut "Xtreme RGB" sRGB}}
+ colourspace_Pulldown_Choice sRGB
+ addUserKnob {7 mix_Floating_Point_Slider l Mix t "Dissolve between the original image at 0 and the full effect at 1."}
+ mix_Floating_Point_Slider 1
+ addUserKnob {6 clamp_output_Check_Box l "Clamp Output" t "Output values are clamped within \[0, 1] domain." +STARTLINE}
+ clamp_output_Check_Box true
+ addUserKnob {20 miscellaneous_endGroup l endGroup n -1}
+ addUserKnob {20 about_Tab l About}
+ addUserKnob {26 description_Text l "" +STARTLINE T "Schlick (1994) Tonemapping Operator v0.1.2\n\ncolour-science.org - May 6, 2015\n\nThis Gizmo / Group implements Schlick (1994) Tonemapping Operator.\n\n\[1] Schlick, C. (1994). Quantization Techniques for Visualization of High Dynamic Range Pictures. Proceedings of the Fifth Eurographics Workshop on Rendering, (Section 5), 7–18.\n\[2] Banterle, F., Artusi, A., Debattista, K., & Chalmers, A. (2011). 3.2.3 Quantization Techniques. Advanced High Dynamic Range Imaging. A K Peters/CRC Press. ISBN:978-1568817194"}
+}
+ Input {
+  inputs 0
+  name Input
+  xpos -150
+  ypos -177
+ }
+set N1d0d5780 [stack 0]
+ Dot {
+  name Dot7
+  xpos -116
+  ypos -102
+ }
+set N1d0b6e40 [stack 0]
+push 0
+push $N1d0b6e40
+push $N1d0d5780
+ Dot {
+  name Dot1
+  xpos -116
+  ypos -198
+ }
+ Group {
+  name RGB_Luminance
+  selected true
+  xpos -370
+  ypos -201
+  addUserKnob {20 RGB_luminance_Tab l "RGB Luminance"}
+  addUserKnob {20 colourspace_parameters_Begin_Group l "Colourspace Parameters" n 1}
+  addUserKnob {4 colourspace_Pulldown_Choice l Colourspace M {ACES2065-1 ACEScc ACEScg ACESproxy "ALEXA Wide Gamut RGB" "Adobe RGB 1998" "Adobe Wide Gamut RGB" "Apple RGB" "Best RGB" "Beta RGB" "CIE RGB" "Cinema Gamut" "ColorMatch RGB" DCI-P3 DCI-P3+ DRAGONcolor DRAGONcolor2 "Don RGB 4" "ECI RGB v2" "Ekta Space PS 5" "Max RGB" "NTSC RGB" "Pal/Secam RGB" "ProPhoto RGB" REDcolor REDcolor2 REDcolor3 REDcolor4 "Rec. 2020" "Rec. 709" "Russell RGB" S-Gamut S-Gamut3 S-Gamut3.Cine "SMPTE-C RGB" V-Gamut "Xtreme RGB" sRGB}}
+  colourspace_Pulldown_Choice {{parent.colourspace_Pulldown_Choice}}
+  addUserKnob {20 endGroup n -1}
+  addUserKnob {20 about_Tab l About}
+  addUserKnob {26 description_Text l "" +STARTLINE T "RGB Luminance v0.1.2\n\ncolour-science.org - May 6, 2015\n\nThis Gizmo / Group computes the \"RGB Luminance\" of given colourspace."}
+ }
+  Input {
+   inputs 0
+   name Input
+   xpos -4880
+   ypos -273
+  }
+set N22b6ee20 [stack 0]
+  Expression {
+   expr0 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
+   expr1 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
+   expr2 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
+   name sRGB_luminance_Expression
+   xpos -4880
+   ypos -249
+  }
+push $N22b6ee20
+  Expression {
+   expr0 "0.0 * r + 1.0 * g + 0.0 * b"
+   expr1 "0.0 * r + 1.0 * g + 0.0 * b"
+   expr2 "0.0 * r + 1.0 * g + 0.0 * b"
+   name Xtreme_RGB_luminance_Expression
+   xpos -4990
+   ypos -225
+  }
+push $N22b6ee20
+  Expression {
+   expr0 "0.260681632101 * r + 0.774893299809 * g + -0.0355749319099 * b"
+   expr1 "0.260681632101 * r + 0.774893299809 * g + -0.0355749319099 * b"
+   expr2 "0.260681632101 * r + 0.774893299809 * g + -0.0355749319099 * b"
+   name V-Gamut_luminance_Expression
+   xpos -5100
+   ypos -225
+  }
+push $N22b6ee20
+  Expression {
+   expr0 "0.212374157009 * r + 0.701076498009 * g + 0.0865493449823 * b"
+   expr1 "0.212374157009 * r + 0.701076498009 * g + 0.0865493449823 * b"
+   expr2 "0.212374157009 * r + 0.701076498009 * g + 0.0865493449823 * b"
+   name SMPTE-C_RGB_luminance_Expression
+   xpos -5210
+   ypos -225
+  }
+push $N22b6ee20
+  Expression {
+   expr0 "0.215072070849 * r + 0.885058455418 * g + -0.100130526267 * b"
+   expr1 "0.215072070849 * r + 0.885058455418 * g + -0.100130526267 * b"
+   expr2 "0.215072070849 * r + 0.885058455418 * g + -0.100130526267 * b"
+   name S-Gamut3.Cine_luminance_Expression
+   xpos -5320
+   ypos -225
+  }
+push $N22b6ee20
+  Expression {
+   expr0 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
+   expr1 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
+   expr2 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
+   name S-Gamut3_luminance_Expression
+   xpos -5430
+   ypos -225
+  }
+push $N22b6ee20
+  Expression {
+   expr0 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
+   expr1 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
+   expr2 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
+   name S-Gamut_luminance_Expression
+   xpos -5540
+   ypos -225
+  }
+push $N22b6ee20
+  Expression {
+   expr0 "0.315199106486 * r + 0.664839320751 * g + 0.0199615727626 * b"
+   expr1 "0.315199106486 * r + 0.664839320751 * g + 0.0199615727626 * b"
+   expr2 "0.315199106486 * r + 0.664839320751 * g + 0.0199615727626 * b"
+   name Russell_RGB_luminance_Expression
+   xpos -5650
+   ypos -225
+  }
+push $N22b6ee20
+  Expression {
+   expr0 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
+   expr1 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
+   expr2 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
+   name Rec._709_luminance_Expression
+   xpos -5760
+   ypos -225
+  }
+push $N22b6ee20
+  Expression {
+   expr0 "0.262698338957 * r + 0.678008765773 * g + 0.0592928952706 * b"
+   expr1 "0.262698338957 * r + 0.678008765773 * g + 0.0592928952706 * b"
+   expr2 "0.262698338957 * r + 0.678008765773 * g + 0.0592928952706 * b"
+   name Rec._2020_luminance_Expression
+   xpos -5870
+   ypos -225
+  }
+push $N22b6ee20
+  Expression {
+   expr0 "0.203484555969 * r + 0.72639105456 * g + 0.0701243894714 * b"
+   expr1 "0.203484555969 * r + 0.72639105456 * g + 0.0701243894714 * b"
+   expr2 "0.203484555969 * r + 0.72639105456 * g + 0.0701243894714 * b"
+   name REDcolor4_luminance_Expression
+   xpos -5980
+   ypos -225
+  }
+push $N22b6ee20
+  Expression {
+   expr0 "0.221768124882 * r + 0.788760003697 * g + -0.0105281285791 * b"
+   expr1 "0.221768124882 * r + 0.788760003697 * g + -0.0105281285791 * b"
+   expr2 "0.221768124882 * r + 0.788760003697 * g + -0.0105281285791 * b"
+   name REDcolor3_luminance_Expression
+   xpos -6090
+   ypos -225
+  }
+push $N22b6ee20
+  Expression {
+   expr0 "0.16451940323 * r + 0.872165887407 * g + -0.0366852906372 * b"
+   expr1 "0.16451940323 * r + 0.872165887407 * g + -0.0366852906372 * b"
+   expr2 "0.16451940323 * r + 0.872165887407 * g + -0.0366852906372 * b"
+   name REDcolor2_luminance_Expression
+   xpos -6200
+   ypos -225
+  }
+push $N22b6ee20
+  Expression {
+   expr0 "0.194034143173 * r + 0.763419238516 * g + 0.0425466183108 * b"
+   expr1 "0.194034143173 * r + 0.763419238516 * g + 0.0425466183108 * b"
+   expr2 "0.194034143173 * r + 0.763419238516 * g + 0.0425466183108 * b"
+   name REDcolor_luminance_Expression
+   xpos -6310
+   ypos -225
+  }
+push $N22b6ee20
+  Expression {
+   expr0 "0.288037453913 * r + 0.711876883439 * g + 8.56626476195e-05 * b"
+   expr1 "0.288037453913 * r + 0.711876883439 * g + 8.56626476195e-05 * b"
+   expr2 "0.288037453913 * r + 0.711876883439 * g + 8.56626476195e-05 * b"
+   name ProPhoto_RGB_luminance_Expression
+   xpos -6420
+   ypos -225
+  }
+push $N22b6ee20
+  Expression {
+   expr0 "0.222002313106 * r + 0.706668898724 * g + 0.0713287881697 * b"
+   expr1 "0.222002313106 * r + 0.706668898724 * g + 0.0713287881697 * b"
+   expr2 "0.222002313106 * r + 0.706668898724 * g + 0.0713287881697 * b"
+   name Pal/Secam_RGB_luminance_Expression
+   xpos -6530
+   ypos -225
+  }
+push $N22b6ee20
+  Expression {
+   expr0 "0.29890307025 * r + 0.586619854659 * g + 0.114477075091 * b"
+   expr1 "0.29890307025 * r + 0.586619854659 * g + 0.114477075091 * b"
+   expr2 "0.29890307025 * r + 0.586619854659 * g + 0.114477075091 * b"
+   name NTSC_RGB_luminance_Expression
+   xpos -6640
+   ypos -225
+  }
+push $N22b6ee20
+  Expression {
+   expr0 "0.310077340675 * r + 0.689922659325 * g + 0.0 * b"
+   expr1 "0.310077340675 * r + 0.689922659325 * g + 0.0 * b"
+   expr2 "0.310077340675 * r + 0.689922659325 * g + 0.0 * b"
+   name Max_RGB_luminance_Expression
+   xpos -6750
+   ypos -225
+  }
+push $N22b6ee20
+  Expression {
+   expr0 "0.261098890455 * r + 0.734900118525 * g + 0.00400099101932 * b"
+   expr1 "0.261098890455 * r + 0.734900118525 * g + 0.00400099101932 * b"
+   expr2 "0.261098890455 * r + 0.734900118525 * g + 0.00400099101932 * b"
+   name Ekta_Space_PS_5_luminance_Expression
+   xpos -6860
+   ypos -225
+  }
+push $N22b6ee20
+  Expression {
+   expr0 "0.320104742337 * r + 0.601874395246 * g + 0.078020862417 * b"
+   expr1 "0.320104742337 * r + 0.601874395246 * g + 0.078020862417 * b"
+   expr2 "0.320104742337 * r + 0.601874395246 * g + 0.078020862417 * b"
+   name ECI_RGB_v2_luminance_Expression
+   xpos -6970
+   ypos -225
+  }
+push $N22b6ee20
+  Expression {
+   expr0 "0.278090415226 * r + 0.687901558611 * g + 0.0340080261629 * b"
+   expr1 "0.278090415226 * r + 0.687901558611 * g + 0.0340080261629 * b"
+   expr2 "0.278090415226 * r + 0.687901558611 * g + 0.0340080261629 * b"
+   name Don_RGB_4_luminance_Expression
+   xpos -7080
+   ypos -225
+  }
+push $N22b6ee20
+  Expression {
+   expr0 "0.186660738109 * r + 0.74118120047 * g + 0.0721580614212 * b"
+   expr1 "0.186660738109 * r + 0.74118120047 * g + 0.0721580614212 * b"
+   expr2 "0.186660738109 * r + 0.74118120047 * g + 0.0721580614212 * b"
+   name DRAGONcolor2_luminance_Expression
+   xpos -7190
+   ypos -225
+  }
+push $N22b6ee20
+  Expression {
+   expr0 "0.215087180914 * r + 0.849257379828 * g + -0.0643445607425 * b"
+   expr1 "0.215087180914 * r + 0.849257379828 * g + -0.0643445607425 * b"
+   expr2 "0.215087180914 * r + 0.849257379828 * g + -0.0643445607425 * b"
+   name DRAGONcolor_luminance_Expression
+   xpos -7300
+   ypos -225
+  }
+push $N22b6ee20
+  Expression {
+   expr0 "0.203986297104 * r + 0.882591093117 * g + -0.0865773902211 * b"
+   expr1 "0.203986297104 * r + 0.882591093117 * g + -0.0865773902211 * b"
+   expr2 "0.203986297104 * r + 0.882591093117 * g + -0.0865773902211 * b"
+   name DCI-P3+_luminance_Expression
+   xpos -7410
+   ypos -225
+  }
+push $N22b6ee20
+  Expression {
+   expr0 "0.209491677913 * r + 0.721595254161 * g + 0.0689130679262 * b"
+   expr1 "0.209491677913 * r + 0.721595254161 * g + 0.0689130679262 * b"
+   expr2 "0.209491677913 * r + 0.721595254161 * g + 0.0689130679262 * b"
+   name DCI-P3_luminance_Expression
+   xpos -7520
+   ypos -225
+  }
+push $N22b6ee20
+  Expression {
+   expr0 "0.274880515737 * r + 0.658137117154 * g + 0.0669823671092 * b"
+   expr1 "0.274880515737 * r + 0.658137117154 * g + 0.0669823671092 * b"
+   expr2 "0.274880515737 * r + 0.658137117154 * g + 0.0669823671092 * b"
+   name ColorMatch_RGB_luminance_Expression
+   xpos -7630
+   ypos -225
+  }
+push $N22b6ee20
+  Expression {
+   expr0 "0.261256555898 * r + 0.869631208967 * g + -0.130887764865 * b"
+   expr1 "0.261256555898 * r + 0.869631208967 * g + -0.130887764865 * b"
+   expr2 "0.261256555898 * r + 0.869631208967 * g + -0.130887764865 * b"
+   name Cinema_Gamut_luminance_Expression
+   xpos -7740
+   ypos -225
+  }
+push $N22b6ee20
+  Expression {
+   expr0 "0.176204436534 * r + 0.812984693878 * g + 0.0108108695884 * b"
+   expr1 "0.176204436534 * r + 0.812984693878 * g + 0.0108108695884 * b"
+   expr2 "0.176204436534 * r + 0.812984693878 * g + 0.0108108695884 * b"
+   name CIE_RGB_luminance_Expression
+   xpos -7850
+   ypos -225
+  }
+push $N22b6ee20
+  Expression {
+   expr0 "0.303270045405 * r + 0.663789543861 * g + 0.0329404107343 * b"
+   expr1 "0.303270045405 * r + 0.663789543861 * g + 0.0329404107343 * b"
+   expr2 "0.303270045405 * r + 0.663789543861 * g + 0.0329404107343 * b"
+   name Beta_RGB_luminance_Expression
+   xpos -7960
+   ypos -225
+  }
+push $N22b6ee20
+  Expression {
+   expr0 "0.227563471677 * r + 0.738429482666 * g + 0.0340070456574 * b"
+   expr1 "0.227563471677 * r + 0.738429482666 * g + 0.0340070456574 * b"
+   expr2 "0.227563471677 * r + 0.738429482666 * g + 0.0340070456574 * b"
+   name Best_RGB_luminance_Expression
+   xpos -8070
+   ypos -225
+  }
+push $N22b6ee20
+  Expression {
+   expr0 "0.244614394775 * r + 0.672060284019 * g + 0.0833253212057 * b"
+   expr1 "0.244614394775 * r + 0.672060284019 * g + 0.0833253212057 * b"
+   expr2 "0.244614394775 * r + 0.672060284019 * g + 0.0833253212057 * b"
+   name Apple_RGB_luminance_Expression
+   xpos -8180
+   ypos -225
+  }
+push $N22b6ee20
+  Expression {
+   expr0 "0.258690663895 * r + 0.724718154549 * g + 0.0165911815566 * b"
+   expr1 "0.258690663895 * r + 0.724718154549 * g + 0.0165911815566 * b"
+   expr2 "0.258690663895 * r + 0.724718154549 * g + 0.0165911815566 * b"
+   name Adobe_Wide_Gamut_RGB_luminance_Expression
+   xpos -8290
+   ypos -225
+  }
+push $N22b6ee20
+  Expression {
+   expr0 "0.29734448514 * r + 0.627376113264 * g + 0.0752794015963 * b"
+   expr1 "0.29734448514 * r + 0.627376113264 * g + 0.0752794015963 * b"
+   expr2 "0.29734448514 * r + 0.627376113264 * g + 0.0752794015963 * b"
+   name Adobe_RGB_1998_luminance_Expression
+   xpos -8400
+   ypos -225
+  }
+push $N22b6ee20
+  Expression {
+   expr0 "0.291948669899 * r + 0.823830265984 * g + -0.115778935883 * b"
+   expr1 "0.291948669899 * r + 0.823830265984 * g + -0.115778935883 * b"
+   expr2 "0.291948669899 * r + 0.823830265984 * g + -0.115778935883 * b"
+   name ALEXA_Wide_Gamut_RGB_luminance_Expression
+   xpos -8510
+   ypos -225
+  }
+push $N22b6ee20
+  Expression {
+   expr0 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
+   expr1 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
+   expr2 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
+   name ACESproxy_luminance_Expression
+   xpos -8620
+   ypos -225
+  }
+push $N22b6ee20
+  Expression {
+   expr0 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
+   expr1 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
+   expr2 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
+   name ACEScg_luminance_Expression
+   xpos -8730
+   ypos -225
+  }
+push $N22b6ee20
+  Expression {
+   expr0 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
+   expr1 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
+   expr2 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
+   name ACEScc_luminance_Expression
+   xpos -8840
+   ypos -225
+  }
+push $N22b6ee20
+  Expression {
+   expr0 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
+   expr1 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
+   expr2 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
+   name ACES2065-1_luminance_Expression
+   xpos -8950
+   ypos -225
+  }
+  Switch {
+   inputs 38
+   which {{colourspace_Pulldown_Choice}}
+   name colourspace_Switch
+   xpos -4880
+   ypos -225
+   addUserKnob {20 User}
+   addUserKnob {4 colourspace_Pulldown_Choice l Colourspace M {ACES2065-1 ACEScc ACEScg ACESproxy "ALEXA Wide Gamut RGB" "Adobe RGB 1998" "Adobe Wide Gamut RGB" "Apple RGB" "Best RGB" "Beta RGB" "CIE RGB" "Cinema Gamut" "ColorMatch RGB" DCI-P3 DCI-P3+ DRAGONcolor DRAGONcolor2 "Don RGB 4" "ECI RGB v2" "Ekta Space PS 5" "Max RGB" "NTSC RGB" "Pal/Secam RGB" "ProPhoto RGB" REDcolor REDcolor2 REDcolor3 REDcolor4 "Rec. 2020" "Rec. 709" "Russell RGB" S-Gamut S-Gamut3 S-Gamut3.Cine "SMPTE-C RGB" V-Gamut "Xtreme RGB" sRGB}}
+   colourspace_Pulldown_Choice {{parent.colourspace_Pulldown_Choice}}
+  }
+  Output {
+   name Output
+   xpos -4880
+   ypos -201
+  }
+ end_group
+set N22b68c90 [stack 0]
+ Dot {
+  name Dot4
+  xpos -446
+  ypos -198
+ }
+ Dot {
+  name Dot5
+  xpos -446
+  ypos -126
+ }
+set N1da95d30 [stack 0]
+ Expression {
+  channel3 rgb
+  expr3 "(p_Floating_Point_Slider * r) / (p_Floating_Point_Slider * r - r + L_max_Floating_Point_Slider)"
+  name Schlick94_tonemapping_operator_Expression
+  xpos -260
+  ypos -129
+  addUserKnob {20 User}
+  addUserKnob {7 p_Floating_Point_Slider l p}
+  p_Floating_Point_Slider {{parent.p_Floating_Point_Slider}}
+  addUserKnob {7 L_max_Floating_Point_Slider l L_max}
+  L_max_Floating_Point_Slider {{parent.domain_CurveTool.maxlumapixvalue}}
+ }
+ Merge2 {
+  inputs 2
+  operation multiply
+  name multiply_Merge
+  xpos -260
+  ypos -105
+ }
+push $N1da95d30
+ Dot {
+  name Dot8
+  xpos -446
+  ypos -78
+ }
+ Merge2 {
+  inputs 2
+  operation divide
+  name divide_Merge
+  xpos -260
+  ypos -81
+ }
+set N1dab4ba0 [stack 0]
+ Clamp {
+  name Clamp
+  xpos -370
+  ypos -61
+ }
+push $N1dab4ba0
+ Switch {
+  inputs 2
+  which {{parent.clamp_output_Check_Box}}
+  name clamp_Switch
+  xpos -260
+  ypos -52
+ }
+push $N1d0d5780
+ Dot {
+  name Dot2
+  xpos -6
+  ypos -174
+ }
+ Dot {
+  name Dot3
+  xpos -6
+  ypos -49
+ }
+ Dissolve {
+  inputs 3+1
+  which {{parent.mix_Floating_Point_Slider}}
+  name Dissolve
+  xpos -150
+  ypos -56
+ }
+ Output {
+  name Output
+  xpos -150
+  ypos -24
+ }
+push $N22b68c90
+ Dot {
+  name Dot6
+  xpos -336
+  ypos -174
+ }
+ CurveTool {
+  operation "Max Luma Pixel"
+  avgframes 1
+  ROI {0 0 {Input.width} {Input.height}}
+  autocropdata {1071 712 3214 2136}
+  maxlumapixvalue 1
+  name domain_CurveTool
+  xpos -260
+  ypos -177
+ }
+end_group
+push $N1d6edaf0
 Group {
  name Reinhard04_Tonemapping_Operator
  tile_color 0xffbf00ff
- xpos -40
- ypos 87
+ xpos 469
+ ypos 82
  addUserKnob {20 Reinhard04_tonemapping_operator_tab l "Reinhard (2004) Tonemapping Operator"}
  addUserKnob {20 tone_parameters_Group l "Tone Parameters" n 1}
  addUserKnob {22 compute_limits_Python_Script_Button l "Compute Domain" t "Computes the domain / range of internal nodes. \n\nThe domain has to be manually recomputed each time that up-stream graph is changed." T "nuke.toNode('domain_CurveTool').knob('go').execute()\nnuke.toNode('average_CurveTool').knob('go').execute()\nnuke.toNode('log_average_CurveTool').knob('go').execute()" +STARTLINE}
@@ -1860,7 +2009,7 @@ Group {
  addUserKnob {7 c_Floating_Point_Slider l c t "Chromatic adaptation, operating range: \[0.3 1.0]."}
  addUserKnob {20 tone_parameters_endGroup l endGroup n -1}
  addUserKnob {20 miscellaneous_Group l "Miscellaneous Parameters" n 1}
- addUserKnob {4 colourspace_Pulldown_Choice l Colourspace M {ACES2065-1 ACEScc ACEScg ACESproxy "ALEXA Wide Gamut RGB" "Adobe RGB 1998" "Adobe Wide Gamut RGB" "Apple RGB" "Best RGB" "Beta RGB" "CIE RGB" "Cinema Gamut" "ColorMatch RGB" DCI-P3 DCI-P3+ DRAGONcolor DRAGONcolor2 "Don RGB 4" "ECI RGB v2" "Ekta Space PS 5" "Max RGB" "NTSC RGB" "Pal/Secam RGB" "ProPhoto RGB" REDcolor2 REDcolor3 REDcolor4 "Rec. 2020" "Rec. 709" "Russell RGB" S-Gamut S-Gamut3 S-Gamut3.Cine "SMPTE-C RGB" V-Gamut "Xtreme RGB" sRGB}}
+ addUserKnob {4 colourspace_Pulldown_Choice l Colourspace M {ACES2065-1 ACEScc ACEScg ACESproxy "ALEXA Wide Gamut RGB" "Adobe RGB 1998" "Adobe Wide Gamut RGB" "Apple RGB" "Best RGB" "Beta RGB" "CIE RGB" "Cinema Gamut" "ColorMatch RGB" DCI-P3 DCI-P3+ DRAGONcolor DRAGONcolor2 "Don RGB 4" "ECI RGB v2" "Ekta Space PS 5" "Max RGB" "NTSC RGB" "Pal/Secam RGB" "ProPhoto RGB" REDcolor REDcolor2 REDcolor3 REDcolor4 "Rec. 2020" "Rec. 709" "Russell RGB" S-Gamut S-Gamut3 S-Gamut3.Cine "SMPTE-C RGB" V-Gamut "Xtreme RGB" sRGB}}
  colourspace_Pulldown_Choice sRGB
  addUserKnob {7 mix_Floating_Point_Slider l Mix t "Dissolve between the original image at 0 and the full effect at 1."}
  mix_Floating_Point_Slider 1
@@ -1868,7 +2017,7 @@ Group {
  clamp_output_Check_Box true
  addUserKnob {20 miscellaneous_endGroup l endGroup n -1}
  addUserKnob {20 about_Tab l About}
- addUserKnob {26 description_Text l "" +STARTLINE T "Reinhard (2004) Tonemapping Operator v0.1.1\n\ncolour-science.org - May 5, 2015\n\nThis Gizmo / Group implements Reinhard (2004) Tonemapping Operator.\n\n\[1] Reinhard, E., & Devlin, K. (2005). Dynamic range reduction inspired by photoreceptor physiology. IEEE Transactions on Visualization and Computer Graphics, 11(1), 13–24. doi:10.1109/TVCG.2005.9"}
+ addUserKnob {26 description_Text l "" +STARTLINE T "Reinhard (2004) Tonemapping Operator v0.1.2\n\ncolour-science.org - May 6, 2015\n\nThis Gizmo / Group implements Reinhard (2004) Tonemapping Operator.\n\n\[1] Reinhard, E., & Devlin, K. (2005). Dynamic range reduction inspired by photoreceptor physiology. IEEE Transactions on Visualization and Computer Graphics, 11(1), 13–24. doi:10.1109/TVCG.2005.9"}
 }
  Input {
   inputs 0
@@ -1876,29 +2025,29 @@ Group {
   xpos -150
   ypos -177
  }
-set N17e51e10 [stack 0]
+set N2257e3f0 [stack 0]
  Dot {
   name Dot8
   xpos -116
   ypos -116
  }
-set N17e559f0 [stack 0]
+set N22581ff0 [stack 0]
  Dot {
   name Dot10
   xpos -116
   ypos -6
  }
-set N27865340 [stack 0]
+set N22585e20 [stack 0]
  Dot {
   name Dot7
   xpos -116
   ypos 18
  }
-set N278fb580 [stack 0]
+set N22589b00 [stack 0]
 push 0
-push $N278fb580
-push $N27865340
-push $N17e559f0
+push $N22589b00
+push $N22585e20
+push $N22581ff0
  Expression {
   expr0 "c_Floating_Point_Slider * r + (1 - c_Floating_Point_Slider)"
   expr1 "c_Floating_Point_Slider * g + (1 - c_Floating_Point_Slider)"
@@ -1910,13 +2059,13 @@ push $N17e559f0
   addUserKnob {7 c_Floating_Point_Slider l c}
   c_Floating_Point_Slider {{parent.c_Floating_Point_Slider}}
  }
-push $N17e51e10
+push $N2257e3f0
  Dot {
   name Dot1
   xpos -116
   ypos -198
  }
-set N2786d570 [stack 0]
+set N22599000 [stack 0]
  Group {
   name RGB_Luminance
   selected true
@@ -1924,375 +2073,383 @@ set N2786d570 [stack 0]
   ypos -201
   addUserKnob {20 RGB_luminance_Tab l "RGB Luminance"}
   addUserKnob {20 colourspace_parameters_Begin_Group l "Colourspace Parameters" n 1}
-  addUserKnob {4 colourspace_Pulldown_Choice l Colourspace M {ACES2065-1 ACEScc ACEScg ACESproxy "ALEXA Wide Gamut RGB" "Adobe RGB 1998" "Adobe Wide Gamut RGB" "Apple RGB" "Best RGB" "Beta RGB" "CIE RGB" "Cinema Gamut" "ColorMatch RGB" DCI-P3 DCI-P3+ DRAGONcolor DRAGONcolor2 "Don RGB 4" "ECI RGB v2" "Ekta Space PS 5" "Max RGB" "NTSC RGB" "Pal/Secam RGB" "ProPhoto RGB" REDcolor2 REDcolor3 REDcolor4 "Rec. 2020" "Rec. 709" "Russell RGB" S-Gamut S-Gamut3 S-Gamut3.Cine "SMPTE-C RGB" V-Gamut "Xtreme RGB" sRGB}}
-  colourspace_Pulldown_Choice {{parent.colourspace_Pulldown_Choice x1 26}}
+  addUserKnob {4 colourspace_Pulldown_Choice l Colourspace M {ACES2065-1 ACEScc ACEScg ACESproxy "ALEXA Wide Gamut RGB" "Adobe RGB 1998" "Adobe Wide Gamut RGB" "Apple RGB" "Best RGB" "Beta RGB" "CIE RGB" "Cinema Gamut" "ColorMatch RGB" DCI-P3 DCI-P3+ DRAGONcolor DRAGONcolor2 "Don RGB 4" "ECI RGB v2" "Ekta Space PS 5" "Max RGB" "NTSC RGB" "Pal/Secam RGB" "ProPhoto RGB" REDcolor REDcolor2 REDcolor3 REDcolor4 "Rec. 2020" "Rec. 709" "Russell RGB" S-Gamut S-Gamut3 S-Gamut3.Cine "SMPTE-C RGB" V-Gamut "Xtreme RGB" sRGB}}
+  colourspace_Pulldown_Choice {{parent.colourspace_Pulldown_Choice}}
   addUserKnob {20 endGroup n -1}
   addUserKnob {20 about_Tab l About}
-  addUserKnob {26 description_Text l "" +STARTLINE T "RGB Luminance v0.1.1\n\ncolour-science.org - May 5, 2015\n\nThis Gizmo / Group computes the \"RGB Luminance\" of given colourspace."}
+  addUserKnob {26 description_Text l "" +STARTLINE T "RGB Luminance v0.1.2\n\ncolour-science.org - May 6, 2015\n\nThis Gizmo / Group computes the \"RGB Luminance\" of given colourspace."}
  }
   Input {
    inputs 0
    name Input
-   xpos -2350
-   ypos 159
+   xpos -4880
+   ypos -273
   }
-set N278792a0 [stack 0]
+set N24114690 [stack 0]
   Expression {
    expr0 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
    expr1 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
    expr2 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
    name sRGB_luminance_Expression
-   xpos -2350
-   ypos 183
+   xpos -4880
+   ypos -249
   }
-push $N278792a0
+push $N24114690
   Expression {
    expr0 "0.0 * r + 1.0 * g + 0.0 * b"
    expr1 "0.0 * r + 1.0 * g + 0.0 * b"
    expr2 "0.0 * r + 1.0 * g + 0.0 * b"
    name Xtreme_RGB_luminance_Expression
-   xpos -2460
-   ypos 183
+   xpos -4990
+   ypos -225
   }
-push $N278792a0
+push $N24114690
   Expression {
    expr0 "0.260681632101 * r + 0.774893299809 * g + -0.0355749319099 * b"
    expr1 "0.260681632101 * r + 0.774893299809 * g + -0.0355749319099 * b"
    expr2 "0.260681632101 * r + 0.774893299809 * g + -0.0355749319099 * b"
    name V-Gamut_luminance_Expression
-   selected true
-   xpos -2570
-   ypos 183
+   xpos -5100
+   ypos -225
   }
-push $N278792a0
+push $N24114690
   Expression {
    expr0 "0.212374157009 * r + 0.701076498009 * g + 0.0865493449823 * b"
    expr1 "0.212374157009 * r + 0.701076498009 * g + 0.0865493449823 * b"
    expr2 "0.212374157009 * r + 0.701076498009 * g + 0.0865493449823 * b"
    name SMPTE-C_RGB_luminance_Expression
-   xpos -2680
-   ypos 183
+   xpos -5210
+   ypos -225
   }
-push $N278792a0
+push $N24114690
   Expression {
    expr0 "0.215072070849 * r + 0.885058455418 * g + -0.100130526267 * b"
    expr1 "0.215072070849 * r + 0.885058455418 * g + -0.100130526267 * b"
    expr2 "0.215072070849 * r + 0.885058455418 * g + -0.100130526267 * b"
    name S-Gamut3.Cine_luminance_Expression
-   xpos -2790
-   ypos 183
+   xpos -5320
+   ypos -225
   }
-push $N278792a0
+push $N24114690
   Expression {
    expr0 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
    expr1 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
    expr2 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
    name S-Gamut3_luminance_Expression
-   xpos -2900
-   ypos 183
+   xpos -5430
+   ypos -225
   }
-push $N278792a0
+push $N24114690
   Expression {
    expr0 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
    expr1 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
    expr2 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
    name S-Gamut_luminance_Expression
-   xpos -3010
-   ypos 183
+   xpos -5540
+   ypos -225
   }
-push $N278792a0
+push $N24114690
   Expression {
    expr0 "0.315199106486 * r + 0.664839320751 * g + 0.0199615727626 * b"
    expr1 "0.315199106486 * r + 0.664839320751 * g + 0.0199615727626 * b"
    expr2 "0.315199106486 * r + 0.664839320751 * g + 0.0199615727626 * b"
    name Russell_RGB_luminance_Expression
-   xpos -3120
-   ypos 183
+   xpos -5650
+   ypos -225
   }
-push $N278792a0
+push $N24114690
   Expression {
    expr0 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
    expr1 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
    expr2 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
    name Rec._709_luminance_Expression
-   xpos -3230
-   ypos 183
+   xpos -5760
+   ypos -225
   }
-push $N278792a0
+push $N24114690
   Expression {
    expr0 "0.262698338957 * r + 0.678008765773 * g + 0.0592928952706 * b"
    expr1 "0.262698338957 * r + 0.678008765773 * g + 0.0592928952706 * b"
    expr2 "0.262698338957 * r + 0.678008765773 * g + 0.0592928952706 * b"
    name Rec._2020_luminance_Expression
-   xpos -3340
-   ypos 183
+   xpos -5870
+   ypos -225
   }
-push $N278792a0
+push $N24114690
   Expression {
    expr0 "0.203484555969 * r + 0.72639105456 * g + 0.0701243894714 * b"
    expr1 "0.203484555969 * r + 0.72639105456 * g + 0.0701243894714 * b"
    expr2 "0.203484555969 * r + 0.72639105456 * g + 0.0701243894714 * b"
    name REDcolor4_luminance_Expression
-   xpos -3450
-   ypos 183
+   xpos -5980
+   ypos -225
   }
-push $N278792a0
+push $N24114690
   Expression {
    expr0 "0.221768124882 * r + 0.788760003697 * g + -0.0105281285791 * b"
    expr1 "0.221768124882 * r + 0.788760003697 * g + -0.0105281285791 * b"
    expr2 "0.221768124882 * r + 0.788760003697 * g + -0.0105281285791 * b"
    name REDcolor3_luminance_Expression
-   xpos -3560
-   ypos 183
+   xpos -6090
+   ypos -225
   }
-push $N278792a0
+push $N24114690
   Expression {
    expr0 "0.16451940323 * r + 0.872165887407 * g + -0.0366852906372 * b"
    expr1 "0.16451940323 * r + 0.872165887407 * g + -0.0366852906372 * b"
    expr2 "0.16451940323 * r + 0.872165887407 * g + -0.0366852906372 * b"
    name REDcolor2_luminance_Expression
-   xpos -3670
-   ypos 183
+   xpos -6200
+   ypos -225
   }
-push $N278792a0
+push $N24114690
+  Expression {
+   expr0 "0.194034143173 * r + 0.763419238516 * g + 0.0425466183108 * b"
+   expr1 "0.194034143173 * r + 0.763419238516 * g + 0.0425466183108 * b"
+   expr2 "0.194034143173 * r + 0.763419238516 * g + 0.0425466183108 * b"
+   name REDcolor_luminance_Expression
+   xpos -6310
+   ypos -225
+  }
+push $N24114690
   Expression {
    expr0 "0.288037453913 * r + 0.711876883439 * g + 8.56626476195e-05 * b"
    expr1 "0.288037453913 * r + 0.711876883439 * g + 8.56626476195e-05 * b"
    expr2 "0.288037453913 * r + 0.711876883439 * g + 8.56626476195e-05 * b"
    name ProPhoto_RGB_luminance_Expression
-   xpos -3780
-   ypos 183
+   xpos -6420
+   ypos -225
   }
-push $N278792a0
+push $N24114690
   Expression {
    expr0 "0.222002313106 * r + 0.706668898724 * g + 0.0713287881697 * b"
    expr1 "0.222002313106 * r + 0.706668898724 * g + 0.0713287881697 * b"
    expr2 "0.222002313106 * r + 0.706668898724 * g + 0.0713287881697 * b"
    name Pal/Secam_RGB_luminance_Expression
-   xpos -3890
-   ypos 183
+   xpos -6530
+   ypos -225
   }
-push $N278792a0
+push $N24114690
   Expression {
    expr0 "0.29890307025 * r + 0.586619854659 * g + 0.114477075091 * b"
    expr1 "0.29890307025 * r + 0.586619854659 * g + 0.114477075091 * b"
    expr2 "0.29890307025 * r + 0.586619854659 * g + 0.114477075091 * b"
    name NTSC_RGB_luminance_Expression
-   xpos -4000
-   ypos 183
+   xpos -6640
+   ypos -225
   }
-push $N278792a0
+push $N24114690
   Expression {
    expr0 "0.310077340675 * r + 0.689922659325 * g + 0.0 * b"
    expr1 "0.310077340675 * r + 0.689922659325 * g + 0.0 * b"
    expr2 "0.310077340675 * r + 0.689922659325 * g + 0.0 * b"
    name Max_RGB_luminance_Expression
-   xpos -4110
-   ypos 183
+   xpos -6750
+   ypos -225
   }
-push $N278792a0
+push $N24114690
   Expression {
    expr0 "0.261098890455 * r + 0.734900118525 * g + 0.00400099101932 * b"
    expr1 "0.261098890455 * r + 0.734900118525 * g + 0.00400099101932 * b"
    expr2 "0.261098890455 * r + 0.734900118525 * g + 0.00400099101932 * b"
    name Ekta_Space_PS_5_luminance_Expression
-   xpos -4220
-   ypos 183
+   xpos -6860
+   ypos -225
   }
-push $N278792a0
+push $N24114690
   Expression {
    expr0 "0.320104742337 * r + 0.601874395246 * g + 0.078020862417 * b"
    expr1 "0.320104742337 * r + 0.601874395246 * g + 0.078020862417 * b"
    expr2 "0.320104742337 * r + 0.601874395246 * g + 0.078020862417 * b"
    name ECI_RGB_v2_luminance_Expression
-   xpos -4330
-   ypos 183
+   xpos -6970
+   ypos -225
   }
-push $N278792a0
+push $N24114690
   Expression {
    expr0 "0.278090415226 * r + 0.687901558611 * g + 0.0340080261629 * b"
    expr1 "0.278090415226 * r + 0.687901558611 * g + 0.0340080261629 * b"
    expr2 "0.278090415226 * r + 0.687901558611 * g + 0.0340080261629 * b"
    name Don_RGB_4_luminance_Expression
-   xpos -4440
-   ypos 183
+   xpos -7080
+   ypos -225
   }
-push $N278792a0
+push $N24114690
   Expression {
    expr0 "0.186660738109 * r + 0.74118120047 * g + 0.0721580614212 * b"
    expr1 "0.186660738109 * r + 0.74118120047 * g + 0.0721580614212 * b"
    expr2 "0.186660738109 * r + 0.74118120047 * g + 0.0721580614212 * b"
    name DRAGONcolor2_luminance_Expression
-   xpos -4550
-   ypos 183
+   xpos -7190
+   ypos -225
   }
-push $N278792a0
+push $N24114690
   Expression {
    expr0 "0.215087180914 * r + 0.849257379828 * g + -0.0643445607425 * b"
    expr1 "0.215087180914 * r + 0.849257379828 * g + -0.0643445607425 * b"
    expr2 "0.215087180914 * r + 0.849257379828 * g + -0.0643445607425 * b"
    name DRAGONcolor_luminance_Expression
-   xpos -4660
-   ypos 183
+   xpos -7300
+   ypos -225
   }
-push $N278792a0
+push $N24114690
   Expression {
    expr0 "0.203986297104 * r + 0.882591093117 * g + -0.0865773902211 * b"
    expr1 "0.203986297104 * r + 0.882591093117 * g + -0.0865773902211 * b"
    expr2 "0.203986297104 * r + 0.882591093117 * g + -0.0865773902211 * b"
    name DCI-P3+_luminance_Expression
-   xpos -4770
-   ypos 183
+   xpos -7410
+   ypos -225
   }
-push $N278792a0
+push $N24114690
   Expression {
    expr0 "0.209491677913 * r + 0.721595254161 * g + 0.0689130679262 * b"
    expr1 "0.209491677913 * r + 0.721595254161 * g + 0.0689130679262 * b"
    expr2 "0.209491677913 * r + 0.721595254161 * g + 0.0689130679262 * b"
    name DCI-P3_luminance_Expression
-   xpos -4880
-   ypos 183
+   xpos -7520
+   ypos -225
   }
-push $N278792a0
+push $N24114690
   Expression {
    expr0 "0.274880515737 * r + 0.658137117154 * g + 0.0669823671092 * b"
    expr1 "0.274880515737 * r + 0.658137117154 * g + 0.0669823671092 * b"
    expr2 "0.274880515737 * r + 0.658137117154 * g + 0.0669823671092 * b"
    name ColorMatch_RGB_luminance_Expression
-   xpos -4990
-   ypos 183
+   xpos -7630
+   ypos -225
   }
-push $N278792a0
+push $N24114690
   Expression {
    expr0 "0.261256555898 * r + 0.869631208967 * g + -0.130887764865 * b"
    expr1 "0.261256555898 * r + 0.869631208967 * g + -0.130887764865 * b"
    expr2 "0.261256555898 * r + 0.869631208967 * g + -0.130887764865 * b"
    name Cinema_Gamut_luminance_Expression
-   xpos -5100
-   ypos 183
+   xpos -7740
+   ypos -225
   }
-push $N278792a0
+push $N24114690
   Expression {
    expr0 "0.176204436534 * r + 0.812984693878 * g + 0.0108108695884 * b"
    expr1 "0.176204436534 * r + 0.812984693878 * g + 0.0108108695884 * b"
    expr2 "0.176204436534 * r + 0.812984693878 * g + 0.0108108695884 * b"
    name CIE_RGB_luminance_Expression
-   xpos -5210
-   ypos 183
+   xpos -7850
+   ypos -225
   }
-push $N278792a0
+push $N24114690
   Expression {
    expr0 "0.303270045405 * r + 0.663789543861 * g + 0.0329404107343 * b"
    expr1 "0.303270045405 * r + 0.663789543861 * g + 0.0329404107343 * b"
    expr2 "0.303270045405 * r + 0.663789543861 * g + 0.0329404107343 * b"
    name Beta_RGB_luminance_Expression
-   xpos -5320
-   ypos 183
+   xpos -7960
+   ypos -225
   }
-push $N278792a0
+push $N24114690
   Expression {
    expr0 "0.227563471677 * r + 0.738429482666 * g + 0.0340070456574 * b"
    expr1 "0.227563471677 * r + 0.738429482666 * g + 0.0340070456574 * b"
    expr2 "0.227563471677 * r + 0.738429482666 * g + 0.0340070456574 * b"
    name Best_RGB_luminance_Expression
-   xpos -5430
-   ypos 183
+   xpos -8070
+   ypos -225
   }
-push $N278792a0
+push $N24114690
   Expression {
    expr0 "0.244614394775 * r + 0.672060284019 * g + 0.0833253212057 * b"
    expr1 "0.244614394775 * r + 0.672060284019 * g + 0.0833253212057 * b"
    expr2 "0.244614394775 * r + 0.672060284019 * g + 0.0833253212057 * b"
    name Apple_RGB_luminance_Expression
-   xpos -5540
-   ypos 183
+   xpos -8180
+   ypos -225
   }
-push $N278792a0
+push $N24114690
   Expression {
    expr0 "0.258690663895 * r + 0.724718154549 * g + 0.0165911815566 * b"
    expr1 "0.258690663895 * r + 0.724718154549 * g + 0.0165911815566 * b"
    expr2 "0.258690663895 * r + 0.724718154549 * g + 0.0165911815566 * b"
    name Adobe_Wide_Gamut_RGB_luminance_Expression
-   xpos -5650
-   ypos 183
+   xpos -8290
+   ypos -225
   }
-push $N278792a0
+push $N24114690
   Expression {
    expr0 "0.29734448514 * r + 0.627376113264 * g + 0.0752794015963 * b"
    expr1 "0.29734448514 * r + 0.627376113264 * g + 0.0752794015963 * b"
    expr2 "0.29734448514 * r + 0.627376113264 * g + 0.0752794015963 * b"
    name Adobe_RGB_1998_luminance_Expression
-   xpos -5760
-   ypos 183
+   xpos -8400
+   ypos -225
   }
-push $N278792a0
+push $N24114690
   Expression {
    expr0 "0.291948669899 * r + 0.823830265984 * g + -0.115778935883 * b"
    expr1 "0.291948669899 * r + 0.823830265984 * g + -0.115778935883 * b"
    expr2 "0.291948669899 * r + 0.823830265984 * g + -0.115778935883 * b"
    name ALEXA_Wide_Gamut_RGB_luminance_Expression
-   xpos -5870
-   ypos 183
+   xpos -8510
+   ypos -225
   }
-push $N278792a0
+push $N24114690
   Expression {
    expr0 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
    expr1 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
    expr2 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
    name ACESproxy_luminance_Expression
-   xpos -5980
-   ypos 183
+   xpos -8620
+   ypos -225
   }
-push $N278792a0
+push $N24114690
   Expression {
    expr0 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
    expr1 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
    expr2 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
    name ACEScg_luminance_Expression
-   xpos -6090
-   ypos 183
+   xpos -8730
+   ypos -225
   }
-push $N278792a0
+push $N24114690
   Expression {
    expr0 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
    expr1 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
    expr2 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
    name ACEScc_luminance_Expression
-   xpos -6200
-   ypos 183
+   xpos -8840
+   ypos -225
   }
-push $N278792a0
+push $N24114690
   Expression {
    expr0 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
    expr1 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
    expr2 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
    name ACES2065-1_luminance_Expression
-   xpos -6310
-   ypos 183
+   xpos -8950
+   ypos -225
   }
   Switch {
-   inputs 37
+   inputs 38
    which {{colourspace_Pulldown_Choice}}
    name colourspace_Switch
-   xpos -2350
-   ypos 207
+   xpos -4880
+   ypos -225
    addUserKnob {20 User}
-   addUserKnob {4 colourspace_Pulldown_Choice l Colourspace M {ACES2065-1 ACEScc ACEScg ACESproxy "ALEXA Wide Gamut RGB" "Adobe RGB 1998" "Adobe Wide Gamut RGB" "Apple RGB" "Best RGB" "Beta RGB" "CIE RGB" "Cinema Gamut" "ColorMatch RGB" DCI-P3 DCI-P3+ DRAGONcolor DRAGONcolor2 "Don RGB 4" "ECI RGB v2" "Ekta Space PS 5" "Max RGB" "NTSC RGB" "Pal/Secam RGB" "ProPhoto RGB" REDcolor2 REDcolor3 REDcolor4 "Rec. 2020" "Rec. 709" "Russell RGB" S-Gamut S-Gamut3 S-Gamut3.Cine "SMPTE-C RGB" V-Gamut "Xtreme RGB" sRGB}}
+   addUserKnob {4 colourspace_Pulldown_Choice l Colourspace M {ACES2065-1 ACEScc ACEScg ACESproxy "ALEXA Wide Gamut RGB" "Adobe RGB 1998" "Adobe Wide Gamut RGB" "Apple RGB" "Best RGB" "Beta RGB" "CIE RGB" "Cinema Gamut" "ColorMatch RGB" DCI-P3 DCI-P3+ DRAGONcolor DRAGONcolor2 "Don RGB 4" "ECI RGB v2" "Ekta Space PS 5" "Max RGB" "NTSC RGB" "Pal/Secam RGB" "ProPhoto RGB" REDcolor REDcolor2 REDcolor3 REDcolor4 "Rec. 2020" "Rec. 709" "Russell RGB" S-Gamut S-Gamut3 S-Gamut3.Cine "SMPTE-C RGB" V-Gamut "Xtreme RGB" sRGB}}
    colourspace_Pulldown_Choice {{parent.colourspace_Pulldown_Choice}}
   }
   Output {
    name Output
-   xpos -2350
-   ypos 231
+   xpos -4880
+   ypos -201
   }
  end_group
-set N27871280 [stack 0]
+set N2394fdb0 [stack 0]
  Dot {
   name Dot6
   xpos -336
   ypos -174
  }
-set N1c433250 [stack 0]
+set N226a8890 [stack 0]
  Dot {
   name Dot5
   xpos -336
@@ -2370,13 +2527,13 @@ set N1c433250 [stack 0]
   xpos -260
   ypos 15
  }
-set N27a70f90 [stack 0]
+set N223ec5f0 [stack 0]
  Clamp {
   name Clamp
   xpos -370
   ypos 35
  }
-push $N27a70f90
+push $N223ec5f0
  Switch {
   inputs 2
   which {{parent.clamp_output_Check_Box}}
@@ -2384,7 +2541,7 @@ push $N27a70f90
   xpos -260
   ypos 44
  }
-push $N17e51e10
+push $N2257e3f0
  Dot {
   name Dot2
   xpos -6
@@ -2407,7 +2564,7 @@ push $N17e51e10
   xpos -150
   ypos 72
  }
-push $N1c433250
+push $N226a8890
  CurveTool {
   operation "Max Luma Pixel"
   avgframes 1
@@ -2418,7 +2575,7 @@ push $N1c433250
   xpos -260
   ypos -177
  }
-push $N27871280
+push $N2394fdb0
  Dot {
   name Dot4
   xpos -446
@@ -2452,14 +2609,14 @@ push $N27871280
   xpos -480
   ypos -129
  }
-push $N27a70f90
+push $N223ec5f0
  Viewer {
   input_process false
   name Viewer1
   xpos -480
   ypos -105
  }
-push $N2786d570
+push $N22599000
  Dot {
   name Dot9
   xpos -116
@@ -2473,131 +2630,6 @@ push $N2786d570
   maxlumapixvalue 1
   name average_CurveTool
   xpos -370
-  ypos -225
+  ypos -239
  }
 end_group
-push $N28105100
-Group {
- name Filmic_Tonemapping_Operator
- tile_color 0xffbf00ff
- xpos -40
- ypos 111
- addUserKnob {20 filmic_tonemapping_operator_Tab l "Filmic Tonemapping Operator"}
- addUserKnob {20 tone_parameters_Group l "Tone Parameters" n 1}
- addUserKnob {7 A_Floating_Point_Slider l "Shoulder Strength"}
- A_Floating_Point_Slider 0.22
- addUserKnob {7 B_Floating_Point_Slider l "Linear Strength"}
- B_Floating_Point_Slider 0.3
- addUserKnob {7 C_Floating_Point_Slider l "Linear Angle"}
- C_Floating_Point_Slider 0.1
- addUserKnob {7 D_Floating_Point_Slider l "Toe Strength"}
- D_Floating_Point_Slider 0.2
- addUserKnob {7 E_Floating_Point_Slider l "Toe Numerator"}
- E_Floating_Point_Slider 0.01
- addUserKnob {7 F_Floating_Point_Slider l "Toe Denominator"}
- F_Floating_Point_Slider 0.3
- addUserKnob {20 tone_parameters_endGroup l endGroup n -1}
- addUserKnob {20 miscellaneous_parameters_Group l "Miscellaneous Parameters" n 1}
- addUserKnob {7 mix_Floating_Point_Slider l Mix t "Dissolve between the original image at 0 and the full effect at 1."}
- mix_Floating_Point_Slider 1
- addUserKnob {7 exposure_bias_Floating_Point_Slider l "Exposure Bias"}
- exposure_bias_Floating_Point_Slider 2
- addUserKnob {6 clamp_output_Check_Box l "Clamp Output" t "Output values are clamped within \[0, 1] domain." +STARTLINE}
- clamp_output_Check_Box true
- addUserKnob {20 miscellaneous_parameters_endGroup l endGroup n -1}
- addUserKnob {20 about_Tab l About}
- addUserKnob {26 description_Text l "" +STARTLINE T "Filming Tonemapping Operator v0.1.0\n\ncolour-science.org - March 17, 2015\n\nThis Gizmo / Group implements the Filming Tonemapping Operator from Uncharted 2 by John Habble which is based on Haarm-Peter Duiker curve.\n\n\[1] Habble, J. (2010). Filmic Tonemapping Operators. Retrieved March 15, 2015, from http://filmicgames.com/archives/75\n\[2] Habble, J. (2010). Uncharted 2: HDR Lighting. Retrieved March 15, 2015, from http://www.slideshare.net/ozlael/hable-john-uncharted2-hdr-lighting"}
-}
- Input {
-  inputs 0
-  name Input
-  xpos 13
-  ypos -125
- }
-set N2812cc20 [stack 0]
- Dot {
-  name Dot1
-  xpos 123
-  ypos -122
- }
- Dot {
-  name Dot2
-  xpos 123
-  ypos 22
- }
-push $N2812cc20
- Multiply {
-  value {{parent.filmic_tonemapping_operator_Expression.exposure_bias_Floating_Point_Slider}}
-  name exposure_bias_Multiply
-  xpos 13
-  ypos -101
- }
- Expression {
-  temp_name0 toe_angle
-  temp_expr0 E_Floating_Point_Slider/F_Floating_Point_Slider
-  expr0 ((r*(A_Floating_Point_Slider*r+C_Floating_Point_Slider*B_Floating_Point_Slider)+D_Floating_Point_Slider*E_Floating_Point_Slider)/(r*(A_Floating_Point_Slider*r+B_Floating_Point_Slider)+D_Floating_Point_Slider*F_Floating_Point_Slider))-toe_angle
-  expr1 ((g*(A_Floating_Point_Slider*g+C_Floating_Point_Slider*B_Floating_Point_Slider)+D_Floating_Point_Slider*E_Floating_Point_Slider)/(g*(A_Floating_Point_Slider*g+B_Floating_Point_Slider)+D_Floating_Point_Slider*F_Floating_Point_Slider))-toe_angle
-  expr2 ((b*(A_Floating_Point_Slider*b+C_Floating_Point_Slider*B_Floating_Point_Slider)+D_Floating_Point_Slider*E_Floating_Point_Slider)/(b*(A_Floating_Point_Slider*b+B_Floating_Point_Slider)+D_Floating_Point_Slider*F_Floating_Point_Slider))-toe_angle
-  expr3 a
-  name filmic_tonemapping_operator_Expression
-  xpos 13
-  ypos -69
-  addUserKnob {20 User}
-  addUserKnob {7 exposure_bias_Floating_Point_Slider l "Exposure Bias"}
-  exposure_bias_Floating_Point_Slider {{parent.exposure_bias_Floating_Point_Slider}}
-  addUserKnob {7 A_Floating_Point_Slider l "Shoulder Strength"}
-  A_Floating_Point_Slider {{parent.A_Floating_Point_Slider}}
-  addUserKnob {7 B_Floating_Point_Slider l "Linear Strength"}
-  B_Floating_Point_Slider {{parent.B_Floating_Point_Slider}}
-  addUserKnob {7 C_Floating_Point_Slider l "Linear Angle"}
-  C_Floating_Point_Slider {{parent.C_Floating_Point_Slider}}
-  addUserKnob {7 D_Floating_Point_Slider l "Toe Strength"}
-  D_Floating_Point_Slider {{parent.D_Floating_Point_Slider}}
-  addUserKnob {7 E_Floating_Point_Slider l "Toe Numerator"}
-  E_Floating_Point_Slider {{parent.E_Floating_Point_Slider}}
-  addUserKnob {7 F_Floating_Point_Slider l "Toe Denominator"}
-  F_Floating_Point_Slider {{parent.F_Floating_Point_Slider}}
-  addUserKnob {7 linear_whitepoint_Floating_Point_Slider l "Linear Whitepoint"}
-  linear_whitepoint_Floating_Point_Slider 11.2
-  addUserKnob {7 linear_white_Floating_Point_Slider l "Linear White"}
-  linear_white_Floating_Point_Slider {{((linear_whitepoint_Floating_Point_Slider*(A_Floating_Point_Slider*linear_whitepoint_Floating_Point_Slider+C_Floating_Point_Slider*B_Floating_Point_Slider)+D_Floating_Point_Slider*E_Floating_Point_Slider)/(linear_whitepoint_Floating_Point_Slider*(A_Floating_Point_Slider*linear_whitepoint_Floating_Point_Slider+B_Floating_Point_Slider)+D_Floating_Point_Slider*F_Floating_Point_Slider))-E_Floating_Point_Slider/F_Floating_Point_Slider}}
- }
- Multiply {
-  value {{1/parent.filmic_tonemapping_operator_Expression.linear_white_Floating_Point_Slider}}
-  name linear_white_Multiply
-  xpos 13
-  ypos -45
- }
-set N28161c10 [stack 0]
- Clamp {
-  name Clamp
-  xpos -97
-  ypos -13
- }
-push $N28161c10
- Switch {
-  inputs 2
-  which {{parent.clamp_output_Check_Box}}
-  name clamp_Switch
-  xpos 13
-  ypos -9
- }
- Dissolve {
-  inputs 2
-  which {{1-parent.mix_Floating_Point_Slider}}
-  name Dissolve
-  xpos 13
-  ypos 15
- }
- Output {
-  name Output
-  xpos 13
-  ypos 43
- }
-end_group
-Viewer {
- input_process false
- name Viewer1
- xpos -40
- ypos 135
-}
