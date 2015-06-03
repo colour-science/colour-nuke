@@ -2,21 +2,21 @@
 version 8.0 v1
 define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
 <layout version="1.0">
-    <window x="0" y="23" w="1280" h="725" screen="0">
+    <window x="0" y="23" w="1280" h="716" screen="0">
         <splitter orientation="1">
-            <split size="808"/>
+            <split size="762"/>
             <splitter orientation="1">
                 <split size="40"/>
                 <dock id="" hideTitles="1" activePageId="Toolbar.1">
                     <page id="Toolbar.1"/>
                 </dock>
-                <split size="764"/>
+                <split size="718"/>
                 <splitter orientation="2">
-                    <split size="410"/>
+                    <split size="405"/>
                     <dock id="" activePageId="Viewer.1">
                         <page id="Viewer.1"/>
                     </dock>
-                    <split size="289"/>
+                    <split size="285"/>
                     <dock id="" activePageId="DAG.1">
                         <page id="DAG.1"/>
                         <page id="Curve Editor.1"/>
@@ -24,7 +24,7 @@ define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
                     </dock>
                 </splitter>
             </splitter>
-            <split size="468"/>
+            <split size="514"/>
             <dock id="" activePageId="Properties.1">
                 <page id="Properties.1"/>
             </dock>
@@ -39,21 +39,10 @@ Root {
  proxy_type scale
  proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
 }
-StickyNote {
- inputs 0
- name StickyNote
- tile_color 0x767676ff
- gl_color 0x767676ff
- label "COLOUR RENDITION CHART v1.4\n\ncolour-science.org - May 6, 2015\n\nThis file defines the X-Rite ColorChecker 2005 Classic Colour Rendition Chart.\n\nReference samples colours are converted from CIE XYZ tristimulus values to RGB colourspace.\n\nMatrices converting from CIE XYZ tristimulus to RGB colourspace were computed using CAT02 chromatic adaptation transform.\n\nThe following RGB colourspaces are implemented:\n\n- ACES2065-1\n- ACEScc\n- ACEScg\n- ACESproxy\n- ALEXA Wide Gamut RGB\n- Adobe RGB 1998\n- Adobe Wide Gamut RGB\n- Apple RGB\n- Best RGB\n- Beta RGB\n- CIE RGB\n- Cinema Gamut\n- ColorMatch RGB\n- DCI-P3\n- DCI-P3+\n- DRAGONcolor\n- DRAGONcolor2\n- Don RGB 4\n- ECI RGB v2\n- Ekta Space PS 5\n- Max RGB\n- NTSC RGB\n- Pal/Secam RGB\n- ProPhoto RGB\n- REDcolor\n- REDcolor2\n- REDcolor3\n- REDcolor4\n- Rec. 2020\n- Rec. 709\n- Russell RGB\n- S-Gamut\n- S-Gamut3\n- S-Gamut3.Cine\n- SMPTE-C RGB\n- V-Gamut\n- Xtreme RGB\n- sRGB\n\nRendered colour rendition charts can be downloaded at this url: https://github.com/colour-science/colour-nuke/tree/master/colour_nuke/resources/images/ColorChecker2005\n\nMore informations are available here: https://github.com/colour-science/colour/tree/develop/colour/models/dataset\n\nLatest version of the file will always be available at this url: https://github.com/colour-science/colour-nuke/blob/master/colour_nuke/scripts/colour_rendition_chart.nk\n\n\[1] BabelColor. (2012). ColorChecker RGB and spectra. Retrieved from http://www.babelcolor.com/download/ColorChecker_RGB_and_spectra.xls\n"
- note_font_size 14
- xpos 595
- ypos -923
-}
 Group {
  inputs 0
  name Colour_Rendition_Chart
  tile_color 0xffbf00ff
- selected true
  xpos 1029
  ypos -164
  postage_stamp true
@@ -1690,7 +1679,7 @@ Group {
    xpos -3560
    ypos 1167
   }
-set N2c883000 [stack 0]
+set N1cc56b50 [stack 0]
   Group {
    name XYZ_D50_to_sRGB
    xpos -3560
@@ -1732,7 +1721,7 @@ set N2c883000 [stack 0]
     ypos -74
    }
   end_group
-push $N2c883000
+push $N1cc56b50
   Group {
    name XYZ_D50_to_Xtreme_RGB
    xpos -3670
@@ -1774,7 +1763,7 @@ push $N2c883000
     ypos -74
    }
   end_group
-push $N2c883000
+push $N1cc56b50
   Group {
    name XYZ_D50_to_V-Gamut
    xpos -3780
@@ -1816,7 +1805,7 @@ push $N2c883000
     ypos -74
    }
   end_group
-push $N2c883000
+push $N1cc56b50
   Group {
    name XYZ_D50_to_SMPTE-C_RGB
    xpos -3890
@@ -1858,7 +1847,7 @@ push $N2c883000
     ypos -74
    }
   end_group
-push $N2c883000
+push $N1cc56b50
   Group {
    name XYZ_D50_to_S-Gamut3.Cine
    xpos -4000
@@ -1900,7 +1889,7 @@ push $N2c883000
     ypos -74
    }
   end_group
-push $N2c883000
+push $N1cc56b50
   Group {
    name XYZ_D50_to_S-Gamut3
    xpos -4110
@@ -1942,7 +1931,7 @@ push $N2c883000
     ypos -74
    }
   end_group
-push $N2c883000
+push $N1cc56b50
   Group {
    name XYZ_D50_to_S-Gamut
    xpos -4220
@@ -1984,7 +1973,7 @@ push $N2c883000
     ypos -74
    }
   end_group
-push $N2c883000
+push $N1cc56b50
   Group {
    name XYZ_D50_to_Russell_RGB
    xpos -4330
@@ -2026,7 +2015,7 @@ push $N2c883000
     ypos -74
    }
   end_group
-push $N2c883000
+push $N1cc56b50
   Group {
    name XYZ_D50_to_Rec._709
    xpos -4440
@@ -2068,7 +2057,7 @@ push $N2c883000
     ypos -74
    }
   end_group
-push $N2c883000
+push $N1cc56b50
   Group {
    name XYZ_D50_to_Rec._2020
    xpos -4550
@@ -2110,7 +2099,7 @@ push $N2c883000
     ypos -74
    }
   end_group
-push $N2c883000
+push $N1cc56b50
   Group {
    name XYZ_D50_to_REDcolor4
    xpos -4660
@@ -2152,7 +2141,7 @@ push $N2c883000
     ypos -74
    }
   end_group
-push $N2c883000
+push $N1cc56b50
   Group {
    name XYZ_D50_to_REDcolor3
    xpos -4770
@@ -2194,7 +2183,7 @@ push $N2c883000
     ypos -74
    }
   end_group
-push $N2c883000
+push $N1cc56b50
   Group {
    name XYZ_D50_to_REDcolor2
    xpos -4880
@@ -2236,7 +2225,7 @@ push $N2c883000
     ypos -74
    }
   end_group
-push $N2c883000
+push $N1cc56b50
   Group {
    name XYZ_D50_to_REDcolor
    xpos -4990
@@ -2278,7 +2267,7 @@ push $N2c883000
     ypos -74
    }
   end_group
-push $N2c883000
+push $N1cc56b50
   Group {
    name XYZ_D50_to_ProPhoto_RGB
    xpos -5100
@@ -2320,7 +2309,7 @@ push $N2c883000
     ypos -74
    }
   end_group
-push $N2c883000
+push $N1cc56b50
   Group {
    name XYZ_D50_to_Pal/Secam_RGB
    xpos -5210
@@ -2362,7 +2351,7 @@ push $N2c883000
     ypos -74
    }
   end_group
-push $N2c883000
+push $N1cc56b50
   Group {
    name XYZ_D50_to_NTSC_RGB
    xpos -5320
@@ -2404,7 +2393,7 @@ push $N2c883000
     ypos -74
    }
   end_group
-push $N2c883000
+push $N1cc56b50
   Group {
    name XYZ_D50_to_Max_RGB
    xpos -5430
@@ -2446,7 +2435,7 @@ push $N2c883000
     ypos -74
    }
   end_group
-push $N2c883000
+push $N1cc56b50
   Group {
    name XYZ_D50_to_Ekta_Space_PS_5
    xpos -5540
@@ -2488,7 +2477,7 @@ push $N2c883000
     ypos -74
    }
   end_group
-push $N2c883000
+push $N1cc56b50
   Group {
    name XYZ_D50_to_ECI_RGB_v2
    xpos -5650
@@ -2530,7 +2519,7 @@ push $N2c883000
     ypos -74
    }
   end_group
-push $N2c883000
+push $N1cc56b50
   Group {
    name XYZ_D50_to_Don_RGB_4
    xpos -5760
@@ -2572,7 +2561,7 @@ push $N2c883000
     ypos -74
    }
   end_group
-push $N2c883000
+push $N1cc56b50
   Group {
    name XYZ_D50_to_DRAGONcolor2
    xpos -5870
@@ -2614,7 +2603,7 @@ push $N2c883000
     ypos -74
    }
   end_group
-push $N2c883000
+push $N1cc56b50
   Group {
    name XYZ_D50_to_DRAGONcolor
    xpos -5980
@@ -2656,7 +2645,7 @@ push $N2c883000
     ypos -74
    }
   end_group
-push $N2c883000
+push $N1cc56b50
   Group {
    name XYZ_D50_to_DCI-P3+
    xpos -6090
@@ -2698,7 +2687,7 @@ push $N2c883000
     ypos -74
    }
   end_group
-push $N2c883000
+push $N1cc56b50
   Group {
    name XYZ_D50_to_DCI-P3
    xpos -6200
@@ -2740,7 +2729,7 @@ push $N2c883000
     ypos -74
    }
   end_group
-push $N2c883000
+push $N1cc56b50
   Group {
    name XYZ_D50_to_ColorMatch_RGB
    xpos -6310
@@ -2782,7 +2771,7 @@ push $N2c883000
     ypos -74
    }
   end_group
-push $N2c883000
+push $N1cc56b50
   Group {
    name XYZ_D50_to_Cinema_Gamut
    xpos -6420
@@ -2824,7 +2813,7 @@ push $N2c883000
     ypos -74
    }
   end_group
-push $N2c883000
+push $N1cc56b50
   Group {
    name XYZ_D50_to_CIE_RGB
    xpos -6530
@@ -2866,7 +2855,7 @@ push $N2c883000
     ypos -74
    }
   end_group
-push $N2c883000
+push $N1cc56b50
   Group {
    name XYZ_D50_to_Beta_RGB
    xpos -6640
@@ -2908,7 +2897,7 @@ push $N2c883000
     ypos -74
    }
   end_group
-push $N2c883000
+push $N1cc56b50
   Group {
    name XYZ_D50_to_Best_RGB
    xpos -6750
@@ -2950,7 +2939,7 @@ push $N2c883000
     ypos -74
    }
   end_group
-push $N2c883000
+push $N1cc56b50
   Group {
    name XYZ_D50_to_Apple_RGB
    xpos -6860
@@ -2992,7 +2981,7 @@ push $N2c883000
     ypos -74
    }
   end_group
-push $N2c883000
+push $N1cc56b50
   Group {
    name XYZ_D50_to_Adobe_Wide_Gamut_RGB
    xpos -6970
@@ -3034,7 +3023,7 @@ push $N2c883000
     ypos -74
    }
   end_group
-push $N2c883000
+push $N1cc56b50
   Group {
    name XYZ_D50_to_Adobe_RGB_1998
    xpos -7080
@@ -3076,7 +3065,7 @@ push $N2c883000
     ypos -74
    }
   end_group
-push $N2c883000
+push $N1cc56b50
   Group {
    name XYZ_D50_to_ALEXA_Wide_Gamut_RGB
    xpos -7190
@@ -3118,7 +3107,7 @@ push $N2c883000
     ypos -74
    }
   end_group
-push $N2c883000
+push $N1cc56b50
   Group {
    name XYZ_D50_to_ACESproxy
    xpos -7300
@@ -3160,7 +3149,7 @@ push $N2c883000
     ypos -74
    }
   end_group
-push $N2c883000
+push $N1cc56b50
   Group {
    name XYZ_D50_to_ACEScg
    xpos -7410
@@ -3202,7 +3191,7 @@ push $N2c883000
     ypos -74
    }
   end_group
-push $N2c883000
+push $N1cc56b50
   Group {
    name XYZ_D50_to_ACEScc
    xpos -7520
@@ -3244,7 +3233,7 @@ push $N2c883000
     ypos -74
    }
   end_group
-push $N2c883000
+push $N1cc56b50
   Group {
    name XYZ_D50_to_ACES2065-1
    xpos -7630
@@ -3348,8 +3337,19 @@ push $N2c883000
  }
 end_group
 Viewer {
+ frame 1
  input_process false
  name Viewer1
  xpos 1029
  ypos -92
+}
+StickyNote {
+ inputs 0
+ name StickyNote
+ tile_color 0x767676ff
+ gl_color 0x767676ff
+ label "COLOUR RENDITION CHART v1.5\n\ncolour-science.org - June 3, 2015\n\nThis file defines the X-Rite ColorChecker 2005 Classic Colour Rendition Chart.\n\nReference samples colours are converted from CIE XYZ tristimulus values (derived from GretagMacbeth L*a*b* D50 data \[1]) to RGB colourspace.\n\nMatrices converting from CIE XYZ tristimulus to RGB colourspace were computed using CAT02 chromatic adaptation transform.\n\nThe following RGB colourspaces are implemented:\n\n- ACES2065-1\n- ACEScc\n- ACEScg\n- ACESproxy\n- ALEXA Wide Gamut RGB\n- Adobe RGB 1998\n- Adobe Wide Gamut RGB\n- Apple RGB\n- Best RGB\n- Beta RGB\n- CIE RGB\n- Cinema Gamut\n- ColorMatch RGB\n- DCI-P3\n- DCI-P3+\n- DRAGONcolor\n- DRAGONcolor2\n- Don RGB 4\n- ECI RGB v2\n- Ekta Space PS 5\n- Max RGB\n- NTSC RGB\n- Pal/Secam RGB\n- ProPhoto RGB\n- REDcolor\n- REDcolor2\n- REDcolor3\n- REDcolor4\n- Rec. 2020\n- Rec. 709\n- Russell RGB\n- S-Gamut\n- S-Gamut3\n- S-Gamut3.Cine\n- SMPTE-C RGB\n- V-Gamut\n- Xtreme RGB\n- sRGB\n\nRendered colour rendition charts can be downloaded at this url: https://github.com/colour-science/colour-nuke/tree/master/colour_nuke/resources/images/ColorChecker2005\n\nMore informations are available here: https://github.com/colour-science/colour/tree/develop/colour/models/dataset\n\nLatest version of the file will always be available at this url: https://github.com/colour-science/colour-nuke/blob/master/colour_nuke/scripts/colour_rendition_chart.nk\n\n\[1] BabelColor. (2012). ColorChecker RGB and spectra. Retrieved from http://www.babelcolor.com/download/ColorChecker_RGB_and_spectra.xls"
+ note_font_size 14
+ xpos 595
+ ypos -923
 }
