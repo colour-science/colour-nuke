@@ -1,0 +1,181 @@
+#! /Applications/Nuke9.0v4/Nuke9.0v4.app/Contents/MacOS//libnuke-9.0.4.dylib -nx
+version 9.0 v4
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="0" y="23" w="1280" h="716" maximized="1" screen="0">
+        <splitter orientation="1">
+            <split size="40"/>
+            <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                <page id="Toolbar.1"/>
+            </dock>
+            <split size="693" stretch="1"/>
+            <splitter orientation="2">
+                <split size="405"/>
+                <dock id="" activePageId="Viewer.1">
+                    <page id="Viewer.1"/>
+                </dock>
+                <split size="285"/>
+                <dock id="" activePageId="DAG.1" focus="true">
+                    <page id="DAG.1"/>
+                </dock>
+            </splitter>
+            <split size="539"/>
+            <dock id="" activePageId="Properties.1">
+                <page id="Properties.1"/>
+            </dock>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name /Users/kelsolaar/Documents/Development/colour-science/colour-nuke/colour_nuke/scripts/highlights_recovery.nk
+ format "2048 1556 0 0 2048 1556 1 2K_Super_35(full-ap)"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+}
+ColorWheel {
+ inputs 0
+ centerSaturation 1
+ gamma 0.45
+ name ColorWheel
+ xpos 180
+ ypos -153
+}
+ColorMatrix {
+ matrix {
+     {0.7866 -0.2108 -0.0555}
+     {-0.4869 1.2483 0.2681}
+     {-0.1176 0.2069 0.7501}
+   }
+ invert true
+ name ColorMatrix
+ xpos 180
+ ypos -81
+}
+Colorspace {
+ colorspace_in CIE-XYZ
+ illuminant_in D50
+ bradford_matrix true
+ name Colorspace
+ xpos 180
+ ypos -57
+}
+Group {
+ name Highlights_Recovery_Operator
+ tile_color 0xffbf00ff
+ xpos 180
+ ypos -33
+ addUserKnob {20 highlights_recovery_operator_tab l "Highlights Recovery Operator"}
+ addUserKnob {20 miscellaneous_Group l "Miscellaneous Parameters" n 1}
+ addUserKnob {7 threshold_Floating_Point_Slider l Threshold t "Recovery Luminance threshold, default should work in most cases."}
+ threshold_Floating_Point_Slider 0.95
+ addUserKnob {7 mix_Floating_Point_Slider l Mix t "Dissolve between the original image at 0 and the full effect at 1."}
+ mix_Floating_Point_Slider 1
+ addUserKnob {20 miscellaneous_endGroup l endGroup n -1}
+ addUserKnob {20 about_Tab l About}
+ addUserKnob {26 description_Text l "" +STARTLINE T "Highlights Recovery Operator v0.1.0\n\ncolour-science.org - October 22, 2015\n\nThis Gizmo / Group implements a Highlights Recovery Operator based on \"dcraw\" \"blend_highlights\" recovery method.\n\n\[1] Coffin, D. (2015). dcraw. Retrieved from https://www.cybercom.net/~dcoffin/dcraw/"}
+}
+ Input {
+  inputs 0
+  name Input
+  xpos 70
+  ypos -81
+ }
+set N92d833b0 [stack 0]
+ ColorMatrix {
+  matrix {
+      {1 1 1}
+      {1.7320508 -1.7320508 0}
+      {-1 -1 2}
+    }
+  name pseudo_Lab_conversion_ColorMatrix
+  xpos 70
+  ypos -33
+ }
+ set C93dac470 [stack 0]
+set N93dac470 [stack 0]
+push $N92d833b0
+ Expression {
+  expr0 "min(r, threshold_Floating_Point_Slider)"
+  expr1 "min(g, threshold_Floating_Point_Slider)"
+  expr2 "min(b, threshold_Floating_Point_Slider)"
+  name clipped_input_Expression
+  xpos 180
+  ypos -81
+  addUserKnob {20 User}
+  addUserKnob {7 threshold_Floating_Point_Slider l Threshold}
+  threshold_Floating_Point_Slider {{parent.threshold_Floating_Point_Slider}}
+ }
+clone $C93dac470 {
+  xpos 180
+  ypos -57
+  selected false
+ }
+push $N93dac470
+ MergeExpression {
+  inputs 2
+  expr0 "(Ag**2+Ab**2)/(Bg**2+Bb**2) "
+  expr1 0
+  expr2 0
+  name summation_MergeExpression
+  selected true
+  xpos 180
+  ypos -33
+ }
+ Expression {
+  expr0 isnan(r)?0:r
+  name nan_to_numeric_Expression
+  xpos 180
+  ypos -9
+ }
+ MergeExpression {
+  inputs 2
+  expr0 Ar
+  expr1 Ag*Br
+  expr2 Ab*Br
+  name scaling_MergeExpression
+  xpos 70
+  ypos -9
+ }
+ ColorMatrix {
+  matrix {
+      {1 1 1}
+      {1.7320508 -1.7320508 0}
+      {-1 -1 2}
+    }
+  invert true
+  name pseudo_Lab_inverse_conversion_ColorMatrix
+  xpos 70
+  ypos 15
+ }
+push $N92d833b0
+ Dot {
+  name Dot1
+  xpos -6
+  ypos -78
+ }
+ Dot {
+  name Dot2
+  xpos -6
+  ypos 42
+ }
+ Dissolve {
+  inputs 2
+  which {{parent.mix_Floating_Point_Slider}}
+  name Dissolve
+  xpos 70
+  ypos 35
+ }
+ Output {
+  name Output
+  xpos 70
+  ypos 63
+ }
+end_group
+Viewer {
+ frame_range 4-100
+ name Viewer1
+ xpos 180
+ ypos -9
+}
