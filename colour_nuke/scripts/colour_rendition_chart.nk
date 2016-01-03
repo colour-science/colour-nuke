@@ -1,30 +1,27 @@
-#! /Applications/Nuke8.0v1/Nuke8.0v1.app/Contents/MacOS/libnuke-8.0.v1.dylib -nx
-version 8.0 v1
+#! /Applications/Nuke9.0v4/Nuke9.0v4.app/Contents/MacOS//libnuke-9.0.4.dylib -nx
+version 9.0 v4
 define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
 <layout version="1.0">
-    <window x="0" y="23" w="1280" h="716" screen="0">
+    <window x="0" y="23" w="1440" h="821" screen="0">
         <splitter orientation="1">
-            <split size="762"/>
-            <splitter orientation="1">
-                <split size="40"/>
-                <dock id="" hideTitles="1" activePageId="Toolbar.1">
-                    <page id="Toolbar.1"/>
+            <split size="40"/>
+            <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                <page id="Toolbar.1"/>
+            </dock>
+            <split size="820" stretch="1"/>
+            <splitter orientation="2">
+                <split size="467"/>
+                <dock id="" activePageId="Viewer.1">
+                    <page id="Viewer.1"/>
                 </dock>
-                <split size="718"/>
-                <splitter orientation="2">
-                    <split size="405"/>
-                    <dock id="" activePageId="Viewer.1">
-                        <page id="Viewer.1"/>
-                    </dock>
-                    <split size="285"/>
-                    <dock id="" activePageId="DAG.1">
-                        <page id="DAG.1"/>
-                        <page id="Curve Editor.1"/>
-                        <page id="DopeSheet.1"/>
-                    </dock>
-                </splitter>
+                <split size="328"/>
+                <dock id="" activePageId="DAG.1" focus="true">
+                    <page id="DAG.1"/>
+                    <page id="Curve Editor.1"/>
+                    <page id="DopeSheet.1"/>
+                </dock>
             </splitter>
-            <split size="514"/>
+            <split size="572"/>
             <dock id="" activePageId="Properties.1">
                 <page id="Properties.1"/>
             </dock>
@@ -54,7 +51,7 @@ Group {
  addUserKnob {7 label_opacity_Floating_Point_Slider l "Label Opacity"}
  addUserKnob {20 parameters_endGroup l endGroup n -1}
  addUserKnob {20 about_Tab l About}
- addUserKnob {26 description_Text l "" +STARTLINE T "Colour Rendition Chart v0.1.2\n\ncolour-science.org - May 6, 2015\n\nThis Gizmo / Group implements the X-Rite ColorChecker 2005 Classic Colour Rendition Chart.\n\nReference samples colours are converted from CIE XYZ tristimulus values to RGB colourspace.\n\nMatrices converting from CIE XYZ tristimulus to RGB colourspace were computed using CAT02 chromatic adaptation transform.\n\n\[1] BabelColor. (2012). ColorChecker RGB and spectra. Retrieved from http://www.babelcolor.com/download/ColorChecker_RGB_and_spectra.xls"}
+ addUserKnob {26 description_Text l "" +STARTLINE T "Colour Rendition Chart v0.1.6\n\ncolour-science.org - January 3, 2016\n\nThis Gizmo / Group implements the X-Rite ColorChecker 2005 Classic Colour Rendition Chart.\n\nReference samples colours are converted from CIE XYZ tristimulus values to RGB colourspace.\n\nMatrices converting from CIE XYZ tristimulus to RGB colourspace were computed using CAT02 chromatic adaptation transform.\n\n\[1] BabelColor. (2012). ColorChecker RGB and spectra. Retrieved from http://www.babelcolor.com/download/ColorChecker_RGB_and_spectra.xls"}
 }
  Group {
   inputs 0
@@ -1679,7 +1676,7 @@ Group {
    xpos -3560
    ypos 1167
   }
-set N1cc56b50 [stack 0]
+set N3eff2520 [stack 0]
   Group {
    name XYZ_D50_to_sRGB
    xpos -3560
@@ -1721,7 +1718,7 @@ set N1cc56b50 [stack 0]
     ypos -74
    }
   end_group
-push $N1cc56b50
+push $N3eff2520
   Group {
    name XYZ_D50_to_Xtreme_RGB
    xpos -3670
@@ -1763,7 +1760,7 @@ push $N1cc56b50
     ypos -74
    }
   end_group
-push $N1cc56b50
+push $N3eff2520
   Group {
    name XYZ_D50_to_V-Gamut
    xpos -3780
@@ -1805,7 +1802,7 @@ push $N1cc56b50
     ypos -74
    }
   end_group
-push $N1cc56b50
+push $N3eff2520
   Group {
    name XYZ_D50_to_SMPTE-C_RGB
    xpos -3890
@@ -1847,7 +1844,7 @@ push $N1cc56b50
     ypos -74
    }
   end_group
-push $N1cc56b50
+push $N3eff2520
   Group {
    name XYZ_D50_to_S-Gamut3.Cine
    xpos -4000
@@ -1889,7 +1886,7 @@ push $N1cc56b50
     ypos -74
    }
   end_group
-push $N1cc56b50
+push $N3eff2520
   Group {
    name XYZ_D50_to_S-Gamut3
    xpos -4110
@@ -1931,7 +1928,7 @@ push $N1cc56b50
     ypos -74
    }
   end_group
-push $N1cc56b50
+push $N3eff2520
   Group {
    name XYZ_D50_to_S-Gamut
    xpos -4220
@@ -1973,7 +1970,7 @@ push $N1cc56b50
     ypos -74
    }
   end_group
-push $N1cc56b50
+push $N3eff2520
   Group {
    name XYZ_D50_to_Russell_RGB
    xpos -4330
@@ -2015,7 +2012,7 @@ push $N1cc56b50
     ypos -74
    }
   end_group
-push $N1cc56b50
+push $N3eff2520
   Group {
    name XYZ_D50_to_Rec._709
    xpos -4440
@@ -2057,7 +2054,7 @@ push $N1cc56b50
     ypos -74
    }
   end_group
-push $N1cc56b50
+push $N3eff2520
   Group {
    name XYZ_D50_to_Rec._2020
    xpos -4550
@@ -2099,7 +2096,7 @@ push $N1cc56b50
     ypos -74
    }
   end_group
-push $N1cc56b50
+push $N3eff2520
   Group {
    name XYZ_D50_to_REDcolor4
    xpos -4660
@@ -2107,7 +2104,7 @@ push $N1cc56b50
    addUserKnob {20 XYZ_D50_to_RGB_Tab l "XYZ D50 to REDcolor4"}
    addUserKnob {20 parameters_endGroup l endGroup n -1}
    addUserKnob {20 about_Tab l About}
-   addUserKnob {26 description_Text l "" +STARTLINE T "XYZ D50 to REDcolor4 v0.1.1\n\ncolour-science.org - May 6, 2015\n\nThis Gizmo / Group transforms from CIE XYZ D50 tristimulus values to REDcolor4 colourspace using CAT02 chromatic adaptation transform."}
+   addUserKnob {26 description_Text l "" +STARTLINE T "XYZ D50 to REDcolor4 v0.1.2\n\ncolour-science.org - January 3, 2016\n\nThis Gizmo / Group transforms from CIE XYZ D50 tristimulus values to REDcolor4 colourspace using CAT02 chromatic adaptation transform."}
   }
    Input {
     inputs 0
@@ -2117,19 +2114,19 @@ push $N1cc56b50
    }
    ColorMatrix {
     matrix {
-        {0.9599164 -0.0293174 0.0656614}
-        {-0.0211954 0.9988727 0.0261325}
-        {0.0013708 0.0044359 1.3126007}
+        {0.9711972 -0.0217328 0.0459761}
+        {-0.015689 1.0000208 0.018307}
+        {0.0009701 0.0030818 1.2176713}
       }
-    name D50_to_D65_CAT02_ColorMatrix
+    name D50_to_D60_CAT02_ColorMatrix
     xpos 0
     ypos -125
    }
    ColorMatrix {
     matrix {
-        {2.8754576 -1.2540397 -0.4397806}
-        {-0.8114466 1.7325788 0.0354883}
-        {0.0615527 -0.0478008 0.9085306}
+        {2.7606374 -1.2039645 -0.4222196}
+        {-0.8152302 1.7406574 0.0356538}
+        {0.0663723 -0.0515436 0.9796685}
       }
     name XYZ_to_REDcolor4_ColorMatrix
     xpos 0
@@ -2141,7 +2138,7 @@ push $N1cc56b50
     ypos -74
    }
   end_group
-push $N1cc56b50
+push $N3eff2520
   Group {
    name XYZ_D50_to_REDcolor3
    xpos -4770
@@ -2149,7 +2146,7 @@ push $N1cc56b50
    addUserKnob {20 XYZ_D50_to_RGB_Tab l "XYZ D50 to REDcolor3"}
    addUserKnob {20 parameters_endGroup l endGroup n -1}
    addUserKnob {20 about_Tab l About}
-   addUserKnob {26 description_Text l "" +STARTLINE T "XYZ D50 to REDcolor3 v0.1.1\n\ncolour-science.org - May 6, 2015\n\nThis Gizmo / Group transforms from CIE XYZ D50 tristimulus values to REDcolor3 colourspace using CAT02 chromatic adaptation transform."}
+   addUserKnob {26 description_Text l "" +STARTLINE T "XYZ D50 to REDcolor3 v0.1.2\n\ncolour-science.org - January 3, 2016\n\nThis Gizmo / Group transforms from CIE XYZ D50 tristimulus values to REDcolor3 colourspace using CAT02 chromatic adaptation transform."}
   }
    Input {
     inputs 0
@@ -2159,19 +2156,19 @@ push $N1cc56b50
    }
    ColorMatrix {
     matrix {
-        {0.9599164 -0.0293174 0.0656614}
-        {-0.0211954 0.9988727 0.0261325}
-        {0.0013708 0.0044359 1.3126007}
+        {0.9711972 -0.0217328 0.0459761}
+        {-0.015689 1.0000208 0.018307}
+        {0.0009701 0.0030818 1.2176713}
       }
-    name D50_to_D65_CAT02_ColorMatrix
+    name D50_to_D60_CAT02_ColorMatrix
     xpos 0
     ypos -125
    }
    ColorMatrix {
     matrix {
-        {2.6434682 -1.1545922 -0.3286209}
-        {-0.7424171 1.5918004 0.104522}
-        {0.0615542 -0.0478015 0.90853}
+        {2.5610626 -1.1185998 -0.3183767}
+        {-0.7499284 1.6079051 0.1055795}
+        {0.0663738 -0.0515444 0.9796678}
       }
     name XYZ_to_REDcolor3_ColorMatrix
     xpos 0
@@ -2183,7 +2180,7 @@ push $N1cc56b50
     ypos -74
    }
   end_group
-push $N1cc56b50
+push $N3eff2520
   Group {
    name XYZ_D50_to_REDcolor2
    xpos -4880
@@ -2191,7 +2188,7 @@ push $N1cc56b50
    addUserKnob {20 XYZ_D50_to_RGB_Tab l "XYZ D50 to REDcolor2"}
    addUserKnob {20 parameters_endGroup l endGroup n -1}
    addUserKnob {20 about_Tab l About}
-   addUserKnob {26 description_Text l "" +STARTLINE T "XYZ D50 to REDcolor2 v0.1.1\n\ncolour-science.org - May 6, 2015\n\nThis Gizmo / Group transforms from CIE XYZ D50 tristimulus values to REDcolor2 colourspace using CAT02 chromatic adaptation transform."}
+   addUserKnob {26 description_Text l "" +STARTLINE T "XYZ D50 to REDcolor2 v0.1.2\n\ncolour-science.org - January 3, 2016\n\nThis Gizmo / Group transforms from CIE XYZ D50 tristimulus values to REDcolor2 colourspace using CAT02 chromatic adaptation transform."}
   }
    Input {
     inputs 0
@@ -2201,19 +2198,19 @@ push $N1cc56b50
    }
    ColorMatrix {
     matrix {
-        {0.9599164 -0.0293174 0.0656614}
-        {-0.0211954 0.9988727 0.0261325}
-        {0.0013708 0.0044359 1.3126007}
+        {0.9711972 -0.0217328 0.0459761}
+        {-0.015689 1.0000208 0.018307}
+        {0.0009701 0.0030818 1.2176713}
       }
-    name D50_to_D65_CAT02_ColorMatrix
+    name D50_to_D60_CAT02_ColorMatrix
     xpos 0
     ypos -125
    }
    ColorMatrix {
     matrix {
-        {2.6009688 -1.1435783 -0.3016407}
-        {-0.4805109 1.3567747 0.0917591}
-        {0.2405492 -0.1310655 0.8287633}
+        {2.5254045 -1.1103547 -0.2928773}
+        {-0.4845878 1.3682864 0.0925377}
+        {0.2575004 -0.1403015 0.8871654}
       }
     name XYZ_to_REDcolor2_ColorMatrix
     xpos 0
@@ -2225,7 +2222,7 @@ push $N1cc56b50
     ypos -74
    }
   end_group
-push $N1cc56b50
+push $N3eff2520
   Group {
    name XYZ_D50_to_REDcolor
    xpos -4990
@@ -2233,7 +2230,7 @@ push $N1cc56b50
    addUserKnob {20 XYZ_D50_to_RGB_Tab l "XYZ D50 to REDcolor"}
    addUserKnob {20 parameters_endGroup l endGroup n -1}
    addUserKnob {20 about_Tab l About}
-   addUserKnob {26 description_Text l "" +STARTLINE T "XYZ D50 to REDcolor v0.1.1\n\ncolour-science.org - May 6, 2015\n\nThis Gizmo / Group transforms from CIE XYZ D50 tristimulus values to REDcolor colourspace using CAT02 chromatic adaptation transform."}
+   addUserKnob {26 description_Text l "" +STARTLINE T "XYZ D50 to REDcolor v0.1.2\n\ncolour-science.org - January 3, 2016\n\nThis Gizmo / Group transforms from CIE XYZ D50 tristimulus values to REDcolor colourspace using CAT02 chromatic adaptation transform."}
   }
    Input {
     inputs 0
@@ -2243,19 +2240,19 @@ push $N1cc56b50
    }
    ColorMatrix {
     matrix {
-        {0.9599164 -0.0293174 0.0656614}
-        {-0.0211954 0.9988727 0.0261325}
-        {0.0013708 0.0044359 1.3126007}
+        {0.9711972 -0.0217328 0.0459761}
+        {-0.015689 1.0000208 0.018307}
+        {0.0009701 0.0030818 1.2176713}
       }
-    name D50_to_D65_CAT02_ColorMatrix
+    name D50_to_D60_CAT02_ColorMatrix
     xpos 0
     ypos -125
    }
    ColorMatrix {
     matrix {
-        {3.0903207 -1.4567121 -0.4411945}
-        {-0.7921525 1.6896622 0.0580606}
-        {0.1202622 -0.1708415 0.9702824}
+        {2.9652421 -1.3977527 -0.4233375}
+        {-0.7972597 1.7005557 0.0584349}
+        {0.1303555 -0.1851798 1.0517155}
       }
     name XYZ_to_REDcolor_ColorMatrix
     xpos 0
@@ -2267,7 +2264,7 @@ push $N1cc56b50
     ypos -74
    }
   end_group
-push $N1cc56b50
+push $N3eff2520
   Group {
    name XYZ_D50_to_ProPhoto_RGB
    xpos -5100
@@ -2275,7 +2272,7 @@ push $N1cc56b50
    addUserKnob {20 XYZ_D50_to_RGB_Tab l "XYZ D50 to ProPhoto_RGB"}
    addUserKnob {20 parameters_endGroup l endGroup n -1}
    addUserKnob {20 about_Tab l About}
-   addUserKnob {26 description_Text l "" +STARTLINE T "XYZ D50 to ProPhoto_RGB v0.1.1\n\ncolour-science.org - May 6, 2015\n\nThis Gizmo / Group transforms from CIE XYZ D50 tristimulus values to ProPhoto_RGB colourspace using CAT02 chromatic adaptation transform."}
+   addUserKnob {26 description_Text l "" +STARTLINE T "XYZ D50 to ProPhoto_RGB v0.1.2\n\ncolour-science.org - May 6, 2015\n\nThis Gizmo / Group transforms from CIE XYZ D50 tristimulus values to ProPhoto_RGB colourspace using CAT02 chromatic adaptation transform."}
   }
    Input {
     inputs 0
@@ -2309,7 +2306,7 @@ push $N1cc56b50
     ypos -74
    }
   end_group
-push $N1cc56b50
+push $N3eff2520
   Group {
    name XYZ_D50_to_Pal/Secam_RGB
    xpos -5210
@@ -2351,7 +2348,7 @@ push $N1cc56b50
     ypos -74
    }
   end_group
-push $N1cc56b50
+push $N3eff2520
   Group {
    name XYZ_D50_to_NTSC_RGB
    xpos -5320
@@ -2393,7 +2390,7 @@ push $N1cc56b50
     ypos -74
    }
   end_group
-push $N1cc56b50
+push $N3eff2520
   Group {
    name XYZ_D50_to_Max_RGB
    xpos -5430
@@ -2435,7 +2432,7 @@ push $N1cc56b50
     ypos -74
    }
   end_group
-push $N1cc56b50
+push $N3eff2520
   Group {
    name XYZ_D50_to_Ekta_Space_PS_5
    xpos -5540
@@ -2477,7 +2474,7 @@ push $N1cc56b50
     ypos -74
    }
   end_group
-push $N1cc56b50
+push $N3eff2520
   Group {
    name XYZ_D50_to_ECI_RGB_v2
    xpos -5650
@@ -2519,7 +2516,7 @@ push $N1cc56b50
     ypos -74
    }
   end_group
-push $N1cc56b50
+push $N3eff2520
   Group {
    name XYZ_D50_to_Don_RGB_4
    xpos -5760
@@ -2561,7 +2558,7 @@ push $N1cc56b50
     ypos -74
    }
   end_group
-push $N1cc56b50
+push $N3eff2520
   Group {
    name XYZ_D50_to_DRAGONcolor2
    xpos -5870
@@ -2569,7 +2566,7 @@ push $N1cc56b50
    addUserKnob {20 XYZ_D50_to_RGB_Tab l "XYZ D50 to DRAGONcolor2"}
    addUserKnob {20 parameters_endGroup l endGroup n -1}
    addUserKnob {20 about_Tab l About}
-   addUserKnob {26 description_Text l "" +STARTLINE T "XYZ D50 to DRAGONcolor2 v0.1.1\n\ncolour-science.org - May 6, 2015\n\nThis Gizmo / Group transforms from CIE XYZ D50 tristimulus values to DRAGONcolor2 colourspace using CAT02 chromatic adaptation transform."}
+   addUserKnob {26 description_Text l "" +STARTLINE T "XYZ D50 to DRAGONcolor2 v0.1.2\n\ncolour-science.org - January 3, 2016\n\nThis Gizmo / Group transforms from CIE XYZ D50 tristimulus values to DRAGONcolor2 colourspace using CAT02 chromatic adaptation transform."}
   }
    Input {
     inputs 0
@@ -2579,19 +2576,19 @@ push $N1cc56b50
    }
    ColorMatrix {
     matrix {
-        {0.9599164 -0.0293174 0.0656614}
-        {-0.0211954 0.9988727 0.0261325}
-        {0.0013708 0.0044359 1.3126007}
+        {0.9711972 -0.0217328 0.0459761}
+        {-0.015689 1.0000208 0.018307}
+        {0.0009701 0.0030818 1.2176713}
       }
-    name D50_to_D65_CAT02_ColorMatrix
+    name D50_to_D60_CAT02_ColorMatrix
     xpos 0
     ypos -125
    }
    ColorMatrix {
     matrix {
-        {2.8089093 -1.2010607 -0.4303488}
-        {-0.718477 1.6563781 0.0243209}
-        {0.1137582 -0.0483025 0.8634247}
+        {2.699086 -1.1541013 -0.4135229}
+        {-0.72103 1.6622637 0.0244073}
+        {0.1221744 -0.0518761 0.9273035}
       }
     name XYZ_to_DRAGONcolor2_ColorMatrix
     xpos 0
@@ -2603,7 +2600,7 @@ push $N1cc56b50
     ypos -74
    }
   end_group
-push $N1cc56b50
+push $N3eff2520
   Group {
    name XYZ_D50_to_DRAGONcolor
    xpos -5980
@@ -2611,7 +2608,7 @@ push $N1cc56b50
    addUserKnob {20 XYZ_D50_to_RGB_Tab l "XYZ D50 to DRAGONcolor"}
    addUserKnob {20 parameters_endGroup l endGroup n -1}
    addUserKnob {20 about_Tab l About}
-   addUserKnob {26 description_Text l "" +STARTLINE T "XYZ D50 to DRAGONcolor v0.1.1\n\ncolour-science.org - May 6, 2015\n\nThis Gizmo / Group transforms from CIE XYZ D50 tristimulus values to DRAGONcolor colourspace using CAT02 chromatic adaptation transform."}
+   addUserKnob {26 description_Text l "" +STARTLINE T "XYZ D50 to DRAGONcolor v0.1.2\n\ncolour-science.org - January 3, 2016\n\nThis Gizmo / Group transforms from CIE XYZ D50 tristimulus values to DRAGONcolor colourspace using CAT02 chromatic adaptation transform."}
   }
    Input {
     inputs 0
@@ -2621,19 +2618,19 @@ push $N1cc56b50
    }
    ColorMatrix {
     matrix {
-        {0.9599164 -0.0293174 0.0656614}
-        {-0.0211954 0.9988727 0.0261325}
-        {0.0013708 0.0044359 1.3126007}
+        {0.9711972 -0.0217328 0.0459761}
+        {-0.015689 1.0000208 0.018307}
+        {0.0009701 0.0030818 1.2176713}
       }
-    name D50_to_D65_CAT02_ColorMatrix
+    name D50_to_D60_CAT02_ColorMatrix
     xpos 0
     ypos -125
    }
    ColorMatrix {
     matrix {
-        {2.4527084 -1.0487071 -0.2593598}
-        {-0.6125663 1.4394405 0.1311048}
-        {0.1137575 -0.0483026 0.8634254}
+        {2.3900712 -1.0219252 -0.2527363}
+        {-0.6199164 1.4567121 0.1326779}
+        {0.1221737 -0.0518762 0.9273043}
       }
     name XYZ_to_DRAGONcolor_ColorMatrix
     xpos 0
@@ -2645,7 +2642,7 @@ push $N1cc56b50
     ypos -74
    }
   end_group
-push $N1cc56b50
+push $N3eff2520
   Group {
    name XYZ_D50_to_DCI-P3+
    xpos -6090
@@ -2687,7 +2684,7 @@ push $N1cc56b50
     ypos -74
    }
   end_group
-push $N1cc56b50
+push $N3eff2520
   Group {
    name XYZ_D50_to_DCI-P3
    xpos -6200
@@ -2729,7 +2726,7 @@ push $N1cc56b50
     ypos -74
    }
   end_group
-push $N1cc56b50
+push $N3eff2520
   Group {
    name XYZ_D50_to_ColorMatch_RGB
    xpos -6310
@@ -2771,7 +2768,7 @@ push $N1cc56b50
     ypos -74
    }
   end_group
-push $N1cc56b50
+push $N3eff2520
   Group {
    name XYZ_D50_to_Cinema_Gamut
    xpos -6420
@@ -2813,7 +2810,7 @@ push $N1cc56b50
     ypos -74
    }
   end_group
-push $N1cc56b50
+push $N3eff2520
   Group {
    name XYZ_D50_to_CIE_RGB
    xpos -6530
@@ -2855,7 +2852,7 @@ push $N1cc56b50
     ypos -74
    }
   end_group
-push $N1cc56b50
+push $N3eff2520
   Group {
    name XYZ_D50_to_Beta_RGB
    xpos -6640
@@ -2897,7 +2894,7 @@ push $N1cc56b50
     ypos -74
    }
   end_group
-push $N1cc56b50
+push $N3eff2520
   Group {
    name XYZ_D50_to_Best_RGB
    xpos -6750
@@ -2939,7 +2936,7 @@ push $N1cc56b50
     ypos -74
    }
   end_group
-push $N1cc56b50
+push $N3eff2520
   Group {
    name XYZ_D50_to_Apple_RGB
    xpos -6860
@@ -2981,7 +2978,7 @@ push $N1cc56b50
     ypos -74
    }
   end_group
-push $N1cc56b50
+push $N3eff2520
   Group {
    name XYZ_D50_to_Adobe_Wide_Gamut_RGB
    xpos -6970
@@ -3023,7 +3020,7 @@ push $N1cc56b50
     ypos -74
    }
   end_group
-push $N1cc56b50
+push $N3eff2520
   Group {
    name XYZ_D50_to_Adobe_RGB_1998
    xpos -7080
@@ -3065,7 +3062,7 @@ push $N1cc56b50
     ypos -74
    }
   end_group
-push $N1cc56b50
+push $N3eff2520
   Group {
    name XYZ_D50_to_ALEXA_Wide_Gamut_RGB
    xpos -7190
@@ -3107,7 +3104,7 @@ push $N1cc56b50
     ypos -74
    }
   end_group
-push $N1cc56b50
+push $N3eff2520
   Group {
    name XYZ_D50_to_ACESproxy
    xpos -7300
@@ -3149,7 +3146,7 @@ push $N1cc56b50
     ypos -74
    }
   end_group
-push $N1cc56b50
+push $N3eff2520
   Group {
    name XYZ_D50_to_ACEScg
    xpos -7410
@@ -3191,7 +3188,7 @@ push $N1cc56b50
     ypos -74
    }
   end_group
-push $N1cc56b50
+push $N3eff2520
   Group {
    name XYZ_D50_to_ACEScc
    xpos -7520
@@ -3233,7 +3230,7 @@ push $N1cc56b50
     ypos -74
    }
   end_group
-push $N1cc56b50
+push $N3eff2520
   Group {
    name XYZ_D50_to_ACES2065-1
    xpos -7630
@@ -3337,7 +3334,7 @@ push $N1cc56b50
  }
 end_group
 Viewer {
- frame 1
+ frame_range 1-100
  input_process false
  name Viewer1
  xpos 1029
@@ -3348,7 +3345,7 @@ StickyNote {
  name StickyNote
  tile_color 0x767676ff
  gl_color 0x767676ff
- label "COLOUR RENDITION CHART v1.5\n\ncolour-science.org - June 3, 2015\n\nThis file defines the X-Rite ColorChecker 2005 Classic Colour Rendition Chart.\n\nReference samples colours are converted from CIE XYZ tristimulus values (derived from GretagMacbeth L*a*b* D50 data \[1]) to RGB colourspace.\n\nMatrices converting from CIE XYZ tristimulus to RGB colourspace were computed using CAT02 chromatic adaptation transform.\n\nThe following RGB colourspaces are implemented:\n\n- ACES2065-1\n- ACEScc\n- ACEScg\n- ACESproxy\n- ALEXA Wide Gamut RGB\n- Adobe RGB 1998\n- Adobe Wide Gamut RGB\n- Apple RGB\n- Best RGB\n- Beta RGB\n- CIE RGB\n- Cinema Gamut\n- ColorMatch RGB\n- DCI-P3\n- DCI-P3+\n- DRAGONcolor\n- DRAGONcolor2\n- Don RGB 4\n- ECI RGB v2\n- Ekta Space PS 5\n- Max RGB\n- NTSC RGB\n- Pal/Secam RGB\n- ProPhoto RGB\n- REDcolor\n- REDcolor2\n- REDcolor3\n- REDcolor4\n- Rec. 2020\n- Rec. 709\n- Russell RGB\n- S-Gamut\n- S-Gamut3\n- S-Gamut3.Cine\n- SMPTE-C RGB\n- V-Gamut\n- Xtreme RGB\n- sRGB\n\nRendered colour rendition charts can be downloaded at this url: https://github.com/colour-science/colour-nuke/tree/master/colour_nuke/resources/images/ColorChecker2005\n\nMore informations are available here: https://github.com/colour-science/colour/tree/develop/colour/models/dataset\n\nLatest version of the file will always be available at this url: https://github.com/colour-science/colour-nuke/blob/master/colour_nuke/scripts/colour_rendition_chart.nk\n\n\[1] BabelColor. (2012). ColorChecker RGB and spectra. Retrieved from http://www.babelcolor.com/download/ColorChecker_RGB_and_spectra.xls"
+ label "COLOUR RENDITION CHART v1.6\n\ncolour-science.org - January 3, 2016\n\nThis file defines the X-Rite ColorChecker 2005 Classic Colour Rendition Chart.\n\nReference samples colours are converted from CIE XYZ tristimulus values (derived from GretagMacbeth L*a*b* D50 data \[1]) to RGB colourspace.\n\nMatrices converting from CIE XYZ tristimulus to RGB colourspace were computed using CAT02 chromatic adaptation transform.\n\nThe following RGB colourspaces are implemented:\n\n- ACES2065-1\n- ACEScc\n- ACEScg\n- ACESproxy\n- ALEXA Wide Gamut RGB\n- Adobe RGB 1998\n- Adobe Wide Gamut RGB\n- Apple RGB\n- Best RGB\n- Beta RGB\n- CIE RGB\n- Cinema Gamut\n- ColorMatch RGB\n- DCI-P3\n- DCI-P3+\n- DRAGONcolor\n- DRAGONcolor2\n- Don RGB 4\n- ECI RGB v2\n- Ekta Space PS 5\n- Max RGB\n- NTSC RGB\n- Pal/Secam RGB\n- ProPhoto RGB\n- REDcolor\n- REDcolor2\n- REDcolor3\n- REDcolor4\n- Rec. 2020\n- Rec. 709\n- Russell RGB\n- S-Gamut\n- S-Gamut3\n- S-Gamut3.Cine\n- SMPTE-C RGB\n- V-Gamut\n- Xtreme RGB\n- sRGB\n\nRendered colour rendition charts can be downloaded at this url: https://github.com/colour-science/colour-nuke/tree/master/colour_nuke/resources/images/ColorChecker2005\n\nMore informations are available here: https://github.com/colour-science/colour/tree/develop/colour/models/dataset\n\nLatest version of the file will always be available at this url: https://github.com/colour-science/colour-nuke/blob/master/colour_nuke/scripts/colour_rendition_chart.nk\n\n\[1] BabelColor. (2012). ColorChecker RGB and spectra. Retrieved from http://www.babelcolor.com/download/ColorChecker_RGB_and_spectra.xls"
  note_font_size 14
  xpos 595
  ypos -923
