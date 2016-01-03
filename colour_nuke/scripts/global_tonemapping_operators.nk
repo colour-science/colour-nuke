@@ -2,26 +2,26 @@
 version 9.0 v4
 define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
 <layout version="1.0">
-    <window x="0" y="23" w="1280" h="714" screen="0">
+    <window x="0" y="23" w="1440" h="823" screen="0">
         <splitter orientation="1">
             <split size="40"/>
             <dock id="" hideTitles="1" activePageId="Toolbar.1">
                 <page id="Toolbar.1"/>
             </dock>
-            <split size="617" stretch="1"/>
+            <split size="820" stretch="1"/>
             <splitter orientation="2">
-                <split size="404"/>
+                <split size="468"/>
                 <dock id="" activePageId="Viewer.1">
                     <page id="Viewer.1"/>
                 </dock>
-                <split size="284"/>
+                <split size="329"/>
                 <dock id="" activePageId="DAG.1" focus="true">
                     <page id="DAG.1"/>
                     <page id="Curve Editor.1"/>
                     <page id="DopeSheet.1"/>
                 </dock>
             </splitter>
-            <split size="615"/>
+            <split size="572"/>
             <dock id="" activePageId="Properties.1">
                 <page id="Properties.1"/>
             </dock>
@@ -44,7 +44,7 @@ Constant {
  xpos 359
  ypos -134
 }
-set N99a40b0 [stack 0]
+set N3b72c020 [stack 0]
 Invert {
  name Invert
  xpos 249
@@ -63,7 +63,7 @@ Dot {
  xpos 283
  ypos -35
 }
-push $N99a40b0
+push $N3b72c020
 Ramp {
  p0 {0 0}
  p1 {0 512}
@@ -80,7 +80,7 @@ Ramp {
  xpos 359
  ypos -38
 }
-set N8a096870 [stack 0]
+set N447d1ab0 [stack 0]
 Group {
  name Simple_Tonemapping_Operator
  tile_color 0xffbf00ff
@@ -100,7 +100,7 @@ Group {
   xpos 55
   ypos -54
  }
-set N8a0a99b0 [stack 0]
+set N3b045e60 [stack 0]
  Expression {
   expr0 r/(r+1)
   expr1 g/(g+1)
@@ -109,7 +109,7 @@ set N8a0a99b0 [stack 0]
   xpos 55
   ypos -30
  }
-push $N8a0a99b0
+push $N3b045e60
  Dot {
   name Dot1
   xpos 165
@@ -134,7 +134,7 @@ push $N8a0a99b0
   ypos 26
  }
 end_group
-push $N8a096870
+push $N447d1ab0
 Group {
  name Filmic_Tonemapping_Operator
  tile_color 0xffbf00ff
@@ -172,7 +172,7 @@ Group {
   xpos 13
   ypos -125
  }
-set N8abac650 [stack 0]
+set N44792810 [stack 0]
  Dot {
   name Dot1
   xpos 123
@@ -183,7 +183,7 @@ set N8abac650 [stack 0]
   xpos 123
   ypos 22
  }
-push $N8abac650
+push $N44792810
  Multiply {
   value {{parent.filmic_tonemapping_operator_Expression.exposure_bias_Floating_Point_Slider}}
   name exposure_bias_Multiply
@@ -226,13 +226,13 @@ push $N8abac650
   xpos 13
   ypos -45
  }
-set N8a0dcba0 [stack 0]
+set N3b702ca0 [stack 0]
  Clamp {
   name Clamp
   xpos -97
   ypos -13
  }
-push $N8a0dcba0
+push $N3b702ca0
  Switch {
   inputs 2
   which {{parent.clamp_output_Check_Box}}
@@ -254,14 +254,13 @@ push $N8a0dcba0
  }
 end_group
 Viewer {
- frame 1
  frame_range 1-100
  input_process false
  name Viewer1
  xpos 469
  ypos 130
 }
-push $N8a096870
+push $N447d1ab0
 Group {
  name Normalisation_Tonemapping_Operator
  tile_color 0xffbf00ff
@@ -285,14 +284,14 @@ Group {
   xpos -97
   ypos -163
  }
-set N8b303ca0 [stack 0]
+set N39bdd6e0 [stack 0]
  Multiply {
   value {{"1 / max(domain_CurveTool.maxlumapixvalue.r, domain_CurveTool.maxlumapixvalue.g, domain_CurveTool.maxlumapixvalue.b)"}}
   name normalisation_Multiply
   xpos -97
   ypos -133
  }
-push $N8b303ca0
+push $N39bdd6e0
  Dot {
   name Dot2
   xpos 71
@@ -315,7 +314,7 @@ push $N8b303ca0
   xpos -97
   ypos -69
  }
-push $N8b303ca0
+push $N39bdd6e0
  Dot {
   name Dot1
   xpos -207
@@ -333,7 +332,7 @@ push $N8b303ca0
   ypos -129
  }
 end_group
-push $N8a096870
+push $N447d1ab0
 Group {
  name Gamma_Tonemapping_Operator
  tile_color 0xffbf00ff
@@ -375,13 +374,13 @@ Group {
   addUserKnob {7 gamma_Floating_Point_Slider l Gamma}
   gamma_Floating_Point_Slider {{parent.gamma_Floating_Point_Slider}}
  }
-set N8b403510 [stack 0]
+set N4096c490 [stack 0]
  Clamp {
   name Clamp
   xpos -55
   ypos -10
  }
-push $N8b403510
+push $N4096c490
  Switch {
   inputs 2
   which {{parent.clamp_output_Check_Box}}
@@ -389,7 +388,7 @@ push $N8b403510
   xpos 55
   ypos -6
  }
-push $N8b403510
+push $N4096c490
  Dot {
   name Dot1
   xpos 165
@@ -413,7 +412,7 @@ push $N8b403510
   ypos 50
  }
 end_group
-push $N8a096870
+push $N447d1ab0
 Group {
  name Logarithmic_Tonemapping_Operator
  tile_color 0xffbf00ff
@@ -437,7 +436,7 @@ Group {
  clamp_output_Check_Box true
  addUserKnob {20 miscellaneous_endGroup l endGroup n -1}
  addUserKnob {20 about_Tab l About}
- addUserKnob {26 description_Text l "" +STARTLINE T "Logarithmic Tonemapping Operator v0.1.2\n\ncolour-science.org - May 6, 2015\n\nThis Gizmo / Group implements a Logarithmic Tonemapping Operator.\n\n\[1] Schlick, C. (1994). Quantization Techniques for Visualization of High Dynamic Range Pictures. Proceedings of the Fifth Eurographics Workshop on Rendering, (Section 5), 7–18."}
+ addUserKnob {26 description_Text l "" +STARTLINE T "Logarithmic Tonemapping Operator v0.1.2\n\ncolour-science.org - January 3, 2016\n\nThis Gizmo / Group implements a Logarithmic Tonemapping Operator.\n\n\[1] Schlick, C. (1994). Quantization Techniques for Visualization of High Dynamic Range Pictures. Proceedings of the Fifth Eurographics Workshop on Rendering, (Section 5), 7–18."}
 }
  Input {
   inputs 0
@@ -445,16 +444,16 @@ Group {
   xpos -150
   ypos -177
  }
-set N8b4445f0 [stack 0]
+set N41569ba0 [stack 0]
  Dot {
   name Dot7
   xpos -116
   ypos -102
  }
-set N8b448780 [stack 0]
+set N4156dcf0 [stack 0]
 push 0
-push $N8b448780
-push $N8b4445f0
+push $N4156dcf0
+push $N41569ba0
  Dot {
   name Dot1
   xpos -116
@@ -471,7 +470,7 @@ push $N8b4445f0
   colourspace_Pulldown_Choice {{parent.colourspace_Pulldown_Choice}}
   addUserKnob {20 endGroup n -1}
   addUserKnob {20 about_Tab l About}
-  addUserKnob {26 description_Text l "" +STARTLINE T "RGB Luminance v0.1.2\n\ncolour-science.org - May 6, 2015\n\nThis Gizmo / Group computes the \"RGB Luminance\" of given colourspace."}
+  addUserKnob {26 description_Text l "" +STARTLINE T "RGB Luminance v0.1.3\n\ncolour-science.org - January 3, 2016\n\nThis Gizmo / Group computes the \"RGB Luminance\" of given colourspace."}
  }
   Input {
    inputs 0
@@ -479,7 +478,7 @@ push $N8b4445f0
    xpos -4880
    ypos -273
   }
-set N8b45a0e0 [stack 0]
+set N4157f5d0 [stack 0]
   Expression {
    expr0 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
    expr1 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
@@ -488,7 +487,7 @@ set N8b45a0e0 [stack 0]
    xpos -4880
    ypos -249
   }
-push $N8b45a0e0
+push $N4157f5d0
   Expression {
    expr0 "0.0 * r + 1.0 * g + 0.0 * b"
    expr1 "0.0 * r + 1.0 * g + 0.0 * b"
@@ -497,7 +496,7 @@ push $N8b45a0e0
    xpos -4990
    ypos -225
   }
-push $N8b45a0e0
+push $N4157f5d0
   Expression {
    expr0 "0.260681632101 * r + 0.774893299809 * g + -0.0355749319099 * b"
    expr1 "0.260681632101 * r + 0.774893299809 * g + -0.0355749319099 * b"
@@ -506,7 +505,7 @@ push $N8b45a0e0
    xpos -5100
    ypos -225
   }
-push $N8b45a0e0
+push $N4157f5d0
   Expression {
    expr0 "0.212374157009 * r + 0.701076498009 * g + 0.0865493449823 * b"
    expr1 "0.212374157009 * r + 0.701076498009 * g + 0.0865493449823 * b"
@@ -515,7 +514,7 @@ push $N8b45a0e0
    xpos -5210
    ypos -225
   }
-push $N8b45a0e0
+push $N4157f5d0
   Expression {
    expr0 "0.215072070849 * r + 0.885058455418 * g + -0.100130526267 * b"
    expr1 "0.215072070849 * r + 0.885058455418 * g + -0.100130526267 * b"
@@ -524,7 +523,7 @@ push $N8b45a0e0
    xpos -5320
    ypos -225
   }
-push $N8b45a0e0
+push $N4157f5d0
   Expression {
    expr0 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
    expr1 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
@@ -533,7 +532,7 @@ push $N8b45a0e0
    xpos -5430
    ypos -225
   }
-push $N8b45a0e0
+push $N4157f5d0
   Expression {
    expr0 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
    expr1 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
@@ -542,7 +541,7 @@ push $N8b45a0e0
    xpos -5540
    ypos -225
   }
-push $N8b45a0e0
+push $N4157f5d0
   Expression {
    expr0 "0.315199106486 * r + 0.664839320751 * g + 0.0199615727626 * b"
    expr1 "0.315199106486 * r + 0.664839320751 * g + 0.0199615727626 * b"
@@ -551,7 +550,7 @@ push $N8b45a0e0
    xpos -5650
    ypos -225
   }
-push $N8b45a0e0
+push $N4157f5d0
   Expression {
    expr0 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
    expr1 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
@@ -560,7 +559,7 @@ push $N8b45a0e0
    xpos -5760
    ypos -225
   }
-push $N8b45a0e0
+push $N4157f5d0
   Expression {
    expr0 "0.262698338957 * r + 0.678008765773 * g + 0.0592928952706 * b"
    expr1 "0.262698338957 * r + 0.678008765773 * g + 0.0592928952706 * b"
@@ -569,43 +568,43 @@ push $N8b45a0e0
    xpos -5870
    ypos -225
   }
-push $N8b45a0e0
+push $N4157f5d0
   Expression {
-   expr0 "0.203484555969 * r + 0.72639105456 * g + 0.0701243894714 * b"
-   expr1 "0.203484555969 * r + 0.72639105456 * g + 0.0701243894714 * b"
-   expr2 "0.203484555969 * r + 0.72639105456 * g + 0.0701243894714 * b"
+   expr0 "0.211947869481 * r + 0.723019772048 * g + 0.0650323584709 * b"
+   expr1 "0.211947869481 * r + 0.723019772048 * g + 0.0650323584709 * b"
+   expr2 "0.211947869481 * r + 0.723019772048 * g + 0.0650323584709 * b"
    name REDcolor4_luminance_Expression
    xpos -5980
    ypos -225
   }
-push $N8b45a0e0
+push $N4157f5d0
   Expression {
-   expr0 "0.221768124882 * r + 0.788760003697 * g + -0.0105281285791 * b"
-   expr1 "0.221768124882 * r + 0.788760003697 * g + -0.0105281285791 * b"
-   expr2 "0.221768124882 * r + 0.788760003697 * g + -0.0105281285791 * b"
+   expr0 "0.22890381241 * r + 0.780859824404 * g + -0.0097636368135 * b"
+   expr1 "0.22890381241 * r + 0.780859824404 * g + -0.0097636368135 * b"
+   expr2 "0.22890381241 * r + 0.780859824404 * g + -0.0097636368135 * b"
    name REDcolor3_luminance_Expression
    xpos -6090
    ypos -225
   }
-push $N8b45a0e0
+push $N4157f5d0
   Expression {
-   expr0 "0.16451940323 * r + 0.872165887407 * g + -0.0366852906372 * b"
-   expr1 "0.16451940323 * r + 0.872165887407 * g + -0.0366852906372 * b"
-   expr2 "0.16451940323 * r + 0.872165887407 * g + -0.0366852906372 * b"
+   expr0 "0.169442097101 * r + 0.864828202542 * g + -0.0342702996431 * b"
+   expr1 "0.169442097101 * r + 0.864828202542 * g + -0.0342702996431 * b"
+   expr2 "0.169442097101 * r + 0.864828202542 * g + -0.0342702996431 * b"
    name REDcolor2_luminance_Expression
    xpos -6200
    ypos -225
   }
-push $N8b45a0e0
+push $N4157f5d0
   Expression {
-   expr0 "0.194034143173 * r + 0.763419238516 * g + 0.0425466183108 * b"
-   expr1 "0.194034143173 * r + 0.763419238516 * g + 0.0425466183108 * b"
-   expr2 "0.194034143173 * r + 0.763419238516 * g + 0.0425466183108 * b"
+   expr0 "0.202218816094 * r + 0.758528901746 * g + 0.03925228216 * b"
+   expr1 "0.202218816094 * r + 0.758528901746 * g + 0.03925228216 * b"
+   expr2 "0.202218816094 * r + 0.758528901746 * g + 0.03925228216 * b"
    name REDcolor_luminance_Expression
    xpos -6310
    ypos -225
   }
-push $N8b45a0e0
+push $N4157f5d0
   Expression {
    expr0 "0.288037453913 * r + 0.711876883439 * g + 8.56626476195e-05 * b"
    expr1 "0.288037453913 * r + 0.711876883439 * g + 8.56626476195e-05 * b"
@@ -614,7 +613,7 @@ push $N8b45a0e0
    xpos -6420
    ypos -225
   }
-push $N8b45a0e0
+push $N4157f5d0
   Expression {
    expr0 "0.222002313106 * r + 0.706668898724 * g + 0.0713287881697 * b"
    expr1 "0.222002313106 * r + 0.706668898724 * g + 0.0713287881697 * b"
@@ -623,7 +622,7 @@ push $N8b45a0e0
    xpos -6530
    ypos -225
   }
-push $N8b45a0e0
+push $N4157f5d0
   Expression {
    expr0 "0.29890307025 * r + 0.586619854659 * g + 0.114477075091 * b"
    expr1 "0.29890307025 * r + 0.586619854659 * g + 0.114477075091 * b"
@@ -632,7 +631,7 @@ push $N8b45a0e0
    xpos -6640
    ypos -225
   }
-push $N8b45a0e0
+push $N4157f5d0
   Expression {
    expr0 "0.310077340675 * r + 0.689922659325 * g + 0.0 * b"
    expr1 "0.310077340675 * r + 0.689922659325 * g + 0.0 * b"
@@ -641,7 +640,7 @@ push $N8b45a0e0
    xpos -6750
    ypos -225
   }
-push $N8b45a0e0
+push $N4157f5d0
   Expression {
    expr0 "0.261098890455 * r + 0.734900118525 * g + 0.00400099101932 * b"
    expr1 "0.261098890455 * r + 0.734900118525 * g + 0.00400099101932 * b"
@@ -650,7 +649,7 @@ push $N8b45a0e0
    xpos -6860
    ypos -225
   }
-push $N8b45a0e0
+push $N4157f5d0
   Expression {
    expr0 "0.320104742337 * r + 0.601874395246 * g + 0.078020862417 * b"
    expr1 "0.320104742337 * r + 0.601874395246 * g + 0.078020862417 * b"
@@ -659,7 +658,7 @@ push $N8b45a0e0
    xpos -6970
    ypos -225
   }
-push $N8b45a0e0
+push $N4157f5d0
   Expression {
    expr0 "0.278090415226 * r + 0.687901558611 * g + 0.0340080261629 * b"
    expr1 "0.278090415226 * r + 0.687901558611 * g + 0.0340080261629 * b"
@@ -668,25 +667,25 @@ push $N8b45a0e0
    xpos -7080
    ypos -225
   }
-push $N8b45a0e0
+push $N4157f5d0
   Expression {
-   expr0 "0.186660738109 * r + 0.74118120047 * g + 0.0721580614212 * b"
-   expr1 "0.186660738109 * r + 0.74118120047 * g + 0.0721580614212 * b"
-   expr2 "0.186660738109 * r + 0.74118120047 * g + 0.0721580614212 * b"
+   expr0 "0.194255795247 * r + 0.738556869189 * g + 0.0671873355644 * b"
+   expr1 "0.194255795247 * r + 0.738556869189 * g + 0.0671873355644 * b"
+   expr2 "0.194255795247 * r + 0.738556869189 * g + 0.0671873355644 * b"
    name DRAGONcolor2_luminance_Expression
    xpos -7190
    ypos -225
   }
-push $N8b45a0e0
+push $N4157f5d0
   Expression {
-   expr0 "0.215087180914 * r + 0.849257379828 * g + -0.0643445607425 * b"
-   expr1 "0.215087180914 * r + 0.849257379828 * g + -0.0643445607425 * b"
-   expr2 "0.215087180914 * r + 0.849257379828 * g + -0.0643445607425 * b"
+   expr0 "0.220724022316 * r + 0.839188054601 * g + -0.0599120769169 * b"
+   expr1 "0.220724022316 * r + 0.839188054601 * g + -0.0599120769169 * b"
+   expr2 "0.220724022316 * r + 0.839188054601 * g + -0.0599120769169 * b"
    name DRAGONcolor_luminance_Expression
    xpos -7300
    ypos -225
   }
-push $N8b45a0e0
+push $N4157f5d0
   Expression {
    expr0 "0.203986297104 * r + 0.882591093117 * g + -0.0865773902211 * b"
    expr1 "0.203986297104 * r + 0.882591093117 * g + -0.0865773902211 * b"
@@ -695,7 +694,7 @@ push $N8b45a0e0
    xpos -7410
    ypos -225
   }
-push $N8b45a0e0
+push $N4157f5d0
   Expression {
    expr0 "0.209491677913 * r + 0.721595254161 * g + 0.0689130679262 * b"
    expr1 "0.209491677913 * r + 0.721595254161 * g + 0.0689130679262 * b"
@@ -704,7 +703,7 @@ push $N8b45a0e0
    xpos -7520
    ypos -225
   }
-push $N8b45a0e0
+push $N4157f5d0
   Expression {
    expr0 "0.274880515737 * r + 0.658137117154 * g + 0.0669823671092 * b"
    expr1 "0.274880515737 * r + 0.658137117154 * g + 0.0669823671092 * b"
@@ -713,7 +712,7 @@ push $N8b45a0e0
    xpos -7630
    ypos -225
   }
-push $N8b45a0e0
+push $N4157f5d0
   Expression {
    expr0 "0.261256555898 * r + 0.869631208967 * g + -0.130887764865 * b"
    expr1 "0.261256555898 * r + 0.869631208967 * g + -0.130887764865 * b"
@@ -722,7 +721,7 @@ push $N8b45a0e0
    xpos -7740
    ypos -225
   }
-push $N8b45a0e0
+push $N4157f5d0
   Expression {
    expr0 "0.176204436534 * r + 0.812984693878 * g + 0.0108108695884 * b"
    expr1 "0.176204436534 * r + 0.812984693878 * g + 0.0108108695884 * b"
@@ -731,7 +730,7 @@ push $N8b45a0e0
    xpos -7850
    ypos -225
   }
-push $N8b45a0e0
+push $N4157f5d0
   Expression {
    expr0 "0.303270045405 * r + 0.663789543861 * g + 0.0329404107343 * b"
    expr1 "0.303270045405 * r + 0.663789543861 * g + 0.0329404107343 * b"
@@ -740,7 +739,7 @@ push $N8b45a0e0
    xpos -7960
    ypos -225
   }
-push $N8b45a0e0
+push $N4157f5d0
   Expression {
    expr0 "0.227563471677 * r + 0.738429482666 * g + 0.0340070456574 * b"
    expr1 "0.227563471677 * r + 0.738429482666 * g + 0.0340070456574 * b"
@@ -749,7 +748,7 @@ push $N8b45a0e0
    xpos -8070
    ypos -225
   }
-push $N8b45a0e0
+push $N4157f5d0
   Expression {
    expr0 "0.244614394775 * r + 0.672060284019 * g + 0.0833253212057 * b"
    expr1 "0.244614394775 * r + 0.672060284019 * g + 0.0833253212057 * b"
@@ -758,7 +757,7 @@ push $N8b45a0e0
    xpos -8180
    ypos -225
   }
-push $N8b45a0e0
+push $N4157f5d0
   Expression {
    expr0 "0.258690663895 * r + 0.724718154549 * g + 0.0165911815566 * b"
    expr1 "0.258690663895 * r + 0.724718154549 * g + 0.0165911815566 * b"
@@ -767,7 +766,7 @@ push $N8b45a0e0
    xpos -8290
    ypos -225
   }
-push $N8b45a0e0
+push $N4157f5d0
   Expression {
    expr0 "0.29734448514 * r + 0.627376113264 * g + 0.0752794015963 * b"
    expr1 "0.29734448514 * r + 0.627376113264 * g + 0.0752794015963 * b"
@@ -776,7 +775,7 @@ push $N8b45a0e0
    xpos -8400
    ypos -225
   }
-push $N8b45a0e0
+push $N4157f5d0
   Expression {
    expr0 "0.291948669899 * r + 0.823830265984 * g + -0.115778935883 * b"
    expr1 "0.291948669899 * r + 0.823830265984 * g + -0.115778935883 * b"
@@ -785,7 +784,7 @@ push $N8b45a0e0
    xpos -8510
    ypos -225
   }
-push $N8b45a0e0
+push $N4157f5d0
   Expression {
    expr0 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
    expr1 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
@@ -794,7 +793,7 @@ push $N8b45a0e0
    xpos -8620
    ypos -225
   }
-push $N8b45a0e0
+push $N4157f5d0
   Expression {
    expr0 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
    expr1 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
@@ -803,7 +802,7 @@ push $N8b45a0e0
    xpos -8730
    ypos -225
   }
-push $N8b45a0e0
+push $N4157f5d0
   Expression {
    expr0 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
    expr1 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
@@ -812,7 +811,7 @@ push $N8b45a0e0
    xpos -8840
    ypos -225
   }
-push $N8b45a0e0
+push $N4157f5d0
   Expression {
    expr0 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
    expr1 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
@@ -837,7 +836,7 @@ push $N8b45a0e0
    ypos -201
   }
  end_group
-set N8b450df0 [stack 0]
+set N41576360 [stack 0]
  Dot {
   name Dot4
   xpos -446
@@ -848,7 +847,7 @@ set N8b450df0 [stack 0]
   xpos -446
   ypos -126
  }
-set N8b641390 [stack 0]
+set N4a214ae0 [stack 0]
  Expression {
   channel3 rgb
   expr3 "(log(1 + p_Floating_Point_Slider * r) / log(1 + p_Floating_Point_Slider * L_max_Floating_Point_Slider)) ** (1 / q_Floating_Point_Slider)"
@@ -870,7 +869,7 @@ set N8b641390 [stack 0]
   xpos -260
   ypos -105
  }
-push $N8b641390
+push $N4a214ae0
  Dot {
   name Dot8
   xpos -446
@@ -883,13 +882,13 @@ push $N8b641390
   xpos -260
   ypos -81
  }
-set N8b33e290 [stack 0]
+set N4064a820 [stack 0]
  Clamp {
   name Clamp
   xpos -370
   ypos -61
  }
-push $N8b33e290
+push $N4064a820
  Switch {
   inputs 2
   which {{parent.clamp_output_Check_Box}}
@@ -897,7 +896,7 @@ push $N8b33e290
   xpos -260
   ypos -52
  }
-push $N8b4445f0
+push $N41569ba0
  Dot {
   name Dot2
   xpos -6
@@ -920,7 +919,7 @@ push $N8b4445f0
   xpos -150
   ypos -24
  }
-push $N8b450df0
+push $N41576360
  Dot {
   name Dot6
   xpos -336
@@ -937,7 +936,7 @@ push $N8b450df0
   ypos -177
  }
 end_group
-push $N8a096870
+push $N447d1ab0
 Group {
  name Exponential_Tonemapping_Operator
  tile_color 0xffbf00ff
@@ -961,7 +960,7 @@ Group {
  clamp_output_Check_Box true
  addUserKnob {20 miscellaneous_endGroup l endGroup n -1}
  addUserKnob {20 about_Tab l About}
- addUserKnob {26 description_Text l "" +STARTLINE T "Exponential Tonemapping Operator v0.1.2\n\ncolour-science.org - May 6, 2015\n\nThis Gizmo / Group implements an Exponential Tonemapping Operator.\n\n\[1] Schlick, C. (1994). Quantization Techniques for Visualization of High Dynamic Range Pictures. Proceedings of the Fifth Eurographics Workshop on Rendering, (Section 5), 7–18."}
+ addUserKnob {26 description_Text l "" +STARTLINE T "Exponential Tonemapping Operator v0.1.2\n\ncolour-science.org - January 3, 2016\n\nThis Gizmo / Group implements an Exponential Tonemapping Operator.\n\n\[1] Schlick, C. (1994). Quantization Techniques for Visualization of High Dynamic Range Pictures. Proceedings of the Fifth Eurographics Workshop on Rendering, (Section 5), 7–18."}
 }
  Input {
   inputs 0
@@ -969,16 +968,16 @@ Group {
   xpos -150
   ypos -177
  }
-set N8b38eaf0 [stack 0]
+set N4a2ac170 [stack 0]
  Dot {
   name Dot7
   xpos -116
   ypos -102
  }
-set N8b392c80 [stack 0]
+set N3a1e2c80 [stack 0]
 push 0
-push $N8b392c80
-push $N8b38eaf0
+push $N3a1e2c80
+push $N4a2ac170
  Dot {
   name Dot1
   xpos -116
@@ -995,7 +994,7 @@ push $N8b38eaf0
   colourspace_Pulldown_Choice {{parent.colourspace_Pulldown_Choice}}
   addUserKnob {20 endGroup n -1}
   addUserKnob {20 about_Tab l About}
-  addUserKnob {26 description_Text l "" +STARTLINE T "RGB Luminance v0.1.2\n\ncolour-science.org - May 6, 2015\n\nThis Gizmo / Group computes the \"RGB Luminance\" of given colourspace."}
+  addUserKnob {26 description_Text l "" +STARTLINE T "RGB Luminance v0.1.3\n\ncolour-science.org - January 3, 2016\n\nThis Gizmo / Group computes the \"RGB Luminance\" of given colourspace."}
  }
   Input {
    inputs 0
@@ -1003,7 +1002,7 @@ push $N8b38eaf0
    xpos -4880
    ypos -273
   }
-set N8b3a45e0 [stack 0]
+set N3a1bd610 [stack 0]
   Expression {
    expr0 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
    expr1 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
@@ -1012,7 +1011,7 @@ set N8b3a45e0 [stack 0]
    xpos -4880
    ypos -249
   }
-push $N8b3a45e0
+push $N3a1bd610
   Expression {
    expr0 "0.0 * r + 1.0 * g + 0.0 * b"
    expr1 "0.0 * r + 1.0 * g + 0.0 * b"
@@ -1021,7 +1020,7 @@ push $N8b3a45e0
    xpos -4990
    ypos -225
   }
-push $N8b3a45e0
+push $N3a1bd610
   Expression {
    expr0 "0.260681632101 * r + 0.774893299809 * g + -0.0355749319099 * b"
    expr1 "0.260681632101 * r + 0.774893299809 * g + -0.0355749319099 * b"
@@ -1030,7 +1029,7 @@ push $N8b3a45e0
    xpos -5100
    ypos -225
   }
-push $N8b3a45e0
+push $N3a1bd610
   Expression {
    expr0 "0.212374157009 * r + 0.701076498009 * g + 0.0865493449823 * b"
    expr1 "0.212374157009 * r + 0.701076498009 * g + 0.0865493449823 * b"
@@ -1039,7 +1038,7 @@ push $N8b3a45e0
    xpos -5210
    ypos -225
   }
-push $N8b3a45e0
+push $N3a1bd610
   Expression {
    expr0 "0.215072070849 * r + 0.885058455418 * g + -0.100130526267 * b"
    expr1 "0.215072070849 * r + 0.885058455418 * g + -0.100130526267 * b"
@@ -1048,7 +1047,7 @@ push $N8b3a45e0
    xpos -5320
    ypos -225
   }
-push $N8b3a45e0
+push $N3a1bd610
   Expression {
    expr0 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
    expr1 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
@@ -1057,7 +1056,7 @@ push $N8b3a45e0
    xpos -5430
    ypos -225
   }
-push $N8b3a45e0
+push $N3a1bd610
   Expression {
    expr0 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
    expr1 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
@@ -1066,7 +1065,7 @@ push $N8b3a45e0
    xpos -5540
    ypos -225
   }
-push $N8b3a45e0
+push $N3a1bd610
   Expression {
    expr0 "0.315199106486 * r + 0.664839320751 * g + 0.0199615727626 * b"
    expr1 "0.315199106486 * r + 0.664839320751 * g + 0.0199615727626 * b"
@@ -1075,7 +1074,7 @@ push $N8b3a45e0
    xpos -5650
    ypos -225
   }
-push $N8b3a45e0
+push $N3a1bd610
   Expression {
    expr0 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
    expr1 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
@@ -1084,7 +1083,7 @@ push $N8b3a45e0
    xpos -5760
    ypos -225
   }
-push $N8b3a45e0
+push $N3a1bd610
   Expression {
    expr0 "0.262698338957 * r + 0.678008765773 * g + 0.0592928952706 * b"
    expr1 "0.262698338957 * r + 0.678008765773 * g + 0.0592928952706 * b"
@@ -1093,43 +1092,43 @@ push $N8b3a45e0
    xpos -5870
    ypos -225
   }
-push $N8b3a45e0
+push $N3a1bd610
   Expression {
-   expr0 "0.203484555969 * r + 0.72639105456 * g + 0.0701243894714 * b"
-   expr1 "0.203484555969 * r + 0.72639105456 * g + 0.0701243894714 * b"
-   expr2 "0.203484555969 * r + 0.72639105456 * g + 0.0701243894714 * b"
+   expr0 "0.211947869481 * r + 0.723019772048 * g + 0.0650323584709 * b"
+   expr1 "0.211947869481 * r + 0.723019772048 * g + 0.0650323584709 * b"
+   expr2 "0.211947869481 * r + 0.723019772048 * g + 0.0650323584709 * b"
    name REDcolor4_luminance_Expression
    xpos -5980
    ypos -225
   }
-push $N8b3a45e0
+push $N3a1bd610
   Expression {
-   expr0 "0.221768124882 * r + 0.788760003697 * g + -0.0105281285791 * b"
-   expr1 "0.221768124882 * r + 0.788760003697 * g + -0.0105281285791 * b"
-   expr2 "0.221768124882 * r + 0.788760003697 * g + -0.0105281285791 * b"
+   expr0 "0.22890381241 * r + 0.780859824404 * g + -0.0097636368135 * b"
+   expr1 "0.22890381241 * r + 0.780859824404 * g + -0.0097636368135 * b"
+   expr2 "0.22890381241 * r + 0.780859824404 * g + -0.0097636368135 * b"
    name REDcolor3_luminance_Expression
    xpos -6090
    ypos -225
   }
-push $N8b3a45e0
+push $N3a1bd610
   Expression {
-   expr0 "0.16451940323 * r + 0.872165887407 * g + -0.0366852906372 * b"
-   expr1 "0.16451940323 * r + 0.872165887407 * g + -0.0366852906372 * b"
-   expr2 "0.16451940323 * r + 0.872165887407 * g + -0.0366852906372 * b"
+   expr0 "0.169442097101 * r + 0.864828202542 * g + -0.0342702996431 * b"
+   expr1 "0.169442097101 * r + 0.864828202542 * g + -0.0342702996431 * b"
+   expr2 "0.169442097101 * r + 0.864828202542 * g + -0.0342702996431 * b"
    name REDcolor2_luminance_Expression
    xpos -6200
    ypos -225
   }
-push $N8b3a45e0
+push $N3a1bd610
   Expression {
-   expr0 "0.194034143173 * r + 0.763419238516 * g + 0.0425466183108 * b"
-   expr1 "0.194034143173 * r + 0.763419238516 * g + 0.0425466183108 * b"
-   expr2 "0.194034143173 * r + 0.763419238516 * g + 0.0425466183108 * b"
+   expr0 "0.202218816094 * r + 0.758528901746 * g + 0.03925228216 * b"
+   expr1 "0.202218816094 * r + 0.758528901746 * g + 0.03925228216 * b"
+   expr2 "0.202218816094 * r + 0.758528901746 * g + 0.03925228216 * b"
    name REDcolor_luminance_Expression
    xpos -6310
    ypos -225
   }
-push $N8b3a45e0
+push $N3a1bd610
   Expression {
    expr0 "0.288037453913 * r + 0.711876883439 * g + 8.56626476195e-05 * b"
    expr1 "0.288037453913 * r + 0.711876883439 * g + 8.56626476195e-05 * b"
@@ -1138,7 +1137,7 @@ push $N8b3a45e0
    xpos -6420
    ypos -225
   }
-push $N8b3a45e0
+push $N3a1bd610
   Expression {
    expr0 "0.222002313106 * r + 0.706668898724 * g + 0.0713287881697 * b"
    expr1 "0.222002313106 * r + 0.706668898724 * g + 0.0713287881697 * b"
@@ -1147,7 +1146,7 @@ push $N8b3a45e0
    xpos -6530
    ypos -225
   }
-push $N8b3a45e0
+push $N3a1bd610
   Expression {
    expr0 "0.29890307025 * r + 0.586619854659 * g + 0.114477075091 * b"
    expr1 "0.29890307025 * r + 0.586619854659 * g + 0.114477075091 * b"
@@ -1156,7 +1155,7 @@ push $N8b3a45e0
    xpos -6640
    ypos -225
   }
-push $N8b3a45e0
+push $N3a1bd610
   Expression {
    expr0 "0.310077340675 * r + 0.689922659325 * g + 0.0 * b"
    expr1 "0.310077340675 * r + 0.689922659325 * g + 0.0 * b"
@@ -1165,7 +1164,7 @@ push $N8b3a45e0
    xpos -6750
    ypos -225
   }
-push $N8b3a45e0
+push $N3a1bd610
   Expression {
    expr0 "0.261098890455 * r + 0.734900118525 * g + 0.00400099101932 * b"
    expr1 "0.261098890455 * r + 0.734900118525 * g + 0.00400099101932 * b"
@@ -1174,7 +1173,7 @@ push $N8b3a45e0
    xpos -6860
    ypos -225
   }
-push $N8b3a45e0
+push $N3a1bd610
   Expression {
    expr0 "0.320104742337 * r + 0.601874395246 * g + 0.078020862417 * b"
    expr1 "0.320104742337 * r + 0.601874395246 * g + 0.078020862417 * b"
@@ -1183,7 +1182,7 @@ push $N8b3a45e0
    xpos -6970
    ypos -225
   }
-push $N8b3a45e0
+push $N3a1bd610
   Expression {
    expr0 "0.278090415226 * r + 0.687901558611 * g + 0.0340080261629 * b"
    expr1 "0.278090415226 * r + 0.687901558611 * g + 0.0340080261629 * b"
@@ -1192,25 +1191,25 @@ push $N8b3a45e0
    xpos -7080
    ypos -225
   }
-push $N8b3a45e0
+push $N3a1bd610
   Expression {
-   expr0 "0.186660738109 * r + 0.74118120047 * g + 0.0721580614212 * b"
-   expr1 "0.186660738109 * r + 0.74118120047 * g + 0.0721580614212 * b"
-   expr2 "0.186660738109 * r + 0.74118120047 * g + 0.0721580614212 * b"
+   expr0 "0.194255795247 * r + 0.738556869189 * g + 0.0671873355644 * b"
+   expr1 "0.194255795247 * r + 0.738556869189 * g + 0.0671873355644 * b"
+   expr2 "0.194255795247 * r + 0.738556869189 * g + 0.0671873355644 * b"
    name DRAGONcolor2_luminance_Expression
    xpos -7190
    ypos -225
   }
-push $N8b3a45e0
+push $N3a1bd610
   Expression {
-   expr0 "0.215087180914 * r + 0.849257379828 * g + -0.0643445607425 * b"
-   expr1 "0.215087180914 * r + 0.849257379828 * g + -0.0643445607425 * b"
-   expr2 "0.215087180914 * r + 0.849257379828 * g + -0.0643445607425 * b"
+   expr0 "0.220724022316 * r + 0.839188054601 * g + -0.0599120769169 * b"
+   expr1 "0.220724022316 * r + 0.839188054601 * g + -0.0599120769169 * b"
+   expr2 "0.220724022316 * r + 0.839188054601 * g + -0.0599120769169 * b"
    name DRAGONcolor_luminance_Expression
    xpos -7300
    ypos -225
   }
-push $N8b3a45e0
+push $N3a1bd610
   Expression {
    expr0 "0.203986297104 * r + 0.882591093117 * g + -0.0865773902211 * b"
    expr1 "0.203986297104 * r + 0.882591093117 * g + -0.0865773902211 * b"
@@ -1219,7 +1218,7 @@ push $N8b3a45e0
    xpos -7410
    ypos -225
   }
-push $N8b3a45e0
+push $N3a1bd610
   Expression {
    expr0 "0.209491677913 * r + 0.721595254161 * g + 0.0689130679262 * b"
    expr1 "0.209491677913 * r + 0.721595254161 * g + 0.0689130679262 * b"
@@ -1228,7 +1227,7 @@ push $N8b3a45e0
    xpos -7520
    ypos -225
   }
-push $N8b3a45e0
+push $N3a1bd610
   Expression {
    expr0 "0.274880515737 * r + 0.658137117154 * g + 0.0669823671092 * b"
    expr1 "0.274880515737 * r + 0.658137117154 * g + 0.0669823671092 * b"
@@ -1237,7 +1236,7 @@ push $N8b3a45e0
    xpos -7630
    ypos -225
   }
-push $N8b3a45e0
+push $N3a1bd610
   Expression {
    expr0 "0.261256555898 * r + 0.869631208967 * g + -0.130887764865 * b"
    expr1 "0.261256555898 * r + 0.869631208967 * g + -0.130887764865 * b"
@@ -1246,7 +1245,7 @@ push $N8b3a45e0
    xpos -7740
    ypos -225
   }
-push $N8b3a45e0
+push $N3a1bd610
   Expression {
    expr0 "0.176204436534 * r + 0.812984693878 * g + 0.0108108695884 * b"
    expr1 "0.176204436534 * r + 0.812984693878 * g + 0.0108108695884 * b"
@@ -1255,7 +1254,7 @@ push $N8b3a45e0
    xpos -7850
    ypos -225
   }
-push $N8b3a45e0
+push $N3a1bd610
   Expression {
    expr0 "0.303270045405 * r + 0.663789543861 * g + 0.0329404107343 * b"
    expr1 "0.303270045405 * r + 0.663789543861 * g + 0.0329404107343 * b"
@@ -1264,7 +1263,7 @@ push $N8b3a45e0
    xpos -7960
    ypos -225
   }
-push $N8b3a45e0
+push $N3a1bd610
   Expression {
    expr0 "0.227563471677 * r + 0.738429482666 * g + 0.0340070456574 * b"
    expr1 "0.227563471677 * r + 0.738429482666 * g + 0.0340070456574 * b"
@@ -1273,7 +1272,7 @@ push $N8b3a45e0
    xpos -8070
    ypos -225
   }
-push $N8b3a45e0
+push $N3a1bd610
   Expression {
    expr0 "0.244614394775 * r + 0.672060284019 * g + 0.0833253212057 * b"
    expr1 "0.244614394775 * r + 0.672060284019 * g + 0.0833253212057 * b"
@@ -1282,7 +1281,7 @@ push $N8b3a45e0
    xpos -8180
    ypos -225
   }
-push $N8b3a45e0
+push $N3a1bd610
   Expression {
    expr0 "0.258690663895 * r + 0.724718154549 * g + 0.0165911815566 * b"
    expr1 "0.258690663895 * r + 0.724718154549 * g + 0.0165911815566 * b"
@@ -1291,7 +1290,7 @@ push $N8b3a45e0
    xpos -8290
    ypos -225
   }
-push $N8b3a45e0
+push $N3a1bd610
   Expression {
    expr0 "0.29734448514 * r + 0.627376113264 * g + 0.0752794015963 * b"
    expr1 "0.29734448514 * r + 0.627376113264 * g + 0.0752794015963 * b"
@@ -1300,7 +1299,7 @@ push $N8b3a45e0
    xpos -8400
    ypos -225
   }
-push $N8b3a45e0
+push $N3a1bd610
   Expression {
    expr0 "0.291948669899 * r + 0.823830265984 * g + -0.115778935883 * b"
    expr1 "0.291948669899 * r + 0.823830265984 * g + -0.115778935883 * b"
@@ -1309,7 +1308,7 @@ push $N8b3a45e0
    xpos -8510
    ypos -225
   }
-push $N8b3a45e0
+push $N3a1bd610
   Expression {
    expr0 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
    expr1 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
@@ -1318,7 +1317,7 @@ push $N8b3a45e0
    xpos -8620
    ypos -225
   }
-push $N8b3a45e0
+push $N3a1bd610
   Expression {
    expr0 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
    expr1 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
@@ -1327,7 +1326,7 @@ push $N8b3a45e0
    xpos -8730
    ypos -225
   }
-push $N8b3a45e0
+push $N3a1bd610
   Expression {
    expr0 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
    expr1 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
@@ -1336,7 +1335,7 @@ push $N8b3a45e0
    xpos -8840
    ypos -225
   }
-push $N8b3a45e0
+push $N3a1bd610
   Expression {
    expr0 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
    expr1 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
@@ -1361,7 +1360,7 @@ push $N8b3a45e0
    ypos -201
   }
  end_group
-set N8b39b2f0 [stack 0]
+set N3a1df260 [stack 0]
  Dot {
   name Dot4
   xpos -446
@@ -1372,7 +1371,7 @@ set N8b39b2f0 [stack 0]
   xpos -446
   ypos -126
  }
-set N8b943310 [stack 0]
+set N1d7290 [stack 0]
  Expression {
   channel3 rgb
   expr3 "(r / L_max_Floating_Point_Slider) ** (p_Floating_Point_Slider / q_Floating_Point_Slider)"
@@ -1394,7 +1393,7 @@ set N8b943310 [stack 0]
   xpos -260
   ypos -105
  }
-push $N8b943310
+push $N1d7290
  Dot {
   name Dot8
   xpos -446
@@ -1407,13 +1406,13 @@ push $N8b943310
   xpos -260
   ypos -81
  }
-set N8b966300 [stack 0]
+set N4091ee10 [stack 0]
  Clamp {
   name Clamp
   xpos -370
   ypos -61
  }
-push $N8b966300
+push $N4091ee10
  Switch {
   inputs 2
   which {{parent.clamp_output_Check_Box}}
@@ -1421,7 +1420,7 @@ push $N8b966300
   xpos -260
   ypos -52
  }
-push $N8b38eaf0
+push $N4a2ac170
  Dot {
   name Dot2
   xpos -6
@@ -1444,7 +1443,7 @@ push $N8b38eaf0
   xpos -150
   ypos -24
  }
-push $N8b39b2f0
+push $N3a1df260
  Dot {
   name Dot6
   xpos -336
@@ -1461,17 +1460,7 @@ push $N8b39b2f0
   ypos -177
  }
 end_group
-StickyNote {
- inputs 0
- name StickyNote
- tile_color 0x767676ff
- gl_color 0x767676ff
- label "GLOBAL TONEMAPPING OPERATORS 1.3\n\ncolour-science.org - November 15, 2015\n\nThis file is a playground for implementation of various Global Tonemapping Operators.\n\nBecause Nuke is unable of realtime computation of image average, min and max values, some operators need a domain precomputation.\n\nMore informations are available in the following IPython Notebook:\n\nhttps://github.com/colour-science/colour-hdri/blob/master/colour_hdri/examples/example_global_tonemapping_operators.ipynb\n\nLatest version of the file will always be available at this url: https://github.com/colour-science/colour-nuke/blob/master/colour_nuke/scripts/global_tonemapping_operators.nk\n\n"
- note_font_size 14
- xpos 151
- ypos -338
-}
-push $N8a096870
+push $N447d1ab0
 Group {
  name Schlick94_Tonemapping_Operator
  tile_color 0xffbf00ff
@@ -1493,7 +1482,7 @@ Group {
  clamp_output_Check_Box true
  addUserKnob {20 miscellaneous_endGroup l endGroup n -1}
  addUserKnob {20 about_Tab l About}
- addUserKnob {26 description_Text l "" +STARTLINE T "Schlick (1994) Tonemapping Operator v0.1.2\n\ncolour-science.org - May 6, 2015\n\nThis Gizmo / Group implements Schlick (1994) Tonemapping Operator.\n\n\[1] Schlick, C. (1994). Quantization Techniques for Visualization of High Dynamic Range Pictures. Proceedings of the Fifth Eurographics Workshop on Rendering, (Section 5), 7–18.\n\[2] Banterle, F., Artusi, A., Debattista, K., & Chalmers, A. (2011). 3.2.3 Quantization Techniques. Advanced High Dynamic Range Imaging. A K Peters/CRC Press. ISBN:978-1568817194"}
+ addUserKnob {26 description_Text l "" +STARTLINE T "Schlick (1994) Tonemapping Operator v0.1.2\n\ncolour-science.org - January 3, 2016\n\nThis Gizmo / Group implements Schlick (1994) Tonemapping Operator.\n\n\[1] Schlick, C. (1994). Quantization Techniques for Visualization of High Dynamic Range Pictures. Proceedings of the Fifth Eurographics Workshop on Rendering, (Section 5), 7–18.\n\[2] Banterle, F., Artusi, A., Debattista, K., & Chalmers, A. (2011). 3.2.3 Quantization Techniques. Advanced High Dynamic Range Imaging. A K Peters/CRC Press. ISBN:978-1568817194"}
 }
  Input {
   inputs 0
@@ -1501,16 +1490,16 @@ Group {
   xpos -150
   ypos -177
  }
-set N8b660440 [stack 0]
+set N3b3a55d0 [stack 0]
  Dot {
   name Dot7
   xpos -116
   ypos -102
  }
-set N8b664460 [stack 0]
+set N3b3fb7c0 [stack 0]
 push 0
-push $N8b664460
-push $N8b660440
+push $N3b3fb7c0
+push $N3b3a55d0
  Dot {
   name Dot1
   xpos -116
@@ -1527,7 +1516,7 @@ push $N8b660440
   colourspace_Pulldown_Choice {{parent.colourspace_Pulldown_Choice}}
   addUserKnob {20 endGroup n -1}
   addUserKnob {20 about_Tab l About}
-  addUserKnob {26 description_Text l "" +STARTLINE T "RGB Luminance v0.1.2\n\ncolour-science.org - May 6, 2015\n\nThis Gizmo / Group computes the \"RGB Luminance\" of given colourspace."}
+  addUserKnob {26 description_Text l "" +STARTLINE T "RGB Luminance v0.1.3\n\ncolour-science.org - January 3, 2016\n\nThis Gizmo / Group computes the \"RGB Luminance\" of given colourspace."}
  }
   Input {
    inputs 0
@@ -1535,7 +1524,7 @@ push $N8b660440
    xpos -4880
    ypos -273
   }
-set N8b675dc0 [stack 0]
+set N3b3ee6f0 [stack 0]
   Expression {
    expr0 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
    expr1 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
@@ -1544,7 +1533,7 @@ set N8b675dc0 [stack 0]
    xpos -4880
    ypos -249
   }
-push $N8b675dc0
+push $N3b3ee6f0
   Expression {
    expr0 "0.0 * r + 1.0 * g + 0.0 * b"
    expr1 "0.0 * r + 1.0 * g + 0.0 * b"
@@ -1553,7 +1542,7 @@ push $N8b675dc0
    xpos -4990
    ypos -225
   }
-push $N8b675dc0
+push $N3b3ee6f0
   Expression {
    expr0 "0.260681632101 * r + 0.774893299809 * g + -0.0355749319099 * b"
    expr1 "0.260681632101 * r + 0.774893299809 * g + -0.0355749319099 * b"
@@ -1562,7 +1551,7 @@ push $N8b675dc0
    xpos -5100
    ypos -225
   }
-push $N8b675dc0
+push $N3b3ee6f0
   Expression {
    expr0 "0.212374157009 * r + 0.701076498009 * g + 0.0865493449823 * b"
    expr1 "0.212374157009 * r + 0.701076498009 * g + 0.0865493449823 * b"
@@ -1571,7 +1560,7 @@ push $N8b675dc0
    xpos -5210
    ypos -225
   }
-push $N8b675dc0
+push $N3b3ee6f0
   Expression {
    expr0 "0.215072070849 * r + 0.885058455418 * g + -0.100130526267 * b"
    expr1 "0.215072070849 * r + 0.885058455418 * g + -0.100130526267 * b"
@@ -1580,7 +1569,7 @@ push $N8b675dc0
    xpos -5320
    ypos -225
   }
-push $N8b675dc0
+push $N3b3ee6f0
   Expression {
    expr0 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
    expr1 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
@@ -1589,7 +1578,7 @@ push $N8b675dc0
    xpos -5430
    ypos -225
   }
-push $N8b675dc0
+push $N3b3ee6f0
   Expression {
    expr0 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
    expr1 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
@@ -1598,7 +1587,7 @@ push $N8b675dc0
    xpos -5540
    ypos -225
   }
-push $N8b675dc0
+push $N3b3ee6f0
   Expression {
    expr0 "0.315199106486 * r + 0.664839320751 * g + 0.0199615727626 * b"
    expr1 "0.315199106486 * r + 0.664839320751 * g + 0.0199615727626 * b"
@@ -1607,7 +1596,7 @@ push $N8b675dc0
    xpos -5650
    ypos -225
   }
-push $N8b675dc0
+push $N3b3ee6f0
   Expression {
    expr0 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
    expr1 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
@@ -1616,7 +1605,7 @@ push $N8b675dc0
    xpos -5760
    ypos -225
   }
-push $N8b675dc0
+push $N3b3ee6f0
   Expression {
    expr0 "0.262698338957 * r + 0.678008765773 * g + 0.0592928952706 * b"
    expr1 "0.262698338957 * r + 0.678008765773 * g + 0.0592928952706 * b"
@@ -1625,43 +1614,43 @@ push $N8b675dc0
    xpos -5870
    ypos -225
   }
-push $N8b675dc0
+push $N3b3ee6f0
   Expression {
-   expr0 "0.203484555969 * r + 0.72639105456 * g + 0.0701243894714 * b"
-   expr1 "0.203484555969 * r + 0.72639105456 * g + 0.0701243894714 * b"
-   expr2 "0.203484555969 * r + 0.72639105456 * g + 0.0701243894714 * b"
+   expr0 "0.211947869481 * r + 0.723019772048 * g + 0.0650323584709 * b"
+   expr1 "0.211947869481 * r + 0.723019772048 * g + 0.0650323584709 * b"
+   expr2 "0.211947869481 * r + 0.723019772048 * g + 0.0650323584709 * b"
    name REDcolor4_luminance_Expression
    xpos -5980
    ypos -225
   }
-push $N8b675dc0
+push $N3b3ee6f0
   Expression {
-   expr0 "0.221768124882 * r + 0.788760003697 * g + -0.0105281285791 * b"
-   expr1 "0.221768124882 * r + 0.788760003697 * g + -0.0105281285791 * b"
-   expr2 "0.221768124882 * r + 0.788760003697 * g + -0.0105281285791 * b"
+   expr0 "0.22890381241 * r + 0.780859824404 * g + -0.0097636368135 * b"
+   expr1 "0.22890381241 * r + 0.780859824404 * g + -0.0097636368135 * b"
+   expr2 "0.22890381241 * r + 0.780859824404 * g + -0.0097636368135 * b"
    name REDcolor3_luminance_Expression
    xpos -6090
    ypos -225
   }
-push $N8b675dc0
+push $N3b3ee6f0
   Expression {
-   expr0 "0.16451940323 * r + 0.872165887407 * g + -0.0366852906372 * b"
-   expr1 "0.16451940323 * r + 0.872165887407 * g + -0.0366852906372 * b"
-   expr2 "0.16451940323 * r + 0.872165887407 * g + -0.0366852906372 * b"
+   expr0 "0.169442097101 * r + 0.864828202542 * g + -0.0342702996431 * b"
+   expr1 "0.169442097101 * r + 0.864828202542 * g + -0.0342702996431 * b"
+   expr2 "0.169442097101 * r + 0.864828202542 * g + -0.0342702996431 * b"
    name REDcolor2_luminance_Expression
    xpos -6200
    ypos -225
   }
-push $N8b675dc0
+push $N3b3ee6f0
   Expression {
-   expr0 "0.194034143173 * r + 0.763419238516 * g + 0.0425466183108 * b"
-   expr1 "0.194034143173 * r + 0.763419238516 * g + 0.0425466183108 * b"
-   expr2 "0.194034143173 * r + 0.763419238516 * g + 0.0425466183108 * b"
+   expr0 "0.202218816094 * r + 0.758528901746 * g + 0.03925228216 * b"
+   expr1 "0.202218816094 * r + 0.758528901746 * g + 0.03925228216 * b"
+   expr2 "0.202218816094 * r + 0.758528901746 * g + 0.03925228216 * b"
    name REDcolor_luminance_Expression
    xpos -6310
    ypos -225
   }
-push $N8b675dc0
+push $N3b3ee6f0
   Expression {
    expr0 "0.288037453913 * r + 0.711876883439 * g + 8.56626476195e-05 * b"
    expr1 "0.288037453913 * r + 0.711876883439 * g + 8.56626476195e-05 * b"
@@ -1670,7 +1659,7 @@ push $N8b675dc0
    xpos -6420
    ypos -225
   }
-push $N8b675dc0
+push $N3b3ee6f0
   Expression {
    expr0 "0.222002313106 * r + 0.706668898724 * g + 0.0713287881697 * b"
    expr1 "0.222002313106 * r + 0.706668898724 * g + 0.0713287881697 * b"
@@ -1679,7 +1668,7 @@ push $N8b675dc0
    xpos -6530
    ypos -225
   }
-push $N8b675dc0
+push $N3b3ee6f0
   Expression {
    expr0 "0.29890307025 * r + 0.586619854659 * g + 0.114477075091 * b"
    expr1 "0.29890307025 * r + 0.586619854659 * g + 0.114477075091 * b"
@@ -1688,7 +1677,7 @@ push $N8b675dc0
    xpos -6640
    ypos -225
   }
-push $N8b675dc0
+push $N3b3ee6f0
   Expression {
    expr0 "0.310077340675 * r + 0.689922659325 * g + 0.0 * b"
    expr1 "0.310077340675 * r + 0.689922659325 * g + 0.0 * b"
@@ -1697,7 +1686,7 @@ push $N8b675dc0
    xpos -6750
    ypos -225
   }
-push $N8b675dc0
+push $N3b3ee6f0
   Expression {
    expr0 "0.261098890455 * r + 0.734900118525 * g + 0.00400099101932 * b"
    expr1 "0.261098890455 * r + 0.734900118525 * g + 0.00400099101932 * b"
@@ -1706,7 +1695,7 @@ push $N8b675dc0
    xpos -6860
    ypos -225
   }
-push $N8b675dc0
+push $N3b3ee6f0
   Expression {
    expr0 "0.320104742337 * r + 0.601874395246 * g + 0.078020862417 * b"
    expr1 "0.320104742337 * r + 0.601874395246 * g + 0.078020862417 * b"
@@ -1715,7 +1704,7 @@ push $N8b675dc0
    xpos -6970
    ypos -225
   }
-push $N8b675dc0
+push $N3b3ee6f0
   Expression {
    expr0 "0.278090415226 * r + 0.687901558611 * g + 0.0340080261629 * b"
    expr1 "0.278090415226 * r + 0.687901558611 * g + 0.0340080261629 * b"
@@ -1724,25 +1713,25 @@ push $N8b675dc0
    xpos -7080
    ypos -225
   }
-push $N8b675dc0
+push $N3b3ee6f0
   Expression {
-   expr0 "0.186660738109 * r + 0.74118120047 * g + 0.0721580614212 * b"
-   expr1 "0.186660738109 * r + 0.74118120047 * g + 0.0721580614212 * b"
-   expr2 "0.186660738109 * r + 0.74118120047 * g + 0.0721580614212 * b"
+   expr0 "0.194255795247 * r + 0.738556869189 * g + 0.0671873355644 * b"
+   expr1 "0.194255795247 * r + 0.738556869189 * g + 0.0671873355644 * b"
+   expr2 "0.194255795247 * r + 0.738556869189 * g + 0.0671873355644 * b"
    name DRAGONcolor2_luminance_Expression
    xpos -7190
    ypos -225
   }
-push $N8b675dc0
+push $N3b3ee6f0
   Expression {
-   expr0 "0.215087180914 * r + 0.849257379828 * g + -0.0643445607425 * b"
-   expr1 "0.215087180914 * r + 0.849257379828 * g + -0.0643445607425 * b"
-   expr2 "0.215087180914 * r + 0.849257379828 * g + -0.0643445607425 * b"
+   expr0 "0.220724022316 * r + 0.839188054601 * g + -0.0599120769169 * b"
+   expr1 "0.220724022316 * r + 0.839188054601 * g + -0.0599120769169 * b"
+   expr2 "0.220724022316 * r + 0.839188054601 * g + -0.0599120769169 * b"
    name DRAGONcolor_luminance_Expression
    xpos -7300
    ypos -225
   }
-push $N8b675dc0
+push $N3b3ee6f0
   Expression {
    expr0 "0.203986297104 * r + 0.882591093117 * g + -0.0865773902211 * b"
    expr1 "0.203986297104 * r + 0.882591093117 * g + -0.0865773902211 * b"
@@ -1751,7 +1740,7 @@ push $N8b675dc0
    xpos -7410
    ypos -225
   }
-push $N8b675dc0
+push $N3b3ee6f0
   Expression {
    expr0 "0.209491677913 * r + 0.721595254161 * g + 0.0689130679262 * b"
    expr1 "0.209491677913 * r + 0.721595254161 * g + 0.0689130679262 * b"
@@ -1760,7 +1749,7 @@ push $N8b675dc0
    xpos -7520
    ypos -225
   }
-push $N8b675dc0
+push $N3b3ee6f0
   Expression {
    expr0 "0.274880515737 * r + 0.658137117154 * g + 0.0669823671092 * b"
    expr1 "0.274880515737 * r + 0.658137117154 * g + 0.0669823671092 * b"
@@ -1769,7 +1758,7 @@ push $N8b675dc0
    xpos -7630
    ypos -225
   }
-push $N8b675dc0
+push $N3b3ee6f0
   Expression {
    expr0 "0.261256555898 * r + 0.869631208967 * g + -0.130887764865 * b"
    expr1 "0.261256555898 * r + 0.869631208967 * g + -0.130887764865 * b"
@@ -1778,7 +1767,7 @@ push $N8b675dc0
    xpos -7740
    ypos -225
   }
-push $N8b675dc0
+push $N3b3ee6f0
   Expression {
    expr0 "0.176204436534 * r + 0.812984693878 * g + 0.0108108695884 * b"
    expr1 "0.176204436534 * r + 0.812984693878 * g + 0.0108108695884 * b"
@@ -1787,7 +1776,7 @@ push $N8b675dc0
    xpos -7850
    ypos -225
   }
-push $N8b675dc0
+push $N3b3ee6f0
   Expression {
    expr0 "0.303270045405 * r + 0.663789543861 * g + 0.0329404107343 * b"
    expr1 "0.303270045405 * r + 0.663789543861 * g + 0.0329404107343 * b"
@@ -1796,7 +1785,7 @@ push $N8b675dc0
    xpos -7960
    ypos -225
   }
-push $N8b675dc0
+push $N3b3ee6f0
   Expression {
    expr0 "0.227563471677 * r + 0.738429482666 * g + 0.0340070456574 * b"
    expr1 "0.227563471677 * r + 0.738429482666 * g + 0.0340070456574 * b"
@@ -1805,7 +1794,7 @@ push $N8b675dc0
    xpos -8070
    ypos -225
   }
-push $N8b675dc0
+push $N3b3ee6f0
   Expression {
    expr0 "0.244614394775 * r + 0.672060284019 * g + 0.0833253212057 * b"
    expr1 "0.244614394775 * r + 0.672060284019 * g + 0.0833253212057 * b"
@@ -1814,7 +1803,7 @@ push $N8b675dc0
    xpos -8180
    ypos -225
   }
-push $N8b675dc0
+push $N3b3ee6f0
   Expression {
    expr0 "0.258690663895 * r + 0.724718154549 * g + 0.0165911815566 * b"
    expr1 "0.258690663895 * r + 0.724718154549 * g + 0.0165911815566 * b"
@@ -1823,7 +1812,7 @@ push $N8b675dc0
    xpos -8290
    ypos -225
   }
-push $N8b675dc0
+push $N3b3ee6f0
   Expression {
    expr0 "0.29734448514 * r + 0.627376113264 * g + 0.0752794015963 * b"
    expr1 "0.29734448514 * r + 0.627376113264 * g + 0.0752794015963 * b"
@@ -1832,7 +1821,7 @@ push $N8b675dc0
    xpos -8400
    ypos -225
   }
-push $N8b675dc0
+push $N3b3ee6f0
   Expression {
    expr0 "0.291948669899 * r + 0.823830265984 * g + -0.115778935883 * b"
    expr1 "0.291948669899 * r + 0.823830265984 * g + -0.115778935883 * b"
@@ -1841,7 +1830,7 @@ push $N8b675dc0
    xpos -8510
    ypos -225
   }
-push $N8b675dc0
+push $N3b3ee6f0
   Expression {
    expr0 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
    expr1 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
@@ -1850,7 +1839,7 @@ push $N8b675dc0
    xpos -8620
    ypos -225
   }
-push $N8b675dc0
+push $N3b3ee6f0
   Expression {
    expr0 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
    expr1 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
@@ -1859,7 +1848,7 @@ push $N8b675dc0
    xpos -8730
    ypos -225
   }
-push $N8b675dc0
+push $N3b3ee6f0
   Expression {
    expr0 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
    expr1 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
@@ -1868,7 +1857,7 @@ push $N8b675dc0
    xpos -8840
    ypos -225
   }
-push $N8b675dc0
+push $N3b3ee6f0
   Expression {
    expr0 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
    expr1 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
@@ -1893,7 +1882,7 @@ push $N8b675dc0
    ypos -201
   }
  end_group
-set N8b66cad0 [stack 0]
+set N3b3f9f30 [stack 0]
  Dot {
   name Dot4
   xpos -446
@@ -1904,7 +1893,7 @@ set N8b66cad0 [stack 0]
   xpos -446
   ypos -126
  }
-set N8bb6a610 [stack 0]
+set N4a5beb90 [stack 0]
  Expression {
   channel3 rgb
   expr3 "(p_Floating_Point_Slider * r) / (p_Floating_Point_Slider * r - r + L_max_Floating_Point_Slider)"
@@ -1924,7 +1913,7 @@ set N8bb6a610 [stack 0]
   xpos -260
   ypos -105
  }
-push $N8bb6a610
+push $N4a5beb90
  Dot {
   name Dot8
   xpos -446
@@ -1937,13 +1926,13 @@ push $N8bb6a610
   xpos -260
   ypos -81
  }
-set N8bb8d010 [stack 0]
+set N4a5784b0 [stack 0]
  Clamp {
   name Clamp
   xpos -370
   ypos -61
  }
-push $N8bb8d010
+push $N4a5784b0
  Switch {
   inputs 2
   which {{parent.clamp_output_Check_Box}}
@@ -1951,7 +1940,7 @@ push $N8bb8d010
   xpos -260
   ypos -52
  }
-push $N8b660440
+push $N3b3a55d0
  Dot {
   name Dot2
   xpos -6
@@ -1974,7 +1963,7 @@ push $N8b660440
   xpos -150
   ypos -24
  }
-push $N8b66cad0
+push $N3b3f9f30
  Dot {
   name Dot6
   xpos -336
@@ -1991,7 +1980,7 @@ push $N8b66cad0
   ypos -177
  }
 end_group
-push $N8a096870
+push $N447d1ab0
 Group {
  name Reinhard04_Tonemapping_Operator
  tile_color 0xffbf00ff
@@ -2024,29 +2013,29 @@ Group {
   xpos -150
   ypos -177
  }
-set N8b83b7f0 [stack 0]
+set N4a560760 [stack 0]
  Dot {
   name Dot8
   xpos -116
   ypos -116
  }
-set N8b83f960 [stack 0]
+set N4a5368d0 [stack 0]
  Dot {
   name Dot10
   xpos -116
   ypos -6
  }
-set N8b843d40 [stack 0]
+set N4a53acb0 [stack 0]
  Dot {
   name Dot7
   xpos -116
   ypos 18
  }
-set N8b847fd0 [stack 0]
+set N4a53ef40 [stack 0]
 push 0
-push $N8b847fd0
-push $N8b843d40
-push $N8b83f960
+push $N4a53ef40
+push $N4a53acb0
+push $N4a5368d0
  Expression {
   expr0 "c_Floating_Point_Slider * r + (1 - c_Floating_Point_Slider)"
   expr1 "c_Floating_Point_Slider * g + (1 - c_Floating_Point_Slider)"
@@ -2058,13 +2047,13 @@ push $N8b83f960
   addUserKnob {7 c_Floating_Point_Slider l c}
   c_Floating_Point_Slider {{parent.c_Floating_Point_Slider}}
  }
-push $N8b83b7f0
+push $N4a560760
  Dot {
   name Dot1
   xpos -116
   ypos -198
  }
-set N8b858e50 [stack 0]
+set N4a5225d0 [stack 0]
  Group {
   name RGB_Luminance
   xpos -370
@@ -2075,7 +2064,7 @@ set N8b858e50 [stack 0]
   colourspace_Pulldown_Choice {{parent.colourspace_Pulldown_Choice}}
   addUserKnob {20 endGroup n -1}
   addUserKnob {20 about_Tab l About}
-  addUserKnob {26 description_Text l "" +STARTLINE T "RGB Luminance v0.1.2\n\ncolour-science.org - May 6, 2015\n\nThis Gizmo / Group computes the \"RGB Luminance\" of given colourspace."}
+  addUserKnob {26 description_Text l "" +STARTLINE T "RGB Luminance v0.1.3\n\ncolour-science.org - January 3, 2016\n\nThis Gizmo / Group computes the \"RGB Luminance\" of given colourspace."}
  }
   Input {
    inputs 0
@@ -2083,7 +2072,7 @@ set N8b858e50 [stack 0]
    xpos -4880
    ypos -273
   }
-set N8b8663d0 [stack 0]
+set N4a50f980 [stack 0]
   Expression {
    expr0 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
    expr1 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
@@ -2092,7 +2081,7 @@ set N8b8663d0 [stack 0]
    xpos -4880
    ypos -249
   }
-push $N8b8663d0
+push $N4a50f980
   Expression {
    expr0 "0.0 * r + 1.0 * g + 0.0 * b"
    expr1 "0.0 * r + 1.0 * g + 0.0 * b"
@@ -2101,7 +2090,7 @@ push $N8b8663d0
    xpos -4990
    ypos -225
   }
-push $N8b8663d0
+push $N4a50f980
   Expression {
    expr0 "0.260681632101 * r + 0.774893299809 * g + -0.0355749319099 * b"
    expr1 "0.260681632101 * r + 0.774893299809 * g + -0.0355749319099 * b"
@@ -2110,7 +2099,7 @@ push $N8b8663d0
    xpos -5100
    ypos -225
   }
-push $N8b8663d0
+push $N4a50f980
   Expression {
    expr0 "0.212374157009 * r + 0.701076498009 * g + 0.0865493449823 * b"
    expr1 "0.212374157009 * r + 0.701076498009 * g + 0.0865493449823 * b"
@@ -2119,7 +2108,7 @@ push $N8b8663d0
    xpos -5210
    ypos -225
   }
-push $N8b8663d0
+push $N4a50f980
   Expression {
    expr0 "0.215072070849 * r + 0.885058455418 * g + -0.100130526267 * b"
    expr1 "0.215072070849 * r + 0.885058455418 * g + -0.100130526267 * b"
@@ -2128,7 +2117,7 @@ push $N8b8663d0
    xpos -5320
    ypos -225
   }
-push $N8b8663d0
+push $N4a50f980
   Expression {
    expr0 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
    expr1 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
@@ -2137,7 +2126,7 @@ push $N8b8663d0
    xpos -5430
    ypos -225
   }
-push $N8b8663d0
+push $N4a50f980
   Expression {
    expr0 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
    expr1 "0.270975804775 * r + 0.786601988198 * g + -0.0575777929729 * b"
@@ -2146,7 +2135,7 @@ push $N8b8663d0
    xpos -5540
    ypos -225
   }
-push $N8b8663d0
+push $N4a50f980
   Expression {
    expr0 "0.315199106486 * r + 0.664839320751 * g + 0.0199615727626 * b"
    expr1 "0.315199106486 * r + 0.664839320751 * g + 0.0199615727626 * b"
@@ -2155,7 +2144,7 @@ push $N8b8663d0
    xpos -5650
    ypos -225
   }
-push $N8b8663d0
+push $N4a50f980
   Expression {
    expr0 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
    expr1 "0.212636821677 * r + 0.715182981841 * g + 0.0721801964814 * b"
@@ -2164,7 +2153,7 @@ push $N8b8663d0
    xpos -5760
    ypos -225
   }
-push $N8b8663d0
+push $N4a50f980
   Expression {
    expr0 "0.262698338957 * r + 0.678008765773 * g + 0.0592928952706 * b"
    expr1 "0.262698338957 * r + 0.678008765773 * g + 0.0592928952706 * b"
@@ -2173,43 +2162,43 @@ push $N8b8663d0
    xpos -5870
    ypos -225
   }
-push $N8b8663d0
+push $N4a50f980
   Expression {
-   expr0 "0.203484555969 * r + 0.72639105456 * g + 0.0701243894714 * b"
-   expr1 "0.203484555969 * r + 0.72639105456 * g + 0.0701243894714 * b"
-   expr2 "0.203484555969 * r + 0.72639105456 * g + 0.0701243894714 * b"
+   expr0 "0.211947869481 * r + 0.723019772048 * g + 0.0650323584709 * b"
+   expr1 "0.211947869481 * r + 0.723019772048 * g + 0.0650323584709 * b"
+   expr2 "0.211947869481 * r + 0.723019772048 * g + 0.0650323584709 * b"
    name REDcolor4_luminance_Expression
    xpos -5980
    ypos -225
   }
-push $N8b8663d0
+push $N4a50f980
   Expression {
-   expr0 "0.221768124882 * r + 0.788760003697 * g + -0.0105281285791 * b"
-   expr1 "0.221768124882 * r + 0.788760003697 * g + -0.0105281285791 * b"
-   expr2 "0.221768124882 * r + 0.788760003697 * g + -0.0105281285791 * b"
+   expr0 "0.22890381241 * r + 0.780859824404 * g + -0.0097636368135 * b"
+   expr1 "0.22890381241 * r + 0.780859824404 * g + -0.0097636368135 * b"
+   expr2 "0.22890381241 * r + 0.780859824404 * g + -0.0097636368135 * b"
    name REDcolor3_luminance_Expression
    xpos -6090
    ypos -225
   }
-push $N8b8663d0
+push $N4a50f980
   Expression {
-   expr0 "0.16451940323 * r + 0.872165887407 * g + -0.0366852906372 * b"
-   expr1 "0.16451940323 * r + 0.872165887407 * g + -0.0366852906372 * b"
-   expr2 "0.16451940323 * r + 0.872165887407 * g + -0.0366852906372 * b"
+   expr0 "0.169442097101 * r + 0.864828202542 * g + -0.0342702996431 * b"
+   expr1 "0.169442097101 * r + 0.864828202542 * g + -0.0342702996431 * b"
+   expr2 "0.169442097101 * r + 0.864828202542 * g + -0.0342702996431 * b"
    name REDcolor2_luminance_Expression
    xpos -6200
    ypos -225
   }
-push $N8b8663d0
+push $N4a50f980
   Expression {
-   expr0 "0.194034143173 * r + 0.763419238516 * g + 0.0425466183108 * b"
-   expr1 "0.194034143173 * r + 0.763419238516 * g + 0.0425466183108 * b"
-   expr2 "0.194034143173 * r + 0.763419238516 * g + 0.0425466183108 * b"
+   expr0 "0.202218816094 * r + 0.758528901746 * g + 0.03925228216 * b"
+   expr1 "0.202218816094 * r + 0.758528901746 * g + 0.03925228216 * b"
+   expr2 "0.202218816094 * r + 0.758528901746 * g + 0.03925228216 * b"
    name REDcolor_luminance_Expression
    xpos -6310
    ypos -225
   }
-push $N8b8663d0
+push $N4a50f980
   Expression {
    expr0 "0.288037453913 * r + 0.711876883439 * g + 8.56626476195e-05 * b"
    expr1 "0.288037453913 * r + 0.711876883439 * g + 8.56626476195e-05 * b"
@@ -2218,7 +2207,7 @@ push $N8b8663d0
    xpos -6420
    ypos -225
   }
-push $N8b8663d0
+push $N4a50f980
   Expression {
    expr0 "0.222002313106 * r + 0.706668898724 * g + 0.0713287881697 * b"
    expr1 "0.222002313106 * r + 0.706668898724 * g + 0.0713287881697 * b"
@@ -2227,7 +2216,7 @@ push $N8b8663d0
    xpos -6530
    ypos -225
   }
-push $N8b8663d0
+push $N4a50f980
   Expression {
    expr0 "0.29890307025 * r + 0.586619854659 * g + 0.114477075091 * b"
    expr1 "0.29890307025 * r + 0.586619854659 * g + 0.114477075091 * b"
@@ -2236,7 +2225,7 @@ push $N8b8663d0
    xpos -6640
    ypos -225
   }
-push $N8b8663d0
+push $N4a50f980
   Expression {
    expr0 "0.310077340675 * r + 0.689922659325 * g + 0.0 * b"
    expr1 "0.310077340675 * r + 0.689922659325 * g + 0.0 * b"
@@ -2245,7 +2234,7 @@ push $N8b8663d0
    xpos -6750
    ypos -225
   }
-push $N8b8663d0
+push $N4a50f980
   Expression {
    expr0 "0.261098890455 * r + 0.734900118525 * g + 0.00400099101932 * b"
    expr1 "0.261098890455 * r + 0.734900118525 * g + 0.00400099101932 * b"
@@ -2254,7 +2243,7 @@ push $N8b8663d0
    xpos -6860
    ypos -225
   }
-push $N8b8663d0
+push $N4a50f980
   Expression {
    expr0 "0.320104742337 * r + 0.601874395246 * g + 0.078020862417 * b"
    expr1 "0.320104742337 * r + 0.601874395246 * g + 0.078020862417 * b"
@@ -2263,7 +2252,7 @@ push $N8b8663d0
    xpos -6970
    ypos -225
   }
-push $N8b8663d0
+push $N4a50f980
   Expression {
    expr0 "0.278090415226 * r + 0.687901558611 * g + 0.0340080261629 * b"
    expr1 "0.278090415226 * r + 0.687901558611 * g + 0.0340080261629 * b"
@@ -2272,25 +2261,25 @@ push $N8b8663d0
    xpos -7080
    ypos -225
   }
-push $N8b8663d0
+push $N4a50f980
   Expression {
-   expr0 "0.186660738109 * r + 0.74118120047 * g + 0.0721580614212 * b"
-   expr1 "0.186660738109 * r + 0.74118120047 * g + 0.0721580614212 * b"
-   expr2 "0.186660738109 * r + 0.74118120047 * g + 0.0721580614212 * b"
+   expr0 "0.194255795247 * r + 0.738556869189 * g + 0.0671873355644 * b"
+   expr1 "0.194255795247 * r + 0.738556869189 * g + 0.0671873355644 * b"
+   expr2 "0.194255795247 * r + 0.738556869189 * g + 0.0671873355644 * b"
    name DRAGONcolor2_luminance_Expression
    xpos -7190
    ypos -225
   }
-push $N8b8663d0
+push $N4a50f980
   Expression {
-   expr0 "0.215087180914 * r + 0.849257379828 * g + -0.0643445607425 * b"
-   expr1 "0.215087180914 * r + 0.849257379828 * g + -0.0643445607425 * b"
-   expr2 "0.215087180914 * r + 0.849257379828 * g + -0.0643445607425 * b"
+   expr0 "0.220724022316 * r + 0.839188054601 * g + -0.0599120769169 * b"
+   expr1 "0.220724022316 * r + 0.839188054601 * g + -0.0599120769169 * b"
+   expr2 "0.220724022316 * r + 0.839188054601 * g + -0.0599120769169 * b"
    name DRAGONcolor_luminance_Expression
    xpos -7300
    ypos -225
   }
-push $N8b8663d0
+push $N4a50f980
   Expression {
    expr0 "0.203986297104 * r + 0.882591093117 * g + -0.0865773902211 * b"
    expr1 "0.203986297104 * r + 0.882591093117 * g + -0.0865773902211 * b"
@@ -2299,7 +2288,7 @@ push $N8b8663d0
    xpos -7410
    ypos -225
   }
-push $N8b8663d0
+push $N4a50f980
   Expression {
    expr0 "0.209491677913 * r + 0.721595254161 * g + 0.0689130679262 * b"
    expr1 "0.209491677913 * r + 0.721595254161 * g + 0.0689130679262 * b"
@@ -2308,7 +2297,7 @@ push $N8b8663d0
    xpos -7520
    ypos -225
   }
-push $N8b8663d0
+push $N4a50f980
   Expression {
    expr0 "0.274880515737 * r + 0.658137117154 * g + 0.0669823671092 * b"
    expr1 "0.274880515737 * r + 0.658137117154 * g + 0.0669823671092 * b"
@@ -2317,7 +2306,7 @@ push $N8b8663d0
    xpos -7630
    ypos -225
   }
-push $N8b8663d0
+push $N4a50f980
   Expression {
    expr0 "0.261256555898 * r + 0.869631208967 * g + -0.130887764865 * b"
    expr1 "0.261256555898 * r + 0.869631208967 * g + -0.130887764865 * b"
@@ -2326,7 +2315,7 @@ push $N8b8663d0
    xpos -7740
    ypos -225
   }
-push $N8b8663d0
+push $N4a50f980
   Expression {
    expr0 "0.176204436534 * r + 0.812984693878 * g + 0.0108108695884 * b"
    expr1 "0.176204436534 * r + 0.812984693878 * g + 0.0108108695884 * b"
@@ -2335,7 +2324,7 @@ push $N8b8663d0
    xpos -7850
    ypos -225
   }
-push $N8b8663d0
+push $N4a50f980
   Expression {
    expr0 "0.303270045405 * r + 0.663789543861 * g + 0.0329404107343 * b"
    expr1 "0.303270045405 * r + 0.663789543861 * g + 0.0329404107343 * b"
@@ -2344,7 +2333,7 @@ push $N8b8663d0
    xpos -7960
    ypos -225
   }
-push $N8b8663d0
+push $N4a50f980
   Expression {
    expr0 "0.227563471677 * r + 0.738429482666 * g + 0.0340070456574 * b"
    expr1 "0.227563471677 * r + 0.738429482666 * g + 0.0340070456574 * b"
@@ -2353,7 +2342,7 @@ push $N8b8663d0
    xpos -8070
    ypos -225
   }
-push $N8b8663d0
+push $N4a50f980
   Expression {
    expr0 "0.244614394775 * r + 0.672060284019 * g + 0.0833253212057 * b"
    expr1 "0.244614394775 * r + 0.672060284019 * g + 0.0833253212057 * b"
@@ -2362,7 +2351,7 @@ push $N8b8663d0
    xpos -8180
    ypos -225
   }
-push $N8b8663d0
+push $N4a50f980
   Expression {
    expr0 "0.258690663895 * r + 0.724718154549 * g + 0.0165911815566 * b"
    expr1 "0.258690663895 * r + 0.724718154549 * g + 0.0165911815566 * b"
@@ -2371,7 +2360,7 @@ push $N8b8663d0
    xpos -8290
    ypos -225
   }
-push $N8b8663d0
+push $N4a50f980
   Expression {
    expr0 "0.29734448514 * r + 0.627376113264 * g + 0.0752794015963 * b"
    expr1 "0.29734448514 * r + 0.627376113264 * g + 0.0752794015963 * b"
@@ -2380,7 +2369,7 @@ push $N8b8663d0
    xpos -8400
    ypos -225
   }
-push $N8b8663d0
+push $N4a50f980
   Expression {
    expr0 "0.291948669899 * r + 0.823830265984 * g + -0.115778935883 * b"
    expr1 "0.291948669899 * r + 0.823830265984 * g + -0.115778935883 * b"
@@ -2389,7 +2378,7 @@ push $N8b8663d0
    xpos -8510
    ypos -225
   }
-push $N8b8663d0
+push $N4a50f980
   Expression {
    expr0 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
    expr1 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
@@ -2398,7 +2387,7 @@ push $N8b8663d0
    xpos -8620
    ypos -225
   }
-push $N8b8663d0
+push $N4a50f980
   Expression {
    expr0 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
    expr1 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
@@ -2407,7 +2396,7 @@ push $N8b8663d0
    xpos -8730
    ypos -225
   }
-push $N8b8663d0
+push $N4a50f980
   Expression {
    expr0 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
    expr1 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
@@ -2416,7 +2405,7 @@ push $N8b8663d0
    xpos -8840
    ypos -225
   }
-push $N8b8663d0
+push $N4a50f980
   Expression {
    expr0 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
    expr1 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
@@ -2441,13 +2430,13 @@ push $N8b8663d0
    ypos -201
   }
  end_group
-set N8b85d0f0 [stack 0]
+set N4a517380 [stack 0]
  Dot {
   name Dot6
   xpos -336
   ypos -174
  }
-set N8bd7f830 [stack 0]
+set N3ade2c90 [stack 0]
  Dot {
   name Dot5
   xpos -336
@@ -2524,13 +2513,13 @@ set N8bd7f830 [stack 0]
   xpos -260
   ypos 15
  }
-set N8bc603d0 [stack 0]
+set N403bb130 [stack 0]
  Clamp {
   name Clamp
   xpos -370
   ypos 35
  }
-push $N8bc603d0
+push $N403bb130
  Switch {
   inputs 2
   which {{parent.clamp_output_Check_Box}}
@@ -2538,7 +2527,7 @@ push $N8bc603d0
   xpos -260
   ypos 44
  }
-push $N8b83b7f0
+push $N4a560760
  Dot {
   name Dot2
   xpos -6
@@ -2561,7 +2550,7 @@ push $N8b83b7f0
   xpos -150
   ypos 72
  }
-push $N8bd7f830
+push $N3ade2c90
  CurveTool {
   operation "Max Luma Pixel"
   avgframes 1
@@ -2572,7 +2561,7 @@ push $N8bd7f830
   xpos -260
   ypos -177
  }
-push $N8b85d0f0
+push $N4a517380
  Dot {
   name Dot4
   xpos -446
@@ -2606,14 +2595,14 @@ push $N8b85d0f0
   xpos -480
   ypos -129
  }
-push $N8bc603d0
+push $N403bb130
  Viewer {
   input_process false
   name Viewer1
   xpos -480
   ypos -105
  }
-push $N8b858e50
+push $N4a5225d0
  Dot {
   name Dot9
   xpos -116
@@ -2630,3 +2619,14 @@ push $N8b858e50
   ypos -239
  }
 end_group
+StickyNote {
+ inputs 0
+ name StickyNote
+ tile_color 0x767676ff
+ gl_color 0x767676ff
+ label "GLOBAL TONEMAPPING OPERATORS 1.4\n\ncolour-science.org - January 3, 2016\n\nThis file is a playground for implementation of various Global Tonemapping Operators.\n\nBecause Nuke is unable of realtime computation of image average, min and max values, some operators need a domain precomputation.\n\nMore informations are available in the following IPython Notebook:\n\nhttps://github.com/colour-science/colour-hdri/blob/master/colour_hdri/examples/example_global_tonemapping_operators.ipynb\n\nLatest version of the file will always be available at this url: https://github.com/colour-science/colour-nuke/blob/master/colour_nuke/scripts/global_tonemapping_operators.nk\n\n"
+ note_font_size 14
+ selected true
+ xpos 151
+ ypos -338
+}
