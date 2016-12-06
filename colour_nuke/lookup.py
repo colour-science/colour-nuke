@@ -296,6 +296,13 @@ def color_lookup_node(file, template=COLOR_LOOKUP_CURVES_TEMPLATE):
                         format_curve_data(lookup.green_curve),
                         format_curve_data(lookup.blue_curve),
                         format_curve_data(lookup.alpha_curve)))
+    
+    basename = os.path.splitext(os.path.basename(file))[0].split("-")
+    if len(basename) > 1:
+        label = "\n".join([s.strip() for s in basename])
+    else:
+        label = basename[0]
+    color_lookup.knob('label').setValue(label)
     return color_lookup
 
 
