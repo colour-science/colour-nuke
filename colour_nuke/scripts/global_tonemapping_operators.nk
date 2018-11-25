@@ -211,7 +211,7 @@ StickyNote {
  name StickyNote
  tile_color 0x767676ff
  gl_color 0x767676ff
- label "GLOBAL TONEMAPPING OPERATORS 1.5\n\ncolour-science.org - July 10, 2016\n\nThis file is a playground for implementation of various Global Tonemapping Operators.\n\nBecause Nuke is unable of realtime computation of image average, min and max values, some operators need a domain precomputation.\n\nMore informations are available in the following Jupyter Notebook:\n\nhttps://github.com/colour-science/colour-hdri/blob/master/colour_hdri/examples/example_global_tonemapping_operators.ipynb\n\nLatest version of the file will always be available at this url: https://github.com/colour-science/colour-nuke/blob/master/colour_nuke/scripts/global_tonemapping_operators.nk\n"
+ label "GLOBAL TONEMAPPING OPERATORS 1.5\n\ncolour-science.org - July 10, 2016\n\nThis file is a playground for implementation of various Global Tonemapping Operators.\n\nBecause Nuke is unable of realtime computation of image average, min and max values, some operators need a domain precomputation.\n\nMore information is available in the following Jupyter Notebook:\n\nhttps://github.com/colour-science/colour-hdri/blob/master/colour_hdri/examples/example_global_tonemapping_operators.ipynb\n\nLatest version of the file will always be available at this url: https://github.com/colour-science/colour-nuke/blob/master/colour_nuke/scripts/global_tonemapping_operators.nk\n"
  note_font_size 14
  xpos 201
  ypos -333

@@ -10,11 +10,11 @@ define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
             </dock>
             <split size="699" stretch="1"/>
             <splitter orientation="2">
-                <split size="234"/>
-                <dock id="" activePageId="Viewer.1" focus="true">
+                <split size="407"/>
+                <dock id="" activePageId="Viewer.1">
                     <page id="Viewer.1"/>
                 </dock>
-                <split size="517"/>
+                <split size="344"/>
                 <dock id="" activePageId="DAG.1">
                     <page id="DAG.1"/>
                     <page id="Curve Editor.1"/>
@@ -23,7 +23,7 @@ define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
                 </dock>
             </splitter>
             <split size="498"/>
-            <dock id="" activePageId="Properties.1">
+            <dock id="" activePageId="Properties.1" focus="true">
                 <page id="Properties.1"/>
             </dock>
         </splitter>
@@ -44,21 +44,10 @@ Root {
  logLut Cineon
  floatLut linear
 }
-StickyNote {
- inputs 0
- name StickyNote
- tile_color 0x767676ff
- gl_color 0x767676ff
- label "COLOUR RENDITION CHART v2.0\n\ncolour-science.org - November 25, 2017\n\nThis file defines the X-Rite ColorChecker 2005 (ColorChecker24 - Before November 2014) and 2014 (ColorChecker24 - After November 2014) Classic Colour Rendition Charts.\n\nReference samples colours are converted from CIE XYZ tristimulus values (derived from XRite L*a*b* D50 data \[1]\[2]) to RGB colourspace.\n\nMatrices converting from CIE XYZ tristimulus to RGB colourspace were computed using CAT02 chromatic adaptation transform.\n\nThe following RGB colourspaces are implemented:\n\n- ACES2065-1\n- ACEScc\n- ACEScct\n- ACEScg\n- ACESproxy\n- ALEXA Wide Gamut\n- Adobe RGB (1998)\n- Adobe Wide Gamut RGB\n- Apple RGB\n- Best RGB\n- Beta RGB\n- CIE RGB\n- Cinema Gamut\n- ColorMatch RGB\n- DCDM XYZ\n- DCI-P3\n- DCI-P3+\n- DJI D-Gamut\n- DRAGONcolor\n- DRAGONcolor2\n- Don RGB 4\n- ECI RGB v2\n- ERIMM RGB\n- Ekta Space PS 5\n- FilmLight E-Gamut\n- ITU-R BT.2020\n- ITU-R BT.470 - 525\n- ITU-R BT.470 - 625\n- ITU-R BT.709\n- Max RGB\n- NTSC\n- P3-D65\n- Pal/Secam\n- ProPhoto RGB\n- Protune Native\n- REDWideGamutRGB\n- REDcolor\n- REDcolor2\n- REDcolor3\n- REDcolor4\n- RIMM RGB\n- ROMM RGB\n- Russell RGB\n- S-Gamut\n- S-Gamut3\n- S-Gamut3.Cine\n- SMPTE 240M\n- Sharp RGB\n- V-Gamut\n- Xtreme RGB\n- sRGB\n\nRendered colour rendition charts can be downloaded at those urls: https://github.com/colour-science/colour-nuke/tree/master/colour_nuke/resources/images/ColorChecker2005\nhttps://github.com/colour-science/colour-nuke/tree/master/colour_nuke/resources/images/ColorChecker2014\n\nMore informations are available here: https://github.com/colour-science/colour/tree/develop/colour/models/dataset\n\nLatest version of the file will always be available at this url: https://github.com/colour-science/colour-nuke/blob/master/colour_nuke/scripts/colour_rendition_chart.nk\n\n\[1] BabelColor. (2012). ColorChecker RGB and spectra. Retrieved from http://www.babelcolor.com/download/ColorChecker_RGB_and_spectra.xls\n\[2] X-Rite. (2015). New color specifications for\n    ColorChecker SG and Classic Charts. Retrieved October 29, 2018,\n    from http://xritephoto.com/ph_product_overview.aspx?ID=938&Action=Support&SupportID=5884#"
- note_font_size 14
- xpos 631
- ypos -933
-}
 Group {
  inputs 0
  name Colour_Rendition_Chart
  tile_color 0xffbf00ff
- selected true
  xpos 1060
  ypos 135
  postage_stamp true
@@ -3302,7 +3291,7 @@ Group {
   xpos 1170
   ypos -273
  }
- set C4c35e850 [stack 0]
+ set C2e2cb4d0 [stack 0]
  Transform {
   translate {0 56}
   scale 0.97
@@ -3329,7 +3318,7 @@ Group {
    xpos 0
    ypos -150
   }
-set N4c36c8b0 [stack 0]
+set N2de8fd90 [stack 0]
   Group {
    name XYZ_D50_to_sRGB
    selected true
@@ -3371,7 +3360,7 @@ set N4c36c8b0 [stack 0]
     ypos -75
    }
   end_group
-push $N4c36c8b0
+push $N2de8fd90
   Group {
    name XYZ_D50_to_Xtreme_RGB
    selected true
@@ -3413,7 +3402,7 @@ push $N4c36c8b0
     ypos -75
    }
   end_group
-push $N4c36c8b0
+push $N2de8fd90
   Group {
    name XYZ_D50_to_V-Gamut
    selected true
@@ -3455,7 +3444,7 @@ push $N4c36c8b0
     ypos -75
    }
   end_group
-push $N4c36c8b0
+push $N2de8fd90
   Group {
    name XYZ_D50_to_Sharp_RGB
    selected true
@@ -3497,7 +3486,7 @@ push $N4c36c8b0
     ypos -75
    }
   end_group
-push $N4c36c8b0
+push $N2de8fd90
   Group {
    name XYZ_D50_to_SMPTE_240M
    selected true
@@ -3539,7 +3528,7 @@ push $N4c36c8b0
     ypos -75
    }
   end_group
-push $N4c36c8b0
+push $N2de8fd90
   Group {
    name XYZ_D50_to_S-Gamut3.Cine
    selected true
@@ -3581,7 +3570,7 @@ push $N4c36c8b0
     ypos -75
    }
   end_group
-push $N4c36c8b0
+push $N2de8fd90
   Group {
    name XYZ_D50_to_S-Gamut3
    selected true
@@ -3623,7 +3612,7 @@ push $N4c36c8b0
     ypos -75
    }
   end_group
-push $N4c36c8b0
+push $N2de8fd90
   Group {
    name XYZ_D50_to_S-Gamut
    selected true
@@ -3665,7 +3654,7 @@ push $N4c36c8b0
     ypos -75
    }
   end_group
-push $N4c36c8b0
+push $N2de8fd90
   Group {
    name XYZ_D50_to_Russell_RGB
    selected true
@@ -3707,7 +3696,7 @@ push $N4c36c8b0
     ypos -75
    }
   end_group
-push $N4c36c8b0
+push $N2de8fd90
   Group {
    name XYZ_D50_to_ROMM_RGB
    selected true
@@ -3749,7 +3738,7 @@ push $N4c36c8b0
     ypos -75
    }
   end_group
-push $N4c36c8b0
+push $N2de8fd90
   Group {
    name XYZ_D50_to_RIMM_RGB
    selected true
@@ -3791,7 +3780,7 @@ push $N4c36c8b0
     ypos -75
    }
   end_group
-push $N4c36c8b0
+push $N2de8fd90
   Group {
    name XYZ_D50_to_REDcolor4
    selected true
@@ -3833,7 +3822,7 @@ push $N4c36c8b0
     ypos -75
    }
   end_group
-push $N4c36c8b0
+push $N2de8fd90
   Group {
    name XYZ_D50_to_REDcolor3
    selected true
@@ -3875,7 +3864,7 @@ push $N4c36c8b0
     ypos -75
    }
   end_group
-push $N4c36c8b0
+push $N2de8fd90
   Group {
    name XYZ_D50_to_REDcolor2
    selected true
@@ -3917,7 +3906,7 @@ push $N4c36c8b0
     ypos -75
    }
   end_group
-push $N4c36c8b0
+push $N2de8fd90
   Group {
    name XYZ_D50_to_REDcolor
    selected true
@@ -3959,7 +3948,7 @@ push $N4c36c8b0
     ypos -75
    }
   end_group
-push $N4c36c8b0
+push $N2de8fd90
   Group {
    name XYZ_D50_to_REDWideGamutRGB
    selected true
@@ -4001,7 +3990,7 @@ push $N4c36c8b0
     ypos -75
    }
   end_group
-push $N4c36c8b0
+push $N2de8fd90
   Group {
    name XYZ_D50_to_Protune_Native
    selected true
@@ -4043,7 +4032,7 @@ push $N4c36c8b0
     ypos -75
    }
   end_group
-push $N4c36c8b0
+push $N2de8fd90
   Group {
    name XYZ_D50_to_ProPhoto_RGB
    selected true
@@ -4085,7 +4074,7 @@ push $N4c36c8b0
     ypos -75
    }
   end_group
-push $N4c36c8b0
+push $N2de8fd90
   Group {
    name XYZ_D50_to_Pal/Secam
    selected true
@@ -4127,7 +4116,7 @@ push $N4c36c8b0
     ypos -75
    }
   end_group
-push $N4c36c8b0
+push $N2de8fd90
   Group {
    name XYZ_D50_to_P3-D65
    selected true
@@ -4169,7 +4158,7 @@ push $N4c36c8b0
     ypos -75
    }
   end_group
-push $N4c36c8b0
+push $N2de8fd90
   Group {
    name XYZ_D50_to_NTSC
    selected true
@@ -4211,7 +4200,7 @@ push $N4c36c8b0
     ypos -75
    }
   end_group
-push $N4c36c8b0
+push $N2de8fd90
   Group {
    name XYZ_D50_to_Max_RGB
    selected true
@@ -4253,7 +4242,7 @@ push $N4c36c8b0
     ypos -75
    }
   end_group
-push $N4c36c8b0
+push $N2de8fd90
   Group {
    name XYZ_D50_to_ITU-R_BT.709
    selected true
@@ -4295,7 +4284,7 @@ push $N4c36c8b0
     ypos -75
    }
   end_group
-push $N4c36c8b0
+push $N2de8fd90
   Group {
    name XYZ_D50_to_ITU-R_BT.470_-_625
    selected true
@@ -4337,7 +4326,7 @@ push $N4c36c8b0
     ypos -75
    }
   end_group
-push $N4c36c8b0
+push $N2de8fd90
   Group {
    name XYZ_D50_to_ITU-R_BT.470_-_525
    selected true
@@ -4379,7 +4368,7 @@ push $N4c36c8b0
     ypos -75
    }
   end_group
-push $N4c36c8b0
+push $N2de8fd90
   Group {
    name XYZ_D50_to_ITU-R_BT.2020
    selected true
@@ -4421,7 +4410,7 @@ push $N4c36c8b0
     ypos -75
    }
   end_group
-push $N4c36c8b0
+push $N2de8fd90
   Group {
    name XYZ_D50_to_FilmLight_E-Gamut
    selected true
@@ -4463,7 +4452,7 @@ push $N4c36c8b0
     ypos -75
    }
   end_group
-push $N4c36c8b0
+push $N2de8fd90
   Group {
    name XYZ_D50_to_Ekta_Space_PS_5
    selected true
@@ -4505,7 +4494,7 @@ push $N4c36c8b0
     ypos -75
    }
   end_group
-push $N4c36c8b0
+push $N2de8fd90
   Group {
    name XYZ_D50_to_ERIMM_RGB
    selected true
@@ -4547,7 +4536,7 @@ push $N4c36c8b0
     ypos -75
    }
   end_group
-push $N4c36c8b0
+push $N2de8fd90
   Group {
    name XYZ_D50_to_ECI_RGB_v2
    selected true
@@ -4589,7 +4578,7 @@ push $N4c36c8b0
     ypos -75
    }
   end_group
-push $N4c36c8b0
+push $N2de8fd90
   Group {
    name XYZ_D50_to_Don_RGB_4
    selected true
@@ -4631,7 +4620,7 @@ push $N4c36c8b0
     ypos -75
    }
   end_group
-push $N4c36c8b0
+push $N2de8fd90
   Group {
    name XYZ_D50_to_DRAGONcolor2
    selected true
@@ -4673,7 +4662,7 @@ push $N4c36c8b0
     ypos -75
    }
   end_group
-push $N4c36c8b0
+push $N2de8fd90
   Group {
    name XYZ_D50_to_DRAGONcolor
    selected true
@@ -4715,7 +4704,7 @@ push $N4c36c8b0
     ypos -75
    }
   end_group
-push $N4c36c8b0
+push $N2de8fd90
   Group {
    name XYZ_D50_to_DJI_D-Gamut
    selected true
@@ -4757,7 +4746,7 @@ push $N4c36c8b0
     ypos -75
    }
   end_group
-push $N4c36c8b0
+push $N2de8fd90
   Group {
    name XYZ_D50_to_DCI-P3+
    selected true
@@ -4799,7 +4788,7 @@ push $N4c36c8b0
     ypos -75
    }
   end_group
-push $N4c36c8b0
+push $N2de8fd90
   Group {
    name XYZ_D50_to_DCI-P3
    selected true
@@ -4841,7 +4830,7 @@ push $N4c36c8b0
     ypos -75
    }
   end_group
-push $N4c36c8b0
+push $N2de8fd90
   Group {
    name XYZ_D50_to_DCDM_XYZ
    selected true
@@ -4883,7 +4872,7 @@ push $N4c36c8b0
     ypos -75
    }
   end_group
-push $N4c36c8b0
+push $N2de8fd90
   Group {
    name XYZ_D50_to_ColorMatch_RGB
    selected true
@@ -4925,7 +4914,7 @@ push $N4c36c8b0
     ypos -75
    }
   end_group
-push $N4c36c8b0
+push $N2de8fd90
   Group {
    name XYZ_D50_to_Cinema_Gamut
    selected true
@@ -4967,7 +4956,7 @@ push $N4c36c8b0
     ypos -75
    }
   end_group
-push $N4c36c8b0
+push $N2de8fd90
   Group {
    name XYZ_D50_to_CIE_RGB
    selected true
@@ -5009,7 +4998,7 @@ push $N4c36c8b0
     ypos -75
    }
   end_group
-push $N4c36c8b0
+push $N2de8fd90
   Group {
    name XYZ_D50_to_Beta_RGB
    selected true
@@ -5051,7 +5040,7 @@ push $N4c36c8b0
     ypos -75
    }
   end_group
-push $N4c36c8b0
+push $N2de8fd90
   Group {
    name XYZ_D50_to_Best_RGB
    selected true
@@ -5093,7 +5082,7 @@ push $N4c36c8b0
     ypos -75
    }
   end_group
-push $N4c36c8b0
+push $N2de8fd90
   Group {
    name XYZ_D50_to_Apple_RGB
    selected true
@@ -5135,7 +5124,7 @@ push $N4c36c8b0
     ypos -75
    }
   end_group
-push $N4c36c8b0
+push $N2de8fd90
   Group {
    name XYZ_D50_to_Adobe_Wide_Gamut_RGB
    selected true
@@ -5177,7 +5166,7 @@ push $N4c36c8b0
     ypos -75
    }
   end_group
-push $N4c36c8b0
+push $N2de8fd90
   Group {
    name XYZ_D50_to_Adobe_RGB_(1998)
    selected true
@@ -5219,7 +5208,7 @@ push $N4c36c8b0
     ypos -75
    }
   end_group
-push $N4c36c8b0
+push $N2de8fd90
   Group {
    name XYZ_D50_to_ALEXA_Wide_Gamut
    selected true
@@ -5261,7 +5250,7 @@ push $N4c36c8b0
     ypos -75
    }
   end_group
-push $N4c36c8b0
+push $N2de8fd90
   Group {
    name XYZ_D50_to_ACESproxy
    selected true
@@ -5303,7 +5292,7 @@ push $N4c36c8b0
     ypos -75
    }
   end_group
-push $N4c36c8b0
+push $N2de8fd90
   Group {
    name XYZ_D50_to_ACEScg
    selected true
@@ -5345,7 +5334,7 @@ push $N4c36c8b0
     ypos -75
    }
   end_group
-push $N4c36c8b0
+push $N2de8fd90
   Group {
    name XYZ_D50_to_ACEScct
    selected true
@@ -5387,7 +5376,7 @@ push $N4c36c8b0
     ypos -75
    }
   end_group
-push $N4c36c8b0
+push $N2de8fd90
   Group {
    name XYZ_D50_to_ACEScc
    selected true
@@ -5429,7 +5418,7 @@ push $N4c36c8b0
     ypos -75
    }
   end_group
-push $N4c36c8b0
+push $N2de8fd90
   Group {
    name XYZ_D50_to_ACES2065-1
    selected true
@@ -5510,7 +5499,7 @@ push $N4c36c8b0
   xpos 1170
   ypos -177
  }
-set N4c4e5e60 [stack 0]
+set N39596f90 [stack 0]
  Text {
   opacity {{parent.title_opacity_Floating_Point_Slider}}
   message "\[value XYZ_D50_to_RGB.colourspace_Pulldown_Choice] - X-Rite ColorChecker 2014 Classic"
@@ -5527,7 +5516,7 @@ set N4c4e5e60 [stack 0]
   xpos 1280
   ypos -129
  }
-push $N4c4e5e60
+push $N39596f90
  Text {
   opacity {{parent.title_opacity_Floating_Point_Slider}}
   message "\[value XYZ_D50_to_RGB.colourspace_Pulldown_Choice] - X-Rite ColorChecker 2005 Classic"
@@ -5544,7 +5533,7 @@ push $N4c4e5e60
   xpos 1060
   ypos -129
  }
-clone $C4c35e850 {
+clone $C2e2cb4d0 {
   inputs 2
   xpos 1170
   ypos -129
@@ -5562,4 +5551,15 @@ Viewer {
  name Viewer1
  xpos 1060
  ypos 207
+}
+StickyNote {
+ inputs 0
+ name StickyNote
+ tile_color 0x767676ff
+ gl_color 0x767676ff
+ label "COLOUR RENDITION CHART v2.0\n\ncolour-science.org - November 25, 2017\n\nThis file defines the X-Rite ColorChecker 2005 (ColorChecker24 - Before November 2014) and 2014 (ColorChecker24 - After November 2014) Classic Colour Rendition Charts.\n\nReference samples colours are converted from CIE XYZ tristimulus values (derived from XRite L*a*b* D50 data \[1]\[2]) to RGB colourspace.\n\nMatrices converting from CIE XYZ tristimulus to RGB colourspace were computed using CAT02 chromatic adaptation transform.\n\nThe following RGB colourspaces are implemented:\n\n- ACES2065-1\n- ACEScc\n- ACEScct\n- ACEScg\n- ACESproxy\n- ALEXA Wide Gamut\n- Adobe RGB (1998)\n- Adobe Wide Gamut RGB\n- Apple RGB\n- Best RGB\n- Beta RGB\n- CIE RGB\n- Cinema Gamut\n- ColorMatch RGB\n- DCDM XYZ\n- DCI-P3\n- DCI-P3+\n- DJI D-Gamut\n- DRAGONcolor\n- DRAGONcolor2\n- Don RGB 4\n- ECI RGB v2\n- ERIMM RGB\n- Ekta Space PS 5\n- FilmLight E-Gamut\n- ITU-R BT.2020\n- ITU-R BT.470 - 525\n- ITU-R BT.470 - 625\n- ITU-R BT.709\n- Max RGB\n- NTSC\n- P3-D65\n- Pal/Secam\n- ProPhoto RGB\n- Protune Native\n- REDWideGamutRGB\n- REDcolor\n- REDcolor2\n- REDcolor3\n- REDcolor4\n- RIMM RGB\n- ROMM RGB\n- Russell RGB\n- S-Gamut\n- S-Gamut3\n- S-Gamut3.Cine\n- SMPTE 240M\n- Sharp RGB\n- V-Gamut\n- Xtreme RGB\n- sRGB\n\nRendered colour rendition charts can be downloaded at those urls: https://github.com/colour-science/colour-nuke/tree/master/colour_nuke/resources/images/ColorChecker2005\nhttps://github.com/colour-science/colour-nuke/tree/master/colour_nuke/resources/images/ColorChecker2014\n\nMore information is available here: https://github.com/colour-science/colour/tree/develop/colour/models/dataset\n\nLatest version of the file will always be available at this url: https://github.com/colour-science/colour-nuke/blob/master/colour_nuke/scripts/colour_rendition_chart.nk\n\n\[1] BabelColor. (2012). ColorChecker RGB and spectra. Retrieved from http://www.babelcolor.com/download/ColorChecker_RGB_and_spectra.xls\n\[2] X-Rite. (2015). New color specifications for\n    ColorChecker SG and Classic Charts. Retrieved October 29, 2018,\n    from http://xritephoto.com/ph_product_overview.aspx?ID=938&Action=Support&SupportID=5884#"
+ note_font_size 14
+ selected true
+ xpos 631
+ ypos -933
 }
