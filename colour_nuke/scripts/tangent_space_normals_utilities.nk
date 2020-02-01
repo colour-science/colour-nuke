@@ -1,31 +1,28 @@
-#! /Applications/Nuke8.0v1/Nuke8.0v1.app/Contents/MacOS/libnuke-8.0.v1.dylib -nx
-version 8.0 v1
+#! /Applications/Nuke10.5v2/Nuke10.5v2.app/Contents/MacOS/libnuke-10.5.2.dylib -nx
+version 10.5 v2
 define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
 <layout version="1.0">
-    <window x="0" y="23" w="1280" h="725" screen="0">
+    <window x="0" y="23" w="1280" h="777" screen="0">
         <splitter orientation="1">
-            <split size="808"/>
-            <splitter orientation="1">
-                <split size="40"/>
-                <dock id="" hideTitles="1" activePageId="Toolbar.1">
-                    <page id="Toolbar.1"/>
+            <split size="40"/>
+            <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                <page id="Toolbar.1"/>
+            </dock>
+            <split size="617" stretch="1"/>
+            <splitter orientation="2">
+                <split size="441"/>
+                <dock id="" activePageId="Viewer.1">
+                    <page id="Viewer.1"/>
                 </dock>
-                <split size="764"/>
-                <splitter orientation="2">
-                    <split size="410"/>
-                    <dock id="" activePageId="Viewer.1">
-                        <page id="Viewer.1"/>
-                    </dock>
-                    <split size="289"/>
-                    <dock id="" activePageId="DAG.1">
-                        <page id="DAG.1"/>
-                        <page id="Curve Editor.1"/>
-                        <page id="DopeSheet.1"/>
-                    </dock>
-                </splitter>
+                <split size="310"/>
+                <dock id="" activePageId="DAG.1">
+                    <page id="DAG.1"/>
+                    <page id="Curve Editor.1"/>
+                    <page id="DopeSheet.1"/>
+                </dock>
             </splitter>
-            <split size="468"/>
-            <dock id="" activePageId="Properties.1">
+            <split size="615"/>
+            <dock id="" activePageId="Properties.1" focus="true">
                 <page id="Properties.1"/>
             </dock>
         </splitter>
@@ -38,12 +35,24 @@ Root {
  format "1024 1024 0 0 1024 1024 1 square_1K"
  proxy_type scale
  proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+ colorManagement Nuke
+ workingSpaceLUT linear
+ monitorLut sRGB
+ int8Lut sRGB
+ int16Lut sRGB
+ logLut Cineon
+ floatLut linear
 }
 Tangent_Space_Normals_to_Cavity {
- inputs 0
+ inputs 0 inputs 0
  name gizmo_Tangent_Space_Normals_to_Cavity
  xpos 840
  ypos -1857
+
+ xpos 840
+ ypos -1857
+ selected false
+ disable false
 }
 CheckerBoard2 {
  inputs 0
@@ -51,25 +60,38 @@ CheckerBoard2 {
  xpos 1500
  ypos -2097
 }
-set N1b313b20 [stack 0]
-Multi_Tangent_Space_Normals_Generator {
- name example_6_Multi_Tangent_Space_Normals_Generator
+set N221627a0 [stack 0]
+Multi_Tangent_Space_Normals_Generator { name example_6_Multi_Tangent_Space_Normals_Generator
  xpos 1500
  ypos -1929
  parameters_Group 1
+
+ xpos 1500
+ ypos -1929
+ selected false
+ disable false
 }
-push $N1b313b20
-Tangent_Space_Normals_Generator {
- name example_3_gizmo_Tangent_Space_Normals_Generator
+push $N221627a0
+Tangent_Space_Normals_Generator { name example_3_gizmo_Tangent_Space_Normals_Generator
  xpos 1500
  ypos -2001
  parameters_Group 1
+
+ xpos 1500
+ ypos -2001
+ selected false
+ disable false
 }
 Partial_Derivative_Blending {
- inputs 0
+ inputs 0 inputs 0
  name gizmo_Partial_Derivative_Blending
  xpos 840
  ypos -2049
+
+ xpos 840
+ ypos -2049
+ selected false
+ disable false
 }
 Constant {
  inputs 0
@@ -79,20 +101,24 @@ Constant {
  xpos 1280
  ypos -2121
 }
-set N1bc17b30 [stack 0]
+set N221ae5f0 [stack 0]
 Radial {
  area {256 256 768 768}
  name Radial
  xpos 1280
  ypos -2049
 }
-Tangent_Space_Normals_Generator {
- name example_1_gizmo_Tangent_Space_Normals_Generator
+Tangent_Space_Normals_Generator { name example_1_gizmo_Tangent_Space_Normals_Generator
  xpos 1280
  ypos -2001
  parameters_Group 1
+
+ xpos 1280
+ ypos -2001
+ selected false
+ disable false
 }
-push $N1bc17b30
+push $N221ae5f0
 Noise {
  type turbulence
  gain 0.66666667
@@ -102,40 +128,64 @@ Noise {
  xpos 1390
  ypos -2049
 }
-set N1ba162a0 [stack 0]
-Tangent_Space_Normals_Generator {
- name example_2_gizmo_Tangent_Space_Normals_Generator
+set N22171cb0 [stack 0]
+Tangent_Space_Normals_Generator { name example_2_gizmo_Tangent_Space_Normals_Generator
  xpos 1390
  ypos -2001
  parameters_Group 1
  intensity_Floating_Point_Slider 0.1
+
+ xpos 1390
+ ypos -2001
+ selected false
+ disable false
 }
 Partial_Derivative_Blending {
- inputs 2
+ inputs 2 inputs 2
  name example_4_Partial_Derivative_Blending
  xpos 1280
  ypos -1929
+
+ xpos 1280
+ ypos -1929
+ selected false
+ disable false
 }
 Tangent_Space_Normals_Generator {
- inputs 0
+ inputs 0 inputs 0
  name gizmo_Tangent_Space_Normals_Generator
  xpos 840
  ypos -2001
  parameters_Group 1
+
+ xpos 840
+ ypos -2001
+ selected false
+ disable false
 }
 Multi_Tangent_Space_Normals_Generator {
- inputs 0
+ inputs 0 inputs 0
  name gizmo_Multi_Tangent_Space_Normals_Generator
  xpos 840
  ypos -1953
  parameters_Group 1
+
+ xpos 840
+ ypos -1953
+ selected false
+ disable false
 }
 Tangent_Space_Normals_Previewer {
- inputs 0
+ inputs 0 inputs 0
  name gizmo_Tangent_Space_Normals_Previewer
  xpos 840
  ypos -1809
  parameters_Group 1
+
+ xpos 840
+ ypos -1809
+ selected false
+ disable false
 }
 Group {
  inputs 0
@@ -193,10 +243,14 @@ Group {
   xpos -260
   ypos 111
  }
- Normalise_Tangent_Space_Normals {
-  name Normalise_Tangent_Space_Normals
+ Normalise_Tangent_Space_Normals {  name Normalise_Tangent_Space_Normals
   xpos -260
   ypos 135
+ 
+  xpos -260
+  ypos 135
+  selected false
+  disable false
  }
  Output {
   name Output
@@ -220,7 +274,7 @@ Group {
   xpos -40
   ypos 15
  }
-set N1d13e7c0 [stack 0]
+set N23315910 [stack 0]
  Shuffle {
   red green
   blue green
@@ -238,7 +292,7 @@ set N1d13e7c0 [stack 0]
   xpos 70
   ypos 39
  }
-push $N1d13e7c0
+push $N23315910
  Shuffle {
   green red
   blue red
@@ -418,7 +472,7 @@ Group {
   xpos 410
   ypos -30
  }
-set N1d3040c0 [stack 0]
+set N24c96700 [stack 0]
  Input {
   inputs 0
   name Normals
@@ -493,7 +547,7 @@ add_layer {tangent tangent.red tangent.green tangent.blue tangent.alpha}
   xpos 510
   ypos -201
  }
-set N1c13c780 [stack 0]
+set N24cb9c70 [stack 0]
  Input {
   inputs 0
   name Object
@@ -507,7 +561,7 @@ set N1c13c780 [stack 0]
   xpos 730
   ypos -153
  }
-push $N1c13c780
+push $N24cb9c70
  Card2 {
   control_points {3 3 3 6 
 
@@ -524,7 +578,7 @@ push $N1c13c780
   xpos 620
   ypos -153
  }
-push $N1c13c780
+push $N24cb9c70
  Cylinder {
   radius 0.5
   height 1
@@ -533,7 +587,7 @@ push $N1c13c780
   xpos 510
   ypos -153
  }
-push $N1c13c780
+push $N24cb9c70
  Sphere {
   radius 0.5
   rotate {0 180 0}
@@ -541,7 +595,7 @@ push $N1c13c780
   xpos 400
   ypos -153
  }
-push $N1c13c780
+push $N24cb9c70
  Cube {
   rows 1
   columns 1
@@ -575,7 +629,7 @@ push $N1c13c780
   ypos -9
   number 4
  }
-set N1d371cb0 [stack 0]
+set N1a921ec0 [stack 0]
 add_layer {point point.red point.green point.blue point.alpha}
 add_layer {normal normal.red normal.green normal.blue normal.alpha}
  ScanlineRender {
@@ -590,22 +644,22 @@ add_layer {normal normal.red normal.green normal.blue normal.alpha}
   xpos 510
   ypos -9
  }
-set N1d375920 [stack 0]
+set N1a922ee0 [stack 0]
  Input {
   inputs 0
   name Environment
   xpos 290
   ypos 111
  }
-set N1c193a30 [stack 0]
-push $N1d375920
+set N1a92ad70 [stack 0]
+push $N1a922ee0
  Shuffle {
   in normal
   name normal_Shuffle
   xpos 620
   ypos 39
  }
-push $N1d375920
+push $N1a922ee0
  Shuffle {
   in tangent
   name tangent_Shuffle
@@ -735,7 +789,7 @@ push $N1d375920
   xpos 510
   ypos 159
  }
-push $N1d375920
+push $N1a922ee0
  Merge2 {
   inputs 2
   operation multiply
@@ -743,9 +797,9 @@ push $N1d375920
   xpos 620
   ypos 159
  }
-push $N1d371cb0
-push $N1d3040c0
-push $N1c193a30
+push $N1a921ec0
+push $N24c96700
+push $N1a92ad70
  SphericalTransform {
   input "Lat Long map"
   rx {{-parent.environment_rx_Floating_Point_Slider}}
@@ -767,7 +821,7 @@ push $N1c193a30
   xpos 300
   ypos 210
  }
-push $N1d371cb0
+push $N1a921ec0
  ScanlineRender {
   inputs 3
   motion_vectors_type off
@@ -799,9 +853,8 @@ push $N1d371cb0
   ypos 255
  }
 end_group
-push $N1ba162a0
-Multi_Tangent_Space_Normals_Generator {
- name example_5_Multi_Tangent_Space_Normals_Generator
+push $N22171cb0
+Multi_Tangent_Space_Normals_Generator { name example_5_Multi_Tangent_Space_Normals_Generator
  xpos 1390
  ypos -1929
  parameters_Group 1
@@ -809,8 +862,13 @@ Multi_Tangent_Space_Normals_Generator {
  large_intensity_Floating_Point_Slider 0.125
  medium_intensity_Floating_Point_Slider 0.075
  small_intensity_Floating_Point_Slider 0.125
+
+ xpos 1390
+ ypos -1929
+ selected false
+ disable false
 }
-set N1b389150 [stack 0]
+set N23384f10 [stack 0]
 push 0
 ColorWheel {
  inputs 0
@@ -842,11 +900,15 @@ Crop {
  xpos 1060
  ypos -1809
 }
-push $N1b389150
-Tangent_Space_Normals_to_Cavity {
- name example_5_1_Tangent_Space_Normals_to_Cavity
+push $N23384f10
+Tangent_Space_Normals_to_Cavity { name example_5_1_Tangent_Space_Normals_to_Cavity
  xpos 1390
  ypos -1905
+
+ xpos 1390
+ ypos -1905
+ selected false
+ disable false
 }
 CurveTool {
  operation "Max Luma Pixel"
@@ -869,21 +931,21 @@ Grade {
  xpos 1390
  ypos -1857
 }
-set N1d7f6630 [stack 0]
+set N1a98af50 [stack 0]
 Blur {
  size 64
  name example_5_5_Blur
  xpos 1720
  ypos -1837
 }
-push $N1d7f6630
+push $N1a98af50
 Blur {
  size 32
  name example_5_4_Blur
  xpos 1610
  ypos -1837
 }
-push $N1d7f6630
+push $N1a98af50
 Blur {
  size 16
  name example_5_3_Blur
@@ -891,14 +953,14 @@ Blur {
  ypos -1837
 }
 push 0
-push $N1d7f6630
+push $N1a98af50
 Blur {
  size 8
  name example_5_2_Blur
  xpos 1390
  ypos -1837
 }
-push $N1d7f6630
+push $N1a98af50
 Blend {
  inputs 5+1
  name example_ffBlend
@@ -971,7 +1033,7 @@ Grade {
  ypos -1905
 }
 Tangent_Space_Normals_Previewer {
- inputs 4
+ inputs 4 inputs 4
  name example_Tangent_Space_Normals_Previewer
  xpos 1170
  ypos -1689
@@ -980,9 +1042,14 @@ Tangent_Space_Normals_Previewer {
  environment_ry_Floating_Point_Slider 90
  object_ry_Floating_Point_Slider 22.5
  object_rz_Floating_Point_Slider 22.5
+
+ xpos 1170
+ ypos -1689
+ selected false
+ disable false
 }
 Viewer {
- frame 1
+ frame_range 1-100
  input_process false
  name Viewer1
  xpos 1170
@@ -1038,10 +1105,15 @@ Group {
  }
 end_group
 Normalise_Tangent_Space_Normals {
- inputs 0
+ inputs 0 inputs 0
  name gizmo_Normalise_Tangent_Space_Normals
  xpos 840
  ypos -2097
+
+ xpos 840
+ ypos -2097
+ selected false
+ disable false
 }
 Group {
  inputs 0
@@ -1092,7 +1164,7 @@ Group {
   xpos -590
   ypos 67
  }
-set N1dd7ef50 [stack 0]
+set N233b0790 [stack 0]
  Matrix {
   matrix {
       {-3 0 3}
@@ -1103,7 +1175,7 @@ set N1dd7ef50 [stack 0]
   xpos -700
   ypos 63
  }
-push $N1dd7ef50
+push $N233b0790
  Matrix {
   matrix {
       {3 10 3}
@@ -1208,14 +1280,18 @@ Group {
   xpos -260
   ypos -33
  }
-set N1d5db120 [stack 0]
- Tangent_Space_Normals_Generator {
-  name largest_Tangent_Space_Normals_Generator
+set N11eb25d0 [stack 0]
+ Tangent_Space_Normals_Generator {  name largest_Tangent_Space_Normals_Generator
   xpos -40
   ypos -9
   parameters_Group 1
   size_Floating_Point_Slider {{parent.largest_size_Floating_Point_Slider}}
   intensity_Floating_Point_Slider {{parent.largest_intensity_Floating_Point_Slider}}
+ 
+  xpos -40
+  ypos -9
+  selected false
+  disable false
  }
  Blur {
   size {{parent.largest_soften_Floating_Point_Slider}}
@@ -1225,19 +1301,27 @@ set N1d5db120 [stack 0]
   xpos -40
   ypos 11
  }
- Normalise_Tangent_Space_Normals {
-  name largest_Normalise_Tangent_Space_Normals
+ Normalise_Tangent_Space_Normals {  name largest_Normalise_Tangent_Space_Normals
   xpos -40
   ypos 39
+ 
+  xpos -40
+  ypos 39
+  selected false
+  disable false
  }
-push $N1d5db120
- Tangent_Space_Normals_Generator {
-  name large_Tangent_Space_Normals_Generator
+push $N11eb25d0
+ Tangent_Space_Normals_Generator {  name large_Tangent_Space_Normals_Generator
   xpos -150
   ypos -9
   parameters_Group 1
   size_Floating_Point_Slider {{parent.large_size_Floating_Point_Slider}}
   intensity_Floating_Point_Slider {{parent.large_intensity_Floating_Point_Slider}}
+ 
+  xpos -150
+  ypos -9
+  selected false
+  disable false
  }
  Blur {
   size {{parent.large_soften_Floating_Point_Slider}}
@@ -1246,19 +1330,27 @@ push $N1d5db120
   xpos -150
   ypos 11
  }
- Normalise_Tangent_Space_Normals {
-  name large_Normalise_Tangent_Space_Normals
+ Normalise_Tangent_Space_Normals {  name large_Normalise_Tangent_Space_Normals
   xpos -150
   ypos 39
+ 
+  xpos -150
+  ypos 39
+  selected false
+  disable false
  }
-push $N1d5db120
- Tangent_Space_Normals_Generator {
-  name medium_Tangent_Space_Normals_Generator
+push $N11eb25d0
+ Tangent_Space_Normals_Generator {  name medium_Tangent_Space_Normals_Generator
   xpos -260
   ypos -9
   parameters_Group 1
   size_Floating_Point_Slider {{parent.medium_size_Floating_Point_Slider}}
   intensity_Floating_Point_Slider {{parent.medium_intensity_Floating_Point_Slider}}
+ 
+  xpos -260
+  ypos -9
+  selected false
+  disable false
  }
  Blur {
   size {{parent.medium_soften_Floating_Point_Slider}}
@@ -1267,19 +1359,27 @@ push $N1d5db120
   xpos -260
   ypos 11
  }
- Normalise_Tangent_Space_Normals {
-  name medium_Normalise_Tangent_Space_Normals
+ Normalise_Tangent_Space_Normals {  name medium_Normalise_Tangent_Space_Normals
   xpos -260
   ypos 39
+ 
+  xpos -260
+  ypos 39
+  selected false
+  disable false
  }
-push $N1d5db120
- Tangent_Space_Normals_Generator {
-  name small_Tangent_Space_Normals_Generator
+push $N11eb25d0
+ Tangent_Space_Normals_Generator {  name small_Tangent_Space_Normals_Generator
   xpos -370
   ypos -9
   parameters_Group 1
   size_Floating_Point_Slider {{parent.small_size_Floating_Point_Slider}}
   intensity_Floating_Point_Slider {{parent.small_intensity_Floating_Point_Slider}}
+ 
+  xpos -370
+  ypos -9
+  selected false
+  disable false
  }
  Blur {
   size {{parent.small_soften_Floating_Point_Slider}}
@@ -1288,19 +1388,27 @@ push $N1d5db120
   xpos -370
   ypos 11
  }
- Normalise_Tangent_Space_Normals {
-  name small_Normalise_Tangent_Space_Normals
+ Normalise_Tangent_Space_Normals {  name small_Normalise_Tangent_Space_Normals
   xpos -370
   ypos 39
+ 
+  xpos -370
+  ypos 39
+  selected false
+  disable false
  }
-push $N1d5db120
- Tangent_Space_Normals_Generator {
-  name smallest_Tangent_Space_Normals_Generator
+push $N11eb25d0
+ Tangent_Space_Normals_Generator {  name smallest_Tangent_Space_Normals_Generator
   xpos -480
   ypos -9
   parameters_Group 1
   size_Floating_Point_Slider {{parent.smallest_size_Floating_Point_Slider}}
   intensity_Floating_Point_Slider {{parent.smallest_intensity_Floating_Point_Slider}}
+ 
+  xpos -480
+  ypos -9
+  selected false
+  disable false
  }
  Blur {
   size {{parent.smallest_soften_Floating_Point_Slider}}
@@ -1309,34 +1417,58 @@ push $N1d5db120
   xpos -480
   ypos 11
  }
- Normalise_Tangent_Space_Normals {
-  name smallest_Normalise_Tangent_Space_Normals
+ Normalise_Tangent_Space_Normals {  name smallest_Normalise_Tangent_Space_Normals
   xpos -480
   ypos 39
+ 
+  xpos -480
+  ypos 39
+  selected false
+  disable false
  }
  Partial_Derivative_Blending {
-  inputs 2
+  inputs 2  inputs 2
   name s_Partial_Derivative_Blending
   xpos -370
   ypos 63
+ 
+  xpos -370
+  ypos 63
+  selected false
+  disable false
  }
  Partial_Derivative_Blending {
-  inputs 2
+  inputs 2  inputs 2
   name m_Partial_Derivative_Blending
   xpos -260
   ypos 63
+ 
+  xpos -260
+  ypos 63
+  selected false
+  disable false
  }
  Partial_Derivative_Blending {
-  inputs 2
+  inputs 2  inputs 2
   name l_Partial_Derivative_Blending
   xpos -150
   ypos 63
+ 
+  xpos -150
+  ypos 63
+  selected false
+  disable false
  }
  Partial_Derivative_Blending {
-  inputs 2
+  inputs 2  inputs 2
   name lst_Partial_Derivative_Blending
   xpos -40
   ypos 63
+ 
+  xpos -40
+  ypos 63
+  selected false
+  disable false
  }
  Shuffle {
   alpha white
@@ -1355,8 +1487,9 @@ StickyNote {
  name StickyNote
  tile_color 0x767676ff
  gl_color 0x767676ff
- label "TANGENT SPACE NORMALS UTILITIES 1.2\n\ncolour-science.org - April 12, 2015\n\nThis file is a playground for implementation of various tangent space normals utilities:\n\n- Normalise_Tangent_Space_Normals: Normalises tangent space normals.\n- Partial Derivative Blending: Blends tangent space normals together using Partial Derivative Blending.\n- Tangent Space Normals Generator: Generates tangent space normals from given input.\n- Multi Tangent Space Normals Generator: Generates tangent space normals from given input using multiple Tangent Space Normals Generators.\n- Brute Force Tangent Space Normals Generator: Generates tangent space normals from given input using brute force method: A card is tesselated and displaced in the 3d space and normals are rendered using Nuke ScanlineRender.\n- Tangent Space Normals to Cavity: Performs conversion from Tangent Space Normals to Cavity.\n- Tangent Space Normals Previewer: Preview tangent space normals by using angular mapping lighting.\n\nLatest version of the file will always be available at this url: https://github.com/colour-science/colour-nuke/blob/master/colour_nuke/scripts/tangent_space_normals_utilities.nk\n\n\[1] Self Shadow. (n.d.). Blending in Detail. Retrieved April 7, 2015, from http://blog.selfshadow.com/publications/blending-in-detail/\n\[2] Kolasinski, K. (2015). AwesomeBump v1.0, 1–7. Retrieved from http://awesomebump.besaba.com/wp-content/uploads/2015/01/ABoverwiev.pdf\n\[3] Wikipedia. (n.d.). Sobel operator. Retrieved April 7, 2015, from http://en.wikipedia.org/wiki/Sobel_operator\n\[4] Garrett, M. (n.d.). EnvRelight v1.5. Retrieved April 9, 2015, from http://www.nukepedia.com/gizmos/other/envrelight\n\[5] Garrett, M. (n.d.). EnvConvolve v1.4. Retrieved April 9, 2015, from http://www.nukepedia.com/gizmos/filter/envconvolve\n\n"
+ label "TANGENT SPACE NORMALS UTILITIES 1.2\n\ncolour-science.org - April 12, 2015\n\nThis file is a playground for implementation of various tangent space normals utilities:\n\n- Normalise_Tangent_Space_Normals: Normalises tangent space normals.\n- Partial Derivative Blending: Blends tangent space normals together using Partial Derivative Blending.\n- Tangent Space Normals Generator: Generates tangent space normals from given input.\n- Multi Tangent Space Normals Generator: Generates tangent space normals from given input using multiple Tangent Space Normals Generators.\n- Brute Force Tangent Space Normals Generator: Generates tangent space normals from given input using brute force method: A card is tesselated and displaced in the 3d space and normals are rendered using Nuke ScanlineRender.\n- Tangent Space Normals to Cavity: Performs conversion from Tangent Space Normals to Cavity.\n- Tangent Space Normals Previewer: Preview tangent space normals by using angular mapping lighting.\n\nLatest version of the file will always be available at this URL: https://github.com/colour-science/colour-nuke/blob/master/colour_nuke/scripts/tangent_space_normals_utilities.nk\n\n\[1] Self Shadow. (n.d.). Blending in Detail. Retrieved April 7, 2015, from http://blog.selfshadow.com/publications/blending-in-detail/\n\[2] Kolasinski, K. (2015). AwesomeBump v1.0, 1–7. Retrieved from http://awesomebump.besaba.com/wp-content/uploads/2015/01/ABoverwiev.pdf\n\[3] Wikipedia. (n.d.). Sobel operator. Retrieved April 7, 2015, from http://en.wikipedia.org/wiki/Sobel_operator\n\[4] Garrett, M. (n.d.). EnvRelight v1.5. Retrieved April 9, 2015, from http://www.nukepedia.com/gizmos/other/envrelight\n\[5] Garrett, M. (n.d.). EnvConvolve v1.4. Retrieved April 9, 2015, from http://www.nukepedia.com/gizmos/filter/envconvolve\n\n"
  note_font_size 14
+ selected true
  xpos 467
  ypos -2445
 }

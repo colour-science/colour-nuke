@@ -15,14 +15,14 @@ define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
                     <page id="Viewer.1"/>
                 </dock>
                 <split size="310"/>
-                <dock id="" activePageId="DAG.1" focus="true">
+                <dock id="" activePageId="DAG.1">
                     <page id="DAG.1"/>
                     <page id="Curve Editor.1"/>
                     <page id="DopeSheet.1"/>
                 </dock>
             </splitter>
             <split size="537"/>
-            <dock id="" activePageId="Properties.1">
+            <dock id="" activePageId="Properties.1" focus="true">
                 <page id="Properties.1"/>
             </dock>
         </splitter>
@@ -1606,8 +1606,9 @@ StickyNote {
  name StickyNote
  tile_color 0x767676ff
  gl_color 0x767676ff
- label "PANORAMIC HDRI - ABSOLUTE LUMINANCE CALIBRATION 2.0\n\ncolour-science.org - February 01, 2020\n\nThis file defines two Gizmos / Groups:\n\n- Panoramic HDRI - Absolute Luminance Calibration: Performs absolute luminance calibration of panoramic HDRI images using Lagarde (2016) method.\n- Panoramic HDRI - Analytic Light Source: Computes the illuminance value for an analytic light source accounting for the illuminance difference between two panoramic HDRI images and the light source position in the image using Lagarde (2016) method.\n\nNote that the \"Panoramic HDRI - Analytic Light Source\" Gizmo / Group currently uses two hard copies of the \"Panoramic HDRI - Absolute Luminance Calibration\" Group, it is strongly advised to replace them with the Gizmo variant in the context of a studio deployment.\n\nLatest version of the file will always be available at this url: https://github.com/colour-science/colour-nuke/blob/master/colour_nuke/scripts/panoramic_hdri_absolute_luminance_calibration.nk\n\nA workflow example file is available at this url: https://github.com/colour-science/colour-nuke/blob/master/colour_nuke/scripts/panoramic_hdri_absolute_luminance_calibration_workflow_example.nk\n\n\[1] Lagarde, S., Lachambre, S., & Jover, C. (2016). An Artist-Friendly Workflow for Panoramic HDRI. Retrieved from http://blog.selfshadow.com/publications/s2016-shading-course/unity/s2016_pbs_unity_hdri_notes.pdf\n"
+ label "PANORAMIC HDRI - ABSOLUTE LUMINANCE CALIBRATION 2.0\n\ncolour-science.org - February 01, 2020\n\nThis file defines two Gizmos / Groups:\n\n- Panoramic HDRI - Absolute Luminance Calibration: Performs absolute luminance calibration of panoramic HDRI images using Lagarde (2016) method.\n- Panoramic HDRI - Analytic Light Source: Computes the illuminance value for an analytic light source accounting for the illuminance difference between two panoramic HDRI images and the light source position in the image using Lagarde (2016) method.\n\nNote that the \"Panoramic HDRI - Analytic Light Source\" Gizmo / Group currently uses two hard copies of the \"Panoramic HDRI - Absolute Luminance Calibration\" Group, it is strongly advised to replace them with the Gizmo variant in the context of a studio deployment.\n\nLatest version of the file will always be available at this URL: https://github.com/colour-science/colour-nuke/blob/master/colour_nuke/scripts/panoramic_hdri_absolute_luminance_calibration.nk\n\nA workflow example file is available at this URL: https://github.com/colour-science/colour-nuke/blob/master/colour_nuke/scripts/panoramic_hdri_absolute_luminance_calibration_workflow_example.nk\n\n\[1] Lagarde, S., Lachambre, S., & Jover, C. (2016). An Artist-Friendly Workflow for Panoramic HDRI. Retrieved from http://blog.selfshadow.com/publications/s2016-shading-course/unity/s2016_pbs_unity_hdri_notes.pdf\n"
  note_font_size 14
+ selected true
  xpos -481
  ypos -141
 }
