@@ -8,20 +8,20 @@ define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
             <dock id="" hideTitles="1" activePageId="Toolbar.1">
                 <page id="Toolbar.1"/>
             </dock>
-            <split size="695" stretch="1"/>
+            <split size="617" stretch="1"/>
             <splitter orientation="2">
                 <split size="441"/>
-                <dock id="" activePageId="Viewer.1">
+                <dock id="" activePageId="Viewer.1" focus="true">
                     <page id="Viewer.1"/>
                 </dock>
                 <split size="310"/>
-                <dock id="" activePageId="DAG.1" focus="true">
+                <dock id="" activePageId="DAG.1">
                     <page id="DAG.1"/>
                     <page id="Curve Editor.1"/>
                     <page id="DopeSheet.1"/>
                 </dock>
             </splitter>
-            <split size="537"/>
+            <split size="615"/>
             <dock id="" activePageId="Properties.1">
                 <page id="Properties.1"/>
             </dock>
@@ -31,8 +31,7 @@ define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
 }
 Root {
  inputs 0
- name /Users/kelsolaar/Documents/Development/colour-science/colour-nuke/colour_nuke/scripts/panoramic_hdri_absolute_luminance_calibration.nk
- mapsize {0.164028777 0.1223776224}
+ name /Users/kelsolaar/Documents/Development/colour-science/colour-nuke/colour_nuke/scripts/panoramic_hdri_absolute_luminance_calibration_workflow_example.nk
  format "2048 1556 0 0 2048 1556 1 2K_Super_35(full-ap)"
  proxy_type scale
  proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
@@ -44,18 +43,32 @@ Root {
  logLut Cineon
  floatLut linear
 }
-Group {
+Read {
  inputs 0
+ file /Users/kelsolaar/Documents/Development/colour-science/colour-hdri/colour_hdri/resources/colour-hdri-examples-datasets/unity_001/Unity_Treasure_Island_White_Balanced.exr
+ format "1024 512 0 0 1024 512 1 "
+ origset true
+ name Read1
+ xpos -40
+ ypos -61
+}
+Reformat {
+ format "1024 512 0 0 1024 512 1 "
+ name Reformat
+ xpos -40
+ ypos 35
+}
+Group {
  name Panoramic_HDRI_Absolute_Luminance_Calibration
  tile_color 0xffbf00ff
- xpos 70
- ypos 111
+ xpos -40
+ ypos 63
  addUserKnob {20 panoramic_hdri_absolute_luminance_calibration_tab l "Panoramic HDRI - Absolute Luminance Calibration"}
  addUserKnob {20 illuminance_parameters_Group l "Illuminance Parameters" n 1}
  addUserKnob {22 compute_input_illuminance_Python_Script_Button l "Compute Input Illuminance" t "Computes the input illuminance. \n\nThe input illuminance has to be manually recomputed each time that up-stream graph is changed." T nuke.toNode('average_CurveTool').knob('go').execute() +STARTLINE}
  addUserKnob {22 reset_input_illuminance_Python_Script_Button l "Reset Input Illuminance" t "Reset the input illuminance." -STARTLINE T "node =  nuke.toNode('average_CurveTool')\n\nknob = node.knob('intensitydata')\nknob.clearAnimated()\nknob.setValue(1)"}
  addUserKnob {7 measured_illuminance_Floating_Point_Slider l "Measured Illuminance (Lux)" t "Measured illuminance E_v in Lumen per square metre (Lux)" R 0 120000}
- measured_illuminance_Floating_Point_Slider 1
+ measured_illuminance_Floating_Point_Slider 51000
  addUserKnob {20 tone_parameters_endGroup l endGroup n -1}
  addUserKnob {20 miscellaneous_Group l "Miscellaneous Parameters" n 1}
  addUserKnob {4 colourspace_Pulldown_Choice l Colourspace M {ACES2065-1 ACEScc ACEScg ACESproxy "ALEXA Wide Gamut RGB" "Adobe RGB (1998)" "Adobe Wide Gamut RGB" "Apple RGB" "Best RGB" "Beta RGB" "CIE RGB" "Cinema Gamut" "ColorMatch RGB" DCI-P3 DCI-P3+ DRAGONcolor DRAGONcolor2 "Don RGB 4" "ECI RGB v2" "ERIMM RGB" "Ekta Space PS 5" "Max RGB" "NTSC RGB" "Pal/Secam RGB" "ProPhoto RGB" REDcolor REDcolor2 REDcolor3 REDcolor4 "RIMM RGB" "ROMM RGB" "Rec. 2020" "Rec. 709" "Russell RGB" S-Gamut S-Gamut3 S-Gamut3.Cine "SMPTE-C RGB" V-Gamut "Xtreme RGB" sRGB}}
@@ -74,7 +87,7 @@ Group {
   xpos -150
   ypos -177
  }
-set N22821e60 [stack 0]
+set Nf7c7860 [stack 0]
  Dot {
   name Dot1
   xpos -116
@@ -99,7 +112,7 @@ set N22821e60 [stack 0]
    xpos -4880
    ypos -273
   }
-set N26c05240 [stack 0]
+set Nf7d9030 [stack 0]
   Expression {
    expr0 "0.212639005872 * r + 0.715168678768 * g + 0.0721923153607 * b"
    expr1 "0.212639005872 * r + 0.715168678768 * g + 0.0721923153607 * b"
@@ -109,7 +122,7 @@ set N26c05240 [stack 0]
    xpos -5006
    ypos -251
   }
-push $N26c05240
+push $Nf7d9030
   Expression {
    expr0 "0.0 * r + 1.0 * g + 0.0 * b"
    expr1 "0.0 * r + 1.0 * g + 0.0 * b"
@@ -118,7 +131,7 @@ push $N26c05240
    xpos -5136
    ypos -251
   }
-push $N26c05240
+push $Nf7d9030
   Expression {
    expr0 "0.26068555009 * r + 0.77489446333 * g + -0.03558001342 * b"
    expr1 "0.26068555009 * r + 0.77489446333 * g + -0.03558001342 * b"
@@ -127,7 +140,7 @@ push $N26c05240
    xpos -5286
    ypos -251
   }
-push $N26c05240
+push $Nf7d9030
   Expression {
    expr0 "0.212376360705 * r + 0.701059856926 * g + 0.0865637823692 * b"
    expr1 "0.212376360705 * r + 0.701059856926 * g + 0.0865637823692 * b"
@@ -136,7 +149,7 @@ push $N26c05240
    xpos -5436
    ypos -251
   }
-push $N26c05240
+push $Nf7d9030
   Expression {
    expr0 "0.215075820116 * r + 0.885068501744 * g + -0.100144321859 * b"
    expr1 "0.215075820116 * r + 0.885068501744 * g + -0.100144321859 * b"
@@ -145,7 +158,7 @@ push $N26c05240
    xpos -5586
    ypos -251
   }
-push $N26c05240
+push $Nf7d9030
   Expression {
    expr0 "0.270979670813 * r + 0.786606411221 * g + -0.0575860820344 * b"
    expr1 "0.270979670813 * r + 0.786606411221 * g + -0.0575860820344 * b"
@@ -154,7 +167,7 @@ push $N26c05240
    xpos -5736
    ypos -251
   }
-push $N26c05240
+push $Nf7d9030
   Expression {
    expr0 "0.270979670813 * r + 0.786606411221 * g + -0.0575860820344 * b"
    expr1 "0.270979670813 * r + 0.786606411221 * g + -0.0575860820344 * b"
@@ -163,7 +176,7 @@ push $N26c05240
    xpos -5886
    ypos -251
   }
-push $N26c05240
+push $Nf7d9030
   Expression {
    expr0 "0.315199106486 * r + 0.664839320751 * g + 0.0199615727626 * b"
    expr1 "0.315199106486 * r + 0.664839320751 * g + 0.0199615727626 * b"
@@ -172,7 +185,7 @@ push $N26c05240
    xpos -6036
    ypos -251
   }
-push $N26c05240
+push $Nf7d9030
   Expression {
    expr0 "0.212639005872 * r + 0.715168678768 * g + 0.0721923153607 * b"
    expr1 "0.212639005872 * r + 0.715168678768 * g + 0.0721923153607 * b"
@@ -181,7 +194,7 @@ push $N26c05240
    xpos -6186
    ypos -251
   }
-push $N26c05240
+push $Nf7d9030
   Expression {
    expr0 "0.262700212011 * r + 0.677998071519 * g + 0.0593017164699 * b"
    expr1 "0.262700212011 * r + 0.677998071519 * g + 0.0593017164699 * b"
@@ -190,7 +203,7 @@ push $N26c05240
    xpos -6336
    ypos -251
   }
-push $N26c05240
+push $Nf7d9030
   Expression {
    expr0 "0.288071128229 * r + 0.71184321781 * g + 8.56539606053e-05 * b"
    expr1 "0.288071128229 * r + 0.71184321781 * g + 8.56539606053e-05 * b"
@@ -199,7 +212,7 @@ push $N26c05240
    xpos -6486
    ypos -251
   }
-push $N26c05240
+push $Nf7d9030
   Expression {
    expr0 "0.288071128229 * r + 0.71184321781 * g + 8.56539606053e-05 * b"
    expr1 "0.288071128229 * r + 0.71184321781 * g + 8.56539606053e-05 * b"
@@ -208,7 +221,7 @@ push $N26c05240
    xpos -6636
    ypos -251
   }
-push $N26c05240
+push $Nf7d9030
   Expression {
    expr0 "0.211947869481 * r + 0.723019772048 * g + 0.0650323584709 * b"
    expr1 "0.211947869481 * r + 0.723019772048 * g + 0.0650323584709 * b"
@@ -217,7 +230,7 @@ push $N26c05240
    xpos -6786
    ypos -251
   }
-push $N26c05240
+push $Nf7d9030
   Expression {
    expr0 "0.22890381241 * r + 0.780859824404 * g + -0.0097636368135 * b"
    expr1 "0.22890381241 * r + 0.780859824404 * g + -0.0097636368135 * b"
@@ -226,7 +239,7 @@ push $N26c05240
    xpos -6936
    ypos -251
   }
-push $N26c05240
+push $Nf7d9030
   Expression {
    expr0 "0.169442097101 * r + 0.864828202542 * g + -0.0342702996431 * b"
    expr1 "0.169442097101 * r + 0.864828202542 * g + -0.0342702996431 * b"
@@ -235,7 +248,7 @@ push $N26c05240
    xpos -7086
    ypos -251
   }
-push $N26c05240
+push $Nf7d9030
   Expression {
    expr0 "0.202218816094 * r + 0.758528901746 * g + 0.03925228216 * b"
    expr1 "0.202218816094 * r + 0.758528901746 * g + 0.03925228216 * b"
@@ -244,7 +257,7 @@ push $N26c05240
    xpos -7236
    ypos -251
   }
-push $N26c05240
+push $Nf7d9030
   Expression {
    expr0 "0.288071128229 * r + 0.71184321781 * g + 8.56539606053e-05 * b"
    expr1 "0.288071128229 * r + 0.71184321781 * g + 8.56539606053e-05 * b"
@@ -253,7 +266,7 @@ push $N26c05240
    xpos -7386
    ypos -251
   }
-push $N26c05240
+push $Nf7d9030
   Expression {
    expr0 "0.222004309998 * r + 0.706654765925 * g + 0.0713409240765 * b"
    expr1 "0.222004309998 * r + 0.706654765925 * g + 0.0713409240765 * b"
@@ -262,7 +275,7 @@ push $N26c05240
    xpos -7536
    ypos -251
   }
-push $N26c05240
+push $Nf7d9030
   Expression {
    expr0 "0.29890307025 * r + 0.586619854659 * g + 0.114477075091 * b"
    expr1 "0.29890307025 * r + 0.586619854659 * g + 0.114477075091 * b"
@@ -271,7 +284,7 @@ push $N26c05240
    xpos -7686
    ypos -251
   }
-push $N26c05240
+push $Nf7d9030
   Expression {
    expr0 "0.31011010912 * r + 0.68988989088 * g + 0.0 * b"
    expr1 "0.31011010912 * r + 0.68988989088 * g + 0.0 * b"
@@ -280,7 +293,7 @@ push $N26c05240
    xpos -7836
    ypos -251
   }
-push $N26c05240
+push $Nf7d9030
   Expression {
    expr0 "0.261148012901 * r + 0.734851409355 * g + 0.00400057774408 * b"
    expr1 "0.261148012901 * r + 0.734851409355 * g + 0.00400057774408 * b"
@@ -289,7 +302,7 @@ push $N26c05240
    xpos -7986
    ypos -251
   }
-push $N26c05240
+push $Nf7d9030
   Expression {
    expr0 "0.288071128229 * r + 0.71184321781 * g + 8.56539606053e-05 * b"
    expr1 "0.288071128229 * r + 0.71184321781 * g + 8.56539606053e-05 * b"
@@ -298,7 +311,7 @@ push $N26c05240
    xpos -8136
    ypos -251
   }
-push $N26c05240
+push $Nf7d9030
   Expression {
    expr0 "0.320159696395 * r + 0.601827518042 * g + 0.0780127855624 * b"
    expr1 "0.320159696395 * r + 0.601827518042 * g + 0.0780127855624 * b"
@@ -307,7 +320,7 @@ push $N26c05240
    xpos -8286
    ypos -251
   }
-push $N26c05240
+push $Nf7d9030
   Expression {
    expr0 "0.278137227919 * r + 0.687858269682 * g + 0.0340045023989 * b"
    expr1 "0.278137227919 * r + 0.687858269682 * g + 0.0340045023989 * b"
@@ -316,7 +329,7 @@ push $N26c05240
    xpos -8436
    ypos -251
   }
-push $N26c05240
+push $Nf7d9030
   Expression {
    expr0 "0.194255795247 * r + 0.738556869189 * g + 0.0671873355644 * b"
    expr1 "0.194255795247 * r + 0.738556869189 * g + 0.0671873355644 * b"
@@ -325,7 +338,7 @@ push $N26c05240
    xpos -8586
    ypos -251
   }
-push $N26c05240
+push $Nf7d9030
   Expression {
    expr0 "0.220724022316 * r + 0.839188054601 * g + -0.0599120769169 * b"
    expr1 "0.220724022316 * r + 0.839188054601 * g + -0.0599120769169 * b"
@@ -334,7 +347,7 @@ push $N26c05240
    xpos -8736
    ypos -251
   }
-push $N26c05240
+push $Nf7d9030
   Expression {
    expr0 "0.203986297104 * r + 0.882591093117 * g + -0.0865773902211 * b"
    expr1 "0.203986297104 * r + 0.882591093117 * g + -0.0865773902211 * b"
@@ -343,7 +356,7 @@ push $N26c05240
    xpos -8886
    ypos -251
   }
-push $N26c05240
+push $Nf7d9030
   Expression {
    expr0 "0.209491677913 * r + 0.721595254161 * g + 0.0689130679262 * b"
    expr1 "0.209491677913 * r + 0.721595254161 * g + 0.0689130679262 * b"
@@ -352,7 +365,7 @@ push $N26c05240
    xpos -9036
    ypos -251
   }
-push $N26c05240
+push $Nf7d9030
   Expression {
    expr0 "0.274950336309 * r + 0.658074997381 * g + 0.0669746663108 * b"
    expr1 "0.274950336309 * r + 0.658074997381 * g + 0.0669746663108 * b"
@@ -361,7 +374,7 @@ push $N26c05240
    xpos -9186
    ypos -251
   }
-push $N26c05240
+push $Nf7d9030
   Expression {
    expr0 "0.261261357526 * r + 0.869642145755 * g + -0.130903503281 * b"
    expr1 "0.261261357526 * r + 0.869642145755 * g + -0.130903503281 * b"
@@ -370,7 +383,7 @@ push $N26c05240
    xpos -9336
    ypos -251
   }
-push $N26c05240
+push $Nf7d9030
   Expression {
    expr0 "0.176204436534 * r + 0.812984693878 * g + 0.0108108695884 * b"
    expr1 "0.176204436534 * r + 0.812984693878 * g + 0.0108108695884 * b"
@@ -379,7 +392,7 @@ push $N26c05240
    xpos -9486
    ypos -251
   }
-push $N26c05240
+push $Nf7d9030
   Expression {
    expr0 "0.303318752896 * r + 0.663744233497 * g + 0.0329370136071 * b"
    expr1 "0.303318752896 * r + 0.663744233497 * g + 0.0329370136071 * b"
@@ -388,7 +401,7 @@ push $N26c05240
    xpos -9636
    ypos -251
   }
-push $N26c05240
+push $Nf7d9030
   Expression {
    expr0 "0.227601772978 * r + 0.738394652678 * g + 0.0340035743443 * b"
    expr1 "0.227601772978 * r + 0.738394652678 * g + 0.0340035743443 * b"
@@ -397,7 +410,7 @@ push $N26c05240
    xpos -9786
    ypos -251
   }
-push $N26c05240
+push $Nf7d9030
   Expression {
    expr0 "0.244615922485 * r + 0.672044251324 * g + 0.0833398261912 * b"
    expr1 "0.244615922485 * r + 0.672044251324 * g + 0.0833398261912 * b"
@@ -406,7 +419,7 @@ push $N26c05240
    xpos -9936
    ypos -251
   }
-push $N26c05240
+push $Nf7d9030
   Expression {
    expr0 "0.25872824304 * r + 0.724682314949 * g + 0.0165894420113 * b"
    expr1 "0.25872824304 * r + 0.724682314949 * g + 0.0165894420113 * b"
@@ -415,7 +428,7 @@ push $N26c05240
    xpos -10086
    ypos -251
   }
-push $N26c05240
+push $Nf7d9030
   Expression {
    expr0 "0.297344975251 * r + 0.627363566255 * g + 0.075291458494 * b"
    expr1 "0.297344975251 * r + 0.627363566255 * g + 0.075291458494 * b"
@@ -424,7 +437,7 @@ push $N26c05240
    xpos -10236
    ypos -251
   }
-push $N26c05240
+push $Nf7d9030
   Expression {
    expr0 "0.291953779 * r + 0.823841041511 * g + -0.11579482051 * b"
    expr1 "0.291953779 * r + 0.823841041511 * g + -0.11579482051 * b"
@@ -433,7 +446,7 @@ push $N26c05240
    xpos -10386
    ypos -251
   }
-push $N26c05240
+push $Nf7d9030
   Expression {
    expr0 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
    expr1 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
@@ -442,7 +455,7 @@ push $N26c05240
    xpos -10536
    ypos -251
   }
-push $N26c05240
+push $Nf7d9030
   Expression {
    expr0 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
    expr1 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
@@ -451,7 +464,7 @@ push $N26c05240
    xpos -10686
    ypos -251
   }
-push $N26c05240
+push $Nf7d9030
   Expression {
    expr0 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
    expr1 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
@@ -460,7 +473,7 @@ push $N26c05240
    xpos -10836
    ypos -251
   }
-push $N26c05240
+push $Nf7d9030
   Expression {
    expr0 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
    expr1 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
@@ -484,7 +497,7 @@ push $N26c05240
    ypos -201
   }
  end_group
-push $N22821e60
+push $Nf7c7860
  Expression {
   temp_name0 theta_cos
   temp_expr0 "cos((1 - y / (height - 1)) * pi)"
@@ -513,12 +526,12 @@ push $N22821e60
   avgframes 1
   ROI {0 0 {Input.width} {Input.height}}
   autocropdata {1071 712 3214 2136}
-  intensitydata 1
+  intensitydata {{curve x1 5.209845026} {curve x1 5.209845026} {curve x1 5.209845026} {curve x1 5.209845026}}
   name average_CurveTool
   xpos -260
   ypos -129
  }
-push $N22821e60
+push $Nf7c7860
  Multiply {
   value {{luminance_scaling_factor_Floating_Point_Slider}}
   name luminance_scaling_Multiply
@@ -538,27 +551,121 @@ push $N22821e60
   ypos -105
  }
 end_group
-Viewer {
- frame_range 1-100
- colour_sample_bbox {0.279296875 0.025390625 0.505859375 0.23046875}
- samplepoints {{-0.4682617188 0.0390625}
-   }
- name Viewer1
- xpos 70
- ypos 135
+set N15863000 [stack 0]
+RotoPaint {
+ output {-rgba.red -rgba.green -rgba.blue rgba.alpha}
+ curves {{{v x3f99999a}
+  {f 0}
+  {n
+   {layer Root
+    {f 2097152}
+    {t x44000000 x43800000}
+    {a pt1x 0 pt1y 0 pt2x 0 pt2y 0 pt3x 0 pt3y 0 pt4x 0 pt4y 0 ptex00 0 ptex01 0 ptex02 0 ptex03 0 ptex10 0 ptex11 0 ptex12 0 ptex13 0 ptex20 0 ptex21 0 ptex22 0 ptex23 0 ptex30 0 ptex31 0 ptex32 0 ptex33 0 ptof1x 0 ptof1y 0 ptof2x 0 ptof2y 0 ptof3x 0 ptof3y 0 ptof4x 0 ptof4y 0 pterr 0 ptrefset 0 ptmot x40800000 ptref 0}
+    {curvegroup Ellipse1 512 bezier
+     {{cc
+       {f 8192}
+       {px 1
+        {xc0cca9ee xbf52da61}
+        {x442cd0e0 x439caf0f}
+        {x40cca9ee x3f52da6e}
+        {xc10e2ef8 xc1143108}
+        {x443772f3 x43a3ea85}
+        {x410e2ef7 x41143108}
+        {x40e16624 xc166f2a5}
+        {x443cc444 x43bdeeef}
+        {xc0e16622 x4166f2a6}
+        {x41427684 xbf4ba412}
+        {x442deccd x43caf334}
+        {xc1427684 x3f4ba3f3}
+        {x4098354e x411d7615}
+        {x44247860 x43c11d1d}
+        {xc098354b xc11d7615}
+        {xbfbcc2ab x4106b092}
+        {x44271aaa x43aeb99a}
+        {x3fbcc2b5 xc106b092}
+        {xc05cc8ed x40ae57ca}
+        {x442763d3 x439fc7a8}
+        {x405cc8ee xc0ae57c9}}}     idem}
+     {tx 1 x442d4ccd x43ae199a}
+     {a inv 1 osw x41200000 osf 0 str 1 spx x44000000 spy x43800000 sb 1 tt x40e00000}}}}}}
+ toolbox {selectAll {
+  { selectAll str 1 ssx 1 ssy 1 sf 1 }
+  { createBezier str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createBezierCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createBSpline str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createEllipse str 1 ssx 1 ssy 1 sf 1 sb 1 tt 7 }
+  { createRectangle str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createRectangleCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { addPoints str 1 ssx 1 ssy 1 sf 1 }
+  { brush str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { eraser src 2 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { clone src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { reveal src 3 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { dodge src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { burn src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { blur src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { sharpen src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { smear src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+} }
+ toolbar_brush_hardness 0.200000003
+ toolbar_source_transform_scale {1 1}
+ toolbar_source_transform_center {512 256}
+ colorOverlay {0 0 0 0}
+ lifetime_type "all frames"
+ motionblur_shutter_offset_type centred
+ inverted true
+ source_black_outside true
+ name RotoPaint
+ xpos -40
+ ypos 107
 }
+set N24b2d0d0 [stack 0]
+Blur {
+ size 8
+ name RotoPaint_Blur
+ xpos 70
+ ypos 107
+}
+push $N24b2d0d0
+LevelSet {
+ create_matte true
+ matte_limit 100
+ extrapolated rgb
+ name Initial_LevelSet
+ xpos -40
+ ypos 155
+}
+Blur {
+ inputs 1+1
+ size 32
+ invert_mask true
+ name Blur
+ xpos 70
+ ypos 155
+}
+set N2352a4b0 [stack 0]
+Viewer {
+ frame 1
+ frame_range 1-100
+ gain 2.157918644e-05
+ name Viewer1
+ xpos -40
+ ypos 231
+}
+push $N2352a4b0
+push $N15863000
 Group {
- inputs 0
+ inputs 2
  name Panoramic_HDRI_Analytic_Light_Source
  tile_color 0xffbf00ff
- xpos 180
- ypos 111
+ xpos 70
+ ypos 231
  addUserKnob {20 panoramic_hdri_analytic_light_source_tab l "Panoramic HDRI - Analytic Light Source"}
  addUserKnob {20 input_parameters_Group l "Input Parameters" n 1}
  addUserKnob {22 compute_input_illuminance_Python_Script_Button l "Compute Input Illuminance" t "Computes the input illuminance. \n\nThe input illuminance has to be manually recomputed each time that up-stream graph is changed." T "nuke.toNode('HDRI_Absolute_Luminance_Calibration').knob('compute_input_illuminance_Python_Script_Button').execute()\nnuke.toNode('Shadows_HDRI_Absolute_Luminance_Calibration').knob('compute_input_illuminance_Python_Script_Button').execute()" +STARTLINE}
  addUserKnob {22 reset_input_illuminance_Python_Script_Button l "Reset Input Illuminance" t "Reset the input illuminance." -STARTLINE T "nuke.toNode('HDRI_Absolute_Luminance_Calibration').knob('reset_input_illuminance_Python_Script_Button').execute()\nnuke.toNode('Shadows_HDRI_Absolute_Luminance_Calibration').knob('reset_input_illuminance_Python_Script_Button').execute()"}
  addUserKnob {12 light_source_location_2d_Position_Knob l "Light Source Location"}
- light_source_location_2d_Position_Knob {512 512}
+ light_source_location_2d_Position_Knob {694.4799805 349.6799927}
  addUserKnob {18 light_colour_RGB_Color_Knob l "Light Colour"}
  light_colour_RGB_Color_Knob {{"(\[sample this red light_source_location_2d_Position_Knob.x-1 light_source_location_2d_Position_Knob.y] + \[sample this red light_source_location_2d_Position_Knob.x+1 light_source_location_2d_Position_Knob.y] + \[sample this red light_source_location_2d_Position_Knob.x light_source_location_2d_Position_Knob.y] + \[sample this red light_source_location_2d_Position_Knob.x light_source_location_2d_Position_Knob.y-1] + \[sample this red light_source_location_2d_Position_Knob.x light_source_location_2d_Position_Knob.y+1]) / 5"} {"(\[sample this green light_source_location_2d_Position_Knob.x-1 light_source_location_2d_Position_Knob.y] + \[sample this green light_source_location_2d_Position_Knob.x+1 light_source_location_2d_Position_Knob.y] + \[sample this green light_source_location_2d_Position_Knob.x light_source_location_2d_Position_Knob.y] + \[sample this green light_source_location_2d_Position_Knob.x light_source_location_2d_Position_Knob.y-1] + \[sample this green light_source_location_2d_Position_Knob.x light_source_location_2d_Position_Knob.y+1]) / 5"} {"(\[sample this blue light_source_location_2d_Position_Knob.x-1 light_source_location_2d_Position_Knob.y] + \[sample this blue light_source_location_2d_Position_Knob.x+1 light_source_location_2d_Position_Knob.y] + \[sample this blue light_source_location_2d_Position_Knob.x light_source_location_2d_Position_Knob.y] + \[sample this blue light_source_location_2d_Position_Knob.x light_source_location_2d_Position_Knob.y-1] + \[sample this blue light_source_location_2d_Position_Knob.x light_source_location_2d_Position_Knob.y+1]) / 5"}}
  addUserKnob {6 light_colour_RGB_Color_Knob_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
@@ -578,13 +685,13 @@ Group {
   xpos -150
   ypos -201
  }
-set Nffae260 [stack 0]
+set N1eef3510 [stack 0]
  Output {
   name Output
   xpos -150
   ypos 39
  }
-push $Nffae260
+push $N1eef3510
  Group {
   name HDRI_Absolute_Luminance_Calibration
   tile_color 0xffbf00ff
@@ -614,7 +721,7 @@ push $Nffae260
    xpos -150
    ypos -177
   }
-set Nff9fd90 [stack 0]
+set N2274c740 [stack 0]
   Dot {
    name Dot1
    xpos -116
@@ -639,7 +746,7 @@ set Nff9fd90 [stack 0]
     xpos -4880
     ypos -273
    }
-set Nffb1750 [stack 0]
+set N33310400 [stack 0]
    Expression {
     expr0 "0.212639005872 * r + 0.715168678768 * g + 0.0721923153607 * b"
     expr1 "0.212639005872 * r + 0.715168678768 * g + 0.0721923153607 * b"
@@ -649,7 +756,7 @@ set Nffb1750 [stack 0]
     xpos -5006
     ypos -251
    }
-push $Nffb1750
+push $N33310400
    Expression {
     expr0 "0.0 * r + 1.0 * g + 0.0 * b"
     expr1 "0.0 * r + 1.0 * g + 0.0 * b"
@@ -658,7 +765,7 @@ push $Nffb1750
     xpos -5136
     ypos -251
    }
-push $Nffb1750
+push $N33310400
    Expression {
     expr0 "0.26068555009 * r + 0.77489446333 * g + -0.03558001342 * b"
     expr1 "0.26068555009 * r + 0.77489446333 * g + -0.03558001342 * b"
@@ -667,7 +774,7 @@ push $Nffb1750
     xpos -5286
     ypos -251
    }
-push $Nffb1750
+push $N33310400
    Expression {
     expr0 "0.212376360705 * r + 0.701059856926 * g + 0.0865637823692 * b"
     expr1 "0.212376360705 * r + 0.701059856926 * g + 0.0865637823692 * b"
@@ -676,7 +783,7 @@ push $Nffb1750
     xpos -5436
     ypos -251
    }
-push $Nffb1750
+push $N33310400
    Expression {
     expr0 "0.215075820116 * r + 0.885068501744 * g + -0.100144321859 * b"
     expr1 "0.215075820116 * r + 0.885068501744 * g + -0.100144321859 * b"
@@ -685,7 +792,7 @@ push $Nffb1750
     xpos -5586
     ypos -251
    }
-push $Nffb1750
+push $N33310400
    Expression {
     expr0 "0.270979670813 * r + 0.786606411221 * g + -0.0575860820344 * b"
     expr1 "0.270979670813 * r + 0.786606411221 * g + -0.0575860820344 * b"
@@ -694,7 +801,7 @@ push $Nffb1750
     xpos -5736
     ypos -251
    }
-push $Nffb1750
+push $N33310400
    Expression {
     expr0 "0.270979670813 * r + 0.786606411221 * g + -0.0575860820344 * b"
     expr1 "0.270979670813 * r + 0.786606411221 * g + -0.0575860820344 * b"
@@ -703,7 +810,7 @@ push $Nffb1750
     xpos -5886
     ypos -251
    }
-push $Nffb1750
+push $N33310400
    Expression {
     expr0 "0.315199106486 * r + 0.664839320751 * g + 0.0199615727626 * b"
     expr1 "0.315199106486 * r + 0.664839320751 * g + 0.0199615727626 * b"
@@ -712,7 +819,7 @@ push $Nffb1750
     xpos -6036
     ypos -251
    }
-push $Nffb1750
+push $N33310400
    Expression {
     expr0 "0.212639005872 * r + 0.715168678768 * g + 0.0721923153607 * b"
     expr1 "0.212639005872 * r + 0.715168678768 * g + 0.0721923153607 * b"
@@ -721,7 +828,7 @@ push $Nffb1750
     xpos -6186
     ypos -251
    }
-push $Nffb1750
+push $N33310400
    Expression {
     expr0 "0.262700212011 * r + 0.677998071519 * g + 0.0593017164699 * b"
     expr1 "0.262700212011 * r + 0.677998071519 * g + 0.0593017164699 * b"
@@ -730,7 +837,7 @@ push $Nffb1750
     xpos -6336
     ypos -251
    }
-push $Nffb1750
+push $N33310400
    Expression {
     expr0 "0.288071128229 * r + 0.71184321781 * g + 8.56539606053e-05 * b"
     expr1 "0.288071128229 * r + 0.71184321781 * g + 8.56539606053e-05 * b"
@@ -739,7 +846,7 @@ push $Nffb1750
     xpos -6486
     ypos -251
    }
-push $Nffb1750
+push $N33310400
    Expression {
     expr0 "0.288071128229 * r + 0.71184321781 * g + 8.56539606053e-05 * b"
     expr1 "0.288071128229 * r + 0.71184321781 * g + 8.56539606053e-05 * b"
@@ -748,7 +855,7 @@ push $Nffb1750
     xpos -6636
     ypos -251
    }
-push $Nffb1750
+push $N33310400
    Expression {
     expr0 "0.211947869481 * r + 0.723019772048 * g + 0.0650323584709 * b"
     expr1 "0.211947869481 * r + 0.723019772048 * g + 0.0650323584709 * b"
@@ -757,7 +864,7 @@ push $Nffb1750
     xpos -6786
     ypos -251
    }
-push $Nffb1750
+push $N33310400
    Expression {
     expr0 "0.22890381241 * r + 0.780859824404 * g + -0.0097636368135 * b"
     expr1 "0.22890381241 * r + 0.780859824404 * g + -0.0097636368135 * b"
@@ -766,7 +873,7 @@ push $Nffb1750
     xpos -6936
     ypos -251
    }
-push $Nffb1750
+push $N33310400
    Expression {
     expr0 "0.169442097101 * r + 0.864828202542 * g + -0.0342702996431 * b"
     expr1 "0.169442097101 * r + 0.864828202542 * g + -0.0342702996431 * b"
@@ -775,7 +882,7 @@ push $Nffb1750
     xpos -7086
     ypos -251
    }
-push $Nffb1750
+push $N33310400
    Expression {
     expr0 "0.202218816094 * r + 0.758528901746 * g + 0.03925228216 * b"
     expr1 "0.202218816094 * r + 0.758528901746 * g + 0.03925228216 * b"
@@ -784,7 +891,7 @@ push $Nffb1750
     xpos -7236
     ypos -251
    }
-push $Nffb1750
+push $N33310400
    Expression {
     expr0 "0.288071128229 * r + 0.71184321781 * g + 8.56539606053e-05 * b"
     expr1 "0.288071128229 * r + 0.71184321781 * g + 8.56539606053e-05 * b"
@@ -793,7 +900,7 @@ push $Nffb1750
     xpos -7386
     ypos -251
    }
-push $Nffb1750
+push $N33310400
    Expression {
     expr0 "0.222004309998 * r + 0.706654765925 * g + 0.0713409240765 * b"
     expr1 "0.222004309998 * r + 0.706654765925 * g + 0.0713409240765 * b"
@@ -802,7 +909,7 @@ push $Nffb1750
     xpos -7536
     ypos -251
    }
-push $Nffb1750
+push $N33310400
    Expression {
     expr0 "0.29890307025 * r + 0.586619854659 * g + 0.114477075091 * b"
     expr1 "0.29890307025 * r + 0.586619854659 * g + 0.114477075091 * b"
@@ -811,7 +918,7 @@ push $Nffb1750
     xpos -7686
     ypos -251
    }
-push $Nffb1750
+push $N33310400
    Expression {
     expr0 "0.31011010912 * r + 0.68988989088 * g + 0.0 * b"
     expr1 "0.31011010912 * r + 0.68988989088 * g + 0.0 * b"
@@ -820,7 +927,7 @@ push $Nffb1750
     xpos -7836
     ypos -251
    }
-push $Nffb1750
+push $N33310400
    Expression {
     expr0 "0.261148012901 * r + 0.734851409355 * g + 0.00400057774408 * b"
     expr1 "0.261148012901 * r + 0.734851409355 * g + 0.00400057774408 * b"
@@ -829,7 +936,7 @@ push $Nffb1750
     xpos -7986
     ypos -251
    }
-push $Nffb1750
+push $N33310400
    Expression {
     expr0 "0.288071128229 * r + 0.71184321781 * g + 8.56539606053e-05 * b"
     expr1 "0.288071128229 * r + 0.71184321781 * g + 8.56539606053e-05 * b"
@@ -838,7 +945,7 @@ push $Nffb1750
     xpos -8136
     ypos -251
    }
-push $Nffb1750
+push $N33310400
    Expression {
     expr0 "0.320159696395 * r + 0.601827518042 * g + 0.0780127855624 * b"
     expr1 "0.320159696395 * r + 0.601827518042 * g + 0.0780127855624 * b"
@@ -847,7 +954,7 @@ push $Nffb1750
     xpos -8286
     ypos -251
    }
-push $Nffb1750
+push $N33310400
    Expression {
     expr0 "0.278137227919 * r + 0.687858269682 * g + 0.0340045023989 * b"
     expr1 "0.278137227919 * r + 0.687858269682 * g + 0.0340045023989 * b"
@@ -856,7 +963,7 @@ push $Nffb1750
     xpos -8436
     ypos -251
    }
-push $Nffb1750
+push $N33310400
    Expression {
     expr0 "0.194255795247 * r + 0.738556869189 * g + 0.0671873355644 * b"
     expr1 "0.194255795247 * r + 0.738556869189 * g + 0.0671873355644 * b"
@@ -865,7 +972,7 @@ push $Nffb1750
     xpos -8586
     ypos -251
    }
-push $Nffb1750
+push $N33310400
    Expression {
     expr0 "0.220724022316 * r + 0.839188054601 * g + -0.0599120769169 * b"
     expr1 "0.220724022316 * r + 0.839188054601 * g + -0.0599120769169 * b"
@@ -874,7 +981,7 @@ push $Nffb1750
     xpos -8736
     ypos -251
    }
-push $Nffb1750
+push $N33310400
    Expression {
     expr0 "0.203986297104 * r + 0.882591093117 * g + -0.0865773902211 * b"
     expr1 "0.203986297104 * r + 0.882591093117 * g + -0.0865773902211 * b"
@@ -883,7 +990,7 @@ push $Nffb1750
     xpos -8886
     ypos -251
    }
-push $Nffb1750
+push $N33310400
    Expression {
     expr0 "0.209491677913 * r + 0.721595254161 * g + 0.0689130679262 * b"
     expr1 "0.209491677913 * r + 0.721595254161 * g + 0.0689130679262 * b"
@@ -892,7 +999,7 @@ push $Nffb1750
     xpos -9036
     ypos -251
    }
-push $Nffb1750
+push $N33310400
    Expression {
     expr0 "0.274950336309 * r + 0.658074997381 * g + 0.0669746663108 * b"
     expr1 "0.274950336309 * r + 0.658074997381 * g + 0.0669746663108 * b"
@@ -901,7 +1008,7 @@ push $Nffb1750
     xpos -9186
     ypos -251
    }
-push $Nffb1750
+push $N33310400
    Expression {
     expr0 "0.261261357526 * r + 0.869642145755 * g + -0.130903503281 * b"
     expr1 "0.261261357526 * r + 0.869642145755 * g + -0.130903503281 * b"
@@ -910,7 +1017,7 @@ push $Nffb1750
     xpos -9336
     ypos -251
    }
-push $Nffb1750
+push $N33310400
    Expression {
     expr0 "0.176204436534 * r + 0.812984693878 * g + 0.0108108695884 * b"
     expr1 "0.176204436534 * r + 0.812984693878 * g + 0.0108108695884 * b"
@@ -919,7 +1026,7 @@ push $Nffb1750
     xpos -9486
     ypos -251
    }
-push $Nffb1750
+push $N33310400
    Expression {
     expr0 "0.303318752896 * r + 0.663744233497 * g + 0.0329370136071 * b"
     expr1 "0.303318752896 * r + 0.663744233497 * g + 0.0329370136071 * b"
@@ -928,7 +1035,7 @@ push $Nffb1750
     xpos -9636
     ypos -251
    }
-push $Nffb1750
+push $N33310400
    Expression {
     expr0 "0.227601772978 * r + 0.738394652678 * g + 0.0340035743443 * b"
     expr1 "0.227601772978 * r + 0.738394652678 * g + 0.0340035743443 * b"
@@ -937,7 +1044,7 @@ push $Nffb1750
     xpos -9786
     ypos -251
    }
-push $Nffb1750
+push $N33310400
    Expression {
     expr0 "0.244615922485 * r + 0.672044251324 * g + 0.0833398261912 * b"
     expr1 "0.244615922485 * r + 0.672044251324 * g + 0.0833398261912 * b"
@@ -946,7 +1053,7 @@ push $Nffb1750
     xpos -9936
     ypos -251
    }
-push $Nffb1750
+push $N33310400
    Expression {
     expr0 "0.25872824304 * r + 0.724682314949 * g + 0.0165894420113 * b"
     expr1 "0.25872824304 * r + 0.724682314949 * g + 0.0165894420113 * b"
@@ -955,7 +1062,7 @@ push $Nffb1750
     xpos -10086
     ypos -251
    }
-push $Nffb1750
+push $N33310400
    Expression {
     expr0 "0.297344975251 * r + 0.627363566255 * g + 0.075291458494 * b"
     expr1 "0.297344975251 * r + 0.627363566255 * g + 0.075291458494 * b"
@@ -964,7 +1071,7 @@ push $Nffb1750
     xpos -10236
     ypos -251
    }
-push $Nffb1750
+push $N33310400
    Expression {
     expr0 "0.291953779 * r + 0.823841041511 * g + -0.11579482051 * b"
     expr1 "0.291953779 * r + 0.823841041511 * g + -0.11579482051 * b"
@@ -973,7 +1080,7 @@ push $Nffb1750
     xpos -10386
     ypos -251
    }
-push $Nffb1750
+push $N33310400
    Expression {
     expr0 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
     expr1 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
@@ -982,7 +1089,7 @@ push $Nffb1750
     xpos -10536
     ypos -251
    }
-push $Nffb1750
+push $N33310400
    Expression {
     expr0 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
     expr1 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
@@ -991,7 +1098,7 @@ push $Nffb1750
     xpos -10686
     ypos -251
    }
-push $Nffb1750
+push $N33310400
    Expression {
     expr0 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
     expr1 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
@@ -1000,7 +1107,7 @@ push $Nffb1750
     xpos -10836
     ypos -251
    }
-push $Nffb1750
+push $N33310400
    Expression {
     expr0 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
     expr1 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
@@ -1024,7 +1131,7 @@ push $Nffb1750
     ypos -201
    }
   end_group
-push $Nff9fd90
+push $N2274c740
   Expression {
    temp_name0 theta_cos
    temp_expr0 "cos((1 - y / (height - 1)) * pi)"
@@ -1058,7 +1165,7 @@ push $Nff9fd90
    xpos -260
    ypos -129
   }
-push $Nff9fd90
+push $N2274c740
   Multiply {
    value {{luminance_scaling_factor_Floating_Point_Slider}}
    name luminance_scaling_Multiply
@@ -1114,7 +1221,7 @@ push $Nff9fd90
    xpos -150
    ypos -177
   }
-set N29d23150 [stack 0]
+set N239cc080 [stack 0]
   Dot {
    name Dot1
    xpos -116
@@ -1139,7 +1246,7 @@ set N29d23150 [stack 0]
     xpos -4880
     ypos -273
    }
-set N29f6d510 [stack 0]
+set N239dc580 [stack 0]
    Expression {
     expr0 "0.212639005872 * r + 0.715168678768 * g + 0.0721923153607 * b"
     expr1 "0.212639005872 * r + 0.715168678768 * g + 0.0721923153607 * b"
@@ -1149,7 +1256,7 @@ set N29f6d510 [stack 0]
     xpos -5006
     ypos -251
    }
-push $N29f6d510
+push $N239dc580
    Expression {
     expr0 "0.0 * r + 1.0 * g + 0.0 * b"
     expr1 "0.0 * r + 1.0 * g + 0.0 * b"
@@ -1158,7 +1265,7 @@ push $N29f6d510
     xpos -5136
     ypos -251
    }
-push $N29f6d510
+push $N239dc580
    Expression {
     expr0 "0.26068555009 * r + 0.77489446333 * g + -0.03558001342 * b"
     expr1 "0.26068555009 * r + 0.77489446333 * g + -0.03558001342 * b"
@@ -1167,7 +1274,7 @@ push $N29f6d510
     xpos -5286
     ypos -251
    }
-push $N29f6d510
+push $N239dc580
    Expression {
     expr0 "0.212376360705 * r + 0.701059856926 * g + 0.0865637823692 * b"
     expr1 "0.212376360705 * r + 0.701059856926 * g + 0.0865637823692 * b"
@@ -1176,7 +1283,7 @@ push $N29f6d510
     xpos -5436
     ypos -251
    }
-push $N29f6d510
+push $N239dc580
    Expression {
     expr0 "0.215075820116 * r + 0.885068501744 * g + -0.100144321859 * b"
     expr1 "0.215075820116 * r + 0.885068501744 * g + -0.100144321859 * b"
@@ -1185,7 +1292,7 @@ push $N29f6d510
     xpos -5586
     ypos -251
    }
-push $N29f6d510
+push $N239dc580
    Expression {
     expr0 "0.270979670813 * r + 0.786606411221 * g + -0.0575860820344 * b"
     expr1 "0.270979670813 * r + 0.786606411221 * g + -0.0575860820344 * b"
@@ -1194,7 +1301,7 @@ push $N29f6d510
     xpos -5736
     ypos -251
    }
-push $N29f6d510
+push $N239dc580
    Expression {
     expr0 "0.270979670813 * r + 0.786606411221 * g + -0.0575860820344 * b"
     expr1 "0.270979670813 * r + 0.786606411221 * g + -0.0575860820344 * b"
@@ -1203,7 +1310,7 @@ push $N29f6d510
     xpos -5886
     ypos -251
    }
-push $N29f6d510
+push $N239dc580
    Expression {
     expr0 "0.315199106486 * r + 0.664839320751 * g + 0.0199615727626 * b"
     expr1 "0.315199106486 * r + 0.664839320751 * g + 0.0199615727626 * b"
@@ -1212,7 +1319,7 @@ push $N29f6d510
     xpos -6036
     ypos -251
    }
-push $N29f6d510
+push $N239dc580
    Expression {
     expr0 "0.212639005872 * r + 0.715168678768 * g + 0.0721923153607 * b"
     expr1 "0.212639005872 * r + 0.715168678768 * g + 0.0721923153607 * b"
@@ -1221,7 +1328,7 @@ push $N29f6d510
     xpos -6186
     ypos -251
    }
-push $N29f6d510
+push $N239dc580
    Expression {
     expr0 "0.262700212011 * r + 0.677998071519 * g + 0.0593017164699 * b"
     expr1 "0.262700212011 * r + 0.677998071519 * g + 0.0593017164699 * b"
@@ -1230,7 +1337,7 @@ push $N29f6d510
     xpos -6336
     ypos -251
    }
-push $N29f6d510
+push $N239dc580
    Expression {
     expr0 "0.288071128229 * r + 0.71184321781 * g + 8.56539606053e-05 * b"
     expr1 "0.288071128229 * r + 0.71184321781 * g + 8.56539606053e-05 * b"
@@ -1239,7 +1346,7 @@ push $N29f6d510
     xpos -6486
     ypos -251
    }
-push $N29f6d510
+push $N239dc580
    Expression {
     expr0 "0.288071128229 * r + 0.71184321781 * g + 8.56539606053e-05 * b"
     expr1 "0.288071128229 * r + 0.71184321781 * g + 8.56539606053e-05 * b"
@@ -1248,7 +1355,7 @@ push $N29f6d510
     xpos -6636
     ypos -251
    }
-push $N29f6d510
+push $N239dc580
    Expression {
     expr0 "0.211947869481 * r + 0.723019772048 * g + 0.0650323584709 * b"
     expr1 "0.211947869481 * r + 0.723019772048 * g + 0.0650323584709 * b"
@@ -1257,7 +1364,7 @@ push $N29f6d510
     xpos -6786
     ypos -251
    }
-push $N29f6d510
+push $N239dc580
    Expression {
     expr0 "0.22890381241 * r + 0.780859824404 * g + -0.0097636368135 * b"
     expr1 "0.22890381241 * r + 0.780859824404 * g + -0.0097636368135 * b"
@@ -1266,7 +1373,7 @@ push $N29f6d510
     xpos -6936
     ypos -251
    }
-push $N29f6d510
+push $N239dc580
    Expression {
     expr0 "0.169442097101 * r + 0.864828202542 * g + -0.0342702996431 * b"
     expr1 "0.169442097101 * r + 0.864828202542 * g + -0.0342702996431 * b"
@@ -1275,7 +1382,7 @@ push $N29f6d510
     xpos -7086
     ypos -251
    }
-push $N29f6d510
+push $N239dc580
    Expression {
     expr0 "0.202218816094 * r + 0.758528901746 * g + 0.03925228216 * b"
     expr1 "0.202218816094 * r + 0.758528901746 * g + 0.03925228216 * b"
@@ -1284,7 +1391,7 @@ push $N29f6d510
     xpos -7236
     ypos -251
    }
-push $N29f6d510
+push $N239dc580
    Expression {
     expr0 "0.288071128229 * r + 0.71184321781 * g + 8.56539606053e-05 * b"
     expr1 "0.288071128229 * r + 0.71184321781 * g + 8.56539606053e-05 * b"
@@ -1293,7 +1400,7 @@ push $N29f6d510
     xpos -7386
     ypos -251
    }
-push $N29f6d510
+push $N239dc580
    Expression {
     expr0 "0.222004309998 * r + 0.706654765925 * g + 0.0713409240765 * b"
     expr1 "0.222004309998 * r + 0.706654765925 * g + 0.0713409240765 * b"
@@ -1302,7 +1409,7 @@ push $N29f6d510
     xpos -7536
     ypos -251
    }
-push $N29f6d510
+push $N239dc580
    Expression {
     expr0 "0.29890307025 * r + 0.586619854659 * g + 0.114477075091 * b"
     expr1 "0.29890307025 * r + 0.586619854659 * g + 0.114477075091 * b"
@@ -1311,7 +1418,7 @@ push $N29f6d510
     xpos -7686
     ypos -251
    }
-push $N29f6d510
+push $N239dc580
    Expression {
     expr0 "0.31011010912 * r + 0.68988989088 * g + 0.0 * b"
     expr1 "0.31011010912 * r + 0.68988989088 * g + 0.0 * b"
@@ -1320,7 +1427,7 @@ push $N29f6d510
     xpos -7836
     ypos -251
    }
-push $N29f6d510
+push $N239dc580
    Expression {
     expr0 "0.261148012901 * r + 0.734851409355 * g + 0.00400057774408 * b"
     expr1 "0.261148012901 * r + 0.734851409355 * g + 0.00400057774408 * b"
@@ -1329,7 +1436,7 @@ push $N29f6d510
     xpos -7986
     ypos -251
    }
-push $N29f6d510
+push $N239dc580
    Expression {
     expr0 "0.288071128229 * r + 0.71184321781 * g + 8.56539606053e-05 * b"
     expr1 "0.288071128229 * r + 0.71184321781 * g + 8.56539606053e-05 * b"
@@ -1338,7 +1445,7 @@ push $N29f6d510
     xpos -8136
     ypos -251
    }
-push $N29f6d510
+push $N239dc580
    Expression {
     expr0 "0.320159696395 * r + 0.601827518042 * g + 0.0780127855624 * b"
     expr1 "0.320159696395 * r + 0.601827518042 * g + 0.0780127855624 * b"
@@ -1347,7 +1454,7 @@ push $N29f6d510
     xpos -8286
     ypos -251
    }
-push $N29f6d510
+push $N239dc580
    Expression {
     expr0 "0.278137227919 * r + 0.687858269682 * g + 0.0340045023989 * b"
     expr1 "0.278137227919 * r + 0.687858269682 * g + 0.0340045023989 * b"
@@ -1356,7 +1463,7 @@ push $N29f6d510
     xpos -8436
     ypos -251
    }
-push $N29f6d510
+push $N239dc580
    Expression {
     expr0 "0.194255795247 * r + 0.738556869189 * g + 0.0671873355644 * b"
     expr1 "0.194255795247 * r + 0.738556869189 * g + 0.0671873355644 * b"
@@ -1365,7 +1472,7 @@ push $N29f6d510
     xpos -8586
     ypos -251
    }
-push $N29f6d510
+push $N239dc580
    Expression {
     expr0 "0.220724022316 * r + 0.839188054601 * g + -0.0599120769169 * b"
     expr1 "0.220724022316 * r + 0.839188054601 * g + -0.0599120769169 * b"
@@ -1374,7 +1481,7 @@ push $N29f6d510
     xpos -8736
     ypos -251
    }
-push $N29f6d510
+push $N239dc580
    Expression {
     expr0 "0.203986297104 * r + 0.882591093117 * g + -0.0865773902211 * b"
     expr1 "0.203986297104 * r + 0.882591093117 * g + -0.0865773902211 * b"
@@ -1383,7 +1490,7 @@ push $N29f6d510
     xpos -8886
     ypos -251
    }
-push $N29f6d510
+push $N239dc580
    Expression {
     expr0 "0.209491677913 * r + 0.721595254161 * g + 0.0689130679262 * b"
     expr1 "0.209491677913 * r + 0.721595254161 * g + 0.0689130679262 * b"
@@ -1392,7 +1499,7 @@ push $N29f6d510
     xpos -9036
     ypos -251
    }
-push $N29f6d510
+push $N239dc580
    Expression {
     expr0 "0.274950336309 * r + 0.658074997381 * g + 0.0669746663108 * b"
     expr1 "0.274950336309 * r + 0.658074997381 * g + 0.0669746663108 * b"
@@ -1401,7 +1508,7 @@ push $N29f6d510
     xpos -9186
     ypos -251
    }
-push $N29f6d510
+push $N239dc580
    Expression {
     expr0 "0.261261357526 * r + 0.869642145755 * g + -0.130903503281 * b"
     expr1 "0.261261357526 * r + 0.869642145755 * g + -0.130903503281 * b"
@@ -1410,7 +1517,7 @@ push $N29f6d510
     xpos -9336
     ypos -251
    }
-push $N29f6d510
+push $N239dc580
    Expression {
     expr0 "0.176204436534 * r + 0.812984693878 * g + 0.0108108695884 * b"
     expr1 "0.176204436534 * r + 0.812984693878 * g + 0.0108108695884 * b"
@@ -1419,7 +1526,7 @@ push $N29f6d510
     xpos -9486
     ypos -251
    }
-push $N29f6d510
+push $N239dc580
    Expression {
     expr0 "0.303318752896 * r + 0.663744233497 * g + 0.0329370136071 * b"
     expr1 "0.303318752896 * r + 0.663744233497 * g + 0.0329370136071 * b"
@@ -1428,7 +1535,7 @@ push $N29f6d510
     xpos -9636
     ypos -251
    }
-push $N29f6d510
+push $N239dc580
    Expression {
     expr0 "0.227601772978 * r + 0.738394652678 * g + 0.0340035743443 * b"
     expr1 "0.227601772978 * r + 0.738394652678 * g + 0.0340035743443 * b"
@@ -1437,7 +1544,7 @@ push $N29f6d510
     xpos -9786
     ypos -251
    }
-push $N29f6d510
+push $N239dc580
    Expression {
     expr0 "0.244615922485 * r + 0.672044251324 * g + 0.0833398261912 * b"
     expr1 "0.244615922485 * r + 0.672044251324 * g + 0.0833398261912 * b"
@@ -1446,7 +1553,7 @@ push $N29f6d510
     xpos -9936
     ypos -251
    }
-push $N29f6d510
+push $N239dc580
    Expression {
     expr0 "0.25872824304 * r + 0.724682314949 * g + 0.0165894420113 * b"
     expr1 "0.25872824304 * r + 0.724682314949 * g + 0.0165894420113 * b"
@@ -1455,7 +1562,7 @@ push $N29f6d510
     xpos -10086
     ypos -251
    }
-push $N29f6d510
+push $N239dc580
    Expression {
     expr0 "0.297344975251 * r + 0.627363566255 * g + 0.075291458494 * b"
     expr1 "0.297344975251 * r + 0.627363566255 * g + 0.075291458494 * b"
@@ -1464,7 +1571,7 @@ push $N29f6d510
     xpos -10236
     ypos -251
    }
-push $N29f6d510
+push $N239dc580
    Expression {
     expr0 "0.291953779 * r + 0.823841041511 * g + -0.11579482051 * b"
     expr1 "0.291953779 * r + 0.823841041511 * g + -0.11579482051 * b"
@@ -1473,7 +1580,7 @@ push $N29f6d510
     xpos -10386
     ypos -251
    }
-push $N29f6d510
+push $N239dc580
    Expression {
     expr0 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
     expr1 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
@@ -1482,7 +1589,7 @@ push $N29f6d510
     xpos -10536
     ypos -251
    }
-push $N29f6d510
+push $N239dc580
    Expression {
     expr0 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
     expr1 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
@@ -1491,7 +1598,7 @@ push $N29f6d510
     xpos -10686
     ypos -251
    }
-push $N29f6d510
+push $N239dc580
    Expression {
     expr0 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
     expr1 "0.272228716781 * r + 0.674081765811 * g + 0.0536895174079 * b"
@@ -1500,7 +1607,7 @@ push $N29f6d510
     xpos -10836
     ypos -251
    }
-push $N29f6d510
+push $N239dc580
    Expression {
     expr0 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
     expr1 "0.343966449765 * r + 0.728166096613 * g + -0.0721325463786 * b"
@@ -1524,7 +1631,7 @@ push $N29f6d510
     ypos -201
    }
   end_group
-push $N29d23150
+push $N239cc080
   Expression {
    temp_name0 theta_cos
    temp_expr0 "cos((1 - y / (height - 1)) * pi)"
@@ -1553,12 +1660,12 @@ push $N29d23150
    avgframes 1
    ROI {0 0 {Input.width} {Input.height}}
    autocropdata {1071 712 3214 2136}
-   intensitydata {{curve x1 27521.73225} {curve x1 27521.73225} {curve x1 27521.73225} {curve x1 27521.73225}}
+   intensitydata {{curve x1 26408.02627} {curve x1 26408.02627} {curve x1 26408.02627} {curve x1 27521.73225}}
    name average_CurveTool
    xpos -260
    ypos -129
   }
-push $N29d23150
+push $N239cc080
   Multiply {
    value {{luminance_scaling_factor_Floating_Point_Slider}}
    name luminance_scaling_Multiply
@@ -1578,7 +1685,7 @@ push $N29d23150
    ypos -105
   }
  end_group
-push $Nffae260
+push $N1eef3510
  NoOp {
   name Analytic_Light_Source
   selected true
@@ -1601,13 +1708,3 @@ push $Nffae260
   light_illuminance_floating_Point_Slider {{"(E_hdri_Floating_Point_Slider - E_shadows_hdri_Floating_Point_Slider) / cos(theta_Floating_Point_Slider)"}}
  }
 end_group
-StickyNote {
- inputs 0
- name StickyNote
- tile_color 0x767676ff
- gl_color 0x767676ff
- label "PANORAMIC HDRI - ABSOLUTE LUMINANCE CALIBRATION 2.0\n\ncolour-science.org - February 01, 2020\n\nThis file defines two Gizmos / Groups:\n\n- Panoramic HDRI - Absolute Luminance Calibration: Performs absolute luminance calibration of panoramic HDRI images using Lagarde (2016) method.\n- Panoramic HDRI - Analytic Light Source: Computes the illuminance value for an analytic light source accounting for the illuminance difference between two panoramic HDRI images and the light source position in the image using Lagarde (2016) method.\n\nNote that the \"Panoramic HDRI - Analytic Light Source\" Gizmo / Group currently uses two hard copies of the \"Panoramic HDRI - Absolute Luminance Calibration\" Group, it is strongly advised to replace them with the Gizmo variant in the context of a studio deployment.\n\nLatest version of the file will always be available at this url: https://github.com/colour-science/colour-nuke/blob/master/colour_nuke/scripts/panoramic_hdri_absolute_luminance_calibration.nk\n\nA workflow example file is available at this url: https://github.com/colour-science/colour-nuke/blob/master/colour_nuke/scripts/panoramic_hdri_absolute_luminance_calibration_workflow_example.nk\n\n\[1] Lagarde, S., Lachambre, S., & Jover, C. (2016). An Artist-Friendly Workflow for Panoramic HDRI. Retrieved from http://blog.selfshadow.com/publications/s2016-shading-course/unity/s2016_pbs_unity_hdri_notes.pdf\n"
- note_font_size 14
- xpos -481
- ypos -141
-}
