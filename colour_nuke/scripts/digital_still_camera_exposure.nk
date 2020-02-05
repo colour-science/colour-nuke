@@ -1,0 +1,140 @@
+#! /Applications/Nuke10.5v2/Nuke10.5v2.app/Contents/MacOS/libnuke-10.5.2.dylib -nx
+version 10.5 v2
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="0" y="23" w="1280" h="777" screen="0">
+        <splitter orientation="1">
+            <split size="40"/>
+            <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                <page id="Toolbar.1"/>
+            </dock>
+            <split size="617" stretch="1"/>
+            <splitter orientation="2">
+                <split size="441"/>
+                <dock id="" activePageId="Viewer.1">
+                    <page id="Viewer.1"/>
+                </dock>
+                <split size="310"/>
+                <dock id="" activePageId="DAG.1" focus="true">
+                    <page id="DAG.1"/>
+                    <page id="Curve Editor.1"/>
+                    <page id="DopeSheet.1"/>
+                </dock>
+            </splitter>
+            <split size="615"/>
+            <dock id="" activePageId="Properties.1">
+                <page id="Properties.1"/>
+            </dock>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name /Users/kelsolaar/Documents/Development/colour-science/colour-nuke/colour_nuke/scripts/digital_still_camera_exposure.nk
+ format "2048 1556 0 0 2048 1556 1 2K_Super_35(full-ap)"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+ colorManagement Nuke
+ workingSpaceLUT linear
+ monitorLut sRGB
+ int8Lut sRGB
+ int16Lut sRGB
+ logLut Cineon
+ floatLut linear
+}
+StickyNote {
+ inputs 0
+ name StickyNote
+ tile_color 0x767676ff
+ gl_color 0x767676ff
+ label "DIGITAL STILL CAMERA EXPOSURE - SATURATION BASED SPEED FOCAL PLANE EXPOSURE v1.0\n\ncolour-science.org - February 5, 2020\n\nThis Gizmo / Group computes Saturation-Based Speed (SBS) Focal Plane Exposure in lx.s.\n\nThe model implemented is appropriate to simulate a physical camera in an offline or realtime renderer.\n\nMore information is available here: https://github.com/colour-science/colour-hdri/blob/develop/colour_hdri/exposure/dsc.py\n\nLatest version of the file will always be available at this URL: https://github.com/colour-science/colour-nuke/blob/master/colour_nuke/scripts/digital_still_camera_exposure.nk\n\n\[1] ISO. (2006). INTERNATIONAL STANDARD ISO12232-2006 - Photography - Digital still cameras - Determination of exposure index, ISO speed ratings, standard output sensitivity, and recommended exposure index.\n"
+ note_font_size 14
+ xpos -360
+ ypos -1095
+}
+Group {
+ inputs 0
+ name Saturation_Based_Speed_Focal_Plane_Exposure
+ tile_color 0xffbf00ff
+ xpos 180
+ ypos -873
+ addUserKnob {20 saturation_based_speed_focal_plane_exposure_Tab l "Saturation Based Speed Focal Plane Exposure"}
+ addUserKnob {20 exposure_parameters_Begin_Group l "Exposure Parameters" n 1}
+ addUserKnob {7 A_Floating_Point_Slider l "A (F-Number)" t F-Number.}
+ A_Floating_Point_Slider 8
+ addUserKnob {7 t_Floating_Point_Slider l "t (Exposure Time)" t "F-Number. in s."}
+ t_Floating_Point_Slider 0.008
+ addUserKnob {7 S_Floating_Point_Slider l ISO t "ISO arithmetic speed.\n"}
+ S_Floating_Point_Slider 100
+ addUserKnob {20 exposure_parameters_End_Group l endGroup n -1}
+ addUserKnob {20 geometry_parameters_Begin_Group l "Geometry Parameters" n 1}
+ addUserKnob {7 F_Floating_Point_Slider l "F (Focal Length)" t "Lens focal length in mm."}
+ F_Floating_Point_Slider 50
+ addUserKnob {7 o_Floating_Point_Slider l "o (Focus Distance)" t "Object distance in m."}
+ o_Floating_Point_Slider 5
+ addUserKnob {20 geometry_parameters_End_Group l endGroup n -1}
+ addUserKnob {20 extra_parameters_Begin_Group l "Extra Parameters" n 1}
+ addUserKnob {7 H_f_Floating_Point_Slider l H_f t "Focal plane flare exposure in lx.s."}
+ addUserKnob {7 T_Floating_Point_Slider l T t "Transmission factor of the lens."}
+ T_Floating_Point_Slider 0.9
+ addUserKnob {7 f_v_Floating_Point_Slider l f_v t "Vignetting factor."}
+ f_v_Floating_Point_Slider 0.98
+ addUserKnob {7 theta_Floating_Point_Slider l theta t "Angle of image point off axis in degrees."}
+ theta_Floating_Point_Slider 10
+ addUserKnob {20 extra_parameters_End_Group l endGroup n -1}
+ addUserKnob {20 about_Tab l About}
+ addUserKnob {26 description_Text l "" +STARTLINE T "DIGITAL STILL CAMERA EXPOSURE - SATURATION BASED SPEED FOCAL PLANE EXPOSURE v0.1.0\n\ncolour-science.org - February 5, 2020\n\nThis Gizmo / Group computes Saturation-Based Speed (SBS) Focal Plane Exposure in lx.s.\n\nThe model implemented is appropriate to simulate a physical camera in an offline or realtime renderer.\n\n\[1] ISO. (2006). INTERNATIONAL STANDARD ISO12232-2006 - Photography - Digital still cameras - Determination of exposure index, ISO speed ratings, standard output sensitivity, and recommended exposure index.\n"}
+}
+ Input {
+  inputs 0
+  name Input
+  xpos -47
+  ypos -28
+ }
+ Expression {
+  expr0 "q_Floating_Point_Slider * (r * t_Floating_Point_Slider * F_Floating_Point_Slider ** 2) / (A_Floating_Point_Slider ** 2 * i_Floating_Point_Slider ** 2) + H_f_Floating_Point_Slider"
+  expr1 "q_Floating_Point_Slider * (g * t_Floating_Point_Slider * F_Floating_Point_Slider ** 2) / (A_Floating_Point_Slider ** 2 * i_Floating_Point_Slider ** 2) + H_f_Floating_Point_Slider"
+  expr2 "q_Floating_Point_Slider * (b * t_Floating_Point_Slider * F_Floating_Point_Slider ** 2) / (A_Floating_Point_Slider ** 2 * i_Floating_Point_Slider ** 2) + H_f_Floating_Point_Slider"
+  name Focal_Plane_Exposure
+  selected true
+  xpos -47
+  ypos 12
+  addUserKnob {20 focal_plane_exposure_Tab l "Focal Plane Exposure"}
+  addUserKnob {7 A_Floating_Point_Slider l A t F-Number.}
+  A_Floating_Point_Slider {{parent.A_Floating_Point_Slider}}
+  addUserKnob {7 t_Floating_Point_Slider l "t " t "Exposure time in s."}
+  t_Floating_Point_Slider {{parent.t_Floating_Point_Slider}}
+  addUserKnob {7 F_Floating_Point_Slider l F t "Lens focal length in m."}
+  F_Floating_Point_Slider {{"parent.F_Floating_Point_Slider / 1000"}}
+  addUserKnob {7 i_Floating_Point_Slider l i t "Image distance in m."}
+  i_Floating_Point_Slider {{"1 / (-1 / parent.o_Floating_Point_Slider + 1 / (F_Floating_Point_Slider))"}}
+  addUserKnob {7 H_f_Floating_Point_Slider l H_f t "Focal plane flare exposure in lx.s."}
+  H_f_Floating_Point_Slider {{parent.H_f_Floating_Point_Slider}}
+  addUserKnob {7 T_Floating_Point_Slider l T t "Transmission factor of the lens."}
+  T_Floating_Point_Slider {{parent.T_Floating_Point_Slider}}
+  addUserKnob {7 f_v_Floating_Point_Slider l f_v t "Vignetting factor."}
+  f_v_Floating_Point_Slider {{parent.f_v_Floating_Point_Slider}}
+  addUserKnob {7 theta_Floating_Point_Slider l theta t "Angle of image point off axis in degrees."}
+  theta_Floating_Point_Slider {{parent.theta_Floating_Point_Slider}}
+  addUserKnob {7 q_Floating_Point_Slider l q t "Factor modeling the total lens vignetting and\ntransmission attenuation.\n"}
+  q_Floating_Point_Slider {{"pi / 4 * T_Floating_Point_Slider * f_v_Floating_Point_Slider * cos(theta_Floating_Point_Slider * pi / 180) ** 4"}}
+ }
+ Multiply {
+  value {{"parent.S_Floating_Point_Slider / 100"}}
+  name ISO_Scaling_Multiply
+  xpos -47
+  ypos 36
+ }
+ Multiply {
+  value {{"100 / 78"}}
+  name SBS_Scaling_Multiply
+  xpos -47
+  ypos 68
+ }
+ Output {
+  name Output
+  xpos -47
+  ypos 112
+ }
+end_group
