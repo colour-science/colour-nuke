@@ -15,14 +15,14 @@ define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
                     <page id="Viewer.1"/>
                 </dock>
                 <split size="310"/>
-                <dock id="" activePageId="DAG.1" focus="true">
+                <dock id="" activePageId="DAG.1">
                     <page id="DAG.1"/>
                     <page id="Curve Editor.1"/>
                     <page id="DopeSheet.1"/>
                 </dock>
             </splitter>
             <split size="615"/>
-            <dock id="" activePageId="Properties.1">
+            <dock id="" activePageId="Properties.1" focus="true">
                 <page id="Properties.1"/>
             </dock>
         </splitter>
@@ -42,16 +42,6 @@ Root {
  int16Lut sRGB
  logLut Cineon
  floatLut linear
-}
-StickyNote {
- inputs 0
- name StickyNote
- tile_color 0x767676ff
- gl_color 0x767676ff
- label "DIGITAL STILL CAMERA EXPOSURE - SATURATION BASED SPEED FOCAL PLANE EXPOSURE v1.0\n\ncolour-science.org - February 5, 2020\n\nThis Gizmo / Group computes Saturation-Based Speed (SBS) Focal Plane Exposure in lx.s.\n\nThe model implemented is appropriate to simulate a physical camera in an offline or realtime renderer.\n\nMore information is available here: https://github.com/colour-science/colour-hdri/blob/develop/colour_hdri/exposure/dsc.py\n\nLatest version of the file will always be available at this URL: https://github.com/colour-science/colour-nuke/blob/master/colour_nuke/scripts/digital_still_camera_exposure.nk\n\n\[1] ISO. (2006). INTERNATIONAL STANDARD ISO12232-2006 - Photography - Digital still cameras - Determination of exposure index, ISO speed ratings, standard output sensitivity, and recommended exposure index.\n"
- note_font_size 14
- xpos -360
- ypos -1095
 }
 Group {
  inputs 0
@@ -138,3 +128,13 @@ Group {
   ypos 112
  }
 end_group
+StickyNote {
+ inputs 0
+ name StickyNote
+ tile_color 0x767676ff
+ gl_color 0x767676ff
+ label "DIGITAL STILL CAMERA EXPOSURE - PHYSICAL CAMERA MODEL v1.0\n\ncolour-science.org - February 5, 2020\n\nThis Gizmo / Group computes Saturation-Based Speed (SBS) Focal Plane Exposure in lx.s.\n\nThe model implemented is appropriate to simulate a physical camera in an offline or realtime renderer.\n\nMore information is available at this URL: https://github.com/colour-science/colour-hdri/blob/develop/colour_hdri/exposure/dsc.py\n\nLatest version of the file will always be available at this URL: https://github.com/colour-science/colour-nuke/blob/master/colour_nuke/scripts/digital_still_camera_exposure.nk\n\n\[1] ISO. (2006). INTERNATIONAL STANDARD ISO12232-2006 - Photography - Digital still cameras - Determination of exposure index, ISO speed ratings, standard output sensitivity, and recommended exposure index.\n"
+ note_font_size 14
+ xpos -360
+ ypos -1095
+}
