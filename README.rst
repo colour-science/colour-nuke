@@ -4,7 +4,7 @@ Colour - Nuke
 Introduction
 ------------
 
-**The Foundry Nuke** implementation for `Colour <https://github.com/colour-science/colour>`__
+**The Foundry Nuke** implementation for `Colour <https://github.com/colour-science/colour>`__.
 
 Code of Conduct
 ---------------
