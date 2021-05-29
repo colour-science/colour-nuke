@@ -4,7 +4,7 @@
 The Foundry Nuke - CSV File to ColorLookup Node
 ===============================================
 
-Defines *The Foundry Nuke* *ColorLookup* node creation objects from *.csv*
+Defines the *The Foundry Nuke* *ColorLookup* node creation objects from *.csv*
 files.
 """
 
