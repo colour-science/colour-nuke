@@ -18,7 +18,6 @@ Contact & Social
 The *Colour Developers* can be reached via different means:
 
 - `Email <mailto:colour-developers@colour-science.org>`__
-- `Discourse <https://colour-science.discourse.group/>`__
 - `Facebook <https://www.facebook.com/python.colour.science>`__
 - `Gitter <https://gitter.im/colour-science/colour>`__
 - `Twitter <https://twitter.com/colour_science>`__
